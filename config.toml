@@ -1,0 +1,48 @@
+baseURL = 'mylesnartey.com/'
+languageCode = 'en-us'
+title = 'Home'
+paginate = "4" # Number of posts per page
+theme = "Mainroad"
+disqusShortname = "" # Enable Disqus comments by entering your Disqus shortname
+googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+
+[Author] # Used in authorbox
+  name = "Myles Nartey"
+  avatar = "img/avatar.png"
+
+[Params]
+  subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
+  description = "Myles Nartey's Personal blog about everything" # Site description. Used in meta description
+  copyright = "Myles Nartey" # Footer copyright holder, otherwise will use site title
+authorbox = true # Show authorbox at bottom of pages if true
+  toc = true # Enable Table of Contents
+  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
+  post_meta = ["author", "date", "categories", "translations"] # Order of post meta information
+  mainSections = ["posts", "blog", "resume"] # Specify section pages to show on home page and the "Recent articles" widget
+  dateformat = "2006-01-02" # Change the format of dates
+googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
+ [Params.style.vars]
+  fontFamilyPrimary = "'Open Sans', Helvetica, Arial, sans-serif"
+  fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -110
+
+ [[menu.main]]
+    name = "Contact"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -100
+  
+  [[menu.main]]
+    name = "Resume"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/resume"
+    weight = -95
+
