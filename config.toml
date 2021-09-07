@@ -1,4 +1,4 @@
-baseURL = 'mylesnartey.com/'
+baseURL = 'http://darkawesome.github.io/blog/'
 languageCode = 'en-us'
 title = 'Home'
 paginate = "4" # Number of posts per page
