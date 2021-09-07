@@ -2,7 +2,7 @@ baseURL = 'mylesnartey.com/'
 languageCode = 'en-us'
 title = 'Home'
 paginate = "4" # Number of posts per page
-theme = "Mainroad"
+theme = "mainroad"
 disqusShortname = "" # Enable Disqus comments by entering your Disqus shortname
 googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 
