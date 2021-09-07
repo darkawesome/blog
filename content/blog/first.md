@@ -1,7 +1,7 @@
 ---
 title: "First Post"
 date: 2021-09-02T07:34:13-04:00
-draft: true
+draft: false
 image: "img/baddlogo.jpg"
 ---
 # This is the beginning of my Journey
@@ -12,6 +12,5 @@ As far as my major specific projects, I plan on integrating data from a side pro
 
 These are my short term goals but could have long-term implications and more is soon to come
 
-Day 1: Genesis 
---- 
+
 
