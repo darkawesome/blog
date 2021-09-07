@@ -1,9 +1,8 @@
 baseURL = 'http://darkawesome.github.io/blog/'
 languageCode = 'en-us'
 title = 'Home'
-paginate = "4" # Number of posts per page
+paginate = "5" # Number of posts per page
 theme = "mainroad"
-disqusShortname = "" # Enable Disqus comments by entering your Disqus shortname
 googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 
 [Author] # Used in authorbox
@@ -18,7 +17,7 @@ authorbox = true # Show authorbox at bottom of pages if true
   toc = true # Enable Table of Contents
   pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories", "translations"] # Order of post meta information
-  mainSections = ["posts", "blog", "resume","intro"] # Specify section pages to show on home page and the "Recent articles" widget
+  mainSections = ["posts", "blog", "resume"] # Specify section pages to show on home page and the "Recent articles" widget
   dateformat = "2006-01-02" # Change the format of dates
 googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
  [Params.style.vars]
