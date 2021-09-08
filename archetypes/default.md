@@ -23,6 +23,8 @@ draft: true
 ## Video Walkthrough
 
 
+_Note : Youtube Video - Hold Ctrl + Left Click to open in new window_  
+
 ## Conclusion
 
 ## Myles Nartey 

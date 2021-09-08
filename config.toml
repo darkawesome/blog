@@ -3,7 +3,7 @@ languageCode = 'en-us'
 title = 'Home'
 paginate = "5" # Number of posts per page
 theme = "mainroad"
-googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracking id
 
 [Author] # Used in authorbox
   name = "Myles Nartey"
@@ -23,6 +23,13 @@ googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,70
  [Params.style.vars]
   fontFamilyPrimary = "'Open Sans', Helvetica, Arial, sans-serif"
   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+
+[Params.sidebar]
+  home = "right"   # Configure layout for home page
+  list = "right"   # Configure layout for list pages
+  single = "right" # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist"]
 
 # Custom social links
 [[Params.widgets.social.custom]]
