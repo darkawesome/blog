@@ -22,12 +22,13 @@ draft: true
 
 ## Video Walkthrough
 
+[![hugo guide](https://img.youtube.com/vi/6JaBian3vgI/0.jpg)](https://www.youtube.com/watch?v=6JaBian3vgI)  
+_Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 
-_Note : Youtube Video - Hold Ctrl + Left Click to open in new window_  
 
 ## Conclusion
 
-## Myles Nartey 
+
 
 
 

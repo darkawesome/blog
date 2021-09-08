@@ -1,18 +1,18 @@
 baseURL = 'http://darkawesome.github.io/blog/'
 languageCode = 'en-us'
 title = 'Home'
-paginate = "5" # Number of posts per page
+paginate = "4" # Number of posts per page
 theme = "mainroad"
 googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracking id
 
 [Author] # Used in authorbox
-  name = "Myles Nartey"
+  name = "DarkAwesome"
   avatar = "img/mountain-lake.jpg"
 
 [Params]
   subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
-  description = "Myles Nartey's Personal blog about everything" # Site description. Used in meta description
-  copyright = "Myles Nartey" # Footer copyright holder, otherwise will use site title
+  description = "Darkawesome's Personal blog about past projects" # Site description. Used in meta description
+  copyright = "DarkAwesome" # Footer copyright holder, otherwise will use site title
 authorbox = true # Show authorbox at bottom of pages if true
   toc = true # Enable Table of Contents
   pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
@@ -53,12 +53,12 @@ googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,70
  [[menu.main]]
     name = "Contact"
     pre = "<i class='fa fa-heart'></i>"
-    url = "/"
+    url = "/blog/contact"
     weight = -100
   
   [[menu.main]]
     name = "Resume"
     pre = "<i class='fa fa-heart'></i>"
-    url = ""
+    url = "/blog/resume"
     weight = -95
 

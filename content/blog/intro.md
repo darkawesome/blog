@@ -1,5 +1,5 @@
 ---
-title: "First Post"
+title: "Intro"
 date: 2021-09-02T07:34:13-04:00
 draft: false
 image: "img/baddlogo.jpg"
