@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta http-equiv=x-ua-compatible content="IE=edge">
-<title>Blogs - Home</title>
+<title>Samba File Server - Home</title>
 <script>(function(a,b){a[b]=a[b].replace("no-js","js")})(document.documentElement,"className")</script>
 <meta name=description content>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
@@ -11,7 +11,6 @@
 <link rel=dns-prefetch href=//fonts.gstatic.com>
 <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 <link rel=stylesheet href=/blog/css/style.css>
-<link rel=alternate type=application/rss+xml href=/blog/blog/index.xml title=Home>
 <link rel="shortcut icon" href=/blog/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','2782326719','auto'),ga('send','pageview'))</script>
 <script async src=https://www.google-analytics.com/analytics.js></script>
@@ -56,35 +55,11 @@
 </header>
 <div class="wrapper flex">
 <div class=primary>
-<main class="main list" role=main>
-<header class=main__header>
-<h1 class=main__title>Blogs</h1>
-</header><article class="list__item post">
-<header class=list__header>
-<h2 class="list__title post__title">
-<a href=/blog/snort/ rel=bookmark>
-Snort
-</a>
-</h2>
-<div class="list__meta meta"><div class="meta__item-author meta__item">
-<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>DarkAwesome</span>
-</div>
-<div class="meta__item-datetime meta__item">
-<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-09-07T23:06:47-04:00>2021-09-07</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/linux/ rel=category>Linux</a>, <a class=meta__link href=/blog/categories/windows/ rel=category>Windows</a>, <a class=meta__link href=/blog/categories/networking/ rel=category>Networking</a>
-</span>
-</div></div>
-</header>
-<div class="content list__excerpt post__content clearfix">
-<p>This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)</p>
-</div>
-</article><article class="list__item post">
-<header class=list__header>
-<h2 class="list__title post__title">
-<a href=/blog/blog/samba/ rel=bookmark>
-Samba File Server
-</a>
-</h2>
-<div class="list__meta meta"><div class="meta__item-author meta__item">
+<main class=main role=main>
+<article class=post>
+<header class=post__header>
+<h1 class=post__title>Samba File Server</h1>
+<div class="post__meta meta"><div class="meta__item-author meta__item">
 <svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>DarkAwesome</span>
 </div>
 <div class="meta__item-datetime meta__item">
@@ -92,48 +67,91 @@ Samba File Server
 </span>
 </div></div>
 </header>
-<div class="content list__excerpt post__content clearfix">
+<div class="post__toc toc">
+<div class=toc__title>Page content</div>
+<div class=toc__menu>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#video-walkthrough>Video Walkthrough</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</nav>
+</div>
+</div><div class="content post__content clearfix">
 <p>This was a Samba File server that I setup on my latptop running linux to send files from my pc to my laptop.</p>
+<h1 id=write-up>Write-Up</h1>
+<p>Right off the bat after install I went into the etc/samba/smb.conf file and went to look at the
+default configs. I didn’t really understand some of what was in there and didn’t have any use for the
+printer section. So I just made my own config file from scratch and used the samba wiki for support when
+needed. I also asked Steve about setting a workgorup in the config but did not. As per his advice, it was
+not needed if it were to be a standalone server. The next road block was getting my windows pc to see my
+laptops samba share. When I went the option of typing in the ip address in file explorer I got an error. I
+then thought of starting over and using 2 virtual machines and using NAT so they would be able to talk to
+each other but before that I asked Steve another question about the hosts file. I thought the two machines
+might need to know about each other prior to allowing connection and he said it would depend on the
+config. And that there may be a setting somewhere about only allowing the hosts in host.allow. I thought
+that by making the user that connects, a user with limited privileges, I could circumvent that. However,
+that didn’t end up working and I continued to try the host.file way. At this point I added the windows PC
+into the host.allow file and tried to ssh into it but just received a “no such host is known” error. So in a bit
+of a cheating way but maybe better for my circumstances I just put logmeinhamachi on both machines
+and connected them using that vpn service. So even when my laptop and PC are in different networks I
+am still able to upload files to the server and as long as both are online I can retrieve those files. For some
+reason doing a systemctl status smbd.service returns a message highlighted in red however its not an error
+and just says</p>
+<blockquote>
+<blockquote>
+<p>[2021/04/2208:21:11.851914,0]../../lib/util/become_daemon.c:135(daemon_ready)
+Apr 22 08:21:11 Banana-King smbd[1051]: daemon_ready: daemon &lsquo;smbd&rsquo; finished
+starting up and ready to serve connections</p>
+</blockquote>
+</blockquote>
+<h2 id=video-walkthrough>Video Walkthrough</h2>
+<p><a href=https://youtu.be/4iO9VSXM4Ns><img src="https://i9.ytimg.com/vi/4iO9VSXM4Ns/mq1.jpg?sqp=CKCy4IkG&rs=AOn4CLANqp4dGnM3q-pBmd__d7Xf0NXTsg" alt="Samba Write-Up"></a><br>
+<em>Note: YouTube Video - Hold Ctrl + Left Click to open in new window</em></p>
+<h4 id=social>Social</h4>
+<ul>
+<li>YouTube - <a href=https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg</a></li>
+</ul>
+<h2 id=conclusion>Conclusion</h2>
+<p>In this project I connected my computers to each other using logmeinhamachi and ran a samba file server on 1 machine to serve files.</p>
 </div>
-</article><article class="list__item post">
-<header class=list__header>
-<h2 class="list__title post__title">
-<a href=/blog/blog/intro/ rel=bookmark>
-Intro
-</a>
-</h2>
-<div class="list__meta meta"><div class="meta__item-author meta__item">
-<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>DarkAwesome</span>
+<footer class=post__footer>
+<div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg>
+<ul class=tags__list>
+<li class=tags__item>
+<a class="tags__link btn" href=/blog/tags/ubuntu/ rel=tag>Ubuntu</a>
+</li>
+</ul>
 </div>
-<div class="meta__item-datetime meta__item">
-<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-09-02T07:34:13-04:00>2021-09-02</time></div></div>
-</header>
-<div class="content list__excerpt post__content clearfix">
-This is the beginning of my Journey I plan on using this website as an example of the things that I have done and keep a running record of college projects. As well of side projects that I have done on the side to make my life easier and small shortcuts to improve my workflow. I will begin to upload projects I have already done in the past on here in the near future.
-</div>
-</article><article class="list__item post">
-<header class=list__header>
-<h2 class="list__title post__title">
-<a href=/blog/blog/resume/ rel=bookmark>
-Resume
-</a>
-</h2>
-<div class="list__meta meta"><div class="meta__item-author meta__item">
-<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>DarkAwesome</span>
-</div>
-<div class="meta__item-datetime meta__item">
-<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-09-02T07:34:13-04:00>2021-09-02</time></div></div>
-</header>
-<div class="content list__excerpt post__content clearfix">
-Education The Pennsylvania State University, University Park,PA | May 2023
-Bachelor of Science in Social Data Analytics GPA: 3
-Work 25-30 hours a week as a full-time student topay for my tuition and expenses
-Relevant Courses System Administration | Linux Operating System| Networking I and II |Computer Security
-IT Work Related Experience The University of Pittsburgh at Bradford, Bradford, PA Information Systems/Technology II Sept 2019- April 2021
-● Trained new hires on imaging machines, using the ticketingsystem
-</div>
+</footer>
 </article>
 </main>
+<div class="authorbox clearfix">
+<figure class=authorbox__avatar>
+<img alt="DarkAwesome avatar" src=/blog/img/mountain-lake.jpg class=avatar height=90 width=90>
+</figure>
+<div class=authorbox__header>
+<span class=authorbox__name>About DarkAwesome</span>
+</div>
+</div>
+<nav class="pager flex">
+<div class="pager__item pager__item--prev">
+<a class=pager__link href=/blog/blog/intro/ rel=prev>
+<span class=pager__subtitle>«&#8201;Previous</span>
+<p class=pager__title>Intro</p>
+</a>
+</div>
+<div class="pager__item pager__item--next">
+<a class=pager__link href=/blog/snort/ rel=next>
+<span class=pager__subtitle>Next&#8201;»</span>
+<p class=pager__title>Snort</p>
+</a>
+</div>
+</nav>
 </div>
 <aside class=sidebar><div class="widget-search widget">
 <form class=widget-search__form role=search method=get action=https://google.com/search>
