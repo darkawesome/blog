@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Home</title>
+    <link>http://darkawesome.github.io/blog/categories/linux/</link>
+    <description>Recent content in Linux on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Sep 2021 23:06:47 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Snort</title>
+      <link>http://darkawesome.github.io/blog/snort/</link>
+      <pubDate>Tue, 07 Sep 2021 23:06:47 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/snort/</guid>
+      <description>&lt;p&gt;This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Samba File Server</title>
+      <link>http://darkawesome.github.io/blog/blog/samba/</link>
+      <pubDate>Thu, 02 Sep 2021 07:34:20 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/blog/samba/</guid>
+      <description>&lt;p&gt;This was a Samba File server that I setup on my latptop running linux to send files from my pc to my laptop.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

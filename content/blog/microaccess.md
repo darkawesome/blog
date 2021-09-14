@@ -14,6 +14,7 @@ draft: true
 ---
 
 Query tool to find free college textbooks.
+Page is not complete
 <!--more-->
 
 I planned to index this github (placeholder) and look to implement others to give college kids a one stop place to look for free books. 
