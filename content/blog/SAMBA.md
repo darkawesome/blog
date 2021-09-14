@@ -42,7 +42,7 @@ starting up and ready to serve connections
 
 ## Video Walkthrough
 
-[![Samba Write-Up](https://i9.ytimg.com/vi/4iO9VSXM4Ns/mq1.jpg?sqp=CKCy4IkG&rs=AOn4CLANqp4dGnM3q-pBmd__d7Xf0NXTsg)](https://youtu.be/4iO9VSXM4Ns)  
+[![Samba Write-Up](http://sysads.co.uk/wp-content/uploads/2016/05/samba-smb-700x328.jpg)](https://youtu.be/4iO9VSXM4Ns)  
 _Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 
 #### Social

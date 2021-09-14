@@ -61,15 +61,18 @@ project. So after messing with inline ips mode and the Daq I just went back to d
 of using snort without the ips for now. However, I will get that figured out soon and try to make it
 a ids and an ips.
 
+
+## Video Walkthrough
+
+[![Snort Write-Up](https://3.bp.blogspot.com/-8dJsBA5feZE/WQ7dzU5zaBI/AAAAAAAAJrA/OP6BQxD3d-IXWh8Ko0vh2zvDgliDylk2QCLcB/s1600/Snort-OpenSource-Network-Intrusion-Detection-Tool.jpg)](https://youtu.be/KyJFdf-kolE)  
+_Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
+
+
 #### Social
 
 - YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
 
 
-## Video Walkthrough
-
-[![Snort Write-Up](https://i9.ytimg.com/vi/KyJFdf-kolE/mq1.jpg?sqp=CODX4IkG&rs=AOn4CLCobu3gX3Uflh9PPO4OmlPQvWJjfw)](https://youtu.be/KyJFdf-kolE)  
-_Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 
 ## Conclusion
 

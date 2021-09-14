@@ -13,16 +13,12 @@ tags:
 draft: true
 ---
 
+Please feel free to get in contact with me
+<!--more-->
 
+Github : Darkawesome
 
-
-
-#### Social
-
-- YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
-
-
-
+Email : 
 
 
 

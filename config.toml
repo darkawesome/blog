@@ -7,7 +7,7 @@ googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracki
 
 [Author] # Used in authorbox
   name = "DarkAwesome"
-  avatar = "img/mountain-lake.jpg"
+  avatar = "img/andre.jpg"
 
 [Params]
   subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
