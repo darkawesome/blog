@@ -5,9 +5,12 @@ draft: false
 image: "img/baddlogo.jpg"
 ---
 
+
+<!--more-->
+
 ## Education
 
-The Pennsylvania State University, University Park,PA | **May 2023**
+The Pennsylvania State University, University Park,PA | **May 2024**
 
 Bachelor of Science in Social Data Analytics **GPA: 3**
 
