@@ -8,7 +8,7 @@ categories:
   - Data Science
 tags:
   - Ubuntu
-draft: true
+draft: false
 ---
 
 From Pitt-Bradford to Penn State
@@ -21,5 +21,3 @@ I plan to pursue a career in data science. I think this is where the tech indust
 ## Next Steps
 
 For the next few months I will be working to create projects centered around data science and looking at how to optimize simple things in my life. So of course I am going to start with looking at my spending and will see how much I can do to implement savings and other things along with that.
-
-

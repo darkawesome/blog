@@ -13,4 +13,3 @@ I plan on using this website as an example of the things that I have done and ke
 As far as my major specific projects, I plan on integrating data from a side project I have began planning into the site and using google Analytics or another software to better understand the data sets and be able to interpret what is going on with the data.
 
 These are my short term goals but could have long-term implications and more is soon to come
-
