@@ -18,9 +18,4 @@ Please feel free to get in contact with me
 
 Github : Darkawesome
 
-Email : 
-
-
-
-
-
+Email :

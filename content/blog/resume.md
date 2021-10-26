@@ -59,7 +59,5 @@ interaction
 ## Skills
 
 Linux / Unix | DHCP & DNS | GroupPolicy Objects |
-Active Directory | Snort(IDS / IPS) | Microsoft Azure 
+Active Directory | Snort(IDS / IPS) | Microsoft Azure
 Extron A/V equipment ( video switchers, controllers )
-
-

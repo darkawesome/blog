@@ -53,8 +53,3 @@ _Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 ## Conclusion
 
 In this project I connected my computers to each other using logmeinhamachi and ran a samba file server on 1 machine to serve files.
-
-
-
-
-

@@ -7,11 +7,11 @@ googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracki
 
 [Author] # Used in authorbox
   name = "DarkAwesome"
-  avatar = "img/andre.jpg"
+  avatar = "img/Afro.jpeg"
 
 [Params]
   subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
-  description = "Darkawesome's Personal blog about past projects" # Site description. Used in meta description
+  description = "Darkawesome's Portfolio of past projects" # Site description. Used in meta description
   copyright = "DarkAwesome" # Footer copyright holder, otherwise will use site title
 authorbox = true # Show authorbox at bottom of pages if true
   toc = true # Enable Table of Contents
@@ -29,7 +29,7 @@ googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,70
   list = "right"   # Configure layout for list pages
   single = "right" # Configure layout for single pages
   # Enable widgets in given order
-  widgets = ["search", "recent", "categories", "taglist"]
+  widgets = ["search", "recent", "categories", "taglist",]
 
 # Custom social links
 [[Params.widgets.social.custom]]

@@ -15,6 +15,4 @@ Below is a video describing the site was made
 ## Video Walkthrough 
 [![Lamp Stack](https://www.unixmen.com/wp-content/uploads/2017/05/lamp_stack.jpg)](https://youtu.be/eIm0vl21E7g)  
 
-_Note : Youtube Video - Hold Ctrl + Left Click to open in new window_ 
-
-
+_Note : Youtube Video - Hold Ctrl + Left Click to open in new window_
