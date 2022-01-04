@@ -8,7 +8,7 @@ categories:
   - Data Science
 tags:
   - Ubuntu
-draft: false
+draft: true
 ---
 
 From Pitt-Bradford to Penn State

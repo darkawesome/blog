@@ -1,7 +1,7 @@
 ---
 title: "Samba File Server"
 date: 2021-09-02T07:34:20-04:00
-image: "img/baddlogo.jpg"
+image: "img/samba.png"
 categories:
   - Linux
   - Windows

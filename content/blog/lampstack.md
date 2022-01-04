@@ -2,7 +2,7 @@
 title: "Lamp Stack"
 date: 2021-09-02T07:34:20-04:00
 draft: false
-image: "img/baddlogo.jpg"
+image: "img/waterjoe.jpg"
 ---
 In this project I set up a LAMP stack server and I hosted it using the google cloud platofrm.
 <!--more-->

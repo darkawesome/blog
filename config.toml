@@ -1,4 +1,4 @@
-baseURL = 'http://darkawesome.github.io/blog/'
+baseURL = 'http://darkawesome.github.io/'
 languageCode = 'en-us'
 title = 'Home'
 paginate = "4" # Number of posts per page
@@ -7,7 +7,7 @@ googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracki
 
 [Author] # Used in authorbox
   name = "DarkAwesome"
-  avatar = "img/Afro.jpeg"
+  avatar = "img/waterjoe.jpg"
 
 [Params]
   subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle

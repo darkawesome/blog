@@ -38,17 +38,23 @@ right device name in the beginning. Then I kept getting the alert “ no preproc
 for policy 0 “and I knew from the reading I did before that I would need to run 
 https://stackoverflow.com/questions/29503344/snort-message-warning-no-preprocessors-configured-for-policy-0 
 
-	`snort -v -c /etc/snort/snort.conf` 
+```bash 
+  snort -v -c /etc/snort/snort.conf
+```
   
 to get rid of this error. However doing that doesn’t allow me to run through the hamachi interface. And after fumbling around I ran
 
 https://www.linuxquestions.org/questions/linux-software-2/change-interface-listen-on-snort-877108/  
 
-	`sudo snort -c /etc/snort/snort.conf -i ham0`
+```bash
+sudo snort -c /etc/snort/snort.conf -i ham0
+```
   
 and it worked. At the end of it to get the whole thing working I ran:
 
-	`sudo snort -d -l /var/log/snort/ -h 25.0.0.0/2620 -A console -c /etc/snort/snort.conf -i ham0`
+```bash 
+sudo snort -d -l /var/log/snort/ -h 25.0.0.0/2620 -A console -c /etc/snort/snort.conf -i ham0
+```
 
 Doing this shows me alerts in the console window, application packets are not included and the
 logging directory is set. The -h I included because I wasn’t sure if the home network from the
