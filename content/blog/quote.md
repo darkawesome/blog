@@ -7,12 +7,12 @@ categories:
   - Shell Script
   - Data Science
 
-draft: true
+draft: false
 ---
 
-I made this simple script to show up on my command line and remind myself to be myself. And to do the work that I want to do in my free time rather than just waste time on Youtube or Netflix. 
+I made this simple script to show up on my command line and remind myself to be myself. And to do the work that I want to do in my free time rather than just waste time on Youtube or Netflix.
 
-Below is the code for the script: 
+Below is the code for the script:
 ```bash
 	#!/bin/bash
 
@@ -21,13 +21,15 @@ Below is the code for the script:
  echo $webpage
  ```
 
-And to make it show on my command line I used fcron and set up a cron job 
+And to make it show on my command line I used fcron and set up a cron job. This will run the script every 30 minutes, every hour, Monday through Friday, nine to five. As those are the times I'm usually on my linux machine.  
 
-///Below is the code for the cron job : 
+///Below is the code for the cron job :
 
 ```bash
 */30 9-17 * * 1-5 quote
 ```
 
 
-The main purpose of this was to use pup to get a specific css selector and learn from there. PUP is a command line tool for processing HTML. It reads from stdin, prints to stdout, and allows the user to filter parts of the page using css selectors. (https://github.com/EricChiang/pup) 
+The main purpose of this was to use pup to get a specific css selector and learn from there. PUP is a command line tool for processing HTML. It reads from stdin, prints to stdout, and allows the user to filter parts of the page using css selectors. (https://github.com/EricChiang/pup)
+
+I have recently been learning about the Beautiful Soup and Selenium libraries and I will be making a Amazon Scrapper for a friend to implement on his website. That post should come after this one unless another project takes priority.
