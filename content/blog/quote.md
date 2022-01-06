@@ -26,7 +26,7 @@ Below is the code for the script:
 
 And to make it show on my command line I used fcron and set up a cron job. This will run the script every 30 minutes, every hour, Monday through Friday, nine to five. As those are the times I'm usually on my linux machine.  
 
-///Below is the code for the cron job :
+Below is the code for the cron job :
 
 ```bash
 */30 9-17 * * 1-5 quote
