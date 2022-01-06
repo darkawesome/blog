@@ -3,9 +3,9 @@ title: "Intro"
 date: 2021-09-02T07:34:13-04:00
 draft: false
 ---
-## This is the beginning of my Journey
-
+Im just a kid who likes reading man pages 
 <!--more-->
+## This is the beginning of my Journey
 
 I plan on using this website as an example of the things that I have done and keep a running record of college projects. As well of side projects that I have done on the side to make my life easier and small shortcuts to improve my workflow. I will begin to upload projects I have already done in the past on here in the near future.
 

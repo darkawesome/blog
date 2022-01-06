@@ -9,8 +9,11 @@ categories:
 
 draft: false
 ---
+"Be yourself; everyone else is already taken." -Oscar Wilde
 
-I made this simple script to show up on my command line and remind myself to be myself. And to do the work that I want to do in my free time rather than just waste time on Youtube or Netflix.
+<!--more-->
+
+In this project I set up a script to run every so often to keep me focused on my end goal. When it runs this quote to shows up on my command line to remind myself to be myself. And to do the work that I want to do in my free time rather than just waste time on Youtube or Netflix. The grind is now what keeps me working and motivated as its the only way to improve.
 
 Below is the code for the script:
 ```bash
