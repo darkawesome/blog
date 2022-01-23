@@ -7,11 +7,7 @@ draft: false
 
 
 <!--more-->
-**Myles Nartey**
-
-(919) 904-8206
-
-myles.nartey@gmail.com | https://darkawesome.github.io/blog/ | github.com/darkawesome
+https://darkawesome.github.io/blog/ | github.com/darkawesome
 
 **Education**
 
