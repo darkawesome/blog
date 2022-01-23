@@ -35,4 +35,4 @@ Below is the code for the cron job :
 
 The main purpose of this was to use pup to get a specific css selector and learn from there. PUP is a command line tool for processing HTML. It reads from stdin, prints to stdout, and allows the user to filter parts of the page using css selectors. (https://github.com/EricChiang/pup)
 
-I have recently been learning about the Beautiful Soup and Selenium libraries and I will be making a Amazon Scrapper for a friend to implement on his website. That post should come after this one unless another project takes priority.
+I have recently been learning about the Beautiful Soup and Selenium libraries and I will be making a Amazon Scrapper for a the Aionian Bible Project to implement on their website (http://www.dgjc.org/aionian-bible). That post should come after this one unless another project takes priority.

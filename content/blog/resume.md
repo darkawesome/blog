@@ -21,7 +21,7 @@ Bachelor of Science in Social Data Analytics **GPA:3.00**
 
 **The University of Pittsburgh at Bradford, Bradford, PA**  **Aug 2019 - May 2021**
 
-Bachelor of Science in Computer Information Science and Technology(CIST) **GPA: 3.40**
+Bachelor of Science in Computer Information Science and Technology (CIST) **GPA: 3.40**
 
 Completed two years of courses focused on CIST prior to transferring to Penn State
 
@@ -33,13 +33,12 @@ System Administration | Linux Operating System | Networking I and II | Computer 
 
 Linux / Unix DHCP &amp; DNS Web Scraping Group Policy Objects Bash Scripting Active Directory Snort (IDS / IPS) Microsoft Azure Extron A/V equipment (video switchers, controllers)
 
-![Shape 2](RackMultipart20211231-4-ts9wjb_html_aea8f0576d662244.gif)
 
 **IT Experience**
 
 **IT User Support Specialist**
 
-**The Pennsylvania State University, University Park, PA**** Aug of 2021 - present**
+**The Pennsylvania State University, University Park, PA** |  **Aug of 2021 - present**
 
 - Provided demonstrations of specific XR technologies
 - Assisted graduate students with XR research
@@ -47,7 +46,7 @@ Linux / Unix DHCP &amp; DNS Web Scraping Group Policy Objects Bash Scripting Act
 
 **Information Systems and Technology Support I &amp; II**
 
-**The University of Pittsburgh at Bradford, Bradford, PA**  **Sep. 2019 - April 2021**
+**The University of Pittsburgh at Bradford, Bradford, PA** | **Sep. 2019 - April 2021**
 
 - Trained new hires on imaging machines and using the ticketing system
 - Supported student and faculty computers including virus/malware remediation and wireless configuration
@@ -61,7 +60,7 @@ Linux / Unix DHCP &amp; DNS Web Scraping Group Policy Objects Bash Scripting Act
 
 **Customer Service Associate**
 
-**Lowes in Avondale, PA &amp; State College, PA**  **May 2018 - present**
+**Lowes in Avondale, PA &amp; State College, PA** | **May 2018 - present**
 
 - Managed customer relations and services through communication and interaction
 - Tracked material movements
