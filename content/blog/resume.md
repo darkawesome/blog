@@ -63,3 +63,10 @@ Linux / Unix DHCP &amp; DNS Web Scraping Group Policy Objects Bash Scripting Act
 - Liaised with distribution centers
 - Updated orders through a fulfillment database
 - Used Xterm on a daily to manage products and product information
+
+**Projects**
+
+**Aionian Bible Project**
+- Building an Amazon web scraper to display amazon comments under the corresponding book on the
+website
+- Creating a bot as well to automate the process and update content on an interval to avoid bot detection
