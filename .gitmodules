@@ -3,7 +3,7 @@
 	url = https://github.com/Vimux/Mainroad.git
 [submodule "themes/mainroad"]
 	path = themes/mainroad
-	url = https://github.com/vimux/mainroad
+	url = https://github.com/vimux/mainroad.git
 [submodule "themes/themes/mainroad"]
 	path = themes/themes/mainroad
 	url = https://github.com/vimux/mainroad

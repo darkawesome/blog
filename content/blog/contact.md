@@ -10,12 +10,10 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: False
 ---
 
-Please feel free to get in contact with me
+Please try and hack me
 <!--more-->
 
 Github : Darkawesome
-
-Email :
