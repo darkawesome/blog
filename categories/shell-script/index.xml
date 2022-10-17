@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shell Script on Home</title><link>http://darkawesome.github.io/blog/categories/shell-script/</link><description>Recent content in Shell Script on Home</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 07 Sep 2021 23:46:57 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/blog/categories/shell-script/index.xml" rel="self" type="application/rss+xml"/><item><title>Quote</title><link>http://darkawesome.github.io/blog/blog/quote/</link><pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate><guid>http://darkawesome.github.io/blog/blog/quote/</guid><description>&lt;p>&amp;ldquo;Be yourself; everyone else is already taken.&amp;rdquo; -Oscar Wilde&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell Script on Home</title>
+    <link>http://darkawesome.github.io/blog/categories/shell-script/</link>
+    <description>Recent content in Shell Script on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Sep 2021 23:46:57 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/blog/categories/shell-script/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quote</title>
+      <link>http://darkawesome.github.io/blog/blog/quote/</link>
+      <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/blog/quote/</guid>
+      <description>&lt;p&gt;&amp;ldquo;Be yourself; everyone else is already taken.&amp;rdquo; -Oscar Wilde&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
