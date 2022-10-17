@@ -2,53 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home</title>
-    <link>http://darkawesome.github.io/</link>
+    <link>http://darkawesome.github.io/blog/</link>
     <description>Recent content on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Sep 2021 23:06:47 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Sep 2022 14:11:04 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Internship</title>
+      <link>http://darkawesome.github.io/blog/internship/</link>
+      <pubDate>Tue, 27 Sep 2022 14:11:04 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/internship/</guid>
+      <description>&lt;p&gt;A series of challenges learning and sprints at the finish&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Summer2022</title>
+      <link>http://darkawesome.github.io/blog/summer2022/</link>
+      <pubDate>Tue, 27 Sep 2022 14:10:31 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/summer2022/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://darkawesome.github.io/blog/contact/</link>
+      <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/contact/</guid>
+      <description>&lt;p&gt;I am Darkawesome, I live somewhere in America. I am a systems admin by hobby and I love computers&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Quote</title>
+      <link>http://darkawesome.github.io/blog/blog/quote/</link>
+      <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
+      
+      <guid>http://darkawesome.github.io/blog/blog/quote/</guid>
+      <description>&lt;p&gt;&amp;ldquo;Be yourself; everyone else is already taken.&amp;rdquo; -Oscar Wilde&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Snort</title>
-      <link>http://darkawesome.github.io/snort/</link>
+      <link>http://darkawesome.github.io/blog/snort/</link>
       <pubDate>Tue, 07 Sep 2021 23:06:47 -0400</pubDate>
       
-      <guid>http://darkawesome.github.io/snort/</guid>
+      <guid>http://darkawesome.github.io/blog/snort/</guid>
       <description>&lt;p&gt;This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Lamp Stack</title>
-      <link>http://darkawesome.github.io/blog/lampstack/</link>
+      <link>http://darkawesome.github.io/blog/blog/lampstack/</link>
       <pubDate>Thu, 02 Sep 2021 07:34:20 -0400</pubDate>
       
-      <guid>http://darkawesome.github.io/blog/lampstack/</guid>
+      <guid>http://darkawesome.github.io/blog/blog/lampstack/</guid>
       <description>&lt;p&gt;In this project I set up a LAMP stack server and I hosted it using the google cloud platofrm.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Samba File Server</title>
-      <link>http://darkawesome.github.io/blog/samba/</link>
+      <link>http://darkawesome.github.io/blog/blog/samba/</link>
       <pubDate>Thu, 02 Sep 2021 07:34:20 -0400</pubDate>
       
-      <guid>http://darkawesome.github.io/blog/samba/</guid>
+      <guid>http://darkawesome.github.io/blog/blog/samba/</guid>
       <description>&lt;p&gt;This was a Samba File server that I setup on my latptop running linux to send files from my pc to my laptop.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Intro</title>
-      <link>http://darkawesome.github.io/blog/intro/</link>
+      <link>http://darkawesome.github.io/blog/blog/intro/</link>
       <pubDate>Thu, 02 Sep 2021 07:34:13 -0400</pubDate>
       
-      <guid>http://darkawesome.github.io/blog/intro/</guid>
-      <description>&lt;h2 id=&#34;this-is-the-beginning-of-my-journey&#34;&gt;This is the beginning of my Journey&lt;/h2&gt;</description>
+      <guid>http://darkawesome.github.io/blog/blog/intro/</guid>
+      <description>&lt;p&gt;Im just a kid who likes reading man pages&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Resume</title>
-      <link>http://darkawesome.github.io/blog/resume/</link>
+      <link>http://darkawesome.github.io/blog/blog/resume/</link>
       <pubDate>Thu, 02 Sep 2021 07:34:13 -0400</pubDate>
       
-      <guid>http://darkawesome.github.io/blog/resume/</guid>
+      <guid>http://darkawesome.github.io/blog/blog/resume/</guid>
       <description></description>
     </item>
     
