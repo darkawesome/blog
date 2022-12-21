@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://darkawesome.github.io/blog/blog/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/categories/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/categories/linux/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/categories/networking/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/Nextcloud/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/tags/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://darkawesome.github.io/blog/tags/ubuntu/</loc>
+    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
+  </url><url>
     <loc>http://darkawesome.github.io/blog/tags/blog/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
     <loc>http://darkawesome.github.io/blog/internship/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/networking/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/tags/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/categories/data-science/</loc>
@@ -29,16 +38,13 @@
     <loc>http://darkawesome.github.io/blog/summer2022/</loc>
     <lastmod>2022-09-27T14:10:31-04:00</lastmod>
   </url><url>
+    <loc>http://darkawesome.github.io/blog/shift/</loc>
+    <lastmod>2021-09-13T13:54:20-04:00</lastmod>
+  </url><url>
     <loc>http://darkawesome.github.io/blog/contact/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/linux/</loc>
-    <lastmod>2021-09-07T23:46:57-04:00</lastmod>
-  </url><url>
     <loc>http://darkawesome.github.io/blog/blog/quote/</loc>
-    <lastmod>2021-09-07T23:46:57-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/tags/ubuntu/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/categories/windows/</loc>
