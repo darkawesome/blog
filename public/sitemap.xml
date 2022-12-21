@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://darkawesome.github.io/blog/categories/b2b/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
     <loc>http://darkawesome.github.io/blog/tags/blog/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
@@ -20,19 +17,13 @@
     <loc>http://darkawesome.github.io/blog/internship/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/marketing/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
     <loc>http://darkawesome.github.io/blog/categories/networking/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/tags/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/linux/</loc>
-    <lastmod>2022-09-27T14:10:31-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/political-science/</loc>
+    <loc>http://darkawesome.github.io/blog/categories/data-science/</loc>
     <lastmod>2022-09-27T14:10:31-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/summer2022/</loc>
@@ -41,13 +32,10 @@
     <loc>http://darkawesome.github.io/blog/contact/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/data-science/</loc>
+    <loc>http://darkawesome.github.io/blog/categories/linux/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/blog/quote/</loc>
-    <lastmod>2021-09-07T23:46:57-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/shell-script/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/tags/ubuntu/</loc>
@@ -58,9 +46,6 @@
   </url><url>
     <loc>http://darkawesome.github.io/blog/snort/</loc>
     <lastmod>2021-09-07T23:06:47-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/lampstack/</loc>
-    <lastmod>2021-09-02T07:34:20-04:00</lastmod>
   </url><url>
     <loc>http://darkawesome.github.io/blog/blog/samba/</loc>
     <lastmod>2021-09-02T07:34:20-04:00</lastmod>

@@ -22,7 +22,7 @@
       <pubDate>Tue, 27 Sep 2022 14:10:31 -0400</pubDate>
       
       <guid>http://darkawesome.github.io/blog/summer2022/</guid>
-      <description></description>
+      <description>&lt;p&gt;I have a good idea of what I think I want to do.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -50,15 +50,6 @@
       
       <guid>http://darkawesome.github.io/blog/snort/</guid>
       <description>&lt;p&gt;This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Lamp Stack</title>
-      <link>http://darkawesome.github.io/blog/blog/lampstack/</link>
-      <pubDate>Thu, 02 Sep 2021 07:34:20 -0400</pubDate>
-      
-      <guid>http://darkawesome.github.io/blog/blog/lampstack/</guid>
-      <description>&lt;p&gt;In this project I set up a LAMP stack server and I hosted it using the google cloud platofrm.&lt;/p&gt;</description>
     </item>
     
     <item>
