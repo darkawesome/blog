@@ -28,6 +28,7 @@ So I had to find a way to secure my servers, make it easy for him to connect and
 After a little bit of testing with friends all I need to do on my end is get a new switch to get a 1G switch. The one in my current config doesn't allow for 1000Base-T and really does't help the Boys out when it comes to uploads and download speeds. Also a NAS would be nice to have for increasing storage. All in all this isn't its final form. We have a lot more to do before I think its at a place where I can host all of my friends storage. 
 
 ## Cloudflare Documents 
+
 [![Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/static/documentation/connections/connect-apps/handshake.jpg)](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/)  
 _Note: Cloudflare Tunnel Write-up - Hold Ctrl + Left Click to open in new window_
 

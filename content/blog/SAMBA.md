@@ -8,7 +8,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-
+draft : False
 ---
 
 This was a Samba File server that I setup on my latptop running linux to send files from my pc to my laptop.

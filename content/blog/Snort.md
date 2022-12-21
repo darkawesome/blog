@@ -10,6 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
+draft: False
 ---
 This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)
 <!--more-->
