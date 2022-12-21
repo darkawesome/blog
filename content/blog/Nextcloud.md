@@ -9,7 +9,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: False
 ---
 If you have knowledge, let others light their candles in it. -Margaret Fuller 
 <!--more-->
