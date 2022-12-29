@@ -33,12 +33,6 @@ After a little bit of testing with friends all I need to do on my end is get a n
 _Note: Cloudflare Tunnel Write-up - Hold Ctrl + Left Click to open in new window_
 
 
-#### Social
-
-- YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
-
-
-
 
 
 

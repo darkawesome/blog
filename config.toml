@@ -1,7 +1,7 @@
 baseURL = 'http://darkawesome.github.io/blog'
 languageCode = 'en-us'
 title = 'Home'
-paginate = "4" # Number of posts per page
+paginate = "5" # Number of posts per page
 theme = "mainroad"
 googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracking id
 

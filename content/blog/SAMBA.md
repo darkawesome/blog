@@ -45,10 +45,6 @@ starting up and ready to serve connections
 [![Samba Write-Up](http://sysads.co.uk/wp-content/uploads/2016/05/samba-smb-700x328.jpg)](https://youtu.be/4iO9VSXM4Ns)  
 _Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 
-#### Social
-
-- YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
-
 
 ## Conclusion
 

@@ -25,9 +25,6 @@ Anyways to get into an overview of things I have been learning about base R and 
 ## Conclusion
 I plan on just continuing to learn R and better understand data analysis with my degree. While I continue to work on my server and build up my knowledge of mangaing a server. And everything that would be involved in a IT support/ analysts role.
 
-#### Social
-
-- YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
 
 
 
