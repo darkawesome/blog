@@ -22,11 +22,13 @@ Theory : Having nuclear weapons in the country acts as a force to keep the count
 
 **Does the number of nuclear weapons have an effect on human rights abuses?**
 
-[![ImageOne](blog/content/img/image1.png)] ("Nucleaar weapon count over years")
+Nucleaar weapon count over years
+![ImageOne](https://gcdnb.pbrd.co/images/EWpfEGzcdSZa.png?o=1) 
 
 For the dependent variable “Nukes” the mean is 5213.4 while the median is 235. Looking at this we can use the median as the true center. As it is not skewed by the outliers in the data. The standard deviation of the “Nukes” variable is 10022.22 and this high number makes sense when we account for outliers and high numbers. This means that a datum would be very far from the mean on average. Looking at the interquartile range we can confirm the above assumptions made about the data. The first quartile is 34.5 and the third is 2414.5 with a min and max of zero and 40159 respectively. When we look at the association between Nukes and Women’s Political Rights we find a Pearson's R of 0.313999 we have a weak yet positive linear correlation. When fitting a linear model to “Nukes” and “Women’s Political Rights” we find an R-squared value of 0.0986 to say that this line explains only 9% of the data in the full data table. Moreover, we find that “Women’s Political Rights” is a statistically significant variable that has a p-value of 9.2e -06. The  𝛽 variable (Nukes) has a value of 7478, which means for every single unit increase in x (Women’s Political Rights ) on average the number of nukes will increase by 7478. 
 
-![ImageTwo](/img/image2.png "Nuke count vs. Freedom of Assembly and Association")
+Nuke count vs. Freedom of Assembly and Association
+![ImageTwo](https://gcdnb.pbrd.co/images/362xN2KexmQd.png?o=1) 
 
 The independent variable “Freedom of Assembly and Association” had a median value of
 1 and a mean of 1.292. What this means when looking at the coding for this variable is that on
@@ -40,11 +42,12 @@ two. The chi-square statistic here is quite high (299.72)and confirms that our d
 Looking at the correlation with a hypothesis test we find that though the correlation is not 0. It is
 low enough I would say that it is essentially 0 (-0.01900094).
 
-![ImageThree](/img/image3.png "Nuke Count vs. Torture ")
+Nuke Count vs. Torture
+![ImageThree](https://gcdnb.pbrd.co/images/uh3OAZzy5mdO.png?o=1) 
 
 The independent variable “Torture“measures anything from simple beatings to other
 practices to get a forced confession or information. The mean of this is 0.5625 and the median is
-0. Now when we plot the data we can see that it is skewed toward zero and most of the data is
+1. Now when we plot the data we can see that it is skewed toward zero and most of the data is
 spread across zero and one. Using the coding book, this means that most of the countries have
 practiced torture frequently (50 or more) or practice it occasionally respectively (1 to 49). Now
 looking at the variation we have a value of 0.4986911. Now the correlation coefficient is
@@ -55,7 +58,8 @@ After running a bivariate regression on these variables we can that this assumpt
 with an R-squared value of 0.009278, To mean, that torture is responsible for 0.9% of the
 variation we see in Nukes.
 
-![ImageFour](/img/image4.png "Nuke Count vs. Disappearance")
+Nuke Count vs. Disappearance
+![ImageFours](https://gcdnb.pbrd.co/images/X1WrLwL9Kwog.png?o=1) 
 
 The independent variable “Disappearance” is based on cases of people disappearing.
 Plotting the data out to get a good view of it shows a lot to look at. And it seems as though the
@@ -66,12 +70,7 @@ we have seen in the other variances this inconclusive. The correlation between D
 and Nukes is -0.02468511. Running a bivariate regression with Nukes we see that
 Disappearances account for basically zero percent of the variation we see in Nukes ( 0.0006094).
 
-<object data="/img/Presentation - Copy.png" type="application/pdf" width="700px" height="700px">
-    <embed src="/img/Presentation - Copy.png">
-        <p>Sketchy link or my presentation download link? The risk is yours. <a href="/img/Presentation - Copy.png">Download PDF</a>.</p>
-    </embed>
-</object>
-
+![Presentation]()
 
 ## Conclusion
 
