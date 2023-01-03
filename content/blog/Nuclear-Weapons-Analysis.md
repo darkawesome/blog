@@ -70,8 +70,9 @@ we have seen in the other variances this inconclusive. The correlation between D
 and Nukes is -0.02468511. Running a bivariate regression with Nukes we see that
 Disappearances account for basically zero percent of the variation we see in Nukes ( 0.0006094).
 
-![Presentation]()
+![Presentation](https://gcdnb.pbrd.co/images/lzWIqwB1zbOe.png?o=1)
 
+<img src="https://gcdnb.pbrd.co/images/lzWIqwB1zbOe.png?o=1" alt="drawing" width="200"/>
 ## Conclusion
 
 Looking at the Results of the models we have found that only Women's Political Rights and Extrajudicial Killings have any effect on Number of Nukes a country has. However, what these models fail to account for are the domestic politics that are involved. Though these findings make sense looking at the models and the modeling they have a low external validity. 
