@@ -10,7 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: False
 ---
 
 I am looking for a job that suits my skills
