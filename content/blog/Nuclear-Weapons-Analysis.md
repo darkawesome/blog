@@ -6,8 +6,6 @@ url: /NuclearWeapons/
 image: /img/dataAnalysis.jpg
 categories:
   - Data Science
-tags:
-  - Blog
 draft: False
 ---
 This is my data analyis of the effects of human rights abuses on NPT party members on the respective countries nuclear arsenal.
