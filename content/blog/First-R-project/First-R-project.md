@@ -38,13 +38,15 @@ data(BabyNames)
 ```r
 summary(BabyNames)
 ```
-     name               sex                count              year     
- Length:1792091     Length:1792091     Min.   :    5.0   Min.   :1880  
- Class :character   Class :character   1st Qu.:    7.0   1st Qu.:1948  
- Mode  :character   Mode  :character   Median :   12.0   Median :1981  
-                                       Mean   :  186.1   Mean   :1972  
-                                       3rd Qu.:   32.0   3rd Qu.:2000  
-                                       Max.   :99674.0   Max.   :2013  
+| name             | sex              | count           | year         |
+|------------------|------------------|-----------------|--------------|
+| Length:1792091   | Length:1792091   | Min.   :    5.0 | Min.   :1880 |
+| Class :character | Class :character | 1st Qu.:    7.0 | 1st Qu.:1948 |
+| Mode  :character | Mode  :character | Median :   12.0 | Median :1981 |
+|                  |                  | Mean   :  186.1 | Mean   :1972 |
+|                  |                  | 3rd Qu.:   32.0 | 3rd Qu.:2000 |
+|                  |                  | Max.   :99674.0 | Max.   :2013 |
+1-10 of 10 rows
 
 ## Problem 12.1
 
@@ -63,31 +65,19 @@ Balance <-
   
 head(Balance, n=10)
 ```
-name
-<chr>
-	
-year
-<int>
-	
-F
-<int>
-	
-M
-<int>
-	
-math
-<dbl>
-Erie	1880	6	6	0
-Sammie	1880	6	6	0
-Theo	1881	8	8	0
-Bird	1881	6	6	0
-Augustine	1882	8	8	0
-Tommie	1882	8	8	0
-Orrie	1883	7	7	0
-Verne	1884	8	8	0
-Jewel	1884	6	6	0
-Tracy	1885	12	12	0
-1-10 of 10 rows
+
+| name      | year | F  | M  |
+|-----------|------|----|----|
+| Erie      | 1880 | 6  | 6  |
+| Sammie    | 1880 | 6  | 6  |
+| Theo      | 1881 | 8  | 8  |
+| Bird      | 1881 | 6  | 6  |
+| Augustine | 1882 | 8  | 8  |
+| Tommie    | 1882 | 8  | 8  |
+| Orrie     | 1883 | 7  | 7  |
+| Verne     | 1884 | 8  | 8  |
+| Jewel     | 1884 | 6  | 6  |
+| Tracy     | 1885 | 12 | 12 |
 
 ```r
 Balance2 <-
@@ -96,36 +86,24 @@ Balance2 <-
 
 head(Balance2, n=10)
 ```
-name
-<chr>
-	
-year
-<int>
-	
-F
-<int>
-	
-M
-<int>
-	
-math
-<dbl>
-Lavern	1953	103	103	0.000000000
-Marion	1977	229	229	0.000000000
-Dusty	1979	194	194	0.000000000
-Justice	2003	665	665	0.000000000
-Baby	2003	245	245	0.000000000
-Tegan	2006	145	145	0.000000000
-Ryley	2007	186	186	0.000000000
-Rian	2007	128	128	0.000000000
-Jaylin	2008	524	524	0.000000000
-Leslie	1946	2139	2136	0.001403509
+| name    | year | F    | M    |
+|---------|------|------|------|
+| Lavern  | 1953 | 103  | 103  |
+| Marion  | 1977 | 229  | 229  |
+| Dusty   | 1979 | 194  | 194  |
+| Justice | 2003 | 665  | 665  |
+| Baby    | 2003 | 245  | 245  |
+| Tegan   | 2006 | 145  | 145  |
+| Ryley   | 2007 | 186  | 186  |
+| Rian    | 2007 | 128  | 128  |
+| Jaylin  | 2008 | 524  | 524  |
+| Leslie  | 1946 | 2139 | 2139 |
 1-10 of 10 rows
 
 ## Problem 12.2
 
-    Version One
-    Version two is wider,
+   1. Version One
+   2. Version two is wider,
 
 ```r
 BothSexes <-
@@ -134,7 +112,7 @@ BothSexes <-
   filter(M > 5 | F > 5)
 ```
 
-3, Version 3 is wider
+  3. Version 3 is wider
 
 ```r
 BothSexes <-
