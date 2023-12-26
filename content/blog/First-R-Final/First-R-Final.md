@@ -4,7 +4,7 @@ title: "First R Final"
 date: 2023-11-13T09:00:26-05:00
 url: /First-R-Final/
 categories:
-  - Data Analysis 
+  - Data Science
 tags:
   - Blog
 draft: true
@@ -201,7 +201,7 @@ ggplot(FinalsGames) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](FGA.png)
+<a href="https://ibb.co/0mN3vcw"><img src="https://i.ibb.co/YP9Gw3r/FGA.png" alt="FGA" border="0"></a>
 
 Figure 2: This graph illustrates the number of field goal attempts in Finals games from the winner team and the runner-up team over year. The y-axis is the number of field goal attempts, the x-xis is year, and the color represents winner team and runner-up team.
 
@@ -234,7 +234,7 @@ ggplot(DefRatingAvg) +
  theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](DRA.png)
+<a href="https://ibb.co/7knZGLr"><img src="https://i.ibb.co/KK2f9SV/DRA.png" alt="DRA" border="0"></a>
 
 Figure 4: Since the average defensive rating has increased overtime, we can conclude that the defensive play per team has slowly gotten better overtime as the rating increased by about 5 points from 1996.
 
@@ -256,7 +256,7 @@ MachineL <-prune(MachineL, cp = 0.01)
 fancyRpartPlot(MachineL,caption = NULL)
 ```
 
-![Machine Learning Plot](images/MachineL.png) 
+<a href="https://ibb.co/52VQJjW"><img src="https://i.ibb.co/mS7nPyC/MachineL.png" alt="MachineL" border="0"></a>
 
 
 Figure 5: This is to show the effects of each variable as it pertains to wins and losses for teams. For instance we can see a trend where as teams have a higher FGP that they usually tend to win the championship. Not only this but conversely we see that if the field goal percentage is less than 55% that teams do not end up winning the championship. I think that these are some useful patterns to look at in our data because we can see the effects of different variables and extract our predicted output which variables are useful in addressing our research question. To be more specific, Does field goal percentage have an impact on whether or not a team was a winner for that year? And answering this question is something that I believe machine learning does well to solve as it splits the data nicely and shows the changes in variables.

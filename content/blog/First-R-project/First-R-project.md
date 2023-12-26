@@ -5,15 +5,14 @@ date: 2023-11-13T08:59:51-05:00
 url: /First-R-project/
 image: /images/2020-thumbs/First-R-project.jpg
 categories:
-  - Data Analysis
+  - Data Science
 tags:
-draft: true
+draft: false
 ---
 
 This project was done the summer of 2022 and later added to the site.
 <!--more-->
   
-R Notebook
 
 
 # clean up workspace environment
@@ -121,20 +120,19 @@ BothSexes <-
   filter(M > 5 | F > 5)
 ```
 
-    I would say that it is easier to start from version 2 as both the year and the sexes are already columns.
-
-    I would go to version 2 as it is better suited to find the ratio of male to female as both are columns
+I would say that it is easier to start from version 2 as both the year and the sexes are already columns.
+I would go to version 2 as it is better suited to find the ratio of male to female as both are columns
 
 ## Problem 12.3
 
-    A is wider than C . B is wider than C. And A is wider than B.
-    Frame B would be the best to look at 2000 to 2001. I would subtract the count of both years
-    Frame B again would be the best. I would just sum the values for each year.
+A is wider than C . B is wider than C. And A is wider than B.
+Frame B would be the best to look at 2000 to 2001. I would subtract the count of both years
+Frame B again would be the best. I would just sum the values for each year.
 
 ## Problem 12.4
 
-    You can’t easily compare before and after of a subject.
-    I wouldn’t change the data table as to change it would make it too narrow.
+You can’t easily compare before and after of a subject.
+I wouldn’t change the data table as to change it would make it too narrow.
 
 ### Chapter 13.2
 ## Problem 2
