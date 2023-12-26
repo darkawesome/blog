@@ -7,7 +7,7 @@ categories:
   - Data Science
 tags:
   - Blog
-draft: true
+draft: false
 ---
 
 How does the current NBA look like compared to the NBA over time?
