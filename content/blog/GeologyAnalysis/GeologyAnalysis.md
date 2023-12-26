@@ -286,7 +286,7 @@ map4 <- qtm(county.sovi.sf,dots.col="EP_MUNIT",dots.size=.6,dots.palette="Purple
 tmap_arrange(map1,map2,map3,map4)
 ```
 
-<a href="https://ibb.co/chCBHRB"><img src="https://i.ibb.co/jkWN2qN/RPLTHeme1.png" alt="RPLTHeme1" border="0"></a>
+![https://ibb.co/chCBHRB](https://i.ibb.co/jkWN2qN/RPLTHeme1.png"RPL_Theme1")
 
 Looking at the socioeconomic status of the points across the census tracts as it relates to the trails we can not see any real disparities. Nor anything to suggest that areas with higher or lower socioeconomic status have a higher amount of trail near them.There may be other factors playing a role here like edge effects, ecological factors or even just different clusters of where people live. And this holds true across all of the other predictive factors looked at like Racial and Ethnic Minority Status.
 
@@ -308,7 +308,8 @@ M1 <- lm(inc.lag ~ tract.sovi.sf$EP_MUNIT)
 abline(M1, col="blue")
 ```
 
-<a href="https://ibb.co/H4vxnt9"><img src="https://i.ibb.co/ZXsYWBb/moransI.png" alt="moransI" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/ZXsYWBb/moransI.png"MoransIPlot")
+
 ```r
 # Conduct the Moran's I hypothesis test
 moran.test(tract.sovi.sf$EP_MUNIT, listw= lw)
@@ -332,7 +333,8 @@ Variance  0.0001044349
 plot(moran.mc(tract.sovi.sf$EP_MUNIT, lw, nsim=999, alternative="greater"))
 
 ```
-<a href="https://ibb.co/H4vxnt9"><img src="https://i.ibb.co/ZXsYWBb/moransI.png" alt="moransI" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/TKNzrXq/morans-Iplot.png")
+
 
 ### Interpretation:
 Moran’s I Statistic (0.3864):
@@ -359,7 +361,7 @@ map4 <- qtm(county.sovi.sf,fill="EP_MUNIT",fill.palette="Purples") #Housing in b
 tmap_arrange(map1,map2,map3,map4)
 ```
 
-<a href="https://ibb.co/T4XKJ0k"><img src="https://i.ibb.co/McT8K1s/sovimap.png" alt="sovimap" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/McT8K1s/sovimap.png")
 
 ## Map Interpretation
 ### Socioeconomic Status
@@ -399,7 +401,7 @@ map6 <- qtm(tract.sovi.sf1,dots.col="S0101_C01_028E",dots.size=.6,dots.palette="
 tmap_arrange(map5,map6)
 ```
 
-<a href="https://ibb.co/ydvyfgH"><img src="https://i.ibb.co/jb0M63n/sovitrail.png" alt="sovitrail" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/jb0M63n/sovitrail.png")
 
 When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither. There are some hot spots in the 18 and older estimate. Though that could be attributed to the fact that the range of ages is significantly higher than 60 and older. On its head there are no real identifiable spots that stick out in any way in proximity to the trails. On the other hand the clusters seen in the south eastern part of the state for those 18 years old and above does look to be quite darker than other regions. There is a seemingly interesting bend near the middle of the eastern section.Where we see some darker regions following the trails but again we should take scale into account.
 
@@ -413,7 +415,7 @@ poverty_map <- ggplot() +
 poverty_map
 ```
 
-<a href="https://ibb.co/WKrxV8H"><img src="https://i.ibb.co/tC0mLjH/povlevel.png" alt="povlevel" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/tC0mLjH/povlevel.png")
 
 ```r
 #map showing Households with no vehicle available (estimate 2016-2020),at the measuring sites
@@ -425,9 +427,7 @@ NoVehicle_map <- ggplot() +
 NoVehicle_map
 ```
 
-<a href="https://ibb.co/SNLxW4j"><img src="https://i.ibb.co/y03RGc9/noV.png" alt="noV" border="0"></a>
-
-
+![https://ibb.co/H4vxnt9](https://i.ibb.co/y03RGc9/noV.png")
 ### Persons Below 150% Poverty Estimate
 
 There seems to be a large cluster around the Philadelphia area. Which again can be due to edge effects for the reasons mentioned above or perhaps more. Additionally, surrounding Philadelphia their seem to be some clustering that is happening across different census tracts with areas west of Lancaster also included. Pittsburgh also is at the center of some clustering. However, when we look on the state as a whole there are few and far between areas of really bad poverty at the state level. At lower levels these would most likely be more pronounced. Especially in areas like Philadelphia being as the hot spots can be seen from the map projection.
@@ -468,7 +468,8 @@ ggplot(county.sovi.sf, aes( EP_NOHSDP, RPL_THEME1)) +
   geom_smooth(method = "lm", se = FALSE, col = "blue") +
   labs(title = "OLS Regression",  EP_NOHSDP = "#Persons with no HS Diploma ", RPL_THEME1 = "Socioeconomic Status theme summary")
 ```
-<a href="https://ibb.co/G0v6pjF"><img src="https://i.ibb.co/hyR69vC/olsReg.png" alt="olsReg" border="0"></a>
+
+![https://ibb.co/H4vxnt9](https://i.ibb.co/hyR69vC/olsReg.png")
 
 The coefficient for EP_NOHSDP is 0.06620. This indicates that for a one-unit increase in EP_NOHSDP, RPL_THEME1 is expected to increase by 0.06620 units, if you were to hold the other variables constant.The intercept is -0.13861, representing the estimated value of RPL_THEME1 when EP_NOHSDP is zero.
 ### Significance of Coefficients:
@@ -488,12 +489,14 @@ In summary, the model suggests that there is a statistically significant relatio
 
 hist(x=county.sovi.sf$RPL_THEME1)
 ```
-<a href="https://ibb.co/MnhTDM2"><img src="https://i.ibb.co/H72vDnF/hist1.png" alt="hist1" border="0"></a>
+
+![https://ibb.co/H4vxnt9](https://i.ibb.co/H72vDnF/hist1.png")
 
 ```r
 hist(x=county.sovi.sf$EP_NOHSDP)
 ```
-<a href="https://ibb.co/5KxYFv5"><img src="https://i.ibb.co/XYky8pz/hist2.png" alt="hist2" border="0"></a>
+
+![https://ibb.co/H4vxnt9](https://i.ibb.co/XYky8pz/hist2.png")
 
 ```r
 library(hrbrthemes)
@@ -510,7 +513,8 @@ ggplot(county.sovi.sf, aes(x=EP_NOHSDP, y=RPL_THEME1)) +
   geom_smooth(method=lm , color="red", se=FALSE) +
   theme_ipsum()
 ```
-<a href="https://ibb.co/xD6vHcK"><img src="https://i.ibb.co/s2qSHDp/lBF.png" alt="lBF" border="0"></a>
+
+![https://ibb.co/H4vxnt9](https://i.ibb.co/s2qSHDp/lBF.png")
 
 ```r
 summary(LinearFit)

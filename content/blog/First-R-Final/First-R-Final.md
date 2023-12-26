@@ -13,11 +13,9 @@ draft: true
 How does the current NBA look like compared to the NBA over time?
 <!--more-->
 
-## Authors: Vu, Praneeth, M
-## Research Question
-
-## How does the current NBA look like compared to the NBA over time?
-# Set up:
+### Authors: Vu, Praneeth, M
+# Research Question : How does the current NBA look like compared to the NBA over time?
+### Set up:
 
 # Opening libraries
 ```r
@@ -184,9 +182,11 @@ ggplot(ThreePointsStat) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](images/3pointer.png)
 
-Figure 1: This graph illustrates the number of three point attempts in the Finals each year with the percentage of three point made. The x-axis represents the year, the y-axis represents the number of three point attempts, and the size indicates the three point percentage. The first graph represents the statistics from the runner-up teams, and the second graph represents the statistics from the winner team.
+![https://ibb.co/H4vxnt9](https://i.ibb.co/hFY2SD7/3pointer.png")
+Figure 1
+
+This graph illustrates the number of three point attempts in the Finals each year with the percentage of three point made. The x-axis represents the year, the y-axis represents the number of three point attempts, and the size indicates the three point percentage. The first graph represents the statistics from the runner-up teams, and the second graph represents the statistics from the winner team.
 
 ```r
 # Creating Plot
@@ -201,9 +201,11 @@ ggplot(FinalsGames) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<a href="https://ibb.co/0mN3vcw"><img src="https://i.ibb.co/YP9Gw3r/FGA.png" alt="FGA" border="0"></a>
 
-Figure 2: This graph illustrates the number of field goal attempts in Finals games from the winner team and the runner-up team over year. The y-axis is the number of field goal attempts, the x-xis is year, and the color represents winner team and runner-up team.
+![https://ibb.co/H4vxnt9](https://i.ibb.co/YP9Gw3r/FGA.png")
+Figure 2
+
+This graph illustrates the number of field goal attempts in Finals games from the winner team and the runner-up team over year. The y-axis is the number of field goal attempts, the x-xis is year, and the color represents winner team and runner-up team.
 
 ```r
 # Creating Plot
@@ -217,9 +219,10 @@ ggplot(AveragePoints) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](Appy.png)
+![https://ibb.co/H4vxnt9](https://i.ibb.co/RhSFgbM/Appy.png")
+Figure 3
 
-Figure 3: This graph illustrates the average points scored in Finals games each year. The y-axis is the number of average points, the x-axis is the year.
+This graph illustrates the average points scored in Finals games each year. The y-axis is the number of average points, the x-axis is the year.
 
 ```r
 # Creating Plot
@@ -234,9 +237,10 @@ ggplot(DefRatingAvg) +
  theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<a href="https://ibb.co/7knZGLr"><img src="https://i.ibb.co/KK2f9SV/DRA.png" alt="DRA" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/KK2f9SV/DRA.png")
+Figure 4
 
-Figure 4: Since the average defensive rating has increased overtime, we can conclude that the defensive play per team has slowly gotten better overtime as the rating increased by about 5 points from 1996.
+Since the average defensive rating has increased overtime, we can conclude that the defensive play per team has slowly gotten better overtime as the rating increased by about 5 points from 1996.
 
 ```r
 # Creating a table that filters out a few important variables to analyze how they affects the result variable
@@ -256,10 +260,10 @@ MachineL <-prune(MachineL, cp = 0.01)
 fancyRpartPlot(MachineL,caption = NULL)
 ```
 
-<a href="https://ibb.co/52VQJjW"><img src="https://i.ibb.co/mS7nPyC/MachineL.png" alt="MachineL" border="0"></a>
+![https://ibb.co/H4vxnt9](https://i.ibb.co/mS7nPyC/MachineL.png")
+Figure 5
 
-
-Figure 5: This is to show the effects of each variable as it pertains to wins and losses for teams. For instance we can see a trend where as teams have a higher FGP that they usually tend to win the championship. Not only this but conversely we see that if the field goal percentage is less than 55% that teams do not end up winning the championship. I think that these are some useful patterns to look at in our data because we can see the effects of different variables and extract our predicted output which variables are useful in addressing our research question. To be more specific, Does field goal percentage have an impact on whether or not a team was a winner for that year? And answering this question is something that I believe machine learning does well to solve as it splits the data nicely and shows the changes in variables.
+This is to show the effects of each variable as it pertains to wins and losses for teams. For instance we can see a trend where as teams have a higher FGP that they usually tend to win the championship. Not only this but conversely we see that if the field goal percentage is less than 55% that teams do not end up winning the championship. I think that these are some useful patterns to look at in our data because we can see the effects of different variables and extract our predicted output which variables are useful in addressing our research question. To be more specific, Does field goal percentage have an impact on whether or not a team was a winner for that year? And answering this question is something that I believe machine learning does well to solve as it splits the data nicely and shows the changes in variables.
 
 When looking at our data we can see that a lot of what one would assume is true as it pertains to the data. As the points increases we see that the teams tend to win more often and they also tend to have a higher field goal percentage as well. This can be useful in practical sense as it pertains to coaching where a team might decide to have more three point shots than two pointers. As doing so based on this model tends to lead to increase their chances of winning the game.
 Address Research Question:
