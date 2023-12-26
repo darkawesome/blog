@@ -401,5 +401,165 @@ tmap_arrange(map5,map6)
 
 <a href="https://ibb.co/ydvyfgH"><img src="https://i.ibb.co/jb0M63n/sovitrail.png" alt="sovitrail" border="0"></a>
 
+When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither. There are some hot spots in the 18 and older estimate. Though that could be attributed to the fact that the range of ages is significantly higher than 60 and older. On its head there are no real identifiable spots that stick out in any way in proximity to the trails. On the other hand the clusters seen in the south eastern part of the state for those 18 years old and above does look to be quite darker than other regions. There is a seemingly interesting bend near the middle of the eastern section.Where we see some darker regions following the trails but again we should take scale into account.
 
+```r
+##  Persons below 150% poverty (estimate 2016-2020),at the measuring sites
+poverty_map <- ggplot() +
+  geom_sf(data = tract.sovi.sf, aes(color = E_POV150), size = 3) +
+  scale_color_gradient(low = "blue", high = "red", name = "Poverty Below 150% poverty estimate") +
+  labs(title = "Poverty Levels at Measuring Sites") +
+  theme_minimal()
+poverty_map
+```
+
+<a href="https://ibb.co/WKrxV8H"><img src="https://i.ibb.co/tC0mLjH/povlevel.png" alt="povlevel" border="0"></a>
+
+```r
+#map showing Households with no vehicle available (estimate 2016-2020),at the measuring sites
+NoVehicle_map <- ggplot() +
+  geom_sf(data = tract.sovi.sf, aes(color = E_NOVEH), size = 3) +
+  scale_color_gradient(low = "lightblue", high = "darkblue", name = "Household with no Vehicle") +
+  labs(title = "Households with no Vehicle at Measuring Sites") +
+  theme_minimal()
+NoVehicle_map
+```
+
+<a href="https://ibb.co/SNLxW4j"><img src="https://i.ibb.co/y03RGc9/noV.png" alt="noV" border="0"></a>
+
+
+### Persons Below 150% Poverty Estimate
+
+There seems to be a large cluster around the Philadelphia area. Which again can be due to edge effects for the reasons mentioned above or perhaps more. Additionally, surrounding Philadelphia their seem to be some clustering that is happening across different census tracts with areas west of Lancaster also included. Pittsburgh also is at the center of some clustering. However, when we look on the state as a whole there are few and far between areas of really bad poverty at the state level. At lower levels these would most likely be more pronounced. Especially in areas like Philadelphia being as the hot spots can be seen from the map projection.
+### Household with no Vehicle
+
+Looking at the whole state most households have vehicles. Though in the major cities we do see some separation from this. With some parts of the state beginning to enter a more deeper blue color. It would be a safe assumption however to say that for the majority of households withing the state, most have cars. And for that matter, of those who don’t they are near a major city in which they may not need a car for there lifestyle. Given public transportation or even the ability to walk, bike or use a ride sharing app to get to the places they need to go.
+## Part 4
+### Regression Analysis
+
+```r
+# Fit OLS Regression model
+model12 <- lm(RPL_THEME1 ~ EP_NOHSDP, data = county.sovi.sf)
+summary(model12)
+```
+
+#### Call:
+#### lm(formula = RPL_THEME1 ~ EP_NOHSDP, data = county.sovi.sf)
+#### 
+#### Residuals:
+####      Min       1Q   Median       3Q      Max 
+#### -0.46501 -0.20453 -0.06398  0.22251  0.51435 
+#### 
+#### Coefficients:
+####             Estimate Std. Error t value Pr(>|t|)    
+#### (Intercept) -0.13861    0.11205  -1.237    0.221    
+#### EP_NOHSDP    0.06620    0.01124   5.890 1.49e-07 ***
+#### ---
+#### Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#### 
+#### Residual standard error: 0.2399 on 65 degrees of freedom
+#### Multiple R-squared:  0.348,  Adjusted R-squared:  0.338 
+#### F-statistic: 34.69 on 1 and 65 DF,  p-value: 1.495e-07
+
+```r
+# Visualize the regression line
+ggplot(county.sovi.sf, aes( EP_NOHSDP, RPL_THEME1)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, col = "blue") +
+  labs(title = "OLS Regression",  EP_NOHSDP = "#Persons with no HS Diploma ", RPL_THEME1 = "Socioeconomic Status theme summary")
+```
+<a href="https://ibb.co/G0v6pjF"><img src="https://i.ibb.co/hyR69vC/olsReg.png" alt="olsReg" border="0"></a>
+
+The coefficient for EP_NOHSDP is 0.06620. This indicates that for a one-unit increase in EP_NOHSDP, RPL_THEME1 is expected to increase by 0.06620 units, if you were to hold the other variables constant.The intercept is -0.13861, representing the estimated value of RPL_THEME1 when EP_NOHSDP is zero.
+### Significance of Coefficients:
+
+The t-value for EP_NOHSDP is 5.890, and the corresponding p-value is very small (1.49e-07). This suggests that the coefficient for EP_NOHSDP is statistically significant, indicating that it’s unlikely to be zero.
+### R-squared and Adjusted R-squared:
+
+The multiple R-squared is 0.348, meaning that approximately 34.8% of the variability in the dependent variable is explained by the independent variable(s) in the model.The adjusted R-squared (0.338) accounts for the number of predictors in the model and is slightly lower than the multiple R-squared.
+### F-statistic:
+
+The F-statistic (34.69) tests the overall significance of the model. With a p-value of 1.495e-07, you can reject the null hypothesis that all coefficients are zero. This suggests that at least one predictor variable is related to the response variable.
+
+In summary, the model suggests that there is a statistically significant relationship between RPL_THEME1 and EP_NOHSDP. The model explains about 34.8% of the variability in RPL_THEME1, and the relationship is significant based on the low p-value from the F-test.
+
+```r 
+# Histogram of the Response and Predictor Variable
+
+hist(x=county.sovi.sf$RPL_THEME1)
+```
+<a href="https://ibb.co/MnhTDM2"><img src="https://i.ibb.co/H72vDnF/hist1.png" alt="hist1" border="0"></a>
+
+```r
+hist(x=county.sovi.sf$EP_NOHSDP)
+```
+<a href="https://ibb.co/5KxYFv5"><img src="https://i.ibb.co/XYky8pz/hist2.png" alt="hist2" border="0"></a>
+
+```r
+library(hrbrthemes)
+
+LinearFit <- lm(RPL_THEME1 ~ EP_NOHSDP, data = county.sovi.sf, na.action="na.exclude")
+
+county.sovi.sf$ModelledOutput   <- predict(LinearFit)
+county.sovi.sf$Linear.Residuals <- residuals(LinearFit)
+
+# with linear trend
+# looking at no hs diploma and socioeconomic status
+ggplot(county.sovi.sf, aes(x=EP_NOHSDP, y=RPL_THEME1)) +
+  geom_point() +
+  geom_smooth(method=lm , color="red", se=FALSE) +
+  theme_ipsum()
+```
+<a href="https://ibb.co/xD6vHcK"><img src="https://i.ibb.co/s2qSHDp/lBF.png" alt="lBF" border="0"></a>
+
+```r
+summary(LinearFit)
+```
+
+#### 
+#### Call:
+#### lm(formula = RPL_THEME1 ~ EP_NOHSDP, data = county.sovi.sf, na.action = "na.exclude")
+#### 
+#### Residuals:
+####      Min       1Q   Median       3Q      Max 
+#### -0.46501 -0.20453 -0.06398  0.22251  0.51435 
+#### 
+#### Coefficients:
+####             Estimate Std. Error t value Pr(>|t|)    
+#### (Intercept) -0.13861    0.11205  -1.237    0.221    
+#### EP_NOHSDP    0.06620    0.01124   5.890 1.49e-07 ***
+#### ---
+#### Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#### 
+#### Residual standard error: 0.2399 on 65 degrees of freedom
+#### Multiple R-squared:  0.348,  Adjusted R-squared:  0.338 
+#### F-statistic: 34.69 on 1 and 65 DF,  p-value: 1.495e-07
+
+The model suggests that there is a statistically significant linear relationship between RPL_THEME1 and EP_NOHSDP. The positive coefficient for EP_NOHSDP indicates that an increase in EP_NOHSDP is associated with an increase in RPL_THEME1.
+
+The R-squared value indicates that the model explains about 34.8% of the variability in RPL_THEME1. This means that other factors not included in the model may contribute to the remaining variability.
+
+The F-statistic is highly significant, supporting the overall fit of the model. In summary, based on the provided information, the model appears to be a statistically significant predictor of RPL_THEME1, and the coefficient for EP_NOHSDP is positive and significant.
+
+# Conclusion
+
+After exploring the spatial characteristics and network analysis of trails in the state of Pennsylvania. The primary objective was to provide valuable insights for Pennsylvania state park rangers and members of the general assembly to enhance tourism, improve trail maintenance efficiency, and deploy AI-driven solutions for recreational infrastructure management.
+## Key Findings:
+### Spatial Analysis of Trails:
+
+Utilizing spatial analysis techniques, the study examined 2,466 trail data points collected from GPS units and cross-referenced with aerial imagery. A distinct pattern following the Appalachian Trail through the state was observed. K-Means clustering was employed to group trails into 10 clusters based on geographic coordinates. The resulting clusters provided insights into the distribution and dispersion of trails across the state.Network analysis using graph theory was initiated to study the connectivity of trail points. However, due to challenges with the loop structure, further exploration was curtailed.The study integrated data on socioeconomic status, racial and ethnic minority status, education levels, and housing characteristics at the census tract and county levels. The analysis revealed patterns and clusters in these demographic factors across the state.Moran’s I statistic indicated positive spatial autocorrelation, suggesting that similar values were clustered spatially. The analysis hinted at local clusters of similar socioeconomic conditions.Regression analysis was conducted to explore the relationship between socioeconomic status and the number of persons with no high school diploma. The model provided insights into the impact of education levels on socioeconomic status.
+### Implications and Recommendations:
+
+The study’s findings can be leveraged to enhance tourism promotion strategies. AI-driven mobile apps can recommend personalized trail experiences based on visitor interests and fitness levels.AI solutions can be deployed to predict and prioritize trail maintenance needs, ensuring efficient allocation of resources and enhancing trail safety.Consideration of demographic patterns and socioeconomic factors can inform community engagement initiatives. Tailored programs can be developed to address the diverse needs and preferences of different regions.
+### Further Network Analysis:
+
+Despite challenges in the initial network analysis, further exploration is recommended. Refining the loop structure and addressing errors in the code could provide valuable insights into the connectivity of trail points.Collaborative efforts with environmental scientists, ecologists, and urban planners can enrich the study’s findings. Exploring the relationship between trail networks and environmental factors may contribute to a more comprehensive understanding.
+
+In conclusion, the study presents a multifaceted analysis of Pennsylvania’s trail network, laying the groundwork for informed decision-making in trail management, tourism promotion, and community engagement. Further research and collaboration can build upon these findings for the continued enhancement of Pennsylvania’s recreational infrastructure.
+
+    1. https://www.pasda.psu.edu/
+
+    This is where I got the data for the trails from and the specific file name of it is Explore PA trails - Trails (points). This feature class contains points associated with the line feature class for trails in the state of Pennsylvania, as prepared by the PA DCNR, Rails-to-Trails Conservancy, PA Fish and Boat Commission, and Keystone Trails Association. The majority of the data was collected using GPS units and checked for quality and accuracy against high-resolution aerial imagery. See Method. Data was collected between November 2007 and October 2009. See Subtype Code for point type. Trail updates are submitted by users through explorepatrails.com and are evaluated and updated on a regular basis.↩︎
+
+    2. Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan, Tilman M. Davies, Analysing point patterns on networks — A review, Spatial Statistics, Volume 42, 2021, 100435, ISSN 2211-6753, https://doi.org/10.1016/j.spasta.2020.100435. (https://www.sciencedirect.com/science/article/pii/S2211675320300294) Abstract: We review recent research on statistical methods for analysing spatial patterns of points on a network of lines, such as road accident locations along a road network. Due to geometrical complexities, the analysis of such data is extremely challenging, and we describe several common methodological errors. The intrinsic lack of homogeneity in a network militates against the traditional methods of spatial statistics based on stationary processes. Topics include kernel density estimation, relative risk estimation, parametric and non-parametric modelling of intensity, second-order analysis using the K-function and pair correlation function, and point process model construction. An important message is that the choice of distance metric on the network is pivotal in the theoretical development and in the analysis of real data. Challenges for statistical computation are discussed and open-source software is provided. Keywords: Distance metric; Kernel density estimation; K-function; Nonparametric estimation; Pair correlation function; Stationary process↩︎
 
