@@ -4,80 +4,76 @@ date: 2021-09-02T07:34:13-04:00
 draft: false
 
 ---
+I'm a recent Penn State graduate pursuing a master's degree in public policy. I am eager to apply my technical acumen and analytical skills to support government initiatives and policies, ultimately driving data-driven insights that enhance public services and governance. I am adept at problem-solving, and adapting to new challenges, I am well-prepared to bridge the gap between IT expertise and government affairs for a more informed and efficient public sector. 
 
+Throughout my career, I have worked with various technologies and tools, including R, Stata, Docker, ArcGisPro, and Git. I am comfortable working in both Linux and Windows environments and have experience with database management.
+
+If you're looking for a results-driven professional with a strong background in IT I am looking for a career that combines government relations and data analytics.
 
 <!--more-->
-## Summary
+**EDUCATION**
 
-Senior studying Political Science. Looking to help improve nonprofits, startups, and small businesses through
-statistical analysis, marketing research, and behavioral analysis. Excellent interpersonal communication and
-organizational skills that aid in delivering information to a target audience. With a desire to promote IT functionalities by
-utilizing evidence-based approaches to improve the quality of businesses in various communities.
+**The Pennsylvania State University, University Park, PA** **December 2023**
 
-## Experience
+Bachelor of Science in Political Science
 
-### Public Policy Legislative Intern
+**SKILLS :** Linux /Unix | DHCP | DNS | Active Directory | R | python | Data Analysis | ArcGIS & ArcPro
 
-May 2023 - August 2023 (4 months)
-```
-* Duties and responsibilities range from conducting legislative issue research for a senate office
-to assisting senate staff in analyzing legislation
+**LEADERSHIP EXPERIENCE**
 
-* Evaluated funding needs of state departments
+**Multicultural Student Leadership Council Sep. 2022 - Dec. 2023**
 
-* Communicated with constituent groups, providing research memoranda on special requests by
-the senator and staff. Wrote legislation and amendments resulting from these meetings 
+- Organize and facilitate tabling events and outreach programs
+- Train several new members on resources and services available to students
+- Advocated for students’ needs and concerns by actively connecting them with the proper resources
 
-* Participated in the budgeting process, including maintaining
-financial spreadsheets, preparing materials for agency budget hearings and contributing to PowerPoint
-presentations
-* Tracked legislation necessary to implement the final budget
-```
-### IT User Support Specialist
+**WORK EXPERIENCE**
 
-Aug 2021 - Present (2 years 1 month)
-```
-* Provided demonstrations of specific XR technologies using apps
-* Assisted graduate students with XR research by setting up virtual environments
-* Helped with the setup process of configuring a VR headset for individuals
-```
-### Consultant
+**Lab Consultant at the Center for Immersive Experiences**
 
-May 2022 - Aug 2022 (4 months)
-```
-* Developed models to better analyze survey data on a weekly basis
-* Redesigned the UI of the company website: https://www.auxogear.com/
-* Worked on a team to formulate merchandise, branding, and social media marketing
-* Developed and implemented a new email marketing strategy to improve outreach
-efforts utilizing a CRM
-```
-### Customer Service Associate
+**The Pennsylvania State University, University Park, PA** **Aug. 2021 - Dec 2023**
 
-Nov 2018 - Feb 2022 (3 years 4 months)
-```
-* Managed customer relations and services through communication and interaction 
-* Tracked material movements and liaised with distribution centers
-* Updated orders through a fulfillment database 
-*Used Xterm on a daily basis to manage products and product information
-```
-### Information Systems and Technology Support II
+- Provide demonstrations of specific XR technologies using apps
+- Assist graduate students with XR research by setting up virtual environments
+- Aid configuring VR headsets
 
-Sep 2019 - Apr 2021 (1 year 8 months)
-```
-* Trained new hires on imaging machines and using the ticketing system
-* Supported student and faculty computers including virus/malware remediation and wireless configuration
-* Installation of software and hardware repairs for students and faculty
-* Deployed images to and networked lab faculty computers
-* Maintained printers through repair and replacement of cartridges
-* Serviced a ticketing system(osTicket) for help desk support
-* Utilized a Nagios server to monitor systems and servers on campus
-```
-## Education
-### Political Science B.S, Liberal Arts and Sciences
+**Public Policy Legislative Intern**
 
-Aug 2021 - Dec 2023
-## Skills
+**Pennsylvania State Senate, Harrisburg, PA May 2023 - Aug. 2023**
 
-Python • Pandas, NumPy• R •Domain Name System (DNS) • Dynamic Host Configuration Protocol (DHCP) • Group Policy • Active
-Directory Experience • Audio Visual Support • Steam • Virtual Reality (VR) • Augmented Reality (AR) •
-Customer Relationship Management (CRM) • Email Marketing
+- Conducting legislative issue research for a senate office
+- Aid senate staff in analyzing and writing legislation
+- Evaluated funding needs of state departments
+- Communicated with constituent groups, providing research memoranda on special requests by Senator Hughes and staff
+- Participated in the budgeting process, including maintaining financial spreadsheets, preparing materials for agency budget hearings, and contributing to PowerPoint presentations
+- Tracked legislation necessary to implement the final budget
+
+**Consulting Intern**
+
+**Surge Business Consulting, State College, PA May 2022 - Aug. 2022**
+
+- Worked in a team managing our clients and projects in a self-paced environment
+- Formulated social media campaigns, created merchandise and branding products
+- Performed competitive analysis, market research, and strategic positioning
+- Developed and implemented an email marketing strategy to improve outreach efforts utilizing a CRM
+
+**Information Systems and Technology Support I & II**
+
+**The University of Pittsburgh at Bradford, Bradford, PA Sep. 2019 - Apr. 2021**
+
+- Trained new hires on imaging machines and using the ticketing system
+- Supported student and faculty computers including virus/malware remediation and wireless configuration
+- Installation of software and hardware repairs for students and faculty
+- Deployed images to and networked lab faculty computers
+- Maintained printers through repair and replacement of cartridges
+- Serviced a ticketing system(osTicket) for help desk support
+- Utilized a Nagios server to monitor systems and servers on campus
+
+**Customer Service Associate**
+
+**Lowes Avondale, PA** **Dec. 2018 - Feb. 2023**
+
+- Managed customer relations and services through communication and interaction
+- Tracked material movements and liaised with distribution centers
+- Updated orders through a fulfillment database
+- Used Xterm daily to manage products and product information
