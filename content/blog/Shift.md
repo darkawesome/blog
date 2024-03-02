@@ -16,7 +16,10 @@ From Pitt-Bradford to Penn State
 
 ## The Plan
 
-I plan to pursue a career in data science. I think this is where the tech industry is moving and where jobs will be in more demand. While information technology is something that I have a passion for it is not something that has a lot of creativity. While pursuing IT I wanted to become a System Admin as working at an IT helpdesk it was the next logical step. After working around the people that were at the level that I wanted to achieve I realized that it was not what I wanted for myself and that industry would be moving away from it. At the time we were already seeing the team size being cut from ten down to seven. While this was due to covid I was able to see a trend as the same amount of work was done with less. And in some cases the work was able to be done remotely.
+I'm planning to dive into a career that mixes systems administration with political science analysis. Even though I love IT, I've noticed it doesn't always leave room for creativity. At first, I wanted to be a System Admin because it seemed like the next step up from working at an IT helpdesk. But after seeing where that path was headed, especially with teams getting smaller during COVID, I realized it might not be the best fit for me.
+
+That's when I started looking into data science. It's a field that's growing fast and has a lot of job opportunities. I see this blend of systems administration and political science as a way to use my tech skills while also understanding how politics affects data. It's not just following a trend; it's a chance to solve problems in new and creative ways.
+
 
 ## Next Steps
 
