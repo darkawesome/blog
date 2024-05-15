@@ -470,7 +470,7 @@ With some parts of the state beginning to enter a more deeper blue color.
 It would be a safe assumption however to say that for the majority of households withing the state, most have cars.
 And for that matter, of those who don’t they are near a major city in which they may not need a car for there lifestyle.
 Given public transportation or even the ability to walk, bike or use a ride sharing app to get to the places they need to go.
-## Part 4 \### Regression Analysis
+## Part 4 Regression Analysis
 
 ``` r
 # Fit OLS Regression model
