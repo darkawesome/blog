@@ -3,7 +3,6 @@ languageCode = 'en-us'
 title = 'Home'
 paginate = "5" # Number of posts per page
 theme = "mainroad"
-googleAnalytics = "2782326719" # Enable Google Analytics by entering your tracking id
 
 [Author] # Used in authorbox
   name = "DarkAwesome"
