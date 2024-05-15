@@ -520,7 +520,7 @@ ggplot(county.sovi.sf, aes( EP_NOHSDP, RPL_THEME1)) +
   labs(title = "OLS Regression",  EP_NOHSDP = "#Persons with no HS Diploma ", RPL_THEME1 = "Socioeconomic Status theme summary")
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/hyR69vC/olsReg.png%22)
+![<OLS>](/img/hist1.png)
 
 The coefficient for EP_NOHSDP is 0.06620.
 This indicates that for a one-unit increase in EP_NOHSDP, RPL_THEME1 is expected to increase by 0.06620 units, if you were to hold the other variables constant.The intercept is -0.13861, representing the estimated value of RPL_THEME1 when EP_NOHSDP is zero.
@@ -625,7 +625,7 @@ In summary, based on the provided information, the model appears to be a statist
 
 After exploring the spatial characteristics and network analysis of trails in the state of Pennsylvania.
 The primary objective was to provide valuable insights for Pennsylvania state park rangers and members of the general assembly to enhance tourism, improve trail maintenance efficiency, and deploy AI-driven solutions for recreational infrastructure management.
-## Key Findings: \### Spatial Analysis of Trails:
+## Key Findings: ### Spatial Analysis of Trails:
 
 Utilizing spatial analysis techniques, the study examined 2,466 trail data points collected from GPS units and cross-referenced with aerial imagery.
 A distinct pattern following the Appalachian Trail through the state was observed.

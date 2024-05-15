@@ -2,64 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://darkawesome.github.io/blog/blog/</loc>
+    <loc>http://localhost:1313/blog/tags/blog/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/blog/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/data-science/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/First-R-Final/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/</loc>
+    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/First-R-project/</loc>
+    <lastmod>2023-11-13T08:59:51-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/GeologyAnalysis/</loc>
+    <lastmod>2023-11-02T00:13:09-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/PLSC421-Final/</loc>
+    <lastmod>2023-10-09T11:44:39-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/Internship2023/</loc>
+    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/linux/</loc>
+    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/networking/</loc>
+    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
+    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/windows/</loc>
+    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/NuclearWeapons/</loc>
+    <lastmod>2022-12-24T14:11:48-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/Nextcloud/</loc>
     <lastmod>2022-09-27T14:11:48-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/linux/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/networking/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/Nextcloud/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/tags/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/tags/ubuntu/</loc>
-    <lastmod>2022-09-27T14:11:48-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/tags/blog/</loc>
+    <loc>http://localhost:1313/blog/internship/</loc>
     <lastmod>2022-09-27T14:11:04-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/internship/</loc>
-    <lastmod>2022-09-27T14:11:04-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/data-science/</loc>
+    <loc>http://localhost:1313/blog/summer2022/</loc>
     <lastmod>2022-09-27T14:10:31-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/summer2022/</loc>
-    <lastmod>2022-09-27T14:10:31-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/shift/</loc>
+    <loc>http://localhost:1313/blog/shift/</loc>
     <lastmod>2021-09-13T13:54:20-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/contact/</loc>
+    <loc>http://localhost:1313/blog/contact/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/quote/</loc>
+    <loc>http://localhost:1313/blog/blog/quote/</loc>
     <lastmod>2021-09-07T23:46:57-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/categories/windows/</loc>
-    <lastmod>2021-09-07T23:46:57-04:00</lastmod>
-  </url><url>
-    <loc>http://darkawesome.github.io/blog/snort/</loc>
+    <loc>http://localhost:1313/blog/snort/</loc>
     <lastmod>2021-09-07T23:06:47-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/samba/</loc>
+    <loc>http://localhost:1313/blog/blog/samba/</loc>
     <lastmod>2021-09-02T07:34:20-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/intro/</loc>
+    <loc>http://localhost:1313/blog/blog/intro/</loc>
     <lastmod>2021-09-02T07:34:13-04:00</lastmod>
   </url><url>
-    <loc>http://darkawesome.github.io/blog/blog/resume/</loc>
+    <loc>http://localhost:1313/blog/blog/resume/</loc>
     <lastmod>2021-09-02T07:34:13-04:00</lastmod>
   </url>
 </urlset>

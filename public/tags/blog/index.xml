@@ -2,28 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Home</title>
-    <link>http://darkawesome.github.io/blog/tags/blog/</link>
+    <link>http://localhost:1313/blog/tags/blog/</link>
     <description>Recent content in Blog on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Sep 2022 14:11:04 -0400</lastBuildDate><atom:link href="http://darkawesome.github.io/blog/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 09:00:26 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First R Final</title>
+      <link>http://localhost:1313/blog/First-R-Final/</link>
+      <pubDate>Mon, 13 Nov 2023 09:00:26 -0500</pubDate>
+      <guid>http://localhost:1313/blog/First-R-Final/</guid>
+      <description>&lt;p&gt;How does the current NBA look like compared to the NBA over time?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Internship</title>
-      <link>http://darkawesome.github.io/blog/internship/</link>
+      <link>http://localhost:1313/blog/internship/</link>
       <pubDate>Tue, 27 Sep 2022 14:11:04 -0400</pubDate>
-      
-      <guid>http://darkawesome.github.io/blog/internship/</guid>
+      <guid>http://localhost:1313/blog/internship/</guid>
       <description>&lt;p&gt;A series of challenges learning and sprints at the finish&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Summer2022</title>
-      <link>http://darkawesome.github.io/blog/summer2022/</link>
+      <link>http://localhost:1313/blog/summer2022/</link>
       <pubDate>Tue, 27 Sep 2022 14:10:31 -0400</pubDate>
-      
-      <guid>http://darkawesome.github.io/blog/summer2022/</guid>
+      <guid>http://localhost:1313/blog/summer2022/</guid>
       <description>&lt;p&gt;I have a good idea of what I think I want to do.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -41,6 +41,10 @@ googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,70
   
   title = "Welcome to my site"
 
+[caches.images]
+  dir='/home/banana/Code/blog/content/img/_gen'
+  maxAge = -1
+
 [menu]
 
   [[menu.main]]
