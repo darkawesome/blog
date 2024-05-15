@@ -20,7 +20,7 @@ Theory : Having nuclear weapons in the country acts as a force to keep the count
 
 **Does the number of nuclear weapons have an effect on human rights abuses?**
 
-Nucleaar weapon count over years
+Nuclear weapon count over years
 ![ImageOne](https://gcdnb.pbrd.co/images/EWpfEGzcdSZa.png?o=1) 
 
 For the dependent variable “Nukes” the mean is 5213.4 while the median is 235. Looking at this we can use the median as the true center. As it is not skewed by the outliers in the data. The standard deviation of the “Nukes” variable is 10022.22 and this high number makes sense when we account for outliers and high numbers. This means that a datum would be very far from the mean on average. Looking at the interquartile range we can confirm the above assumptions made about the data. The first quartile is 34.5 and the third is 2414.5 with a min and max of zero and 40159 respectively. When we look at the association between Nukes and Women’s Political Rights we find a Pearson's R of 0.313999 we have a weak yet positive linear correlation. When fitting a linear model to “Nukes” and “Women’s Political Rights” we find an R-squared value of 0.0986 to say that this line explains only 9% of the data in the full data table. Moreover, we find that “Women’s Political Rights” is a statistically significant variable that has a p-value of 9.2e -06. The  𝛽 variable (Nukes) has a value of 7478, which means for every single unit increase in x (Women’s Political Rights ) on average the number of nukes will increase by 7478. 
