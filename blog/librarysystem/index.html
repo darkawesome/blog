@@ -1,0 +1,420 @@
+<!doctype html><html lang=en><head><title>LibrarySystem · DarkAwesome
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content='This work was done in 2021 as an inclass project for a computer science class.
+#Name: Colin
+#Collaborators: Gus, Myles, Juan
+#Defining Functions for Restrictions
+
+def daysborrowed(book):
+    #Reading files to get info
+    with open("booklist-2.txt","r") as booklog:
+        booklist = []
+        booklines = booklog.readlines()
+        for line in booklines:
+            lines = line.split("#")
+            bookname = str(lines[0])
+            copies = int(lines[1])
+            restriction = str(lines[2])
+            booklist.append(bookname)
+    with open("librarylog-2.txt","r") as librarylog:
+        bookborrowlist = []
+        bookreturnlist = []
+        dayborrowedlst = []
+        dayreturnedlst = []
+        loglines = librarylog.readlines()
+        for line in loglines:
+            lines = line.split("#")
+            if lines[0] == "B":
+                dayborrowed = int(lines[1])
+                personborrowed = str(lines[2])
+                bookborrowed = str(lines[3])
+                intendedreturnday = int(lines[4])
+                bookborrowlist.append(bookborrowed)
+                #adding all days said book was borrowed
+                if book == bookborrowed:
+                    dayborrowedlst.append(dayborrowed)
+                
+            if lines[0] == "R":
+                dayreturned = int(lines[1])
+                personreturned = str(lines[2])
+                bookreturned = str(lines[3]).strip()
+                bookreturnlist.append(bookreturned)
+                #adding all days said book was returned
+                if book == bookreturned:
+                    dayreturnedlst.append(dayreturned)
+    print(dayborrowedlst)
+    print(dayreturnedlst)
+    totaldayslst = []
+    length = len(dayreturnedlst) - 1
+    i = 0
+    totaldays = 0
+    lastday = lines[-1]
+    while i < length:
+#Since each index correlates to eachother in terms of borrow and return, 
+#subtract them to get days out then add it to total days
+        
+        daysout = dayreturnedlst[i] - dayborrowedlst[i]
+        totaldays += daysout
+        i+=1
+        totaldayslst.append(totaldays)
+    totaldays = int(totaldays)
+    print(totaldays)
+    return(totaldays)
+
+#Menu
+print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book")
+userchoice = int(input("Enter the number that correlates to desired function:"))
+if userchoice == 1:
+    name = str(input("What is your name?: "))
+    desiredBook = str(input("What book would you like to borrow?: "))
+    currentday = int(input("What is the current day?: "))
+    lengthborrowed = int(input("How many days would you like to borrow the book?: "))
+elif userchoice == 2:
+    name = str(input("What is your name?: "))
+    bookreturned = str(input("What book are you returning?: "))
+    dayretured = int(input("The day you returned the book: "))
+elif userchoice == 3:
+    print("PAY FINE")
+elif userchoice == 4:
+    print("ADD BOOK")
+else:
+    print("Invalid")
+      
+    
+if desiredBook == bookname:
+    if copies == 0:
+        print("All copies of",bookname,"are currently borrowed")
+if copies > 0:
+    copies -=1
+    
+#Restriction TF Sort
+if restriction == "TRUE":
+            restrictionlst = []
+            restrictionlst.append(bookname)
+if restriction == "FALSE":
+            nonrestrictionlst.append(bookname)
+print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book \n5-Stats")
+userchoice = int(input("Enter the number that correlates to desired function:"))
+if userchoice == 1:
+    name = str(input("Please enter your name: "))
+    bookname = str(input("What book would you like to borrow: "))
+    totaldaysborrowed(bookname)
+    borrowcheck(bookname,name)
+    if borrowcheck == True:
+        print("TRUE")
+    if borrowcheck == False:
+        print("FALSE")
+else:
+    print("Invalid")     
+currentday = (loglines[-1])
+print(currentday)
+        
+
+#Restriction Check
+if desiredBook == bookname:
+    for i in restrictionlst:
+        if i == desiredBook:
+            bookrestricted = True
+    for i in nonrestrictionlst:
+        if i == desiredBook:
+            bookrestricted = False    
+      
+        if bookrestricted == True:
+            if (dayreturned - daysborrowed) > 7:
+                dayfine = dayreturned - daysborrowed
+                daysover = dayfine - 7
+                fine = daysover*5
+if bookrestricted == False:
+    if (dayreturned - daysborrowed) > 28:
+        dayfine = dayreturned - daysborrowed
+        daysover = dayfine
+        fine = daysover*1
+        
+#Check to see if a certain book can be borrowed using the other restriction functions
+def borrowcheck(bookname,name):
+    if copycheck(bookname) == True:
+        if finecheck(name) == False:
+            canborrow = True
+            return True
+        if finecheck(name) == True:
+            if payedfine(name) == True:
+                return True
+        else:
+            return False
+    else:
+        return False
+
+#Checking how many copies a book has when person wants to borrow
+def copycheck(bookname):
+    with open("booklist-2.txt","r") as booklist:
+        booklines = booklist.readlines()
+        for line in booklines:
+            lines = line.split("#")
+            copies = int(lines[1].strip())
+        if copies > 0:
+            copies -= 1
+            return True
+        if copies == 0:
+            return False
+        
+#Checking to see if person payed fine
+def payedfine(name):
+     finedbook = str(input("What book are you paying the fine for?: "))
+     with open("librarylog-2.txt","r") as librarylog:
+        loglines = librarylog.readlines()
+        for line in loglines:
+            lines = line.split("#")
+            if lines[0] == "P":
+                if name == str(lines[2]):
+                    if hasfine:
+                        daysover = dayreturned- totaldaysintended(bookname)
+                        if restrictioncheck(bookname) == True:
+                            fineprice = daysover*5
+                        if restrictioncheck(bookname) == False:
+                            fineprice = daysover*1
+                        print("Your fine price is:",fineprice)
+                        amountpayed = int(input("How much are you paying?: "))
+                        if amountpayed == fineprice:
+                            return True
+                        else:
+                            amountleft = fineprice - amountpayed
+                            print("Your fine is now:", amountleft)
+                            return False 
+                        
+#Checking if the person borrowing a book has a pending fine
+def finecheck(name):
+    with open("librarylog-2.txt","r") as librarylog:
+        loglines = librarylog.readlines()
+        for line in loglines:
+            lines = line.split("#")
+            if lines[0] == "R":
+                if name == str(lines[2]):
+                    dayreturned = int(lines[1])
+                    studentname = str(lines[2])
+                    book = str(lines[3])
+                    if totaldaysborrowed(bookname) < dayreturned:
+                        return True
+                    else:
+                        return False
+                                       
+#Days Available 
+daysAvailable = 0
+if boookname(copies) > 1 :
+        daysAvailable +=1
+
+for line in loglines:
+    popular = max(count , key=count(bookname).get)
+print(popular, "Was borrowed for", totaldaysborrowed(bookname) / daysAvailable)                    
+'><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="LibrarySystem"><meta name=twitter:description content='This work was done in 2021 as an inclass project for a computer science class.
+#Name: Colin #Collaborators: Gus, Myles, Juan
+#Defining Functions for Restrictions def daysborrowed(book): #Reading files to get info with open("booklist-2.txt","r") as booklog: booklist = [] booklines = booklog.readlines() for line in booklines: lines = line.split("#") bookname = str(lines[0]) copies = int(lines[1]) restriction = str(lines[2]) booklist.append(bookname) with open("librarylog-2.txt","r") as librarylog: bookborrowlist = [] bookreturnlist = [] dayborrowedlst = [] dayreturnedlst = [] loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "B": dayborrowed = int(lines[1]) personborrowed = str(lines[2]) bookborrowed = str(lines[3]) intendedreturnday = int(lines[4]) bookborrowlist.append(bookborrowed) #adding all days said book was borrowed if book == bookborrowed: dayborrowedlst.append(dayborrowed) if lines[0] == "R": dayreturned = int(lines[1]) personreturned = str(lines[2]) bookreturned = str(lines[3]).strip() bookreturnlist.append(bookreturned) #adding all days said book was returned if book == bookreturned: dayreturnedlst.append(dayreturned) print(dayborrowedlst) print(dayreturnedlst) totaldayslst = [] length = len(dayreturnedlst) - 1 i = 0 totaldays = 0 lastday = lines[-1] while i < length: #Since each index correlates to eachother in terms of borrow and return, #subtract them to get days out then add it to total days daysout = dayreturnedlst[i] - dayborrowedlst[i] totaldays += daysout i+=1 totaldayslst.append(totaldays) totaldays = int(totaldays) print(totaldays) return(totaldays) #Menu print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book") userchoice = int(input("Enter the number that correlates to desired function:")) if userchoice == 1: name = str(input("What is your name?: ")) desiredBook = str(input("What book would you like to borrow?: ")) currentday = int(input("What is the current day?: ")) lengthborrowed = int(input("How many days would you like to borrow the book?: ")) elif userchoice == 2: name = str(input("What is your name?: ")) bookreturned = str(input("What book are you returning?: ")) dayretured = int(input("The day you returned the book: ")) elif userchoice == 3: print("PAY FINE") elif userchoice == 4: print("ADD BOOK") else: print("Invalid") if desiredBook == bookname: if copies == 0: print("All copies of",bookname,"are currently borrowed") if copies > 0: copies -=1 #Restriction TF Sort if restriction == "TRUE": restrictionlst = [] restrictionlst.append(bookname) if restriction == "FALSE": nonrestrictionlst.append(bookname) print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book \n5-Stats") userchoice = int(input("Enter the number that correlates to desired function:")) if userchoice == 1: name = str(input("Please enter your name: ")) bookname = str(input("What book would you like to borrow: ")) totaldaysborrowed(bookname) borrowcheck(bookname,name) if borrowcheck == True: print("TRUE") if borrowcheck == False: print("FALSE") else: print("Invalid") currentday = (loglines[-1]) print(currentday) #Restriction Check if desiredBook == bookname: for i in restrictionlst: if i == desiredBook: bookrestricted = True for i in nonrestrictionlst: if i == desiredBook: bookrestricted = False if bookrestricted == True: if (dayreturned - daysborrowed) > 7: dayfine = dayreturned - daysborrowed daysover = dayfine - 7 fine = daysover*5 if bookrestricted == False: if (dayreturned - daysborrowed) > 28: dayfine = dayreturned - daysborrowed daysover = dayfine fine = daysover*1 #Check to see if a certain book can be borrowed using the other restriction functions def borrowcheck(bookname,name): if copycheck(bookname) == True: if finecheck(name) == False: canborrow = True return True if finecheck(name) == True: if payedfine(name) == True: return True else: return False else: return False #Checking how many copies a book has when person wants to borrow def copycheck(bookname): with open("booklist-2.txt","r") as booklist: booklines = booklist.readlines() for line in booklines: lines = line.split("#") copies = int(lines[1].strip()) if copies > 0: copies -= 1 return True if copies == 0: return False #Checking to see if person payed fine def payedfine(name): finedbook = str(input("What book are you paying the fine for?: ")) with open("librarylog-2.txt","r") as librarylog: loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "P": if name == str(lines[2]): if hasfine: daysover = dayreturned- totaldaysintended(bookname) if restrictioncheck(bookname) == True: fineprice = daysover*5 if restrictioncheck(bookname) == False: fineprice = daysover*1 print("Your fine price is:",fineprice) amountpayed = int(input("How much are you paying?: ")) if amountpayed == fineprice: return True else: amountleft = fineprice - amountpayed print("Your fine is now:", amountleft) return False #Checking if the person borrowing a book has a pending fine def finecheck(name): with open("librarylog-2.txt","r") as librarylog: loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "R": if name == str(lines[2]): dayreturned = int(lines[1]) studentname = str(lines[2]) book = str(lines[3]) if totaldaysborrowed(bookname) < dayreturned: return True else: return False #Days Available daysAvailable = 0 if boookname(copies) > 1 : daysAvailable +=1 for line in loglines: popular = max(count , key=count(bookname).get) print(popular, "Was borrowed for", totaldaysborrowed(bookname) / daysAvailable)'><meta property="og:url" content="http://darkawesome.github.io/blog/blog/librarysystem/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="LibrarySystem"><meta property="og:description" content='This work was done in 2021 as an inclass project for a computer science class.
+#Name: Colin #Collaborators: Gus, Myles, Juan
+#Defining Functions for Restrictions def daysborrowed(book): #Reading files to get info with open("booklist-2.txt","r") as booklog: booklist = [] booklines = booklog.readlines() for line in booklines: lines = line.split("#") bookname = str(lines[0]) copies = int(lines[1]) restriction = str(lines[2]) booklist.append(bookname) with open("librarylog-2.txt","r") as librarylog: bookborrowlist = [] bookreturnlist = [] dayborrowedlst = [] dayreturnedlst = [] loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "B": dayborrowed = int(lines[1]) personborrowed = str(lines[2]) bookborrowed = str(lines[3]) intendedreturnday = int(lines[4]) bookborrowlist.append(bookborrowed) #adding all days said book was borrowed if book == bookborrowed: dayborrowedlst.append(dayborrowed) if lines[0] == "R": dayreturned = int(lines[1]) personreturned = str(lines[2]) bookreturned = str(lines[3]).strip() bookreturnlist.append(bookreturned) #adding all days said book was returned if book == bookreturned: dayreturnedlst.append(dayreturned) print(dayborrowedlst) print(dayreturnedlst) totaldayslst = [] length = len(dayreturnedlst) - 1 i = 0 totaldays = 0 lastday = lines[-1] while i < length: #Since each index correlates to eachother in terms of borrow and return, #subtract them to get days out then add it to total days daysout = dayreturnedlst[i] - dayborrowedlst[i] totaldays += daysout i+=1 totaldayslst.append(totaldays) totaldays = int(totaldays) print(totaldays) return(totaldays) #Menu print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book") userchoice = int(input("Enter the number that correlates to desired function:")) if userchoice == 1: name = str(input("What is your name?: ")) desiredBook = str(input("What book would you like to borrow?: ")) currentday = int(input("What is the current day?: ")) lengthborrowed = int(input("How many days would you like to borrow the book?: ")) elif userchoice == 2: name = str(input("What is your name?: ")) bookreturned = str(input("What book are you returning?: ")) dayretured = int(input("The day you returned the book: ")) elif userchoice == 3: print("PAY FINE") elif userchoice == 4: print("ADD BOOK") else: print("Invalid") if desiredBook == bookname: if copies == 0: print("All copies of",bookname,"are currently borrowed") if copies > 0: copies -=1 #Restriction TF Sort if restriction == "TRUE": restrictionlst = [] restrictionlst.append(bookname) if restriction == "FALSE": nonrestrictionlst.append(bookname) print("1-Borrow \n2-Return \n3-Pay Fine \n4-Add Book \n5-Stats") userchoice = int(input("Enter the number that correlates to desired function:")) if userchoice == 1: name = str(input("Please enter your name: ")) bookname = str(input("What book would you like to borrow: ")) totaldaysborrowed(bookname) borrowcheck(bookname,name) if borrowcheck == True: print("TRUE") if borrowcheck == False: print("FALSE") else: print("Invalid") currentday = (loglines[-1]) print(currentday) #Restriction Check if desiredBook == bookname: for i in restrictionlst: if i == desiredBook: bookrestricted = True for i in nonrestrictionlst: if i == desiredBook: bookrestricted = False if bookrestricted == True: if (dayreturned - daysborrowed) > 7: dayfine = dayreturned - daysborrowed daysover = dayfine - 7 fine = daysover*5 if bookrestricted == False: if (dayreturned - daysborrowed) > 28: dayfine = dayreturned - daysborrowed daysover = dayfine fine = daysover*1 #Check to see if a certain book can be borrowed using the other restriction functions def borrowcheck(bookname,name): if copycheck(bookname) == True: if finecheck(name) == False: canborrow = True return True if finecheck(name) == True: if payedfine(name) == True: return True else: return False else: return False #Checking how many copies a book has when person wants to borrow def copycheck(bookname): with open("booklist-2.txt","r") as booklist: booklines = booklist.readlines() for line in booklines: lines = line.split("#") copies = int(lines[1].strip()) if copies > 0: copies -= 1 return True if copies == 0: return False #Checking to see if person payed fine def payedfine(name): finedbook = str(input("What book are you paying the fine for?: ")) with open("librarylog-2.txt","r") as librarylog: loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "P": if name == str(lines[2]): if hasfine: daysover = dayreturned- totaldaysintended(bookname) if restrictioncheck(bookname) == True: fineprice = daysover*5 if restrictioncheck(bookname) == False: fineprice = daysover*1 print("Your fine price is:",fineprice) amountpayed = int(input("How much are you paying?: ")) if amountpayed == fineprice: return True else: amountleft = fineprice - amountpayed print("Your fine is now:", amountleft) return False #Checking if the person borrowing a book has a pending fine def finecheck(name): with open("librarylog-2.txt","r") as librarylog: loglines = librarylog.readlines() for line in loglines: lines = line.split("#") if lines[0] == "R": if name == str(lines[2]): dayreturned = int(lines[1]) studentname = str(lines[2]) book = str(lines[3]) if totaldaysborrowed(bookname) < dayreturned: return True else: return False #Days Available daysAvailable = 0 if boookname(copies) > 1 : daysAvailable +=1 for line in loglines: popular = max(count , key=count(bookname).get) print(popular, "Was borrowed for", totaldaysborrowed(bookname) / daysAvailable)'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-10-17T11:10:46-04:00"><meta property="article:modified_time" content="2024-10-17T11:10:46-04:00"><link rel=canonical href=http://darkawesome.github.io/blog/blog/librarysystem/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/blog/librarysystem/>LibrarySystem</a></h1></header><p>This work was done in 2021 as an inclass project for a computer science class.</p><p>#Name: Colin
+#Collaborators: Gus, Myles, Juan</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Defining Functions for Restrictions</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>daysborrowed</span>(book):
+</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic>#Reading files to get info</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>with</span> open(<span style=color:#a5d6ff>&#34;booklist-2.txt&#34;</span>,<span style=color:#a5d6ff>&#34;r&#34;</span>) <span style=color:#ff7b72>as</span> booklog:
+</span></span><span style=display:flex><span>        booklist <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>        booklines <span style=color:#ff7b72;font-weight:700>=</span> booklog<span style=color:#ff7b72;font-weight:700>.</span>readlines()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> booklines:
+</span></span><span style=display:flex><span>            lines <span style=color:#ff7b72;font-weight:700>=</span> line<span style=color:#ff7b72;font-weight:700>.</span>split(<span style=color:#a5d6ff>&#34;#&#34;</span>)
+</span></span><span style=display:flex><span>            bookname <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>0</span>])
+</span></span><span style=display:flex><span>            copies <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>1</span>])
+</span></span><span style=display:flex><span>            restriction <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>2</span>])
+</span></span><span style=display:flex><span>            booklist<span style=color:#ff7b72;font-weight:700>.</span>append(bookname)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>with</span> open(<span style=color:#a5d6ff>&#34;librarylog-2.txt&#34;</span>,<span style=color:#a5d6ff>&#34;r&#34;</span>) <span style=color:#ff7b72>as</span> librarylog:
+</span></span><span style=display:flex><span>        bookborrowlist <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>        bookreturnlist <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>        dayborrowedlst <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>        dayreturnedlst <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>        loglines <span style=color:#ff7b72;font-weight:700>=</span> librarylog<span style=color:#ff7b72;font-weight:700>.</span>readlines()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> loglines:
+</span></span><span style=display:flex><span>            lines <span style=color:#ff7b72;font-weight:700>=</span> line<span style=color:#ff7b72;font-weight:700>.</span>split(<span style=color:#a5d6ff>&#34;#&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> lines[<span style=color:#a5d6ff>0</span>] <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;B&#34;</span>:
+</span></span><span style=display:flex><span>                dayborrowed <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>1</span>])
+</span></span><span style=display:flex><span>                personborrowed <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>2</span>])
+</span></span><span style=display:flex><span>                bookborrowed <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>3</span>])
+</span></span><span style=display:flex><span>                intendedreturnday <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>4</span>])
+</span></span><span style=display:flex><span>                bookborrowlist<span style=color:#ff7b72;font-weight:700>.</span>append(bookborrowed)
+</span></span><span style=display:flex><span>                <span style=color:#8b949e;font-style:italic>#adding all days said book was borrowed</span>
+</span></span><span style=display:flex><span>                <span style=color:#ff7b72>if</span> book <span style=color:#ff7b72;font-weight:700>==</span> bookborrowed:
+</span></span><span style=display:flex><span>                    dayborrowedlst<span style=color:#ff7b72;font-weight:700>.</span>append(dayborrowed)
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> lines[<span style=color:#a5d6ff>0</span>] <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;R&#34;</span>:
+</span></span><span style=display:flex><span>                dayreturned <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>1</span>])
+</span></span><span style=display:flex><span>                personreturned <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>2</span>])
+</span></span><span style=display:flex><span>                bookreturned <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>3</span>])<span style=color:#ff7b72;font-weight:700>.</span>strip()
+</span></span><span style=display:flex><span>                bookreturnlist<span style=color:#ff7b72;font-weight:700>.</span>append(bookreturned)
+</span></span><span style=display:flex><span>                <span style=color:#8b949e;font-style:italic>#adding all days said book was returned</span>
+</span></span><span style=display:flex><span>                <span style=color:#ff7b72>if</span> book <span style=color:#ff7b72;font-weight:700>==</span> bookreturned:
+</span></span><span style=display:flex><span>                    dayreturnedlst<span style=color:#ff7b72;font-weight:700>.</span>append(dayreturned)
+</span></span><span style=display:flex><span>    print(dayborrowedlst)
+</span></span><span style=display:flex><span>    print(dayreturnedlst)
+</span></span><span style=display:flex><span>    totaldayslst <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>    length <span style=color:#ff7b72;font-weight:700>=</span> len(dayreturnedlst) <span style=color:#ff7b72;font-weight:700>-</span> <span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>    i <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>
+</span></span><span style=display:flex><span>    totaldays <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>
+</span></span><span style=display:flex><span>    lastday <span style=color:#ff7b72;font-weight:700>=</span> lines[<span style=color:#ff7b72;font-weight:700>-</span><span style=color:#a5d6ff>1</span>]
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>while</span> i <span style=color:#ff7b72;font-weight:700>&lt;</span> length:
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Since each index correlates to eachother in terms of borrow and return, </span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#subtract them to get days out then add it to total days</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        daysout <span style=color:#ff7b72;font-weight:700>=</span> dayreturnedlst[i] <span style=color:#ff7b72;font-weight:700>-</span> dayborrowedlst[i]
+</span></span><span style=display:flex><span>        totaldays <span style=color:#ff7b72;font-weight:700>+=</span> daysout
+</span></span><span style=display:flex><span>        i<span style=color:#ff7b72;font-weight:700>+=</span><span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>        totaldayslst<span style=color:#ff7b72;font-weight:700>.</span>append(totaldays)
+</span></span><span style=display:flex><span>    totaldays <span style=color:#ff7b72;font-weight:700>=</span> int(totaldays)
+</span></span><span style=display:flex><span>    print(totaldays)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span>(totaldays)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Menu</span>
+</span></span><span style=display:flex><span>print(<span style=color:#a5d6ff>&#34;1-Borrow </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>2-Return </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>3-Pay Fine </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>4-Add Book&#34;</span>)
+</span></span><span style=display:flex><span>userchoice <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;Enter the number that correlates to desired function:&#34;</span>))
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> userchoice <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>1</span>:
+</span></span><span style=display:flex><span>    name <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What is your name?: &#34;</span>))
+</span></span><span style=display:flex><span>    desiredBook <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What book would you like to borrow?: &#34;</span>))
+</span></span><span style=display:flex><span>    currentday <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;What is the current day?: &#34;</span>))
+</span></span><span style=display:flex><span>    lengthborrowed <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;How many days would you like to borrow the book?: &#34;</span>))
+</span></span><span style=display:flex><span><span style=color:#ff7b72>elif</span> userchoice <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>2</span>:
+</span></span><span style=display:flex><span>    name <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What is your name?: &#34;</span>))
+</span></span><span style=display:flex><span>    bookreturned <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What book are you returning?: &#34;</span>))
+</span></span><span style=display:flex><span>    dayretured <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;The day you returned the book: &#34;</span>))
+</span></span><span style=display:flex><span><span style=color:#ff7b72>elif</span> userchoice <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>3</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#a5d6ff>&#34;PAY FINE&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff7b72>elif</span> userchoice <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>4</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#a5d6ff>&#34;ADD BOOK&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#a5d6ff>&#34;Invalid&#34;</span>)
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> desiredBook <span style=color:#ff7b72;font-weight:700>==</span> bookname:
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> copies <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>0</span>:
+</span></span><span style=display:flex><span>        print(<span style=color:#a5d6ff>&#34;All copies of&#34;</span>,bookname,<span style=color:#a5d6ff>&#34;are currently borrowed&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> copies <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>:
+</span></span><span style=display:flex><span>    copies <span style=color:#ff7b72;font-weight:700>-=</span><span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Restriction TF Sort</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> restriction <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;TRUE&#34;</span>:
+</span></span><span style=display:flex><span>            restrictionlst <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>            restrictionlst<span style=color:#ff7b72;font-weight:700>.</span>append(bookname)
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> restriction <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;FALSE&#34;</span>:
+</span></span><span style=display:flex><span>            nonrestrictionlst<span style=color:#ff7b72;font-weight:700>.</span>append(bookname)
+</span></span><span style=display:flex><span>print(<span style=color:#a5d6ff>&#34;1-Borrow </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>2-Return </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>3-Pay Fine </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>4-Add Book </span><span style=color:#79c0ff>\n</span><span style=color:#a5d6ff>5-Stats&#34;</span>)
+</span></span><span style=display:flex><span>userchoice <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;Enter the number that correlates to desired function:&#34;</span>))
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> userchoice <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>1</span>:
+</span></span><span style=display:flex><span>    name <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;Please enter your name: &#34;</span>))
+</span></span><span style=display:flex><span>    bookname <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What book would you like to borrow: &#34;</span>))
+</span></span><span style=display:flex><span>    totaldaysborrowed(bookname)
+</span></span><span style=display:flex><span>    borrowcheck(bookname,name)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> borrowcheck <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>        print(<span style=color:#a5d6ff>&#34;TRUE&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> borrowcheck <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>False</span>:
+</span></span><span style=display:flex><span>        print(<span style=color:#a5d6ff>&#34;FALSE&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#a5d6ff>&#34;Invalid&#34;</span>)     
+</span></span><span style=display:flex><span>currentday <span style=color:#ff7b72;font-weight:700>=</span> (loglines[<span style=color:#ff7b72;font-weight:700>-</span><span style=color:#a5d6ff>1</span>])
+</span></span><span style=display:flex><span>print(currentday)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Restriction Check</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> desiredBook <span style=color:#ff7b72;font-weight:700>==</span> bookname:
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> i <span style=color:#ff7b72;font-weight:700>in</span> restrictionlst:
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> i <span style=color:#ff7b72;font-weight:700>==</span> desiredBook:
+</span></span><span style=display:flex><span>            bookrestricted <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> i <span style=color:#ff7b72;font-weight:700>in</span> nonrestrictionlst:
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> i <span style=color:#ff7b72;font-weight:700>==</span> desiredBook:
+</span></span><span style=display:flex><span>            bookrestricted <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>False</span>    
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> bookrestricted <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> (dayreturned <span style=color:#ff7b72;font-weight:700>-</span> daysborrowed) <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>7</span>:
+</span></span><span style=display:flex><span>                dayfine <span style=color:#ff7b72;font-weight:700>=</span> dayreturned <span style=color:#ff7b72;font-weight:700>-</span> daysborrowed
+</span></span><span style=display:flex><span>                daysover <span style=color:#ff7b72;font-weight:700>=</span> dayfine <span style=color:#ff7b72;font-weight:700>-</span> <span style=color:#a5d6ff>7</span>
+</span></span><span style=display:flex><span>                fine <span style=color:#ff7b72;font-weight:700>=</span> daysover<span style=color:#ff7b72;font-weight:700>*</span><span style=color:#a5d6ff>5</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> bookrestricted <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>False</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> (dayreturned <span style=color:#ff7b72;font-weight:700>-</span> daysborrowed) <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>28</span>:
+</span></span><span style=display:flex><span>        dayfine <span style=color:#ff7b72;font-weight:700>=</span> dayreturned <span style=color:#ff7b72;font-weight:700>-</span> daysborrowed
+</span></span><span style=display:flex><span>        daysover <span style=color:#ff7b72;font-weight:700>=</span> dayfine
+</span></span><span style=display:flex><span>        fine <span style=color:#ff7b72;font-weight:700>=</span> daysover<span style=color:#ff7b72;font-weight:700>*</span><span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Check to see if a certain book can be borrowed using the other restriction functions</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>borrowcheck</span>(bookname,name):
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> copycheck(bookname) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> finecheck(name) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>False</span>:
+</span></span><span style=display:flex><span>            canborrow <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> finecheck(name) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> payedfine(name) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>                <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>False</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>False</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Checking how many copies a book has when person wants to borrow</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>copycheck</span>(bookname):
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>with</span> open(<span style=color:#a5d6ff>&#34;booklist-2.txt&#34;</span>,<span style=color:#a5d6ff>&#34;r&#34;</span>) <span style=color:#ff7b72>as</span> booklist:
+</span></span><span style=display:flex><span>        booklines <span style=color:#ff7b72;font-weight:700>=</span> booklist<span style=color:#ff7b72;font-weight:700>.</span>readlines()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> booklines:
+</span></span><span style=display:flex><span>            lines <span style=color:#ff7b72;font-weight:700>=</span> line<span style=color:#ff7b72;font-weight:700>.</span>split(<span style=color:#a5d6ff>&#34;#&#34;</span>)
+</span></span><span style=display:flex><span>            copies <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>1</span>]<span style=color:#ff7b72;font-weight:700>.</span>strip())
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> copies <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>:
+</span></span><span style=display:flex><span>            copies <span style=color:#ff7b72;font-weight:700>-=</span> <span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> copies <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>0</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>False</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Checking to see if person payed fine</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>payedfine</span>(name):
+</span></span><span style=display:flex><span>     finedbook <span style=color:#ff7b72;font-weight:700>=</span> str(input(<span style=color:#a5d6ff>&#34;What book are you paying the fine for?: &#34;</span>))
+</span></span><span style=display:flex><span>     <span style=color:#ff7b72>with</span> open(<span style=color:#a5d6ff>&#34;librarylog-2.txt&#34;</span>,<span style=color:#a5d6ff>&#34;r&#34;</span>) <span style=color:#ff7b72>as</span> librarylog:
+</span></span><span style=display:flex><span>        loglines <span style=color:#ff7b72;font-weight:700>=</span> librarylog<span style=color:#ff7b72;font-weight:700>.</span>readlines()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> loglines:
+</span></span><span style=display:flex><span>            lines <span style=color:#ff7b72;font-weight:700>=</span> line<span style=color:#ff7b72;font-weight:700>.</span>split(<span style=color:#a5d6ff>&#34;#&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> lines[<span style=color:#a5d6ff>0</span>] <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;P&#34;</span>:
+</span></span><span style=display:flex><span>                <span style=color:#ff7b72>if</span> name <span style=color:#ff7b72;font-weight:700>==</span> str(lines[<span style=color:#a5d6ff>2</span>]):
+</span></span><span style=display:flex><span>                    <span style=color:#ff7b72>if</span> hasfine:
+</span></span><span style=display:flex><span>                        daysover <span style=color:#ff7b72;font-weight:700>=</span> dayreturned<span style=color:#ff7b72;font-weight:700>-</span> totaldaysintended(bookname)
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>if</span> restrictioncheck(bookname) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>True</span>:
+</span></span><span style=display:flex><span>                            fineprice <span style=color:#ff7b72;font-weight:700>=</span> daysover<span style=color:#ff7b72;font-weight:700>*</span><span style=color:#a5d6ff>5</span>
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>if</span> restrictioncheck(bookname) <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#79c0ff>False</span>:
+</span></span><span style=display:flex><span>                            fineprice <span style=color:#ff7b72;font-weight:700>=</span> daysover<span style=color:#ff7b72;font-weight:700>*</span><span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>                        print(<span style=color:#a5d6ff>&#34;Your fine price is:&#34;</span>,fineprice)
+</span></span><span style=display:flex><span>                        amountpayed <span style=color:#ff7b72;font-weight:700>=</span> int(input(<span style=color:#a5d6ff>&#34;How much are you paying?: &#34;</span>))
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>if</span> amountpayed <span style=color:#ff7b72;font-weight:700>==</span> fineprice:
+</span></span><span style=display:flex><span>                            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>                            amountleft <span style=color:#ff7b72;font-weight:700>=</span> fineprice <span style=color:#ff7b72;font-weight:700>-</span> amountpayed
+</span></span><span style=display:flex><span>                            print(<span style=color:#a5d6ff>&#34;Your fine is now:&#34;</span>, amountleft)
+</span></span><span style=display:flex><span>                            <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>False</span> 
+</span></span><span style=display:flex><span>                        
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Checking if the person borrowing a book has a pending fine</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>finecheck</span>(name):
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>with</span> open(<span style=color:#a5d6ff>&#34;librarylog-2.txt&#34;</span>,<span style=color:#a5d6ff>&#34;r&#34;</span>) <span style=color:#ff7b72>as</span> librarylog:
+</span></span><span style=display:flex><span>        loglines <span style=color:#ff7b72;font-weight:700>=</span> librarylog<span style=color:#ff7b72;font-weight:700>.</span>readlines()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> loglines:
+</span></span><span style=display:flex><span>            lines <span style=color:#ff7b72;font-weight:700>=</span> line<span style=color:#ff7b72;font-weight:700>.</span>split(<span style=color:#a5d6ff>&#34;#&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> lines[<span style=color:#a5d6ff>0</span>] <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>&#34;R&#34;</span>:
+</span></span><span style=display:flex><span>                <span style=color:#ff7b72>if</span> name <span style=color:#ff7b72;font-weight:700>==</span> str(lines[<span style=color:#a5d6ff>2</span>]):
+</span></span><span style=display:flex><span>                    dayreturned <span style=color:#ff7b72;font-weight:700>=</span> int(lines[<span style=color:#a5d6ff>1</span>])
+</span></span><span style=display:flex><span>                    studentname <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>2</span>])
+</span></span><span style=display:flex><span>                    book <span style=color:#ff7b72;font-weight:700>=</span> str(lines[<span style=color:#a5d6ff>3</span>])
+</span></span><span style=display:flex><span>                    <span style=color:#ff7b72>if</span> totaldaysborrowed(bookname) <span style=color:#ff7b72;font-weight:700>&lt;</span> dayreturned:
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>True</span>
+</span></span><span style=display:flex><span>                    <span style=color:#ff7b72>else</span>:
+</span></span><span style=display:flex><span>                        <span style=color:#ff7b72>return</span> <span style=color:#79c0ff>False</span>
+</span></span><span style=display:flex><span>                                       
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Days Available </span>
+</span></span><span style=display:flex><span>daysAvailable <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>if</span> boookname(copies) <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>1</span> :
+</span></span><span style=display:flex><span>        daysAvailable <span style=color:#ff7b72;font-weight:700>+=</span><span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>for</span> line <span style=color:#ff7b72;font-weight:700>in</span> loglines:
+</span></span><span style=display:flex><span>    popular <span style=color:#ff7b72;font-weight:700>=</span> max(count , key<span style=color:#ff7b72;font-weight:700>=</span>count(bookname)<span style=color:#ff7b72;font-weight:700>.</span>get)
+</span></span><span style=display:flex><span>print(popular, <span style=color:#a5d6ff>&#34;Was borrowed for&#34;</span>, totaldaysborrowed(bookname) <span style=color:#ff7b72;font-weight:700>/</span> daysAvailable)                    
+</span></span></code></pre></div></article></section></div><footer class=footer><section class=container>©
+2024
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

@@ -1,0 +1,145 @@
+<!doctype html><html lang=en><head><title>Chapter12 Exercise · DarkAwesome
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="This work was done in 2022 in the summer as a part of an intro to R class.
+
+  Assigned Exercises
+  
+    
+    Link to heading
+  
+
+DC Ch 12 Exercises: 12.1 (part 1-4)
+DC Ch 13 Exercises: 13.2
+
+
+  Front Matter
+  
+    
+    Link to heading
+  
+
+    # clean up workspace environment
+    rm(list = ls())
+
+    # all packages used for the assignment
+    library(tidyverse)
+
+  Chapter 12 Exercises
+  
+    
+    Link to heading
+  
+
+library(dcData)
+data(BabyNames)
+
+  Chapter 12
+  
+    
+    Link to heading
+  
+
+
+summary(BabyNames)
+name               sex                count              year  
+Length:1792091     Length:1792091     Min.   :    5.0   Min.   :1880
+Class :character   Class :character   1st Qu.:    7.0   1st Qu.:1948
+Mode  :character   Mode  :character   Median :   12.0   Median :1981
+Mean   :  186.1   Mean   :1972
+3rd Qu.:   32.0   3rd Qu.:2000
+Max.   :99674.0   Max.   :2013"><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Chapter12 Exercise"><meta name=twitter:description content="This work was done in 2022 in the summer as a part of an intro to R class.
+Assigned Exercises Link to heading DC Ch 12 Exercises: 12.1 (part 1-4) DC Ch 13 Exercises: 13.2 Front Matter Link to heading # clean up workspace environment rm(list = ls()) # all packages used for the assignment library(tidyverse) Chapter 12 Exercises Link to heading library(dcData) data(BabyNames) Chapter 12 Link to heading summary(BabyNames) name sex count year Length:1792091 Length:1792091 Min. : 5.0 Min. :1880
+Class :character Class :character 1st Qu.: 7.0 1st Qu.:1948
+Mode :character Mode :character Median : 12.0 Median :1981
+Mean : 186.1 Mean :1972
+3rd Qu.: 32.0 3rd Qu.:2000
+Max. :99674.0 Max. :2013"><meta property="og:url" content="http://darkawesome.github.io/blog/blog/chapter12-exercise/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Chapter12 Exercise"><meta property="og:description" content="This work was done in 2022 in the summer as a part of an intro to R class.
+Assigned Exercises Link to heading DC Ch 12 Exercises: 12.1 (part 1-4) DC Ch 13 Exercises: 13.2 Front Matter Link to heading # clean up workspace environment rm(list = ls()) # all packages used for the assignment library(tidyverse) Chapter 12 Exercises Link to heading library(dcData) data(BabyNames) Chapter 12 Link to heading summary(BabyNames) name sex count year Length:1792091 Length:1792091 Min. : 5.0 Min. :1880
+Class :character Class :character 1st Qu.: 7.0 1st Qu.:1948
+Mode :character Mode :character Median : 12.0 Median :1981
+Mean : 186.1 Mean :1972
+3rd Qu.: 32.0 3rd Qu.:2000
+Max. :99674.0 Max. :2013"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-10-17T11:12:18-04:00"><meta property="article:modified_time" content="2024-10-17T11:12:18-04:00"><link rel=canonical href=http://darkawesome.github.io/blog/blog/chapter12-exercise/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/blog/chapter12-exercise/>Chapter12 Exercise</a></h1></header><p>This work was done in 2022 in the summer as a part of an intro to R class.</p><h2 id=assigned-exercises>Assigned Exercises
+<a class=heading-link href=#assigned-exercises><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><pre><code>DC Ch 12 Exercises: 12.1 (part 1-4)
+DC Ch 13 Exercises: 13.2
+</code></pre><h2 id=front-matter>Front Matter
+<a class=heading-link href=#front-matter><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># clean up workspace environment</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>rm</span>(list <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>ls</span>())
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># all packages used for the assignment</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>library</span>(tidyverse)
+</span></span></code></pre></div><h2 id=chapter-12-exercises>Chapter 12 Exercises
+<a class=heading-link href=#chapter-12-exercises><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(dcData)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>data</span>(BabyNames)
+</span></span></code></pre></div><h2 id=chapter-12>Chapter 12
+<a class=heading-link href=#chapter-12><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summary</span>(BabyNames)
+</span></span></code></pre></div><p>name sex count year<br>Length:1792091 Length:1792091 Min. : 5.0 Min. :1880<br>Class :character Class :character 1st Qu.: 7.0 1st Qu.:1948<br>Mode :character Mode :character Median : 12.0 Median :1981<br>Mean : 186.1 Mean :1972<br>3rd Qu.: 32.0 3rd Qu.:2000<br>Max. :99674.0 Max. :2013</p><h3 id=problem-121>Problem 12.1
+<a class=heading-link href=#problem-121><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>BothSexes <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>BabyNames <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>pivot_wider</span>(names_from <span style=color:#ff7b72;font-weight:700>=</span> sex, values_from <span style=color:#ff7b72;font-weight:700>=</span> count) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>filter</span>(M <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span> <span style=color:#ff7b72;font-weight:700>|</span> F <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span>)
+</span></span></code></pre></div><p>sex should replace ??? in the statement</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>BothSexes<span style=color:#ff7b72;font-weight:700>$</span>math <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>abs</span>(<span style=color:#d2a8ff;font-weight:700>log</span>( BothSexes[[3]] <span style=color:#ff7b72;font-weight:700>/</span> BothSexes[[4]] ))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Balance <span style=color:#ff7b72;font-weight:700>&lt;-</span> 
+</span></span><span style=display:flex><span>BothSexes <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>arrange</span>(math)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>head</span>(Balance, n<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>10</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>Balance2 <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>Balance <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>filter</span>(F <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>100</span> <span style=color:#ff7b72;font-weight:700>|</span> M <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>100</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>head</span>(Balance2, n<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>10</span>)
+</span></span></code></pre></div><h3 id=problem-122>Problem 12.2
+<a class=heading-link href=#problem-122><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ol><li>Version One</li><li>Version two is wider,</li></ol><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span>BothSexes <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>BabyNames <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>pivot_wider</span>(names_from <span style=color:#ff7b72;font-weight:700>=</span> sex, values_from <span style=color:#ff7b72;font-weight:700>=</span> count) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>filter</span>(M <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span> <span style=color:#ff7b72;font-weight:700>|</span> F <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span>)
+</span></span></code></pre></div><p>3, Version 3 is wider</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span>BothSexes <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>BabyNames <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>pivot_wider</span>(names_from <span style=color:#ff7b72;font-weight:700>=</span> year, values_from <span style=color:#ff7b72;font-weight:700>=</span> count) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>filter</span>(M <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span> <span style=color:#ff7b72;font-weight:700>|</span> F <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>5</span>)
+</span></span></code></pre></div><ol start=4><li><p>I would say that it is easier to start from version 2 as both the year and the sexes are already columns.</p></li><li><p>I would go to version 2 as it is better suited to find the ratio of male to female as both are columns</p></li></ol><h3 id=problem-123>Problem 12.3
+<a class=heading-link href=#problem-123><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ol><li>A is wider than C . B is wider than C. And A is wider than B.</li><li>Frame B would be the best to look at 2000 to 2001. I would subtract the count of both years</li><li>Frame B again would be the best. I would just sum the values for each year.</li></ol><h3 id=problem-124>Problem 12.4
+<a class=heading-link href=#problem-124><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ol><li>You can&rsquo;t easily compare before and after of a subject.</li><li>I wouldn&rsquo;t change the data table as to change it would make it too narrow.</li></ol><h3 id=chapter-132>Chapter 13.2
+<a class=heading-link href=#chapter-132><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><h3 id=problem-2>Problem 2
+<a class=heading-link href=#problem-2><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Calculating Top 100 Counts</span>
+</span></span><span style=display:flex><span>Rankings <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>BabyNames <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>group_by</span>(year) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>top_n</span>(<span style=color:#a5d6ff>100</span>, count) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summarise</span>(total <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sum</span>(count))
+</span></span><span style=display:flex><span>Rankings<span style=color:#ff7b72;font-weight:700>$</span>ranking <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#a5d6ff>&#34;Top_100&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Calculating Bottom Counts</span>
+</span></span><span style=display:flex><span>Rankings2 <span style=color:#ff7b72;font-weight:700>&lt;-</span>
+</span></span><span style=display:flex><span>BabyNames <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>group_by</span>(year) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summarise</span>(total <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sum</span>(count))
+</span></span><span style=display:flex><span>Rankings2<span style=color:#ff7b72;font-weight:700>$</span>total <span style=color:#ff7b72;font-weight:700>&lt;-</span> Rankings2<span style=color:#ff7b72;font-weight:700>$</span>total <span style=color:#ff7b72;font-weight:700>-</span> Rankings<span style=color:#ff7b72;font-weight:700>$</span>total
+</span></span><span style=display:flex><span>Rankings2<span style=color:#ff7b72;font-weight:700>$</span>ranking <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#a5d6ff>&#34;Below&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Merging the Two Counts and Reordering</span>
+</span></span><span style=display:flex><span>Rankings <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>rbind</span>(Rankings, Rankings2)
+</span></span><span style=display:flex><span>Rankings <span style=color:#ff7b72;font-weight:700>&lt;-</span> 
+</span></span><span style=display:flex><span>Rankings <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>arrange</span>(year)
+</span></span></code></pre></div></article></section></div><footer class=footer><section class=container>©
+2024
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
