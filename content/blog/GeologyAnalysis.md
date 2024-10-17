@@ -192,7 +192,7 @@ Moving forward I will look at other factors across the state as it relates to th
 
 ## Analyzing the Network
 
-The Methodology behind hte work below is from this paper on Spatial Statictics by Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan,Tilman M. Davies(2).
+The Methodology behind the work below is from this paper on Spatial Statictics by Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan,Tilman M. Davies(2).
 In which they analyze research on the spatial analysis of events that occur along a network of lines.
 
 ## Convertiing to Spatial Data

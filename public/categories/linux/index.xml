@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Home</title>
+    <title>Linux on DarkAwesome</title>
     <link>http://localhost:1313/blog/categories/linux/</link>
-    <description>Recent content in Linux on Home</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Linux on DarkAwesome</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Aug 2023 17:22:44 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
@@ -27,7 +27,7 @@
       <link>http://localhost:1313/blog/contact/</link>
       <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
       <guid>http://localhost:1313/blog/contact/</guid>
-      <description>&lt;p&gt;I am Darkawesome, I live somewhere in America. I am a systems admin by hobby and I love computers&lt;/p&gt;</description>
+      <description>&lt;p&gt;I am Darkawesome, I am a jack of all trades. A master of none, but often times better than a master of one.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quote</title>
@@ -49,6 +49,13 @@
       <pubDate>Thu, 02 Sep 2021 07:34:20 -0400</pubDate>
       <guid>http://localhost:1313/blog/blog/samba/</guid>
       <description>&lt;p&gt;This was a Samba File server that I setup on my latptop running linux to send files from my pc to my laptop.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Server-Update</title>
+      <link>http://localhost:1313/blog/blog/server-update/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/blog/server-update/</guid>
+      <description>&lt;p&gt;Tailscale is cool. Vpns are nice. I need more ram and faster CPU speeds.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

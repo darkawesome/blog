@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <title>
+  Server-Update · DarkAwesome
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="DarkAwesome">
+<meta name="description" content="Tailscale is cool. Vpns are nice. I need more ram and faster CPU speeds.">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Server-Update">
+  <meta name="twitter:description" content="Tailscale is cool. Vpns are nice. I need more ram and faster CPU speeds.">
+
+<meta property="og:url" content="http://localhost:1313/blog/blog/server-update/">
+  <meta property="og:site_name" content="DarkAwesome">
+  <meta property="og:title" content="Server-Update">
+  <meta property="og:description" content="Tailscale is cool. Vpns are nice. I need more ram and faster CPU speeds.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/blog/blog/server-update/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/blog/">
+      DarkAwesome
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/contact/">Contact</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/">Posts</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/blog/server-update/">
+          Server-Update
+        </a>
+      </h1>
+    </header>
+
+    <p>Tailscale is cool. Vpns are nice. I need more ram and faster CPU speeds.</p>
+<h1 id="tailscale-and-old-tech">
+  Tailscale and old tech
+  <a class="heading-link" href="#tailscale-and-old-tech">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Last week my server was configured in such a way, that when I needed to do something on it remotely I would use LogMeIn Hamachi. Which exists on PVE1, and from there I would ssh into my other machine or into other VMs or containers. Now since I am running the two machines in a cluster ( I will be adding a third soon to utilize HA) when PVE2 was having connection issues it conscerned me greatly. There is somewhere between a beer belly and a few ex wives between me and my homelab. So for me to go back home was off the table. Though there were times when the cluster would make a connection for a good hour or so. Now addmittedly, I didn&rsquo;t fix this issue because &ldquo;it fixed itself&rdquo;. Now I realized after day 3 it did not. So after checking logs and running around with the resources&hellip; I realized a few things went overlooked when configuring the server.</p>
+<ol>
+<li>I serverly under estimated the amount of resources it would need</li>
+<li>The intel Pentium G3250 is gonna need to be like a hot dog and ketchup</li>
+<li>A &ldquo;permanent&rdquo; fix is one that worked too well</li>
+</ol>
+<p>The real culprit here was that the server was using the 2 cores. The machine it self only has the 2 cores to begin with. Honestly im surprised this issue didn&rsquo;t occur more often because i&rsquo;ve never seen it till now. Though I believe it was because I put a new vpn on it. I decided to throw tailscale on it, one to test it out and to have some redundancy. I believe this was just asking a bit more of it and was the reason why I was seeing some crazy numbers coming from the cpu utilization on the host machine. I have been monitoring it more closely now and even looking at solutions like uptime kuma, Grafana, or checkmk. More research is needed here but I am in Grad school now so this may get more attention at a later date.</p>
+<h1 id="vpns-and-exit-nodes">
+  Vpns and exit nodes
+  <a class="heading-link" href="#vpns-and-exit-nodes">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>A beautiful feature of Tailscale is that it allows for simple configuration and has introduced integration with mullvad vpn. Currently through a free plan on tailscale you can have 3 user accounts and 100 devices on a vpn. Now I don&rsquo;t know if you got the same idea as me reading that but&hellip; yeah.. my account will stay free forever. Mullvad did get $5 a month out of me though. From looking at the offerings of exit nodes all over the world. I am very happy with what I have been able to get now from a privacy focused company. They also allow you to overwrite the dns that the device connected to it uses. And with allowing the local network acces the cluster stays in quorum. The documentation <!-- raw HTML omitted -->here <!-- raw HTML omitted -->is quite good.</p>
+<h1 id="looking-forward">
+  Looking Forward
+  <a class="heading-link" href="#looking-forward">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>I am thinking of moving toward a more server grade motherboard and CPU. A beast like the Supermicro MBD-X11SRL-F-O would be perfect. Well to be honest it is overkill for what the single container on the machine does now. Though it does leave room for more containers and VMs to come at a later time. Noteable features would be IPMI, up to 1TB of ECC LRDIMM, 7 fan headers, 8 SATA3 ports, and 2 RJ45 ports. Other specs are other specs those are the most important to me at this time. Really excited to try out IPMI as it would lessen the need for 2 vpn tunnels but who knows. The CPU I was looking at was the intel Core i7-7820X. Nothing real special here just a 8 core 16 thread guy that&rsquo;ll sit until I get an Intel Xeon or an AMD EPYC. That&rsquo;ll probably not happen anytime soon soon here but who knows.</p>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2024
+     DarkAwesome 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/blog/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

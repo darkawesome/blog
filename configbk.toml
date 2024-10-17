@@ -1,0 +1,71 @@
+baseURL = 'http://darkawesome.github.io/blog'
+languageCode = 'en-us'
+title = 'Home'
+theme = "hugo-coder"
+
+[Author] # Used in authorbox
+  name = "DarkAwesome"
+  avatar = "img/waterjoe.jpg"
+
+[Params]
+  subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
+  description = "Darkawesome's Portfolio of past projects" # Site description. Used in meta description
+  copyright = "DarkAwesome" # Footer copyright holder, otherwise will use site title
+authorbox = true # Show authorbox at bottom of pages if true
+  toc = true # Enable Table of Contents
+  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
+  post_meta = ["author", "date", "categories"] # Order of post meta information
+  mainSections = ["blog", "resume"] # Specify section pages to show on home page and the "Recent articles" widget
+  dateformat = "2006-01-02" # Change the format of dates
+googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
+ [Params.style.vars]
+  fontFamilyPrimary = "'Open Sans', Helvetica, Arial, sans-serif"
+  fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+
+[Params.sidebar]
+  home = "right"   # Configure layout for home page
+  list = "right"   # Configure layout for list pages
+  single = "right" # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist",]
+
+# Custom social links
+[[Params.widgets.social.custom]]
+  title = "Youtube"
+  url = "https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg"
+  icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
+
+[Params.logo]
+  
+  title = "Welcome to my site"
+
+[caches.images]
+  dir='/home/banana/Code/blog/content/img/_gen'
+  maxAge = -1
+
+[pagination]
+     disableAliases = false
+     pagerSize = 10
+     path = 'page'
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -110
+
+ [[menu.main]]
+    name = "Contact"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/contact/"
+    weight = -100
+  
+  [[menu.main]]
+    name = "Resume"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/blog/resume"
+    weight = -95
+

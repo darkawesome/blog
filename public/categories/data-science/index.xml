@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data Science on Home</title>
+    <title>Data Science on DarkAwesome</title>
     <link>http://localhost:1313/blog/categories/data-science/</link>
-    <description>Recent content in Data Science on Home</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Data Science on DarkAwesome</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Nov 2023 09:00:26 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
@@ -56,6 +56,13 @@
       <pubDate>Mon, 13 Sep 2021 13:54:20 -0400</pubDate>
       <guid>http://localhost:1313/blog/shift/</guid>
       <description>&lt;p&gt;From Pitt-Bradford to Penn State&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PLSC309 Final</title>
+      <link>http://localhost:1313/blog/PLSC309-Final/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/PLSC309-Final/</guid>
+      <description>&lt;p&gt;What are the effects of the number of nuclear weapons on human rights abuses?&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

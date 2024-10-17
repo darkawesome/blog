@@ -1,58 +1,48 @@
 baseURL = 'http://darkawesome.github.io/blog'
 languageCode = 'en-us'
-title = 'Home'
-paginate = "5" # Number of posts per page
-theme = "mainroad"
+theme = "hugo-coder"
+title = "DarkAwesome"
 
-[Author] # Used in authorbox
-  name = "DarkAwesome"
-  avatar = "img/waterjoe.jpg"
+[markup.highlight]
+style = "github-dark"
 
-[Params]
-  subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
-  description = "Darkawesome's Portfolio of past projects" # Site description. Used in meta description
-  copyright = "DarkAwesome" # Footer copyright holder, otherwise will use site title
-authorbox = true # Show authorbox at bottom of pages if true
-  toc = true # Enable Table of Contents
-  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
-  post_meta = ["author", "date", "categories"] # Order of post meta information
-  mainSections = ["blog", "resume"] # Specify section pages to show on home page and the "Recent articles" widget
-  dateformat = "2006-01-02" # Change the format of dates
-googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
- [Params.style.vars]
-  fontFamilyPrimary = "'Open Sans', Helvetica, Arial, sans-serif"
-  fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+[params]
+	commentoURL = "https://cdn.commento.io"  # Replace if you use a custom domain 
+	author = "DarkAwesome"
+	info = "Graduate Student & Arch User  "
+  colorScheme = "auto"
+  hideColorSchemeToggle = false
+  maxSeeAlsoItems = 5
+	avatarurl = "https://avatars.githubusercontent.com/u/38367397?v=4"
 
-[Params.sidebar]
-  home = "right"   # Configure layout for home page
-  list = "right"   # Configure layout for list pages
-  single = "right" # Configure layout for single pages
-  # Enable widgets in given order
-  widgets = ["search", "recent", "categories", "taglist",]
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
 
-# Custom social links
-[[Params.widgets.social.custom]]
-  title = "Youtube"
-  url = "https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg"
-  icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
+[[params.social]]
+  name = "Github"
+  icon = "fa-brands fa-github fa-2x"
+  weight = 2
+  url = "https://github.com/darkawesome/"
 
-[Params.logo]
-  
-  title = "Welcome to my site"
+[[params.social]]
+name = "Twitter"
+icon = "fa-brands fa-x-twitter fa-2x"
+weight = 3
+url = "https://x.com/haveibeenpwned"
 
-[caches.images]
-  dir='/home/banana/Code/blog/content/img/_gen'
-  maxAge = -1
+[[params.social]]
+name = "RSS"
+icon = "fa-solid fa-rss fa-2x"
+weight = 6
+url = "https://darkawesome.github.io/blog/index.xml"
+rel = "alternate"
+type = "application/rss+xml"
 
+# Menu links
 [menu]
-
-  [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    pre = "<i class='fa fa-heart'></i>"
-    url = "/"
-    weight = -110
-
  [[menu.main]]
     name = "Contact"
     pre = "<i class='fa fa-heart'></i>"
@@ -65,3 +55,7 @@ googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,70
     url = "/blog/resume"
     weight = -95
 
+  [[menu.main]]
+    name = "Posts"
+    weight = 1
+    url  = "/blog/"

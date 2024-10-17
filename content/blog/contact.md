@@ -12,13 +12,12 @@ tags:
   - Ubuntu
 draft: False
 ---
-I am Darkawesome, I live somewhere in America. I am a systems admin by hobby and I love computers
+I am Darkawesome, I am a jack of all trades. A master of none, but often times better than a master of one.
 <!--more-->
 
 Github : Darkawesome
 
 ## How to reach me?
-
     IRC: Banana-Prince @ libera.chat
     The email address on my job application
   

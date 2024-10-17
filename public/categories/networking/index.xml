@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Networking on Home</title>
+    <title>Networking on DarkAwesome</title>
     <link>http://localhost:1313/blog/categories/networking/</link>
-    <description>Recent content in Networking on Home</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Networking on DarkAwesome</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Aug 2023 17:22:44 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2024 19:00:07 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Security Cameras</title>
+      <link>http://localhost:1313/blog/Security-Cameras/</link>
+      <pubDate>Mon, 20 May 2024 19:00:07 -0400</pubDate>
+      <guid>http://localhost:1313/blog/Security-Cameras/</guid>
+      <description>&lt;p&gt;The Swann Dvr8 4580v is an interesting camera system.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Internship2023</title>
       <link>http://localhost:1313/blog/Internship2023/</link>
@@ -34,7 +41,7 @@
       <link>http://localhost:1313/blog/contact/</link>
       <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
       <guid>http://localhost:1313/blog/contact/</guid>
-      <description>&lt;p&gt;I am Darkawesome, I live somewhere in America. I am a systems admin by hobby and I love computers&lt;/p&gt;</description>
+      <description>&lt;p&gt;I am Darkawesome, I am a jack of all trades. A master of none, but often times better than a master of one.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Snort</title>

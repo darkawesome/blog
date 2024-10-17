@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ubuntu on Home</title>
+    <title>Ubuntu on DarkAwesome</title>
     <link>http://localhost:1313/blog/tags/ubuntu/</link>
-    <description>Recent content in Ubuntu on Home</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ubuntu on DarkAwesome</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Aug 2023 17:22:44 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
@@ -34,7 +34,7 @@
       <link>http://localhost:1313/blog/contact/</link>
       <pubDate>Tue, 07 Sep 2021 23:46:57 -0400</pubDate>
       <guid>http://localhost:1313/blog/contact/</guid>
-      <description>&lt;p&gt;I am Darkawesome, I live somewhere in America. I am a systems admin by hobby and I love computers&lt;/p&gt;</description>
+      <description>&lt;p&gt;I am Darkawesome, I am a jack of all trades. A master of none, but often times better than a master of one.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Snort</title>
