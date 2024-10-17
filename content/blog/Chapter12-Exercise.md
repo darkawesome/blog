@@ -4,6 +4,7 @@ draft: false
 title: 'Chapter12 Exercise'
 ---
 
+This work was done in 2022 in the summer as a part of an intro to R class. 
 
 ## Assigned Exercises
 

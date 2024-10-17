@@ -4,8 +4,8 @@ draft: false
 title: 'LibrarySystem'
 ---
 
+This work was done in 2021 as an inclass project for a computer science class.
 
-  
 #Name: Colin 
 #Collaborators: Gus, Myles, Juan
 
