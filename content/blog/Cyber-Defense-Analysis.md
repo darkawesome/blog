@@ -62,7 +62,7 @@ ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
   labs(x='Months') 
 ```
 
-![months events occur](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=true)
+![months events occur](https://github.com/darkawesome/blog/blob/main/content/img/cyberMonths.png?raw=true)
 
 Simple plot looking at during what typical actors are conducting this activity (need to confirm this with the codebook)
 ```r
