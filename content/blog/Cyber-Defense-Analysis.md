@@ -10,7 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: false
 ---
 
 Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.
