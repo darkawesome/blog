@@ -151,15 +151,6 @@
     <p>Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.</p>
 <p>After placing out of the R class in my grad school I am now looking to do something to occupy my time and learn more. I decided to use this database as its actually something interesting that looks at country level events. More importantly its part of the reason as to why I wanted to come to this school.</p>
 <p>This analysis focuses specifically on the states that were attacked. Further analysis will look into countries that were attacking.</p>
-<hr>
-<h2 id="output-html_notebook">
-  title: &ldquo;R Notebook&rdquo;
-output: html_notebook
-  <a class="heading-link" href="#output-html_notebook">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
@@ -194,10 +185,6 @@ output: html_notebook
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>event_type)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;steelblue&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Event Types&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true" alt="Event Types"></p>
-<p>actor type, event type seems to be something interesting to look at further. 2 geometry data frames 1 for attacker and 1 for the attacked.</p>
-<ul>
-<li>the attacked is done</li>
-</ul>
 <p>rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(rnaturalearth)
@@ -240,6 +227,14 @@ output: html_notebook
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
+<p>Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks.</p>
+<ul>
+<li>2 geometry data frames 1 for attacker and 1 for the attacked.</li>
+<li>the attacked is done for now</li>
+<li>Need to convert year to integer</li>
+<li>need to convert month to integer</li>
+</ul>
+<p>Actual statistical analysis needs to be done looking at how much of what is seen is just by chance or if these attacks are apart of a trend. More importantly I want to look at the predict function or maybe another function to see if I can see where the next attacks will be. Though I doubt the accuracy of this becuase of the plethora of different reasons to consider that would lead someone to attack in cyberspace.</p>
 <p>Citation
 Harry, C., &amp; Gallagher, N. (2018). Classifying Cyber Events. Journal of Information Warfare, 17(3), 17-31.</p>
   </article>

@@ -20,11 +20,6 @@ After placing out of the R class in my grad school I am now looking to do someth
 
 This analysis focuses specifically on the states that were attacked. Further analysis will look into countries that were attacking. 
 
----
-title: "R Notebook"
-output: html_notebook
----
-
  ```r
 # Data manipulation libraries
 library(sp)
@@ -86,8 +81,6 @@ ggplot(df, aes(x=event_type)) + geom_bar(fill='steelblue') +
 ```
 ![Event Types](https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true)
 
-actor type, event type seems to be something interesting to look at further. 2 geometry data frames 1 for attacker and 1 for the attacked. 
-- the attacked is done 
 
 rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).
 ```r
@@ -157,6 +150,15 @@ tm_shape(world_sf_valid) +
 
 
 ## Conclusion
+
+Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks.
+
+- 2 geometry data frames 1 for attacker and 1 for the attacked.
+- the attacked is done for now
+- Need to convert year to integer
+- need to convert month to integer
+
+Actual statistical analysis needs to be done looking at how much of what is seen is just by chance or if these attacks are apart of a trend. More importantly I want to look at the predict function or maybe another function to see if I can see where the next attacks will be. Though I doubt the accuracy of this becuase of the plethora of different reasons to consider that would lead someone to attack in cyberspace.
 
 
 Citation
