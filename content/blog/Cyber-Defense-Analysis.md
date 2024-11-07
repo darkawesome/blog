@@ -55,7 +55,7 @@ summary(df)
 
 ![Summary data](https://github.com/darkawesome/blog/blob/main/content/img/image.png?raw=true)
 
-Simple plot looking at during what months these instances happen (check the codebook on this)
+Simple plot looking at during what months these instances happen (need to confirm this with the codebook)
 
 ```r
 ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
@@ -64,7 +64,7 @@ ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
 
 ![months events occur](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=true)
 
-Simple plot looking at during what typical actors are conducting this activity (check the codebook on this)
+Simple plot looking at during what typical actors are conducting this activity (need to confirm this with the codebook)
 ```r
 ggplot(df, aes(x=actor_type)) + geom_bar(fill='coral2') +
   labs(x='Actor Types') 
@@ -73,8 +73,7 @@ ggplot(df, aes(x=actor_type)) + geom_bar(fill='coral2') +
 ![Actor Types](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png)
 
 
-Simple plot looking at what the typical event types are (check the codebook on this)
-
+Simple plot looking at what the typical event types are (need to confirm this with the codebook)
 ```r
 ggplot(df, aes(x=event_type)) + geom_bar(fill='steelblue') +
   labs(x='Event Types') 
@@ -82,15 +81,16 @@ ggplot(df, aes(x=event_type)) + geom_bar(fill='steelblue') +
 ![Event Types](https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true)
 
 
-rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).
+Here I used the rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).
 ```r
 # install.packages("rnaturalearth")
 library(rnaturalearth)
 
 ```
 
-function to retrieve country geometries:
+
 ```r
+# function to retrieve country geometries
 # Get country geometries using rnaturalearth
 countries_geom <- ne_countries(scale = "small", returnclass = "sf")
 
@@ -112,7 +112,8 @@ world_sf <- countries_sf %>%
 ```
 
 
-Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later
+
+Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later. I was hung up on this longer than 30mins and it was the only thing holding back a graph. I skipped this....
 ```r
 invalid_geometries <- world_sf[!st_is_valid(world_sf), ]
 print(invalid_geometries, n = Inf)
@@ -134,8 +135,6 @@ tm_shape(world_sf_valid) +
 ```
 
 ![World Map by motive](https://github.com/darkawesome/blog/blob/main/content/img/worldAttackedMotivemap.png?raw=true)
-
-
 
 ```r
 tm_shape(world_sf_valid) + 
