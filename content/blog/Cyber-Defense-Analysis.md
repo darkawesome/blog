@@ -150,12 +150,17 @@ tm_shape(world_sf_valid) +
 
 ## Conclusion
 
-Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks.
+Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks. The following are notes to help my analysis in the future: 
 
 - 2 geometry data frames 1 for attacker and 1 for the attacked.
-- the attacked is done for now
-- Need to convert year to integer
-- need to convert month to integer
+  - the attacked is done for now
+- Spatial Clustering to look at hotspots and see if the attackers or those being attacked  is a regional effect. 
+  - Moran's I as well to look at spatial 
+- random forests, decision trees
+
+Something I could also look at would be a stacked bar graph with the event types. And then on top of those categories I would look at the event subtypes. 
+That could open up some cross-variable analysis to see how it interacts with industries, motive and actor type.
+
 
 Actual statistical analysis needs to be done looking at how much of what is seen is just by chance or if these attacks are apart of a trend. More importantly I want to look at the predict function or maybe another function to see if I can see where the next attacks will be. Though I doubt the accuracy of this becuase of the plethora of different reasons to consider that would lead someone to attack in cyberspace.
 

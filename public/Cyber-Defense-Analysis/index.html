@@ -173,23 +173,23 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/image.png?raw=true" alt="Summary data"></p>
-<p>Simple plot looking at during what months these instances happen (check the codebook on this)</p>
+<p>Simple plot looking at during what months these instances happen (need to confirm this with the codebook)</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=true" alt="months events occur"></p>
-<p>Simple plot looking at during what typical actors are conducting this activity (check the codebook on this)</p>
+<p>Simple plot looking at during what typical actors are conducting this activity (need to confirm this with the codebook)</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>actor_type)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;coral2&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Actor Types&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png" alt="Actor Types"></p>
-<p>Simple plot looking at what the typical event types are (check the codebook on this)</p>
+<p>Simple plot looking at what the typical event types are (need to confirm this with the codebook)</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>event_type)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;steelblue&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Event Types&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true" alt="Event Types"></p>
-<p>rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</p>
+<p>Here I used the rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(rnaturalearth)
-</span></span></code></pre></div><p>function to retrieve country geometries:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># function to retrieve country geometries</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
 </span></span><span style="display:flex;"><span>countries_geom <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ne_countries</span>(scale <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;small&#34;</span>, returnclass <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;sf&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Merge the geometries with the country names</span>
@@ -203,7 +203,7 @@
 </span></span><span style="display:flex;"><span>world_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_sf <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
 </span></span><span style="display:flex;"><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
-</span></span></code></pre></div><p>Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later</p>
+</span></span></code></pre></div><p>Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later. I was hung up on this longer than 30mins and it was the only thing holding back a graph. I skipped this&hellip;.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>invalid_geometries <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf[<span style="color:#ff7b72;font-weight:bold">!</span><span style="color:#d2a8ff;font-weight:bold">st_is_valid</span>(world_sf), ]
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(invalid_geometries, n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">Inf</span>)
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
@@ -227,13 +227,22 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks.</p>
+<p>Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks. The following are notes to help my analysis in the future:</p>
 <ul>
-<li>2 geometry data frames 1 for attacker and 1 for the attacked.</li>
+<li>2 geometry data frames 1 for attacker and 1 for the attacked.
+<ul>
 <li>the attacked is done for now</li>
-<li>Need to convert year to integer</li>
-<li>need to convert month to integer</li>
 </ul>
+</li>
+<li>Spatial Clustering to look at hotspots and see if the attackers or those being attacked  is a regional effect.
+<ul>
+<li>Moran&rsquo;s I as well to look at spatial</li>
+</ul>
+</li>
+<li>random forests, decision trees</li>
+</ul>
+<p>Something I could also look at would be a stacked bar graph with the event types. And then on top of those categories I would look at the event subtypes.
+That could open up some cross-variable analysis to see how it interacts with industries, motive and actor type.</p>
 <p>Actual statistical analysis needs to be done looking at how much of what is seen is just by chance or if these attacks are apart of a trend. More importantly I want to look at the predict function or maybe another function to see if I can see where the next attacks will be. Though I doubt the accuracy of this becuase of the plethora of different reasons to consider that would lead someone to attack in cyberspace.</p>
 <p>Citation
 Harry, C., &amp; Gallagher, N. (2018). Classifying Cyber Events. Journal of Information Warfare, 17(3), 17-31.</p>
