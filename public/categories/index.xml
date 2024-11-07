@@ -6,13 +6,27 @@
     <description>Recent content in Categories on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2024 19:00:07 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2024 12:29:26 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>http://localhost:1313/blog/categories/linux/</link>
+      <pubDate>Thu, 07 Nov 2024 12:29:26 -0500</pubDate>
+      <guid>http://localhost:1313/blog/categories/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Networking</title>
       <link>http://localhost:1313/blog/categories/networking/</link>
-      <pubDate>Mon, 20 May 2024 19:00:07 -0400</pubDate>
+      <pubDate>Thu, 07 Nov 2024 12:29:26 -0500</pubDate>
       <guid>http://localhost:1313/blog/categories/networking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>http://localhost:1313/blog/categories/windows/</link>
+      <pubDate>Thu, 07 Nov 2024 12:29:26 -0500</pubDate>
+      <guid>http://localhost:1313/blog/categories/windows/</guid>
       <description></description>
     </item>
     <item>
@@ -20,20 +34,6 @@
       <link>http://localhost:1313/blog/categories/data-science/</link>
       <pubDate>Mon, 13 Nov 2023 09:00:26 -0500</pubDate>
       <guid>http://localhost:1313/blog/categories/data-science/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>http://localhost:1313/blog/categories/linux/</link>
-      <pubDate>Wed, 30 Aug 2023 17:22:44 -0400</pubDate>
-      <guid>http://localhost:1313/blog/categories/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>http://localhost:1313/blog/categories/windows/</link>
-      <pubDate>Wed, 30 Aug 2023 17:22:44 -0400</pubDate>
-      <guid>http://localhost:1313/blog/categories/windows/</guid>
       <description></description>
     </item>
   </channel>

@@ -3,12 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/blog/blog/</loc>
-    <lastmod>2024-10-17T11:12:18-04:00</lastmod>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/blog/chapter12-exercise/</loc>
-    <lastmod>2024-10-17T11:12:18-04:00</lastmod>
+    <loc>http://localhost:1313/blog/categories/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/Cyber-Defense-Analysis/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/linux/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/networking/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/windows/</loc>
+    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/blog/chapter12-exercise/</loc>
     <lastmod>2024-10-17T11:12:18-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/blog/librarysystem/</loc>
@@ -16,12 +37,6 @@
   </url><url>
     <loc>http://localhost:1313/blog/blog/anagram/</loc>
     <lastmod>2024-10-17T11:10:02-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/categories/</loc>
-    <lastmod>2024-05-20T19:00:07-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/categories/networking/</loc>
-    <lastmod>2024-05-20T19:00:07-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/Security-Cameras/</loc>
     <lastmod>2024-05-20T19:00:07-04:00</lastmod>
@@ -35,9 +50,6 @@
     <loc>http://localhost:1313/blog/First-R-Final/</loc>
     <lastmod>2023-11-13T09:00:26-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/tags/</loc>
-    <lastmod>2023-11-13T09:00:26-05:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/blog/First-R-project/</loc>
     <lastmod>2023-11-13T08:59:51-05:00</lastmod>
   </url><url>
@@ -48,15 +60,6 @@
     <lastmod>2023-10-09T11:44:39-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/Internship2023/</loc>
-    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/categories/linux/</loc>
-    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
-    <lastmod>2023-08-30T17:22:44-04:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/categories/windows/</loc>
     <lastmod>2023-08-30T17:22:44-04:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/NuclearWeapons/</loc>

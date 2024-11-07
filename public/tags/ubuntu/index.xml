@@ -6,8 +6,15 @@
     <description>Recent content in Ubuntu on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Aug 2023 17:22:44 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2024 12:29:26 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber Defense Analysis</title>
+      <link>http://localhost:1313/blog/Cyber-Defense-Analysis/</link>
+      <pubDate>Thu, 07 Nov 2024 12:29:26 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Cyber-Defense-Analysis/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Internship2023</title>
       <link>http://localhost:1313/blog/Internship2023/</link>
