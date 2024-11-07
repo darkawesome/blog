@@ -51,8 +51,6 @@ data <- read_excel("E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx")
 df <- subset(data, select= -c(slug,description,source_url))
 
 ```
-
-
   
 ```r
 
@@ -60,7 +58,7 @@ summary(df)
 
 ```
 
-![Summary data](https://github.com/darkawesome/blog/blob/main/content/img/image.png)
+![Summary data](https://github.com/darkawesome/blog/blob/main/content/img/image.png?raw=true)
 
 Simple plot looking at during what months these instances happen (check the codebook on this)
 
@@ -69,7 +67,7 @@ ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
   labs(x='Months') 
 ```
 
-![months events occur](https://github.com/darkawesome/blog/blob/main/content/img/image-1.png)
+![months events occur](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=true)
 
 Simple plot looking at during what typical actors are conducting this activity (check the codebook on this)
 ```r
@@ -86,7 +84,7 @@ Simple plot looking at what the typical event types are (check the codebook on t
 ggplot(df, aes(x=event_type)) + geom_bar(fill='steelblue') +
   labs(x='Event Types') 
 ```
-![Event Types](https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png)
+![Event Types](https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true)
 
 actor type, event type seems to be something interesting to look at further. 2 geometry data frames 1 for attacker and 1 for the attacked. 
 - the attacked is done 
@@ -142,7 +140,9 @@ tm_shape(world_sf_valid) +
 
 ```
 
-![World Map by motive](https://github.com/darkawesome/blog/blob/main/content/img/worldAttackedMotivemap.png)
+![World Map by motive](https://github.com/darkawesome/blog/blob/main/content/img/worldAttackedMotivemap.png?raw=true)
+
+
 
 ```r
 tm_shape(world_sf_valid) + 
@@ -153,7 +153,7 @@ tm_shape(world_sf_valid) +
 
 ```
 
-![World Map by Event Type](https://github.com/darkawesome/blog/blob/main/content/img/WorldEventMap.png)
+![World Map by Event Type](https://github.com/darkawesome/blog/blob/main/content/img/WorldEventMap.png?raw=true)
 
 
 ## Conclusion
