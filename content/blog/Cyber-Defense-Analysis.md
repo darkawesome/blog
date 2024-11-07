@@ -150,20 +150,17 @@ tm_shape(world_sf_valid) +
 
 ## Conclusion
 
-Actor type, event type seems to be something interesting to look at further. As well as if the attacks locations have changed over time. For instance was the United States always falling victim to financial attacks. The following are notes to help my analysis in the future: 
+The types of actors and events seem intriguing and worth deeper exploration, particularly how attack locations and patterns may have shifted over time. For example, has the United States always been a primary target for financial attacks? The following are notes to guide my future analysis:
 
-- 2 geometry data frames 1 for attacker and 1 for the attacked.
-  - the attacked is done for now
-- Spatial Clustering to look at hotspots and see if the attackers or those being attacked  is a regional effect. 
-  - Moran's I as well to look at spatial 
-- random forests, decision trees
+- **Two Geometry Data Frames**: One for the attacker and one for the target.
+  - The target data frame is complete for now.
+- **Spatial Clustering**: This will help identify hotspots and determine if attacks are regionally concentrated, affecting either the attackers or those attacked.
+  - Consider adding **Moran's I** to further analyze spatial autocorrelation.
+- **Machine Learning Models**: Random forests and decision trees could provide insight into predictive trends. Or even can be used to predict future outcomes or changes in a variable.
 
-Something I could also look at would be a stacked bar graph with the event types. And then on top of those categories I would look at the event subtypes. 
-That could open up some cross-variable analysis to see how it interacts with industries, motive and actor type.
+Another potential direction would be a stacked bar graph to visualize event types, with subtypes layered on top. This approach could facilitate cross-variable analysis, revealing interactions between factors like industry, motive, and actor type.
 
-
-Actual statistical analysis needs to be done looking at how much of what is seen is just by chance or if these attacks are apart of a trend. More importantly I want to look at the predict function or maybe another function to see if I can see where the next attacks will be. Though I doubt the accuracy of this becuase of the plethora of different reasons to consider that would lead someone to attack in cyberspace.
-
+To support more rigorous statistical analysis, I plan to investigate whether observed patterns are random or if they indicate a larger trend. Importantly, I'll explore predictive models (e.g., using `predict`) to see if it’s feasible to estimate the location or target of future attacks. While accuracy may be a challenge given the complex motivations behind cyber-attacks, this model could offer valuable insights into emerging risks.
 
 Citation
  Harry, C., & Gallagher, N. (2018). Classifying Cyber Events. Journal of Information Warfare, 17(3), 17-31.
