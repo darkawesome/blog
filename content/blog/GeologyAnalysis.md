@@ -103,7 +103,7 @@ summary(df)
 -   LONGTITUDE : Gives the longitude of the point
 -   TRAILID : Internal feature number
 
-![Scatter plot](https://gcdnb.pbrd.co/images/jgiB56bcxRxd.png?o=1 "PA Trails Point Map")
+![Scatter plot](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/map.png?raw=true)
 
 ## Exploratory Analysis
 
@@ -133,6 +133,8 @@ This graph was done to get the points into a from that makes an interactive map.
 
 map
 ```
+
+![PA Trails map ](https://github.com/darkawesome/blog/blob/156ac917ed83657193690353a1c346f1f290dc4e/content/img/000018.png?raw=true)
 
 ``` r
 plot(mapdata)
@@ -168,7 +170,7 @@ ggplot(data_plot, aes(x = df$LONGITUDE, y = df$LATITUDE, color = Cluster)) +
   labs(title = "K-Means Clustering")
 ```
 
-![K-Means Clusteriing](https://gcdnb.pbrd.co/images/6Q04XT3UHugx.png?o=1 "K-Means Cluster")
+![K-Means Clusteriing](https://github.com/darkawesome/blog/blob/156ac917ed83657193690353a1c346f1f290dc4e/content/img/00001e.png?raw=true)
 
 The following K-means clustering has 10 clusters of sizes 41, 554, 235, 231, 90, 343, 327, 198, 217, 130.
 
@@ -291,7 +293,7 @@ map4 <- qtm(county.sovi.sf,dots.col="EP_MUNIT",dots.size=.6,dots.palette="Purple
 tmap_arrange(map1,map2,map3,map4)
 ```
 
-![<https://ibb.co/chCBHRB>](https://i.ibb.co/jkWN2qN/RPLTHeme1.png%22RPL_Theme1%22)
+![<Maps looking at Socioeconomic Status (green),Racial and Ethnic Minority Status (blue) Persons with no HS Diploma (orange) Housing in buildings with 10 or more units (purple) >](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/RPLTHeme1.png?raw=true)
 
 Looking at the socioeconomic status of the points across the census tracts as it relates to the trails we can not see any real disparities.
 Nor anything to suggest that areas with higher or lower socioeconomic status have a higher amount of trail near them.There may be other factors playing a role here like edge effects, ecological factors or even just different clusters of where people live.
@@ -315,7 +317,7 @@ M1 <- lm(inc.lag ~ tract.sovi.sf$EP_MUNIT)
 abline(M1, col="blue")
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/ZXsYWBb/moransI.png%22MoransIPlot%22)
+![<Moran's I plot>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/moransI.png?raw=true)
 
 ``` r
 # Conduct the Moran's I hypothesis test
@@ -338,7 +340,7 @@ Variance 0.0001044349
 plot(moran.mc(tract.sovi.sf$EP_MUNIT, lw, nsim=999, alternative="greater"))
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/TKNzrXq/morans-Iplot.png%22)
+![<Density of Permutation Outcomes>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/moransIplot.png?raw=true)
 
 ### Interpretation:
 
@@ -369,7 +371,7 @@ map4 <- qtm(county.sovi.sf,fill="EP_MUNIT",fill.palette="Purples") #Housing in b
 tmap_arrange(map1,map2,map3,map4)
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/McT8K1s/sovimap.png%22)
+![<County level SOVI map](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/sovimap.png?raw=true)
 
 ## Map Interpretation
 
@@ -422,7 +424,7 @@ map6 <- qtm(tract.sovi.sf1,dots.col="S0101_C01_028E",dots.size=.6,dots.palette="
 tmap_arrange(map5,map6)
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/jb0M63n/sovitrail.png%22)
+![<County level Sovi with trail points >](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/sovitrail.png?raw=true)
 
 When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither.
 There are some hot spots in the 18 and older estimate.
@@ -441,7 +443,7 @@ poverty_map <- ggplot() +
 poverty_map
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/tC0mLjH/povlevel.png%22)
+![<Poverty Map>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/povlevel.png?raw=true)
 
 ``` r
 #map showing Households with no vehicle available (estimate 2016-2020),at the measuring sites
@@ -453,7 +455,9 @@ NoVehicle_map <- ggplot() +
 NoVehicle_map
 ```
 
-![https://ibb.co/H4vxnt9](https://i.ibb.co/y03RGc9/noV.png%22) \### Persons Below 150% Poverty Estimate
+![Households with no Vehicle](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/noV.png?raw=true) 
+
+### Persons Below 150% Poverty Estimate
 
 There seems to be a large cluster around the Philadelphia area.
 Which again can be due to edge effects for the reasons mentioned above or perhaps more.
@@ -520,7 +524,7 @@ ggplot(county.sovi.sf, aes( EP_NOHSDP, RPL_THEME1)) +
   labs(title = "OLS Regression",  EP_NOHSDP = "#Persons with no HS Diploma ", RPL_THEME1 = "Socioeconomic Status theme summary")
 ```
 
-![<OLS>](/img/hist1.png)
+![<OLS Regression>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/olsReg.png/?raw=true)
 
 The coefficient for EP_NOHSDP is 0.06620.
 This indicates that for a one-unit increase in EP_NOHSDP, RPL_THEME1 is expected to increase by 0.06620 units, if you were to hold the other variables constant.The intercept is -0.13861, representing the estimated value of RPL_THEME1 when EP_NOHSDP is zero.
@@ -546,13 +550,13 @@ The model explains about 34.8% of the variability in RPL_THEME1, and the relatio
 hist(x=county.sovi.sf$RPL_THEME1)
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/H72vDnF/hist1.png%22)
+![<Histogram of county based on socieconomic status>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/hist1.png?raw=true)
 
 ``` r
 hist(x=county.sovi.sf$EP_NOHSDP)
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/XYky8pz/hist2.png%22)
+![<Histogram of counti's based on having no High School Diplpoma>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/hist2.png?raw=true)
 
 ``` r
 library(hrbrthemes)
@@ -570,7 +574,7 @@ ggplot(county.sovi.sf, aes(x=EP_NOHSDP, y=RPL_THEME1)) +
   theme_ipsum()
 ```
 
-![<https://ibb.co/H4vxnt9>](https://i.ibb.co/s2qSHDp/lBF.png%22)
+![<Line of Best Fit>](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/lBF.png?raw=true)
 
 ``` r
 summary(LinearFit)
