@@ -70,7 +70,7 @@ ggplot(df, aes(x=actor_type)) + geom_bar(fill='coral2') +
   labs(x='Actor Types') 
 ```
 
-![Actor Types](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=true)
+![Actor Types](https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=trueq)
 
 
 Simple plot looking at what the typical event types are (need to confirm this with the codebook)
