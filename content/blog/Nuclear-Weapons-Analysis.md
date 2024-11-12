@@ -18,6 +18,146 @@ Theory : Having nuclear weapons in the country acts as a force to keep the count
 
 [![The Dictator (2012) - Nuclear Nadal Scene](https://i.ytimg.com/vi/OMDQzITWJyU/maxresdefault.jpg)](https://www.youtube.com/watch?v=vV30irsal-w)
 
+
+```r
+## setwd("/home/banana/Documents/Fall 22 classes/PLSC309")
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+
+nuclearData <- read.csv("Nuclearwarheads.csv") 
+
+rightsData <-  read.csv("database.csv")
+
+str(nuclearData)
+head(rightsData)
+str(rightsData)
+
+### data is ugly and needs cleaned
+
+cNuclearData <- nuclearData[-c(1 :36), ] 
+cNuclearData <- nuclearData[-c(68 :78), ] 
+head(cNuclearData) ### now the years for observation start at 1981
+
+```
+
+
+```r
+
+cRightsData <- rightsData[order(rightsData$Year),] 
+head(cRightsData) ### data is sorted by year instead of whatever it was before 
+tmp <- 
+cRightsData %>%
+  filter(Country == "Israel")
+tmp1 <- 
+  cRightsData %>%
+  filter(Country == "France")
+tmp2 <- 
+  cRightsData %>%
+  filter(Country == "United States of America") 
+tmp3 <- 
+  cRightsData %>%
+  filter(Country == "United Kingdom") 
+tmp4 <- 
+  cRightsData %>%
+  filter(Country == "Russia") 
+tmp5 <- 
+  cRightsData %>%
+  filter(Country == "Soviet Union") 
+tmp6 <- 
+  cRightsData %>%
+  filter(Country == "China") 
+tmp7 <- 
+  cRightsData %>%
+  filter(Country == "India") 
+tmp8 <- 
+  cRightsData %>%
+  filter(Country == "Pakistan") 
+
+    ## there is probably a better way to do this but im just gonna do a left join and call it a day 
+  ## for copy and paste purposes ("United States of America" ,"United Kingdom " , "France", "Russia", "Isreal","India", "Pakistan", "Soviet Union", "China")
+## yeah boss u gotta figure this out  *** I figured it out *** 
+FinRightsData <-
+  tmp %>%
+  full_join(tmp1) 
+
+FinRightsData1 <-
+  tmp2 %>%
+  full_join(tmp3)
+
+FinRightsData2 <-
+  tmp4 %>% 
+  full_join(tmp5)
+
+FinRightsData3 <-
+  tmp6 %>%
+  full_join(tmp7)
+## so far all we did was join 2 tables like france and the us tbh idk if those were joined but thats an example
+## their most definetly is an easier way to do it but at this time this is what we are doing
+tmpFin <-
+  FinRightsData %>% 
+  full_join(tmp8)
+
+tmpFin1 <-
+  FinRightsData1 %>%
+  full_join(FinRightsData2)
+
+tmpFin2 <-
+  FinRightsData3 %>%
+  full_join(tmpFin)
+
+RightsDataClean <-
+  tmpFin2 %>%
+  full_join(tmpFin1)  ### All 9 obs are in this guy. And the data is cleaned and wrangled 
+  
+## tbh we could change soviet union to russia for colloquial meaning but not necessary
+## Also we will strip N. Korea from this as we cant really trust the numbers and they would be approximations 
+```
+
+
+```r
+
+NuclearDataClean <- subset(cNuclearData, select = -c(North.Korea) )
+RightsDataClean <- subset(RightsDataClean, select = -c(UN.Country.ID,UN.Region,UN.Subregion))
+
+RightsDataCleaner <- RightsDataClean[order(RightsDataClean$Year),] 
+###Actual data work starts here 
+
+head(NuclearDataClean)
+head(RightsDataCleaner)
+
+RightsDataCleanery <- na.omit(RightsDataCleaner) ###  rights data has soviet union and russia
+
+### we can make a pre and post cold war column or make a soviet union and russia column and decide how to proceed from there
+### going to join the data and add a 1 or 0 to signify the pre or post cold war
+## i joined the two tables by hand as the formatting would've taken longer to fix 
+fullData <-  read.csv("Joined.csv")
+summary(fullData)
+
+```r
+##fullData$logNukes<-log(fullData$Nukes)
+
+#######################
+#### DATA ANALYSIS ####
+#######################
+
+model_WomensRights <- lm(formula = Nukes ~  Women.s.Political.Rights + Women.s.Social.Rights +Women.s.Economic.Rights, data = fullData)
+summary(model_WomensRights)
+
+install.packages("stargazer")
+library(stargazer)
+stargazer(model_WomensRights, type = "text")
+
+fulljawnski <- lm(formula = Nukes ~ Disappearance+Torture+Freedom.of.Speech+Women.s.Political.Rights+Extrajudicial.Killing+Freedom.of.Religion..New.,data = fullData)
+summary(fulljawnski)
+stargazer(fulljawnski,type = "text")
+
+
+plot(fullData$Women.s.Political.Rights, fullData$Nukes)
+
+```r
+
+```
 **Does the number of nuclear weapons have an effect on human rights abuses?**
 
 Nuclear weapon count over years
