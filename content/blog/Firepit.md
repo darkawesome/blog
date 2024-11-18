@@ -8,7 +8,7 @@ categories:
   - Welding
 tags:
   - Lifestyle
-draft: true
+draft: false
 ---
 I bought a fire pit off of 42 fab and it was a lot of fun to put together and use.
 
