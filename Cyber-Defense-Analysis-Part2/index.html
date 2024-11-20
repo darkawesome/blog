@@ -170,19 +170,19 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">subset</span>(data, select<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">c</span>(slug,description,source_url,industry_code))
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/summary.png" alt="Summary"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true" alt="Summary"></p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>table1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>motive, df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, 
 </span></span><span style="display:flex;"><span>                df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ftable</span>(table1)
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/table1.png" alt="table1"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table1.png?raw=true" alt="table1"></p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># FREQUENCY MARGINALS</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># row marginals - totals for each marital status across gender</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">2</span>)
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/table2.png" alt="table2"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table2.png?raw=true" alt="table2"></p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># colum marginals - totals for each gender across marital status</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">1</span>)
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/MarginTable1.png" alt="MarginTable1"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true" alt="MarginTable1"></p>
 <h2 id="3-way-table">
   3 Way Table
   <a class="heading-link" href="#3-way-table">
@@ -196,7 +196,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">xlab</span>(<span style="color:#a5d6ff">&#34;Event Types&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">ylab</span>(<span style="color:#a5d6ff">&#34;Count&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">facet_grid</span>(<span style="color:#ff7b72;font-weight:bold">~</span>actor_type) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;coral2&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">theme</span>(axis.text.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(angle <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">45</span>, hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>))
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/EventTypeHist.png" alt="Event Types Histogram"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/EventTypeHist.png?raw=true" alt="Event Types Histogram"></p>
 <h2 id="event-type-histogram">
   Event Type histogram
   <a class="heading-link" href="#event-type-histogram">
@@ -207,7 +207,7 @@
 <p>This histogram omits the motives and just shows the event types and actor types. At first glance we can see that the majority of attacks are criminal in nature. Looking at the histogram similar findings can be seen here. Although, now we can see that attacks that attributed to nation-states also have occurred quite a bit. (stopped here)</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
-</span></span></code></pre></div><p><img src="blog/content/img/Cyber-Analysis/worldmapbymotive.png" alt="Event Types Histogram"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true" alt="Monthly Attacks"></p>
 <h2 id="attacks-per-month">
   Attacks per Month
   <a class="heading-link" href="#attacks-per-month">
@@ -246,14 +246,16 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;motive&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;motive&#39; variable</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Motive&#34;</span>,
 </span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbymotive.png?raw=true" alt="World Map by Motive"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_type&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;Event Type&#39; variable</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Event Type&#34;</span>,
 </span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true" alt="World Map by Motive"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
 </span></span><span style="display:flex;"><span>actor_event_table <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View the table</span>
