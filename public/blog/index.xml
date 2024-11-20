@@ -6,8 +6,22 @@
     <description>Recent content in Blogs on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 Nov 2024 12:29:26 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 21:55:25 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber Defense Analysis Part2</title>
+      <link>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</link>
+      <pubDate>Tue, 19 Nov 2024 21:55:25 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</guid>
+      <description>&lt;p&gt;This is a continuation of the previous work done by Dimitri Nilov (&lt;a href=&#34;https://www.gotechinsights.com/blog/part2cybertrends%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/part2cybertrends)&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Firepit</title>
+      <link>http://localhost:1313/blog/Firepit/</link>
+      <pubDate>Mon, 18 Nov 2024 10:50:45 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Firepit/</guid>
+      <description>&lt;p&gt;I bought a fire pit off of 42 fab and it was a lot of fun to put together and use.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cyber Defense Analysis</title>
       <link>http://localhost:1313/blog/Cyber-Defense-Analysis/</link>

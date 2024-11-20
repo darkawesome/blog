@@ -3,30 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/blog/blog/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/Cyber-Defense-Analysis/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <loc>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</loc>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/linux/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/networking/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/tags/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
-    <lastmod>2024-11-07T12:29:26-05:00</lastmod>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/windows/</loc>
+    <lastmod>2024-11-19T21:55:25-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/Firepit/</loc>
+    <lastmod>2024-11-18T10:50:45-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/lifestyle/</loc>
+    <lastmod>2024-11-18T10:50:45-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/welding/</loc>
+    <lastmod>2024-11-18T10:50:45-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/Cyber-Defense-Analysis/</loc>
     <lastmod>2024-11-07T12:29:26-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/blog/chapter12-exercise/</loc>
