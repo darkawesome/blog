@@ -183,14 +183,6 @@ print(actor_event_table)
 
 ```
 
-```r
-# Plot a stacked bar chart
-ggplot(df, aes(x = actor_type, fill = event_type)) +
-  geom_bar(position = "fill") + # Use 'fill' for proportions
-  labs(x = "Actor Type", y = "Proportion of Events") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
 
 ```r
 # Calculate attack counts per year
@@ -223,10 +215,13 @@ ggplot(yearly_counts, aes(x = year, y = attack_count)) +
 
 ggsave("yearly_attacks_histogram.png", width = 10, height = 6)
 ```
+![Yearly Attacks Histogram](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true)
+
 
 ```r
 summary(yearly_counts)
 ```
+
 
 ```r
 
@@ -343,85 +338,7 @@ print("GIF creation completed")
 ```
 
 
-```r
-library(viridis)  # For better color scales
-
-# Create a temporary directory for individual frames
-dir.create("tmp_frames", showWarnings = FALSE)
-
-# Ensure year is numeric in the data and sort
-world_sf_valid <- world_sf_valid %>%
-  mutate(year = as.numeric(as.character(year))) %>%
-  arrange(year)
-
-# Process data to count events per region
-world_sf_valid <- world_sf_valid %>%
-  group_by(year, geometry) %>%
-  summarise(
-    event_count = n(),
-    .groups = 'drop'
-  )
-
-# Get sorted unique years
-years <- sort(unique(world_sf_valid$year))
-print(paste("Processing years in order:", paste(years, collapse = ", ")))
-
-map_frames <- list()
-for(i in seq_along(years)) {
-  current_year <- years[i]
-  print(paste("Processing year:", current_year))
-  
-  # Create map for current year
-  current_map <- tm_shape(world_sf_valid %>% filter(year == current_year)) + 
-    tm_borders(col = "darkgray", lwd = 0.5) +  
-    tm_fill(
-      col = "event_count",
-      title = "Number of Events",
-      style = "jenks",  # Natural breaks classification
-      palette = "viridis",  # Using viridis palette for better color perception
-      n = 7,  # Number of classes
-      contrast = c(0.2, 1),  # Adjust contrast of colors
-      legend.hist = TRUE  # Add histogram to legend
-    ) +
-    tm_layout(
-      main.title = sprintf("Event Frequency by Region (%s)", as.character(current_year)),
-      main.title.position = c("center", "top"),
-      main.title.size = 1.2,
-      legend.outside = TRUE,
-      legend.position = c("right", "center"),
-      legend.title.size = 0.8,
-      frame = FALSE,
-      bg.color = "white"
-    ) +
-    tm_scale_bar(position = c("left", "bottom")) +
-    tm_grid(alpha = 0.2)
-  
-  tmap_save(
-    current_map, 
-    filename = sprintf("tmp_frames/map_%04d.png", i),
-    width = 12,
-    height = 8,
-    bg = "white",
-    dpi = 300
-  )
-  
-  map_img <- image_read(sprintf("tmp_frames/map_%04d.png", i))
-  map_frames[[i]] <- map_img
-}
-
-# Combine all frames into a GIF
-map_animation <- image_join(map_frames)
-
-# Write the final GIF with slightly longer delay for better readability
-image_write_gif(map_animation, 
-                "event_frequency_choropleth.gif", 
-                delay = 5)
-
-# Clean up temporary files
-unlink("tmp_frames", recursive = TRUE)
-print("GIF creation completed")
-
-```
+![Attack Distribution by Year](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true)
 
 
 ```r
@@ -564,3 +481,6 @@ tmap_save(
   dpi = 300
 )
 ```
+
+
+![Event Frequency Changes](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/event_frequency_changes.png?raw=true)

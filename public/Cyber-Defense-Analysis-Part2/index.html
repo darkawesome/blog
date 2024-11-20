@@ -260,12 +260,6 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View the table</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(actor_event_table)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Plot a stacked bar chart</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> actor_type, fill <span style="color:#ff7b72;font-weight:bold">=</span> event_type)) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;fill&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Use &#39;fill&#39; for proportions</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Actor Type&#34;</span>, y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Proportion of Events&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme</span>(axis.text.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(angle <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">45</span>, hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>))
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate attack counts per year</span>
 </span></span><span style="display:flex;"><span>yearly_counts <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(year) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
@@ -295,7 +289,8 @@
 </span></span><span style="display:flex;"><span>  )
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggsave</span>(<span style="color:#a5d6ff">&#34;yearly_attacks_histogram.png&#34;</span>, width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10</span>, height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true" alt="Yearly Attacks Histogram"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a temporary directory for individual frames</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">dir.create</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, showWarnings <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
@@ -407,83 +402,8 @@
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## made with help from Claude and </span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r.geocompx.org/adv-map#prerequisites-7</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r-tmap.github.io/tmap-book/tmshape.html</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(viridis)  <span style="color:#8b949e;font-style:italic"># For better color scales</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a temporary directory for individual frames</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">dir.create</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, showWarnings <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Ensure year is numeric in the data and sort</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(year <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">as.character</span>(year))) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(year)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Process data to count events per region</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(year, geometry) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summarise</span>(
-</span></span><span style="display:flex;"><span>    event_count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">n</span>(),
-</span></span><span style="display:flex;"><span>    .groups <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;drop&#39;</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get sorted unique years</span>
-</span></span><span style="display:flex;"><span>years <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sort</span>(<span style="color:#d2a8ff;font-weight:bold">unique</span>(world_sf_valid<span style="color:#ff7b72;font-weight:bold">$</span>year))
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;Processing years in order:&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">paste</span>(years, collapse <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;, &#34;</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>map_frames <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">list</span>()
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span>(i <span style="color:#ff7b72">in</span> <span style="color:#d2a8ff;font-weight:bold">seq_along</span>(years)) {
-</span></span><span style="display:flex;"><span>  current_year <span style="color:#ff7b72;font-weight:bold">&lt;-</span> years[i]
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;Processing year:&#34;</span>, current_year))
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Create map for current year</span>
-</span></span><span style="display:flex;"><span>  current_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#d2a8ff;font-weight:bold">filter</span>(year <span style="color:#ff7b72;font-weight:bold">==</span> current_year)) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;darkgray&#34;</span>, lwd <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.5</span>) <span style="color:#ff7b72;font-weight:bold">+</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(
-</span></span><span style="display:flex;"><span>      col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_count&#34;</span>,
-</span></span><span style="display:flex;"><span>      title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Number of Events&#34;</span>,
-</span></span><span style="display:flex;"><span>      style <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;jenks&#34;</span>,  <span style="color:#8b949e;font-style:italic"># Natural breaks classification</span>
-</span></span><span style="display:flex;"><span>      palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;viridis&#34;</span>,  <span style="color:#8b949e;font-style:italic"># Using viridis palette for better color perception</span>
-</span></span><span style="display:flex;"><span>      n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">7</span>,  <span style="color:#8b949e;font-style:italic"># Number of classes</span>
-</span></span><span style="display:flex;"><span>      contrast <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0.2</span>, <span style="color:#a5d6ff">1</span>),  <span style="color:#8b949e;font-style:italic"># Adjust contrast of colors</span>
-</span></span><span style="display:flex;"><span>      legend.hist <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>  <span style="color:#8b949e;font-style:italic"># Add histogram to legend</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(
-</span></span><span style="display:flex;"><span>      main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;Event Frequency by Region (%s)&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">as.character</span>(current_year)),
-</span></span><span style="display:flex;"><span>      main.title.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;center&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>),
-</span></span><span style="display:flex;"><span>      main.title.size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1.2</span>,
-</span></span><span style="display:flex;"><span>      legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>,
-</span></span><span style="display:flex;"><span>      legend.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;center&#34;</span>),
-</span></span><span style="display:flex;"><span>      legend.title.size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.8</span>,
-</span></span><span style="display:flex;"><span>      frame <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>,
-</span></span><span style="display:flex;"><span>      bg.color <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_scale_bar</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;left&#34;</span>, <span style="color:#a5d6ff">&#34;bottom&#34;</span>)) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_grid</span>(alpha <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.2</span>)
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tmap_save</span>(
-</span></span><span style="display:flex;"><span>    current_map, 
-</span></span><span style="display:flex;"><span>    filename <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/map_%04d.png&#34;</span>, i),
-</span></span><span style="display:flex;"><span>    width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">12</span>,
-</span></span><span style="display:flex;"><span>    height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">8</span>,
-</span></span><span style="display:flex;"><span>    bg <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>,
-</span></span><span style="display:flex;"><span>    dpi <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">300</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  map_img <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_read</span>(<span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/map_%04d.png&#34;</span>, i))
-</span></span><span style="display:flex;"><span>  map_frames[[i]] <span style="color:#ff7b72;font-weight:bold">&lt;-</span> map_img
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Combine all frames into a GIF</span>
-</span></span><span style="display:flex;"><span>map_animation <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_join</span>(map_frames)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Write the final GIF with slightly longer delay for better readability</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">image_write_gif</span>(map_animation, 
-</span></span><span style="display:flex;"><span>                <span style="color:#a5d6ff">&#34;event_frequency_choropleth.gif&#34;</span>, 
-</span></span><span style="display:flex;"><span>                delay <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">5</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Clean up temporary files</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">unlink</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, recursive <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#a5d6ff">&#34;GIF creation completed&#34;</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>growth_rate <span style="color:#ff7b72;font-weight:bold">&lt;-</span> yearly_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true" alt="Attack Distribution by Year"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>growth_rate <span style="color:#ff7b72;font-weight:bold">&lt;-</span> yearly_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Ensure &#39;year&#39; is numeric</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(year <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">as.character</span>(year))) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Sort by year</span>
@@ -676,7 +596,7 @@ Undetermined actor presence is observed in certain areas, implying ongoing diffi
 </span></span><span style="display:flex;"><span>  bg <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>,
 </span></span><span style="display:flex;"><span>  dpi <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">300</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/event_frequency_changes.png?raw=true" alt="Event Frequency Changes"></p>
   </article>
 </section>
 
