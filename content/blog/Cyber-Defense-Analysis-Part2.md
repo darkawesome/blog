@@ -47,7 +47,7 @@ df <- subset(data, select= -c(slug,description,source_url,industry_code))
 summary(df)
 ```
 
-![Summary](blog/content/img/Cyber-Analysis/summary.png)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true)
 
 ```r
 table1 <- table(df$motive, df$actor_type, 
@@ -56,14 +56,14 @@ table1 <- table(df$motive, df$actor_type,
 ftable(table1)
 ```
 
-![table1](blog/content/img/Cyber-Analysis/table1.png)
+![table1](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table1.png?raw=true)
 ```r
 # FREQUENCY MARGINALS
 # row marginals - totals for each marital status across gender
 margin.table(table1, 2)
 ```
 
-![table2](blog/content/img/Cyber-Analysis/table2.png)
+![table2](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table2.png?raw=true)
 
 
 ```r
@@ -71,7 +71,7 @@ margin.table(table1, 2)
 margin.table(table1, 1)
 ```
 
-![MarginTable1](blog/content/img/Cyber-Analysis/MarginTable1.png)
+![MarginTable1](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true)
 
 
 ## 3 Way Table 
@@ -85,7 +85,7 @@ ggplot(df, aes(x = (event_type))) +
         theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![Event Types Histogram](blog/content/img/Cyber-Analysis/EventTypeHist.png)
+![Event Types Histogram](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/EventTypeHist.png?raw=true)
 
 
 
@@ -100,7 +100,7 @@ ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
 ```
 
 
-![Event Types Histogram](blog/content/img/Cyber-Analysis/worldmapbymotive.png)
+![Monthly Attacks](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true)
 
 ## Attacks per Month
 Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March and August being the peaks do show some times where the events may be taking place more often across the years. However,looking at the surrounding months some fallacies could be apparent here. Mainly being the edge effects from when an event was coded to have occured. This has pushed me to look more at the years rather than the months of when these attacks occur.
@@ -158,6 +158,10 @@ tm_shape(world_sf_valid) +
 
 ```
 
+
+![World Map by Motive](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbymotive.png?raw=true)
+
+
 ```r
 ## this takes a minute to load 
 
@@ -168,6 +172,7 @@ tm_shape(world_sf_valid) +
             legend.outside = TRUE)
 
 ```
+![World Map by Motive](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true)
 
 ```r
 # a contingency table for actor_type and event_type
