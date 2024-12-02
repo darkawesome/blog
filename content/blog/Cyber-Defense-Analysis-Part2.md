@@ -341,6 +341,26 @@ print("GIF creation completed")
 ![Attack Distribution by Year](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true)
 
 
+## Number of Attacks per Year
+The histogram has shown an upward trend in attack counts per year. There will be a significant increase in the number of attacks in 2019-2020 and again in 2021-2022. On both occasions, we saw about a 50% increase in the number of attacks. With a median of 952, it seems as though the number of attacks per year that will be observed in the coming years will increase as well. 
+
+## Attack Distribution by Year
+## 2014
+Criminal actors (light blue) are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives. Hacktivists (red) are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts.Nation-state actors (dark green) are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains. Undetermined actors (light green) are also present in various regions, indicating that some areas faced cyber activities without clear attribution.
+## 2015-2016
+The influence of nation-state actors expands, especially across East Asia and parts of the Middle East, pointing to an increase in government-backed cyber operations. This could be related to global geopolitical tensions and a rise in cyber espionage activities. Criminal actors continue to appear frequently across multiple continents, reflecting the steady persistence of financially motivated cybercrime globally.Hacktivist activity remains limited to specific areas but shows sporadic presence, suggesting that hacktivist campaigns may have been reactive to regional social and political events.
+## 2017-2018
+Nation-state actors maintain a strong presence in Asia and expand to new areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering. The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime. Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.
+## 2019-2020
+Nation-state actor dominance appears to further expand in Asia and parts of Europe, signaling the sustained importance of cyber capabilities in national security strategies. The criminal actor category continues to show prevalence across regions, highlighting the entrenchment of cybercrime in the global threat landscape. Undetermined actors show up in a few regions, which could imply either a lack of attribution or diverse motivations that make categorization difficult.
+## 2021-2022
+Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cybercriminals.Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.
+## 2023 
+Nation-state actors continue to dominate many regions, showing how state-sponsored cyber activities have become a central component of international relations and security strategies. Criminal actor prevalence persists, particularly in economically significant or technologically advanced regions, indicating that cybercrime remains a persistent threat worldwide. Undetermined actor presence is observed in certain areas, implying ongoing difficulty in clearly attributing cyber activities in some regions.
+
+
+## Growth Rates
+
 ```r
 growth_rate <- yearly_counts %>%
   # Ensure 'year' is numeric
@@ -361,71 +381,6 @@ growth_rate <- yearly_counts %>%
 growth_rate
 
 ```
-
-## Number of Attacks per Year
-The histogram has shown an upward trend in attack counts per year. There will be a significant increase in the number of attacks in 2019-2020 and again in 2021-2022. On both occasions, we saw about a 50% increase in the number of attacks. With a median of 952, it seems as though the number of attacks per year that will be observed in the coming years will increase as well. 
-Attack Distribution by Year
-## 2014
-Criminal actors (light blue) are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives.
-Hacktivists (red) are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts.
-Nation-state actors (dark green) are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains.
-Undetermined actors (light green) are also present in various regions, indicating that some areas faced cyber activities without clear attribution.
-## 2015-2016
-The influence of nation-state actors expands, especially across East Asia and parts of the Middle East, pointing to an increase in government-backed cyber operations. This could be related to global geopolitical tensions and a rise in cyber espionage activities.
-Criminal actors continue to appear frequently across multiple continents, reflecting the steady persistence of financially motivated cybercrime globally.
-Hacktivist activity remains limited to specific areas but shows sporadic presence, suggesting that hacktivist campaigns may have been reactive to regional social and political events.
-## 2017-2018
-Nation-state actors maintain a strong presence in Asia and expand to new areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering.
-The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime.
-Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.
-## 2019-2020
-Nation-state actor dominance appears to further expand in Asia and parts of Europe, signaling the sustained importance of cyber capabilities in national security strategies.
-The criminal actor category continues to show prevalence across regions, highlighting the entrenchment of cybercrime in the global threat landscape.
-Undetermined actors show up in a few regions, which could imply either a lack of attribution or diverse motivations that make categorization difficult.
-## 2021-2022
-Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence.
-Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cybercriminals.
-Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.
-## 2023 
-Nation-state actors continue to dominate many regions, showing how state-sponsored cyber activities have become a central component of international relations and security strategies.
-Criminal actor prevalence persists, particularly in economically significant or technologically advanced regions, indicating that cybercrime remains a persistent threat worldwide.
-Undetermined actor presence is observed in certain areas, implying ongoing difficulty in clearly attributing cyber activities in some regions.
-
-
-## What's happening? 
-
-Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.
-
-Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.
-
-Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.
-
-Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.
-
-
-## Event Frequency by Region
-
-North America: The U.S. stands out with significant activity, while Canada and Mexico show moderate levels.
-
-Europe: A mix of low-to-moderate activity, with no regions appearing in the highest range.
-
-Asia: Some regions in South Asia and East Asia show moderate to high activity. Which may be attributed to concentrated events in countries like India or China.
-
-Africa and Oceania: Predominantly low activity, with few regions showing notable event frequencies.
-
-## Growth Rates
-### Overall Growth:
-From 2014 to 2023, the number of cyberattacks increased significantly. The attack count started at 570 in 2014 and rose to 2,163 in 2023, which reflects a substantial overall increase in cyberattacks over the period.
-
-## Annual Growth Variability:
-The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.
-
-From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. Although, we shall do it anyway!
-
-## Peak Attack Years:
-The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year. 
-
-
 
 ```r
 
@@ -484,3 +439,37 @@ tmap_save(
 
 
 ![Event Frequency Changes](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/event_frequency_changes.png?raw=true)
+
+# Event Frequency by Region
+
+- North America: Stands out with significant activity, across the entire region.
+
+- Europe: A mix of low-to-moderate activity, with western European countries showing a hgiher percent change in the region. Which could be explained by regional conflicts.
+
+- Asia: Some regions in South Asia and East Asia show moderate to high activity. Which may be attributed to concentrated events in countries like India or China.
+
+- Africa and Oceania: Predominantly low-to-moderate activity in the African region. With few countries seeing moderate-to-high activity. Perhaps being attributted to the number of events in the region not being very high. In Oceania we can see moderate-to-high levels of activity in the region. 
+
+## What's happening?
+
+- Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.
+
+- Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.
+
+- Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.
+
+- Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.
+
+
+### Overall Growth:
+From 2014 to 2023, the number of cyberattacks increased significantly. The attack count started at 570 in 2014 and rose to 2,163 in 2023, which reflects a substantial overall increase in cyberattacks over the period.
+
+## Annual Growth Variability:
+The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.
+
+From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. Although, we shall do it anyway!
+
+## Peak Attack Years:
+The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year. 
+
+

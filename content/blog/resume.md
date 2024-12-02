@@ -5,21 +5,16 @@ draft: false
 
 ---
 
+**Personal Statement:**
+
 Masters student with hands-on experience in consulting, project management, and data analysis. Skilled in collaborating with teams and leadership to deliver market research, reports, advertising strategies, and website development for multiple companies. With a strong foundation in geospatial information science, political methodology, and statistics, I am eager to leverage my tech and policy skills to contribute to impactful, results-driven work in my next role.
+
 <!--more-->
-**EDUCATION**
+***EDUCATION**
 
-**The University of Maryland**
+**The University of Maryland**, Master of Public Policy , **Expected Graduation: May 2026**
 
-Master of Public Policy
-
-**Expected Graduation: May 2026**
-
-**The Pennsylvania State University, University Park, PA**
-
-Bachelor of Science in Political Science
-
-**Graduated: December 2023**
+**The Pennsylvania State University, University Park, PA**, Bachelor of Science in Political Science, Graduated: December 2023
 
 **TECHNICAL SKILLS**
 
@@ -27,13 +22,9 @@ Programming & Tools: Python, R, SQL, Linux/Unix, ArcGIS & ArcPro
 
 Languages: Intermediate Spanish
 
-**Personal Statement:**
+**Student Leadership Council**
 
-Masters student with hands-on experience in consulting, project management, and data analysis. Skilled in collaborating with teams and leadership to deliver market research, reports, advertising strategies, and website development for multiple companies. With a strong foundation in geospatial information science, political methodology, and statistics, I am eager to leverage my tech and policy skills to contribute to impactful, results-driven work in my next role.
-
-**Leadership Experience**
-
-**Multicultural Leadership Society**
+Multicultural Leadership Society
 
 The Pennsylvania State University, University Park, PA
 
@@ -50,7 +41,7 @@ Aug. 2022 - Dec 2023
 
 The University of Maryland, College Park, MD
 
-Aug. 2024 - Jan, 2025
+Aug. 2024 - Jan. 2025
 
 - Led small group discussions to help students understand complex political concepts and think critically.
 - Offered one-on-one support to students with course materials and exam prep, leading to better academic results.
