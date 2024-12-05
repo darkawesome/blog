@@ -52,7 +52,8 @@ I used Google Apps Script to fetch live data from the ESI API, enabling dynamic 
 - **Amarr**: The second-largest hub, catering to empire-wide trade.
 - **Dodixie, Hek, Rens**: Smaller hubs that offer niche trading opportunities.
 
-![Market Orders](ihttps://github.com/darkawesome/blog/blob/main/content/img/EveOnline/MarketOrders.png?raw=TRUE)
+![Market Orders](https://github.com/darkawesome/blog/blob/main/content/img/EveOnline/MarketOrders.png?raw=TRUE)
+
 By : foo-eve.blogspot.com.au
 foobar.downunder@gmail.com but updated to pull from the ESI API
 
@@ -65,7 +66,7 @@ Prices fluctuate based on regional production and demand. Mining-heavy regions m
 ## 3. Google Sheets for Market Analysis
 
 ```javascript
-
+/**
 * Custom function to fetch the average price for an item by its TypeID using GESI's markets_prices function.
 * @param {number} typeID The TypeID of the item you want to look up.
 * @return {string} The average price of the item, or an error message if not found.
@@ -104,7 +105,7 @@ function getAveragePrice(typeID) {
 * @param {number} locationID to filter on. Can either be a structre or a station ID.
 * @param {number} regionID to filter on. Only required if locationId is a station ID.
 *
-* @customfunction
+* 
 */
 ```
 
