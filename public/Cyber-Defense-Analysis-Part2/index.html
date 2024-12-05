@@ -13,19 +13,19 @@
 
 
 <meta name="author" content="DarkAwesome">
-<meta name="description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
+<meta name="description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Cyber Defense Analysis Part2">
-  <meta name="twitter:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
+  <meta name="twitter:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.">
 
 <meta property="og:url" content="http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/">
   <meta property="og:site_name" content="DarkAwesome">
   <meta property="og:title" content="Cyber Defense Analysis Part2">
-  <meta property="og:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
+  <meta property="og:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
@@ -148,7 +148,7 @@
       </h1>
     </header>
 
-    <p>This is a continuation of the previous work done by Dimitri Nilov (<a href="https://www.gotechinsights.com/blog/part2cybertrends%29"  class="external-link" target="_blank" rel="noopener">https://www.gotechinsights.com/blog/part2cybertrends)</a>.</p>
+    <p>This is a continuation of the previous work done by Dimitri Nilov (<a href="https://www.gotechinsights.com/blog/part2cybertrends%29"  class="external-link" target="_blank" rel="noopener">https://www.gotechinsights.com/blog/part2cybertrends)</a>. When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.</p>
 <p>In this portion of the Cyber Defense Database research I have done a time series Analysis of the data from 2014 - 2022.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
@@ -190,7 +190,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Looking at the table of the motives, actor type and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analyisis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest-hacktivist and Undetermined-Criminal would be the other groups that have a good amount of a distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information.</p>
+<p>Looking at the table of the motives, actor type, and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analysis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest hacktivists and Undetermined-Criminals would be the other groups that have a good amount of distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> (event_type))) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)))) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">xlab</span>(<span style="color:#a5d6ff">&#34;Event Types&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">ylab</span>(<span style="color:#a5d6ff">&#34;Count&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
@@ -204,7 +204,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>This histogram omits the motives and just shows the event types and actor types. At first glance we can see that the majority of attacks are criminal in nature. Looking at the histogram similar findings can be seen here. Although, now we can see that attacks that attributed to nation-states also have occurred quite a bit. (stopped here)</p>
+<p>This histogram focuses on event types and actor types, excluding motives. At first glance, it’s clear that the majority of attacks are criminal. Looking at the histogram, similar findings emerge. However, we can also see that attacks attributed to nation-states have occurred quite frequently. The unimodal distribution can likely be attributed to several factors. The most apparent, in my view, is a reporting bias. Perhaps a nation-state doesn&rsquo;t realize they’ve been hacked, or they may choose not to publicly disclose the situation. The fact that hacktivists are the second most common group suggests that the latter explanation is more likely, as these groups typically claim responsibility or publicize their actions.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true" alt="Monthly Attacks"></p>
@@ -247,6 +247,64 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Motive&#34;</span>,
 </span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbymotive.png?raw=true" alt="World Map by Motive"></p>
+<p>This map provides a global overview of cyberattack motives, highlighting regional patterns of activity:</p>
+<h3 id="north-america">
+  North America
+  <a class="heading-link" href="#north-america">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Financial motives dominate in this region, reflecting its advanced digital infrastructure and high-value financial systems. Industrial espionage is also likely significant, given North America&rsquo;s concentration of global corporations and innovation hubs.</p>
+<h3 id="europe">
+  Europe
+  <a class="heading-link" href="#europe">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Europe displays a mix of financial, political espionage, and protest-related attacks. These motives align with the region&rsquo;s position as a global financial and political center. Eastern Europe may experience more political espionage due to ongoing geopolitical tensions.</p>
+<h3 id="asia">
+  Asia
+  <a class="heading-link" href="#asia">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The map indicates diverse motives in Asia, with political espionage appearing prominent in regions of strategic significance or geopolitical conflict. Financial motives are also notable in rapidly developing economies with expanding digital markets.</p>
+<h3 id="africa">
+  Africa
+  <a class="heading-link" href="#africa">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Africa shows fewer documented motives, possibly due to underreporting or limited targeted infrastructure. Financial motives and sabotage are likely to emerge as key drivers, reflecting vulnerabilities in the region&rsquo;s growing digital landscape.</p>
+<h3 id="south-america">
+  South America
+  <a class="heading-link" href="#south-america">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Financially motivated attacks appear to dominate in South America, consistent with the region&rsquo;s increasing digital adoption. Protest-driven cyberattacks may also occur in response to political or social unrest.</p>
+<h3 id="oceania">
+  Oceania
+  <a class="heading-link" href="#oceania">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Oceania likely experiences a concentration of financially motivated attacks, given its advanced internet connectivity and reliance on technology. Other motives, such as political espionage or sabotage, may arise less frequently.</p>
+<h3 id="global-observations">
+  Global Observations
+  <a class="heading-link" href="#global-observations">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Undetermined motives suggest ongoing challenges in attributing cyberattacks and highlight regional disparities in reporting or investigation capacity. Broadly, financial motives dominate the global landscape, followed by political espionage and protest-related incidents.</p>
+<p>This analysis underscores the importance of tailoring cybersecurity measures to the unique threats and vulnerabilities within each region.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
@@ -254,7 +312,65 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_type&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;Event Type&#39; variable</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Event Type&#34;</span>,
 </span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true" alt="World Map by Motive"></p>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true" alt="World Map by Event Type"></p>
+<p>This map presents a global perspective on cyberattack event types, illustrating regional tendencies in the nature of incidents:</p>
+<h3 id="north-america-1">
+  North America
+  <a class="heading-link" href="#north-america-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Exploitive events dominate in this region, emphasizing cyberattacks aimed at extracting value, such as data breaches and financial theft. The prevalence of advanced digital infrastructures and lucrative targets make this a primary focus for cybercriminals.</p>
+<h3 id="europe-1">
+  Europe
+  <a class="heading-link" href="#europe-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>A mix of event types characterizes Europe, with exploitive and disruptive attacks both significant. The diversity reflects the region&rsquo;s dual role as a technological leader and a politically sensitive environment, which attracts varied attack motives.</p>
+<h3 id="asia-1">
+  Asia
+  <a class="heading-link" href="#asia-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Asia exhibits a notable concentration of both exploitive and mixed events, indicative of its rapid economic development and strategic geopolitical significance. The presence of major manufacturing hubs and increasing digital adoption contribute to this diverse landscape.</p>
+<h3 id="africa-1">
+  Africa
+  <a class="heading-link" href="#africa-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Africa shows a smaller footprint in terms of event types, potentially due to limited reporting or less frequent targeting. However, disruptive attacks may be emerging in regions experiencing political instability or infrastructure vulnerabilities.</p>
+<h3 id="south-america-1">
+  South America
+  <a class="heading-link" href="#south-america-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Exploitive events are prominent in South America, reflecting the region&rsquo;s rising digital economy and susceptibility to financially driven cybercrime. Disruptive events may also occur in areas with social or political tensions.</p>
+<h3 id="oceania-1">
+  Oceania
+  <a class="heading-link" href="#oceania-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Oceania primarily experiences exploitive attacks, aligning with its advanced digital connectivity and high-value economic targets. Disruptive events are likely less frequent but may arise in the context of regional geopolitical dynamics.</p>
+<h3 id="global-observations-1">
+  Global Observations
+  <a class="heading-link" href="#global-observations-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The presence of undetermined event types underscores gaps in attribution and analysis, reflecting disparities in global cybersecurity capabilities. Exploitive attacks emerge as a predominant global trend, highlighting the universal appeal of financial or data-related gains. Disruptive and mixed events are regionally significant, often correlating with specific political, social, or infrastructural contexts.</p>
+<p>This distribution emphasizes the need for region-specific strategies to mitigate both exploitive and disruptive cyber threats effectively.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
 </span></span><span style="display:flex;"><span>actor_event_table <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
 </span></span><span style="display:flex;"><span>
@@ -291,7 +407,17 @@
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggsave</span>(<span style="color:#a5d6ff">&#34;yearly_attacks_histogram.png&#34;</span>, width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10</span>, height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true" alt="Yearly Attacks Histogram"></p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span></code></pre></div><h2 id="number-of-attacks-per-year">
+  Number of Attacks per Year
+  <a class="heading-link" href="#number-of-attacks-per-year">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The histogram shows an upward trend in attack counts per year, with notable increases in the 2019-2020 and 2021-2022 periods. During both of these intervals, the number of attacks rose by approximately 50%. With a median of 952, it seems likely that the number of attacks will continue to increase in the coming years.</p>
+<p>Looking at monthly attack data, no clear seasonality is observed. However, after the COVID years of 2020 and 2021, there was a significant spike in attacks. A dip in 2021 followed by an immediate rise may reflect the changing workplace environment. With hybrid and remote work becoming more apparent companies and nations may see a rise in the coming as we see here in cyber attacks.</p>
+<p>A similar trend of a sharp rise in attacks was observed between 2019 and 2021 but in this case, the increase may in part, be due to a shift in attack types. A brief literature review and analysis of prior research indicate that nation-states have made a more concerted effort to conduct cyberattacks during this period.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a temporary directory for individual frames</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">dir.create</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, showWarnings <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span><span style="display:flex;"><span>
@@ -403,14 +529,6 @@
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r.geocompx.org/adv-map#prerequisites-7</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r-tmap.github.io/tmap-book/tmshape.html</span>
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true" alt="Attack Distribution by Year"></p>
-<h2 id="number-of-attacks-per-year">
-  Number of Attacks per Year
-  <a class="heading-link" href="#number-of-attacks-per-year">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The histogram has shown an upward trend in attack counts per year. There will be a significant increase in the number of attacks in 2019-2020 and again in 2021-2022. On both occasions, we saw about a 50% increase in the number of attacks. With a median of 952, it seems as though the number of attacks per year that will be observed in the coming years will increase as well.</p>
 <h2 id="attack-distribution-by-year">
   Attack Distribution by Year
   <a class="heading-link" href="#attack-distribution-by-year">
@@ -457,7 +575,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<p>Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cybercriminals.Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.</p>
+<p>Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cyber criminals.Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.</p>
 <h2 id="2023">
   2023
   <a class="heading-link" href="#2023">
@@ -601,7 +719,7 @@
   </a>
 </h2>
 <p>The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.</p>
-<p>From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. Although, we shall do it anyway!</p>
+<p>From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately.</p>
 <h2 id="peak-attack-years">
   Peak Attack Years:
   <a class="heading-link" href="#peak-attack-years">
