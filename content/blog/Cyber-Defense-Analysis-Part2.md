@@ -12,11 +12,8 @@ tags:
   - Ubuntu
 draft: false
 ---
-This is a continuation of the previous work done by Dimitri Nilov(https://www.gotechinsights.com/blog/part2cybertrend). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.
+This is a continuation of the previous work done by Dimitri Nilov(https://www.gotechinsights.com/blog/part2cybertrend). When I started this project I was not aware of the work he had done intially. However, from a review of his work I have focused on a time series analysis of the attacks. Focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
 <!--more-->
-
-In this portion of the Cyber Defense Database research I have done a time series Analysis of the data from 2014 - 2022.
-
 
 ```r
 # Data manipulation libraries
