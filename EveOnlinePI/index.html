@@ -212,8 +212,8 @@
 <li><strong>Amarr</strong>: The second-largest hub, catering to empire-wide trade.</li>
 <li><strong>Dodixie, Hek, Rens</strong>: Smaller hubs that offer niche trading opportunities.</li>
 </ul>
-<p><img src="ihttps://github.com/darkawesome/blog/blob/main/content/img/EveOnline/MarketOrders.png?raw=TRUE" alt="Market Orders">
-By : foo-eve.blogspot.com.au
+<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/EveOnline/MarketOrders.png?raw=TRUE" alt="Market Orders"></p>
+<p>By : foo-eve.blogspot.com.au
 <a href="mailto:foobar.downunder@gmail.com" >foobar.downunder@gmail.com</a> but updated to pull from the ESI API</p>
 <h3 id="regional-variations">
   Regional Variations
@@ -230,12 +230,12 @@ By : foo-eve.blogspot.com.au
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> Custom <span style="color:#ff7b72">function</span> to fetch the average price <span style="color:#ff7b72">for</span> an item by its TypeID using GESI<span style="color:#f85149">&#39;</span>s markets_prices <span style="color:#ff7b72">function</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span>param {number} typeID The TypeID <span style="color:#ff7b72">of</span> the item you want to look up.
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span><span style="color:#ff7b72">return</span> {string} The average price <span style="color:#ff7b72">of</span> the item, or an error message <span style="color:#ff7b72">if</span> not found.
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span>customfunction
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#f85149">/</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* Custom function to fetch the average price for an item by its TypeID using GESI&#39;s markets_prices function.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} typeID The TypeID of the item you want to look up.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @return {string} The average price of the item, or an error message if not found.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @customfunction
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*/</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">function</span> getAveragePrice(typeID) {
 </span></span><span style="display:flex;"><span> <span style="color:#ff7b72">try</span> {
 </span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Fetch market prices using the markets_prices function for the given TypeID
@@ -269,7 +269,7 @@ By : foo-eve.blogspot.com.au
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} locationID to filter on. Can either be a structre or a station ID.
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} regionID to filter on. Only required if locationId is a station ID.
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @customfunction
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* 
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*/</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* Fetches minimum sell price and maximum buy price for a given item and location.
