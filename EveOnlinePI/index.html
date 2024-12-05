@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <title>
+  EveOnlinePI · DarkAwesome
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="DarkAwesome">
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="EveOnlinePI">
+
+<meta property="og:url" content="http://localhost:1313/blog/EveOnlinePI/">
+  <meta property="og:site_name" content="DarkAwesome">
+  <meta property="og:title" content="EveOnlinePI">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-12-05T15:48:30-05:00">
+    <meta property="article:modified_time" content="2024-12-05T15:48:30-05:00">
+    <meta property="article:tag" content="Ubuntu">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/blog/EveOnlinePI/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/blog/">
+      DarkAwesome
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/contact/">Contact</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/">Posts</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/EveOnlinePI/">
+          EveOnlinePI
+        </a>
+      </h1>
+    </header>
+
+    <h1 id="planetary-commodities-analysis-in-eve-online">
+  Planetary Commodities Analysis in EVE Online
+  <a class="heading-link" href="#planetary-commodities-analysis-in-eve-online">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>EVE Online&rsquo;s intricate economy is a fascinating playground for strategists, traders, and industrialists. At its heart lies Planetary Interaction (PI), a cornerstone of the game&rsquo;s resource production. With its ties to production chains and interstellar logistics, PI commodities represent lucrative opportunities for those who understand the market dynamics.</p>
+<p>This blog post explores how to harness Google Sheets and the EVE ESI API for analyzing planetary commodity prices, optimizing trade routes, and identifying market trends. We&rsquo;ll focus on key market hubs like <strong>Jita</strong>, <strong>Amarr</strong>, and <strong>Dodixie</strong>, leveraging tools and data to make informed trading decisions.</p>
+<p>For full disclosure, I did this project on behalf of an alliance mate for in-game currency.</p>
+<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/EveOnline/PICookbook.png?raw=TRUE" alt="PI CookBook"></p>
+<p>Originally from <a href="mailto:dama.arishe@gmail.com" >dama.arishe@gmail.com</a> but updated for the ESI api</p>
+<h2 id="1-data-collection">
+  1. Data Collection
+  <a class="heading-link" href="#1-data-collection">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="understanding-the-eve-esi-api">
+  Understanding the EVE ESI API
+  <a class="heading-link" href="#understanding-the-eve-esi-api">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The EVE Swagger Interface (ESI) is CCP&rsquo;s official API, providing a wealth of data about EVE&rsquo;s universe. For this analysis, key endpoints include:</p>
+<ul>
+<li><strong>Market Orders</strong>: Regional buy and sell orders.</li>
+<li><strong>Type IDs</strong>: Identifiers for planetary commodities.</li>
+<li><strong>Market History (Optional)</strong>: Price trends over time.</li>
+</ul>
+<h3 id="google-sheets-integration">
+  Google Sheets Integration
+  <a class="heading-link" href="#google-sheets-integration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>I used Google Apps Script to fetch live data from the ESI API, enabling dynamic updates of market data. Using the <a href="https://github.com/Blacksmoke16/GESI"  class="external-link" target="_blank" rel="noopener">GESI</a> add-on, which provides an EVE Online SSO flow to authorize your character(s), as well as a wrapper around ESI in order to access your EVE Online data within Google Sheets™; much like <code>=importXML()</code> worked with the old XML API.</p>
+<h2 id="2-market-hubs-in-eve-online">
+  2. Market Hubs in EVE Online
+  <a class="heading-link" href="#2-market-hubs-in-eve-online">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="key-trade-centers">
+  Key Trade Centers
+  <a class="heading-link" href="#key-trade-centers">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li><strong>Jita 4-4</strong>: The universal trade hub, with unparalleled liquidity and item availability.</li>
+<li><strong>Amarr</strong>: The second-largest hub, catering to empire-wide trade.</li>
+<li><strong>Dodixie, Hek, Rens</strong>: Smaller hubs that offer niche trading opportunities.</li>
+</ul>
+<p><img src="ihttps://github.com/darkawesome/blog/blob/main/content/img/EveOnline/MarketOrders.png?raw=TRUE" alt="Market Orders">
+By : foo-eve.blogspot.com.au
+<a href="mailto:foobar.downunder@gmail.com" >foobar.downunder@gmail.com</a> but updated to pull from the ESI API</p>
+<h3 id="regional-variations">
+  Regional Variations
+  <a class="heading-link" href="#regional-variations">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Prices fluctuate based on regional production and demand. Mining-heavy regions may see lower buy prices, while mission-running hubs often feature higher sell prices.</p>
+<h2 id="3-google-sheets-for-market-analysis">
+  3. Google Sheets for Market Analysis
+  <a class="heading-link" href="#3-google-sheets-for-market-analysis">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> Custom <span style="color:#ff7b72">function</span> to fetch the average price <span style="color:#ff7b72">for</span> an item by its TypeID using GESI<span style="color:#f85149">&#39;</span>s markets_prices <span style="color:#ff7b72">function</span>.
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span>param {number} typeID The TypeID <span style="color:#ff7b72">of</span> the item you want to look up.
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span><span style="color:#ff7b72">return</span> {string} The average price <span style="color:#ff7b72">of</span> the item, or an error message <span style="color:#ff7b72">if</span> not found.
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#f85149">@</span>customfunction
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#f85149">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">function</span> getAveragePrice(typeID) {
+</span></span><span style="display:flex;"><span> <span style="color:#ff7b72">try</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Fetch market prices using the markets_prices function for the given TypeID
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">var</span> result <span style="color:#ff7b72;font-weight:bold">=</span> GESI.invoke(<span style="color:#a5d6ff">&#34;markets_prices&#34;</span>, { type_id<span style="color:#ff7b72;font-weight:bold">:</span> typeID });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Check if result data is available
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">if</span> (result <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> result.length <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>) {
+</span></span><span style="display:flex;"><span>     <span style="color:#8b949e;font-style:italic">// Iterate through the result to find the matching TypeID and get the average price
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>     <span style="color:#ff7b72">for</span> (<span style="color:#ff7b72">var</span> i <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>; i <span style="color:#ff7b72;font-weight:bold">&lt;</span> result.length; i<span style="color:#ff7b72;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>       <span style="color:#8b949e;font-style:italic">// The TypeID is in the third column (index 2)
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (result[i][<span style="color:#a5d6ff">2</span>] <span style="color:#ff7b72;font-weight:bold">==</span> typeID) {
+</span></span><span style="display:flex;"><span>         <span style="color:#ff7b72">var</span> averagePrice <span style="color:#ff7b72;font-weight:bold">=</span> result[i][<span style="color:#a5d6ff">1</span>];  <span style="color:#8b949e;font-style:italic">// The average price is in the second column (index 1)
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>         <span style="color:#ff7b72">return</span> averagePrice <span style="color:#ff7b72;font-weight:bold">?</span> averagePrice <span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#34;Price not found&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return average price or &#34;Price not found&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;TypeID not found in market data&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return if no matching TypeID is found
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   } <span style="color:#ff7b72">else</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;No market data available&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return if no data is available
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   }
+</span></span><span style="display:flex;"><span> } <span style="color:#ff7b72">catch</span> (e) {
+</span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Handle errors (e.g., invalid TypeID or network issues)
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;Error: &#34;</span> <span style="color:#ff7b72;font-weight:bold">+</span> e.message;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* Returns the minSell and MaxBuy price for the provided typeId at the provided locationID
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} typeId to get privve data for
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} locationID to filter on. Can either be a structre or a station ID.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} regionID to filter on. Only required if locationId is a station ID.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @customfunction
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*/</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* Fetches minimum sell price and maximum buy price for a given item and location.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} typeID - The TypeID of the item.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} locationID - The location ID to filter orders (structure or station).
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @param {number} regionID - The region ID to fetch orders from if location is not a structure.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* @return {Array} [minSell, MaxBuy] - Minimum sell price and maximum buy price.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* https://www.youtube.com/watch?v=sRiLmEhsWW0
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">* Flying Scorpion
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">function</span> typePriceData(typeID, locationID, regionID) {
+</span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Fetch market data
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">var</span> data <span style="color:#ff7b72;font-weight:bold">=</span> locationID <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">10000000000000</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff7b72;font-weight:bold">?</span> GESI.invokeRaw(<span style="color:#a5d6ff">&#34;markets_structure_structure&#34;</span>, { structure_id<span style="color:#ff7b72;font-weight:bold">:</span> locationID })
+</span></span><span style="display:flex;"><span>   <span style="color:#ff7b72;font-weight:bold">:</span> GESI.invokeRaw(<span style="color:#a5d6ff">&#34;markets_region_orders&#34;</span>, { region_id<span style="color:#ff7b72;font-weight:bold">:</span> regionID, order_type<span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#34;all&#34;</span>, type_id<span style="color:#ff7b72;font-weight:bold">:</span> typeID });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Initialize prices
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">var</span> minSell <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">null</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#ff7b72">var</span> maxBuy <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Process each order
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> data.forEach(<span style="color:#ff7b72">function</span>(order) {
+</span></span><span style="display:flex;"><span>   <span style="color:#ff7b72">if</span> (order.type_id <span style="color:#ff7b72;font-weight:bold">===</span> typeID) {  <span style="color:#8b949e;font-style:italic">// Match the TypeID
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>     <span style="color:#ff7b72">if</span> (order.is_buy_order) { <span style="color:#8b949e;font-style:italic">// Buy order
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>maxBuy <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&gt;</span> maxBuy) {
+</span></span><span style="display:flex;"><span>         maxBuy <span style="color:#ff7b72;font-weight:bold">=</span> order.price; <span style="color:#8b949e;font-style:italic">// Update max buy price
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span><span style="display:flex;"><span>     } <span style="color:#ff7b72">else</span> { <span style="color:#8b949e;font-style:italic">// Sell order
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>minSell <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&lt;</span> minSell) {
+</span></span><span style="display:flex;"><span>         minSell <span style="color:#ff7b72;font-weight:bold">=</span> order.price; <span style="color:#8b949e;font-style:italic">// Update min sell price
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Return results
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">return</span> [[maxBuy, minSell]];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="4-major-problems">
+  4. Major Problems
+  <a class="heading-link" href="#4-major-problems">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I never ended up finding any real nomenclature here. A lot of testing occurred with the commands that I would find when testing markets. However, my saving grace and what led to my eventual success was a mixture of the <a href="https://github.com/esi/esi-docs"  class="external-link" target="_blank" rel="noopener">esi-docs</a>, <a href="https://docs.everef.net/datasets/market-history.html"  class="external-link" target="_blank" rel="noopener">Eve Reference docs</a>, and using <a href="https://evetycoon.com/market/2870"  class="external-link" target="_blank" rel="noopener">Eve Tycoon</a>. Whether it was using the URL string to find the regionID or looking for the typeID, all of these sources helped in my eventual completion of this project.</p>
+<h2 id="5-trade-route-analysis">
+  5. Trade Route Analysis
+  <a class="heading-link" href="#5-trade-route-analysis">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="hek-to-rens">
+  Hek to Rens
+  <a class="heading-link" href="#hek-to-rens">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Secondary trade hubs like <strong>Hek</strong> and <strong>Rens</strong> serve as critical regional marketplaces. While <strong>Jita</strong> and <strong>Amarr</strong> dominate intergalactic trade, <strong>Hek</strong> and <strong>Rens</strong> offer niche opportunities for arbitrage and market specialization.</p>
+<p>Although a bit out-of-the-scope of this project, I do regularly use this tool to see if I am making a solid profit from selling my planetary materials. I do so by looking at the graph and the current market conditions. Things like a high number of sell orders tend to cut into my profits, as price gouging and competition with players who have more volume than me affect my assets greater. However, when I look at spreading my assets to other regional markets like <strong>Dodixie</strong> or <strong>Rens</strong>, I tend to get a better net average return than staying in one trade market.</p>
+<h3 id="hek-and-rens-niche-markets-and-regional-insights">
+  Hek and Rens: Niche Markets and Regional Insights
+  <a class="heading-link" href="#hek-and-rens-niche-markets-and-regional-insights">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="hek-the-minmatar-industrial-center">
+  Hek: The Minmatar Industrial Center
+  <a class="heading-link" href="#hek-the-minmatar-industrial-center">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Located in the <strong>Metropolis</strong> region, <strong>Hek</strong> serves as a convenient trade hub for industrialists and miners.</p>
+<p><strong>Specialized Commodities:</strong></p>
+<ul>
+<li><strong>Robotics</strong>: Commonly used in advanced manufacturing, <strong>Robotics</strong> are in demand due to <strong>Hek&rsquo;s</strong> proximity to mining-heavy areas. This demand often leads to higher prices compared to <strong>Jita</strong> or <strong>Amarr</strong>.</li>
+<li><strong>Construction Blocks</strong>: With local industry focusing on ship and structure production, <strong>Construction Blocks</strong> tend to perform well here.</li>
+</ul>
+<h4 id="rens-the-minmatar-trade-gateway">
+  Rens: The Minmatar Trade Gateway
+  <a class="heading-link" href="#rens-the-minmatar-trade-gateway">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Situated in the <strong>Heimatar</strong> region, <strong>Rens</strong> acts as a gateway for traders servicing newer players and <strong>Minmatar</strong> space.</p>
+<p><strong>Specialized Commodities:</strong></p>
+<ul>
+<li><strong>Coolant</strong>: This commodity frequently sees demand due to the prevalence of planetary interaction in the region.</li>
+<li><strong>Viral Agent</strong>: A critical component for advanced industry, <strong>Viral Agents</strong> see price fluctuations in <strong>Rens</strong>, making it a lucrative item for arbitrage from <strong>Jita</strong> or <strong>Amarr</strong>.</li>
+</ul>
+<h3 id="logistics-tip">
+  Logistics Tip:
+  <a class="heading-link" href="#logistics-tip">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Rens</strong> often suffers from stock shortages compared to larger hubs, meaning items like <strong>Nanostructures</strong> and <strong>Plasmoids</strong> can fetch a premium when delivered in bulk.</p>
+<h2 id="6-closing-thoughts">
+  6. Closing Thoughts
+  <a class="heading-link" href="#6-closing-thoughts">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This was a pretty fun project that I did for an in-game alliance mate for in-game currency, although it has a wealth of applications. The scalability of it is also very high, as you would just need to add more items to the table or add more systems. The same could be done with the P4s in building a greater amount of planetary interaction chains.</p>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2024
+     DarkAwesome 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/blog/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
