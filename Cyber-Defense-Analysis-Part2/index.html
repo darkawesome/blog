@@ -1,667 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
-  <title>
-  Cyber Defense Analysis Part2 · DarkAwesome
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="DarkAwesome">
-<meta name="description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
-<meta name="keywords" content="">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cyber Defense Analysis Part2">
-  <meta name="twitter:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
-
-<meta property="og:url" content="http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Cyber Defense Analysis Part2">
-  <meta property="og:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends).">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2024-11-19T21:55:25-05:00">
-    <meta property="article:modified_time" content="2024-11-19T21:55:25-05:00">
-    <meta property="article:tag" content="Ubuntu">
-
-
-
-
-<link rel="canonical" href="http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/">
-
-
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-
-
-  
-  
-  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
-
-
-
-
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="http://localhost:1313/blog/">
-      DarkAwesome
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/contact/">Contact</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/">Posts</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container page">
-  <article>
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/">
-          Cyber Defense Analysis Part2
-        </a>
-      </h1>
-    </header>
-
-    <p>This is a continuation of the previous work done by Dimitri Nilov (<a href="https://www.gotechinsights.com/blog/part2cybertrends%29"  class="external-link" target="_blank" rel="noopener">https://www.gotechinsights.com/blog/part2cybertrends)</a>.</p>
-<p>In this portion of the Cyber Defense Database research I have done a time series Analysis of the data from 2014 - 2022.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spatstat)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(dplyr)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Plotting</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(leaflet)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggplot2)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tmap)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(terra)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spData)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gganimate)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(readxl)
-</span></span><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_excel</span>(<span style="color:#a5d6ff">&#34;E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">subset</span>(data, select<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">c</span>(slug,description,source_url,industry_code))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true" alt="Summary"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>table1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>motive, df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, 
-</span></span><span style="display:flex;"><span>                df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ftable</span>(table1)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table1.png?raw=true" alt="table1"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># FREQUENCY MARGINALS</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># row marginals - totals for each marital status across gender</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">2</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table2.png?raw=true" alt="table2"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># colum marginals - totals for each gender across marital status</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">1</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true" alt="MarginTable1"></p>
-<h2 id="3-way-table">
-  3 Way Table
-  <a class="heading-link" href="#3-way-table">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Looking at the table of the motives, actor type and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analyisis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest-hacktivist and Undetermined-Criminal would be the other groups that have a good amount of a distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> (event_type))) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)))) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">xlab</span>(<span style="color:#a5d6ff">&#34;Event Types&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">ylab</span>(<span style="color:#a5d6ff">&#34;Count&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">facet_grid</span>(<span style="color:#ff7b72;font-weight:bold">~</span>actor_type) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;coral2&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">theme</span>(axis.text.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(angle <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">45</span>, hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>))
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/EventTypeHist.png?raw=true" alt="Event Types Histogram"></p>
-<h2 id="event-type-histogram">
-  Event Type histogram
-  <a class="heading-link" href="#event-type-histogram">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>This histogram omits the motives and just shows the event types and actor types. At first glance we can see that the majority of attacks are criminal in nature. Looking at the histogram similar findings can be seen here. Although, now we can see that attacks that attributed to nation-states also have occurred quite a bit. (stopped here)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true" alt="Monthly Attacks"></p>
-<h2 id="attacks-per-month">
-  Attacks per Month
-  <a class="heading-link" href="#attacks-per-month">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March and August being the peaks do show some times where the events may be taking place more often across the years. However,looking at the surrounding months some fallacies could be apparent here. Mainly being the edge effects from when an event was coded to have occured. This has pushed me to look more at the years rather than the months of when these attacks occur.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(rnaturalearth)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
-</span></span><span style="display:flex;"><span>countries_geom <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ne_countries</span>(scale <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;small&#34;</span>, returnclass <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;sf&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Merge the geometries with the country names</span>
-</span></span><span style="display:flex;"><span>countries_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_geom <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(name <span style="color:#ff7b72;font-weight:bold">%in%</span> df<span style="color:#ff7b72;font-weight:bold">$</span>country) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>         <span style="color:#8b949e;font-style:italic"># Filter for countries in your dataframe</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">left_join</span>(df, by <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;name&#34;</span> <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;country&#34;</span>)) <span style="color:#8b949e;font-style:italic"># Join with your dataframe</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Set the CRS (WGS84 is EPSG:4326, which is common for world maps)</span>
-</span></span><span style="display:flex;"><span>countries_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_set_crs</span>(countries_sf, <span style="color:#a5d6ff">4326</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># getting rid of bloat in the sf dataframe</span>
-</span></span><span style="display:flex;"><span>world_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_sf <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
-</span></span><span style="display:flex;"><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
-</span></span></code></pre></div><p>A problem was caught here with a value being coded incorrectly in the excel sheet. The single data point was dealing with Telecommunications companies in Sundan.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>invalid_geometries <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf[<span style="color:#ff7b72;font-weight:bold">!</span><span style="color:#d2a8ff;font-weight:bold">st_is_valid</span>(world_sf), ]
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(invalid_geometries, n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">Inf</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf<span style="color:#d2a8ff;font-weight:bold">[st_is_valid</span>(world_sf), ]
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;motive&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;motive&#39; variable</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Motive&#34;</span>,
-</span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbymotive.png?raw=true" alt="World Map by Motive"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_type&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;Event Type&#39; variable</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Event Type&#34;</span>,
-</span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true" alt="World Map by Motive"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
-</span></span><span style="display:flex;"><span>actor_event_table <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View the table</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(actor_event_table)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate attack counts per year</span>
-</span></span><span style="display:flex;"><span>yearly_counts <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(year) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summarise</span>(
-</span></span><span style="display:flex;"><span>    attack_count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">n</span>()
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create the histogram with exact counts</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(yearly_counts, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> year, y <span style="color:#ff7b72;font-weight:bold">=</span> attack_count)) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(stat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;identity&#34;</span>, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;steelblue&#34;</span>, alpha <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.7</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_text</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(label <span style="color:#ff7b72;font-weight:bold">=</span> attack_count), 
-</span></span><span style="display:flex;"><span>            vjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">-0.5</span>, 
-</span></span><span style="display:flex;"><span>            size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>) <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Add count labels above each bar</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(
-</span></span><span style="display:flex;"><span>    title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Number of Attacks per Year&#34;</span>,
-</span></span><span style="display:flex;"><span>    x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Year&#34;</span>,
-</span></span><span style="display:flex;"><span>    y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Number of Attacks&#34;</span>
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme</span>(
-</span></span><span style="display:flex;"><span>    plot.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.5</span>, size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">14</span>),
-</span></span><span style="display:flex;"><span>    axis.text.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(angle <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">45</span>, hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>),  <span style="color:#8b949e;font-style:italic"># Rotate x-axis labels</span>
-</span></span><span style="display:flex;"><span>    panel.grid.minor <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_blank</span>()
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_y_continuous</span>(
-</span></span><span style="display:flex;"><span>    expand <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">expansion</span>(mult <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">0.1</span>))  <span style="color:#8b949e;font-style:italic"># Add some space at the top for labels</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggsave</span>(<span style="color:#a5d6ff">&#34;yearly_attacks_histogram.png&#34;</span>, width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10</span>, height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true" alt="Yearly Attacks Histogram"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a temporary directory for individual frames</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">dir.create</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, showWarnings <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>create_histogram <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#ff7b72">function</span>(data, year, yearly_counts) {
-</span></span><span style="display:flex;"><span>  year_distribution <span style="color:#ff7b72;font-weight:bold">&lt;-</span> data <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">filter</span>(year <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#ff7b72;font-weight:bold">!!</span>year) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">group_by</span>(actor_type) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">summarise</span>(count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">n</span>()) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">ungroup</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">mutate</span>(percentage <span style="color:#ff7b72;font-weight:bold">=</span> count <span style="color:#ff7b72;font-weight:bold">/</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(count) <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">100</span>)
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggplot</span>(year_distribution, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> actor_type, y <span style="color:#ff7b72;font-weight:bold">=</span> count, fill <span style="color:#ff7b72;font-weight:bold">=</span> actor_type)) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(stat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;identity&#34;</span>, width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.7</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">scale_fill_brewer</span>(palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">labs</span>(
-</span></span><span style="display:flex;"><span>      title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;Attack Distribution (%s)&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">as.character</span>(year)),
-</span></span><span style="display:flex;"><span>      x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Actor Type&#34;</span>,
-</span></span><span style="display:flex;"><span>      y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Number of Attacks&#34;</span>,
-</span></span><span style="display:flex;"><span>      fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Actor Type&#34;</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">theme</span>(
-</span></span><span style="display:flex;"><span>      legend.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;right&#34;</span>,
-</span></span><span style="display:flex;"><span>      plot.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.5</span>, size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">12</span>),
-</span></span><span style="display:flex;"><span>      axis.text.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_text</span>(angle <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">45</span>, hjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>),
-</span></span><span style="display:flex;"><span>      panel.grid.major.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">element_blank</span>()
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">geom_text</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#d2a8ff;font-weight:bold">aes</span>(label <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">paste0</span>(count, <span style="color:#a5d6ff">&#34;\n(&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">round</span>(percentage, <span style="color:#a5d6ff">1</span>), <span style="color:#a5d6ff">&#34;%)&#34;</span>)),
-</span></span><span style="display:flex;"><span>      position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">position_stack</span>(vjust <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">-0.1</span>),
-</span></span><span style="display:flex;"><span>      size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Ensure year is numeric in the data and sort</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(year <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">as.character</span>(year))) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(year)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Process data for dominant actors</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(year, geometry) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(
-</span></span><span style="display:flex;"><span>    actor_count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">n</span>(),
-</span></span><span style="display:flex;"><span>    dominant_actor <span style="color:#ff7b72;font-weight:bold">=</span> actor_type<span style="color:#d2a8ff;font-weight:bold">[which.max</span>(<span style="color:#d2a8ff;font-weight:bold">table</span>(actor_type))]
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ungroup</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get sorted unique years</span>
-</span></span><span style="display:flex;"><span>years <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sort</span>(<span style="color:#d2a8ff;font-weight:bold">unique</span>(world_sf_valid<span style="color:#ff7b72;font-weight:bold">$</span>year))
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;Processing years in order:&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">paste</span>(years, collapse <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;, &#34;</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>combined_frames <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">list</span>()
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span>(i <span style="color:#ff7b72">in</span> <span style="color:#d2a8ff;font-weight:bold">seq_along</span>(years)) {
-</span></span><span style="display:flex;"><span>  current_year <span style="color:#ff7b72;font-weight:bold">&lt;-</span> years[i]
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;Processing year:&#34;</span>, current_year))
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Create histogram for current year</span>
-</span></span><span style="display:flex;"><span>  histogram <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">create_histogram</span>(world_sf_valid, current_year, yearly_counts)
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggsave</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/histogram_%04d.png&#34;</span>, i),
-</span></span><span style="display:flex;"><span>    histogram,
-</span></span><span style="display:flex;"><span>    width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">8</span>,  <span style="color:#8b949e;font-style:italic"># Increased width to accommodate bars</span>
-</span></span><span style="display:flex;"><span>    height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>,
-</span></span><span style="display:flex;"><span>    bg <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Create map for current year</span>
-</span></span><span style="display:flex;"><span>  current_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#d2a8ff;font-weight:bold">filter</span>(year <span style="color:#ff7b72;font-weight:bold">==</span> current_year)) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(
-</span></span><span style="display:flex;"><span>      col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;dominant_actor&#34;</span>, 
-</span></span><span style="display:flex;"><span>      palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, 
-</span></span><span style="display:flex;"><span>      title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Dominant Actor Type&#34;</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(
-</span></span><span style="display:flex;"><span>      legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>,
-</span></span><span style="display:flex;"><span>      legend.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;bottom&#34;</span>),
-</span></span><span style="display:flex;"><span>      title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;Dominant Actors by Region (%s)&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">as.character</span>(current_year)),
-</span></span><span style="display:flex;"><span>      title.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;center&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>)
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tmap_save</span>(
-</span></span><span style="display:flex;"><span>    current_map, 
-</span></span><span style="display:flex;"><span>    filename <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/map_%04d.png&#34;</span>, i),
-</span></span><span style="display:flex;"><span>    width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">8</span>,
-</span></span><span style="display:flex;"><span>    height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  map_img <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_read</span>(<span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/map_%04d.png&#34;</span>, i))
-</span></span><span style="display:flex;"><span>  hist_img <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_read</span>(<span style="color:#d2a8ff;font-weight:bold">sprintf</span>(<span style="color:#a5d6ff">&#34;tmp_frames/histogram_%04d.png&#34;</span>, i))
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  map_img <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_scale</span>(map_img, <span style="color:#a5d6ff">&#34;800x700!&#34;</span>)
-</span></span><span style="display:flex;"><span>  hist_img <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_scale</span>(hist_img, <span style="color:#a5d6ff">&#34;700x500!&#34;</span>)  <span style="color:#8b949e;font-style:italic"># Adjusted size for histogram</span>
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  combined <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_append</span>(<span style="color:#d2a8ff;font-weight:bold">c</span>(map_img, hist_img))
-</span></span><span style="display:flex;"><span>  combined_frames[[i]] <span style="color:#ff7b72;font-weight:bold">&lt;-</span> combined
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>combined_animation <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">image_join</span>(combined_frames)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">image_write_gif</span>(combined_animation, 
-</span></span><span style="display:flex;"><span>                <span style="color:#a5d6ff">&#34;attacks_distribution_by_year.gif&#34;</span>, 
-</span></span><span style="display:flex;"><span>                delay <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">4</span>)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">unlink</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, recursive <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(<span style="color:#a5d6ff">&#34;GIF creation completed&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## made with help from Claude and </span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r.geocompx.org/adv-map#prerequisites-7</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## https://r-tmap.github.io/tmap-book/tmshape.html</span>
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true" alt="Attack Distribution by Year"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>growth_rate <span style="color:#ff7b72;font-weight:bold">&lt;-</span> yearly_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Ensure &#39;year&#39; is numeric</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(year <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">as.character</span>(year))) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Sort by year</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(year) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Compute differences and growth rate</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(
-</span></span><span style="display:flex;"><span>    Diff_year <span style="color:#ff7b72;font-weight:bold">=</span> year <span style="color:#ff7b72;font-weight:bold">-</span> <span style="color:#d2a8ff;font-weight:bold">lag</span>(year),  <span style="color:#8b949e;font-style:italic"># Calculate year difference</span>
-</span></span><span style="display:flex;"><span>    Diff_growth <span style="color:#ff7b72;font-weight:bold">=</span> yearly_counts<span style="color:#ff7b72;font-weight:bold">$</span>attack_count <span style="color:#ff7b72;font-weight:bold">-</span> <span style="color:#d2a8ff;font-weight:bold">lag</span>(yearly_counts<span style="color:#ff7b72;font-weight:bold">$</span>attack_count),  <span style="color:#8b949e;font-style:italic"># Calculate route difference</span>
-</span></span><span style="display:flex;"><span>    Rate_percent <span style="color:#ff7b72;font-weight:bold">=</span> (Diff_growth <span style="color:#ff7b72;font-weight:bold">/</span> Diff_year) <span style="color:#ff7b72;font-weight:bold">/</span> <span style="color:#d2a8ff;font-weight:bold">lag</span>(yearly_counts<span style="color:#ff7b72;font-weight:bold">$</span>attack_count) <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">100</span>  <span style="color:#8b949e;font-style:italic"># Compute growth rate percentage</span>
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## made with help from https://forum.posit.co/t/growth-rate-calculation-in-r/38675/2</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Matthias</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## bennyishere</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>growth_rate
-</span></span></code></pre></div><h2 id="number-of-attacks-per-year">
-  Number of Attacks per Year
-  <a class="heading-link" href="#number-of-attacks-per-year">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The histogram has shown an upward trend in attack counts per year. There will be a significant increase in the number of attacks in 2019-2020 and again in 2021-2022. On both occasions, we saw about a 50% increase in the number of attacks. With a median of 952, it seems as though the number of attacks per year that will be observed in the coming years will increase as well.
-Attack Distribution by Year</p>
-<h2 id="2014">
-  2014
-  <a class="heading-link" href="#2014">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Criminal actors (light blue) are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives.
-Hacktivists (red) are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts.
-Nation-state actors (dark green) are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains.
-Undetermined actors (light green) are also present in various regions, indicating that some areas faced cyber activities without clear attribution.</p>
-<h2 id="2015-2016">
-  2015-2016
-  <a class="heading-link" href="#2015-2016">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The influence of nation-state actors expands, especially across East Asia and parts of the Middle East, pointing to an increase in government-backed cyber operations. This could be related to global geopolitical tensions and a rise in cyber espionage activities.
-Criminal actors continue to appear frequently across multiple continents, reflecting the steady persistence of financially motivated cybercrime globally.
-Hacktivist activity remains limited to specific areas but shows sporadic presence, suggesting that hacktivist campaigns may have been reactive to regional social and political events.</p>
-<h2 id="2017-2018">
-  2017-2018
-  <a class="heading-link" href="#2017-2018">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Nation-state actors maintain a strong presence in Asia and expand to new areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering.
-The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime.
-Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.</p>
-<h2 id="2019-2020">
-  2019-2020
-  <a class="heading-link" href="#2019-2020">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Nation-state actor dominance appears to further expand in Asia and parts of Europe, signaling the sustained importance of cyber capabilities in national security strategies.
-The criminal actor category continues to show prevalence across regions, highlighting the entrenchment of cybercrime in the global threat landscape.
-Undetermined actors show up in a few regions, which could imply either a lack of attribution or diverse motivations that make categorization difficult.</p>
-<h2 id="2021-2022">
-  2021-2022
-  <a class="heading-link" href="#2021-2022">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence.
-Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cybercriminals.
-Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.</p>
-<h2 id="2023">
-  2023
-  <a class="heading-link" href="#2023">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Nation-state actors continue to dominate many regions, showing how state-sponsored cyber activities have become a central component of international relations and security strategies.
-Criminal actor prevalence persists, particularly in economically significant or technologically advanced regions, indicating that cybercrime remains a persistent threat worldwide.
-Undetermined actor presence is observed in certain areas, implying ongoing difficulty in clearly attributing cyber activities in some regions.</p>
-<h2 id="whats-happening">
-  What&rsquo;s happening?
-  <a class="heading-link" href="#whats-happening">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.</p>
-<p>Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.</p>
-<p>Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.</p>
-<p>Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.</p>
-<h2 id="event-frequency-by-region">
-  Event Frequency by Region
-  <a class="heading-link" href="#event-frequency-by-region">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>North America: The U.S. stands out with significant activity, while Canada and Mexico show moderate levels.</p>
-<p>Europe: A mix of low-to-moderate activity, with no regions appearing in the highest range.</p>
-<p>Asia: Some regions in South Asia and East Asia show moderate to high activity. Which may be attributed to concentrated events in countries like India or China.</p>
-<p>Africa and Oceania: Predominantly low activity, with few regions showing notable event frequencies.</p>
-<h2 id="growth-rates">
-  Growth Rates
-  <a class="heading-link" href="#growth-rates">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="overall-growth">
-  Overall Growth:
-  <a class="heading-link" href="#overall-growth">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>From 2014 to 2023, the number of cyberattacks increased significantly. The attack count started at 570 in 2014 and rose to 2,163 in 2023, which reflects a substantial overall increase in cyberattacks over the period.</p>
-<h2 id="annual-growth-variability">
-  Annual Growth Variability:
-  <a class="heading-link" href="#annual-growth-variability">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.</p>
-<p>From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. Although, we shall do it anyway!</p>
-<h2 id="peak-attack-years">
-  Peak Attack Years:
-  <a class="heading-link" href="#peak-attack-years">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate percent change for each region</span>
-</span></span><span style="display:flex;"><span>world_sf_changes <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(geometry) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summarise</span>(
-</span></span><span style="display:flex;"><span>    start_count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">ifelse</span>(year <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">2014</span>, event_count, <span style="color:#a5d6ff">0</span>)),
-</span></span><span style="display:flex;"><span>    end_count <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">ifelse</span>(year <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">2022</span>, event_count, <span style="color:#a5d6ff">0</span>)),
-</span></span><span style="display:flex;"><span>    .groups <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;drop&#39;</span>
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(
-</span></span><span style="display:flex;"><span>    percent_change <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">ifelse</span>(start_count <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>,
-</span></span><span style="display:flex;"><span>                           ((end_count <span style="color:#ff7b72;font-weight:bold">-</span> start_count) <span style="color:#ff7b72;font-weight:bold">/</span> start_count) <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">100</span>,
-</span></span><span style="display:flex;"><span>                           <span style="color:#d2a8ff;font-weight:bold">ifelse</span>(end_count <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">100</span>, <span style="color:#a5d6ff">0</span>)),
-</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># Cap extreme values for better visualization</span>
-</span></span><span style="display:flex;"><span>    percent_change_capped <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">pmin</span>(<span style="color:#d2a8ff;font-weight:bold">pmax</span>(percent_change, <span style="color:#a5d6ff">-100</span>), <span style="color:#a5d6ff">100</span>)
-</span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a diverging color palette map</span>
-</span></span><span style="display:flex;"><span>map_changes <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_changes) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;darkgray&#34;</span>, lwd <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.5</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(
-</span></span><span style="display:flex;"><span>    col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;percent_change_capped&#34;</span>,
-</span></span><span style="display:flex;"><span>    title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;% Change (2014-2022)&#34;</span>,
-</span></span><span style="display:flex;"><span>    style <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;pretty&#34;</span>,
-</span></span><span style="display:flex;"><span>    palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;RdYlBu&#34;</span>,  <span style="color:#8b949e;font-style:italic"># Red-Yellow-Blue diverging palette</span>
-</span></span><span style="display:flex;"><span>    midpoint <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>,        <span style="color:#8b949e;font-style:italic"># Center the color scale at 0</span>
-</span></span><span style="display:flex;"><span>    contrast <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0.2</span>, <span style="color:#a5d6ff">1</span>),
-</span></span><span style="display:flex;"><span>    n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">9</span>,              <span style="color:#8b949e;font-style:italic"># Number of color classes</span>
-</span></span><span style="display:flex;"><span>    legend.hist <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(
-</span></span><span style="display:flex;"><span>    main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Event Frequency Change by Region (2014-2022)&#34;</span>,
-</span></span><span style="display:flex;"><span>    main.title.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;center&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>),
-</span></span><span style="display:flex;"><span>    main.title.size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1.2</span>,
-</span></span><span style="display:flex;"><span>    legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>,
-</span></span><span style="display:flex;"><span>    legend.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;center&#34;</span>),
-</span></span><span style="display:flex;"><span>    legend.title.size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.8</span>,
-</span></span><span style="display:flex;"><span>    frame <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>,
-</span></span><span style="display:flex;"><span>    bg.color <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>
-</span></span><span style="display:flex;"><span>  ) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_scale_bar</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;left&#34;</span>, <span style="color:#a5d6ff">&#34;bottom&#34;</span>)) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_grid</span>(alpha <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.2</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Save the map</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_save</span>(
-</span></span><span style="display:flex;"><span>  map_changes,
-</span></span><span style="display:flex;"><span>  filename <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_frequency_changes.png&#34;</span>,
-</span></span><span style="display:flex;"><span>  width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">12</span>,
-</span></span><span style="display:flex;"><span>  height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">8</span>,
-</span></span><span style="display:flex;"><span>  bg <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;white&#34;</span>,
-</span></span><span style="display:flex;"><span>  dpi <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">300</span>
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/event_frequency_changes.png?raw=true" alt="Event Frequency Changes"></p>
-  </article>
-</section>
-
-  
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-    2024
-     DarkAwesome 
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/blog/js/coder.js"></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-
-</html>
+<!doctype html><html lang=en><head><title>Cyber Defense Analysis Part2 · DarkAwesome
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Cyber Defense Analysis Part2"><meta name=twitter:description content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge."><meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Defense-Analysis-Part2/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Cyber Defense Analysis Part2"><meta property="og:description" content="This is a continuation of the previous work done by Dimitri Nilov (https://www.gotechinsights.com/blog/part2cybertrends). When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-11-19T21:55:25-05:00"><meta property="article:modified_time" content="2024-11-19T21:55:25-05:00"><meta property="article:tag" content="Ubuntu"><link rel=canonical href=http://darkawesome.github.io/blog/Cyber-Defense-Analysis-Part2/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/Cyber-Defense-Analysis-Part2/>Cyber Defense Analysis Part2</a></h1></header><p>This is a continuation of the previous work done by Dimitri Nilov (<a href=https://www.gotechinsights.com/blog/part2cybertrends%29 class=external-link target=_blank rel=noopener>https://www.gotechinsights.com/blog/part2cybertrends)</a>. When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.</p><p>In this portion of the Cyber Defense Database research I have done a time series Analysis of the data from 2014 - 2022.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Data manipulation libraries</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sp)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(spatstat)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(dplyr)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Plotting</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(leaflet)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(ggplot2)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tmap)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(terra)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(spData)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(gganimate)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(readxl)
+</span></span><span style=display:flex><span>data <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>read_excel</span>(<span style=color:#a5d6ff>&#34;E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>subset</span>(data, select<span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>-</span><span style=color:#d2a8ff;font-weight:700>c</span>(slug,description,source_url,industry_code))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summary</span>(df)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true" alt=Summary></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>table1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>table</span>(df<span style=color:#ff7b72;font-weight:700>$</span>motive, df<span style=color:#ff7b72;font-weight:700>$</span>actor_type, 
+</span></span><span style=display:flex><span>                df<span style=color:#ff7b72;font-weight:700>$</span>event_type)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ftable</span>(table1)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table1.png?raw=true" alt=table1></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># FREQUENCY MARGINALS</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># row marginals - totals for each marital status across gender</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>margin.table</span>(table1, <span style=color:#a5d6ff>2</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table2.png?raw=true" alt=table2></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># colum marginals - totals for each gender across marital status</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>margin.table</span>(table1, <span style=color:#a5d6ff>1</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true" alt=MarginTable1></p><h2 id=3-way-table>3 Way Table
+<a class=heading-link href=#3-way-table><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Looking at the table of the motives, actor type, and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analysis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest hacktivists and Undetermined-Criminals would be the other groups that have a good amount of distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(df, <span style=color:#d2a8ff;font-weight:700>aes</span>(x <span style=color:#ff7b72;font-weight:700>=</span> (event_type))) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>        <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(<span style=color:#d2a8ff;font-weight:700>aes</span>(y <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>after_stat</span>(count)<span style=color:#ff7b72;font-weight:700>/</span><span style=color:#d2a8ff;font-weight:700>sum</span>(<span style=color:#d2a8ff;font-weight:700>after_stat</span>(count)))) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>        <span style=color:#d2a8ff;font-weight:700>xlab</span>(<span style=color:#a5d6ff>&#34;Event Types&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>ylab</span>(<span style=color:#a5d6ff>&#34;Count&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>        <span style=color:#d2a8ff;font-weight:700>facet_grid</span>(<span style=color:#ff7b72;font-weight:700>~</span>actor_type) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;coral2&#39;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>        <span style=color:#d2a8ff;font-weight:700>theme</span>(axis.text.x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_text</span>(angle <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>45</span>, hjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>1</span>))
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/EventTypeHist.png?raw=true" alt="Event Types Histogram"></p><h2 id=event-type-histogram>Event Type histogram
+<a class=heading-link href=#event-type-histogram><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>This histogram focuses on event types and actor types, excluding motives. At first glance, it’s clear that the majority of attacks are criminal. Looking at the histogram, similar findings emerge. However, we can also see that attacks attributed to nation-states have occurred quite frequently. The unimodal distribution can likely be attributed to several factors. The most apparent, in my view, is a reporting bias. Perhaps a nation-state doesn&rsquo;t realize they’ve been hacked, or they may choose not to publicly disclose the situation. The fact that hacktivists are the second most common group suggests that the latter explanation is more likely, as these groups typically claim responsibility or publicize their actions.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(df, <span style=color:#d2a8ff;font-weight:700>aes</span>(x<span style=color:#ff7b72;font-weight:700>=</span>month)) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;seagreen&#39;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(x<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;Months&#39;</span>) 
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true" alt="Monthly Attacks"></p><h2 id=attacks-per-month>Attacks per Month
+<a class=heading-link href=#attacks-per-month><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March and August being the peaks do show some times where the events may be taking place more often across the years. However,looking at the surrounding months some fallacies could be apparent here. Mainly being the edge effects from when an event was coded to have occured. This has pushed me to look more at the years rather than the months of when these attacks occur.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># install.packages(&#34;rnaturalearth&#34;)</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(rnaturalearth)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Get country geometries using rnaturalearth</span>
+</span></span><span style=display:flex><span>countries_geom <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>ne_countries</span>(scale <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;small&#34;</span>, returnclass <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;sf&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Merge the geometries with the country names</span>
+</span></span><span style=display:flex><span>countries_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> countries_geom <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>filter</span>(name <span style=color:#ff7b72;font-weight:700>%in%</span> df<span style=color:#ff7b72;font-weight:700>$</span>country) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>         <span style=color:#8b949e;font-style:italic># Filter for countries in your dataframe</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>left_join</span>(df, by <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;name&#34;</span> <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;country&#34;</span>)) <span style=color:#8b949e;font-style:italic># Join with your dataframe</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Set the CRS (WGS84 is EPSG:4326, which is common for world maps)</span>
+</span></span><span style=display:flex><span>countries_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_set_crs</span>(countries_sf, <span style=color:#a5d6ff>4326</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># getting rid of bloat in the sf dataframe</span>
+</span></span><span style=display:flex><span>world_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> countries_sf <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
+</span></span><span style=display:flex><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
+</span></span></code></pre></div><p>A problem was caught here with a value being coded incorrectly in the excel sheet. The single data point was dealing with Telecommunications companies in Sundan.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>invalid_geometries <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf[<span style=color:#ff7b72;font-weight:700>!</span><span style=color:#d2a8ff;font-weight:700>st_is_valid</span>(world_sf), ]
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(invalid_geometries, n <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>Inf</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
+</span></span><span style=display:flex><span>world_sf_valid <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf<span style=color:#d2a8ff;font-weight:700>[st_is_valid</span>(world_sf), ]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## this takes a minute to load </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_valid) <span style=color:#ff7b72;font-weight:700>+</span> 
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>() <span style=color:#ff7b72;font-weight:700>+</span>  <span style=color:#8b949e;font-style:italic># Draw borders</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;motive&#34;</span>, palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>, title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Motive&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#8b949e;font-style:italic># Color by &#39;motive&#39; variable</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;World Map by Motive&#34;</span>,
+</span></span><span style=display:flex><span>            legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbymotive.png?raw=true" alt="World Map by Motive"></p><p>This map provides a global overview of cyberattack motives, highlighting regional patterns of activity:</p><h3 id=north-america>North America
+<a class=heading-link href=#north-america><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Financial motives dominate in this region, reflecting its advanced digital infrastructure and high-value financial systems. Industrial espionage is also likely significant, given North America&rsquo;s concentration of global corporations and innovation hubs.</p><h3 id=europe>Europe
+<a class=heading-link href=#europe><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Europe displays a mix of financial, political espionage, and protest-related attacks. These motives align with the region&rsquo;s position as a global financial and political center. Eastern Europe may experience more political espionage due to ongoing geopolitical tensions.</p><h3 id=asia>Asia
+<a class=heading-link href=#asia><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The map indicates diverse motives in Asia, with political espionage appearing prominent in regions of strategic significance or geopolitical conflict. Financial motives are also notable in rapidly developing economies with expanding digital markets.</p><h3 id=africa>Africa
+<a class=heading-link href=#africa><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Africa shows fewer documented motives, possibly due to underreporting or limited targeted infrastructure. Financial motives and sabotage are likely to emerge as key drivers, reflecting vulnerabilities in the region&rsquo;s growing digital landscape.</p><h3 id=south-america>South America
+<a class=heading-link href=#south-america><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Financially motivated attacks appear to dominate in South America, consistent with the region&rsquo;s increasing digital adoption. Protest-driven cyberattacks may also occur in response to political or social unrest.</p><h3 id=oceania>Oceania
+<a class=heading-link href=#oceania><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Oceania likely experiences a concentration of financially motivated attacks, given its advanced internet connectivity and reliance on technology. Other motives, such as political espionage or sabotage, may arise less frequently.</p><h3 id=global-observations>Global Observations
+<a class=heading-link href=#global-observations><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Undetermined motives suggest ongoing challenges in attributing cyberattacks and highlight regional disparities in reporting or investigation capacity. Broadly, financial motives dominate the global landscape, followed by political espionage and protest-related incidents.</p><p>This analysis underscores the importance of tailoring cybersecurity measures to the unique threats and vulnerabilities within each region.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## this takes a minute to load </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_valid) <span style=color:#ff7b72;font-weight:700>+</span> 
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>() <span style=color:#ff7b72;font-weight:700>+</span>  <span style=color:#8b949e;font-style:italic># Draw borders</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;event_type&#34;</span>, palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>, title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Motive&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#8b949e;font-style:italic># Color by &#39;Event Type&#39; variable</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;World Map by Event Type&#34;</span>,
+</span></span><span style=display:flex><span>            legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/worldmapbyeventtype.png?raw=true" alt="World Map by Event Type"></p><p>This map presents a global perspective on cyberattack event types, illustrating regional tendencies in the nature of incidents:</p><h3 id=north-america-1>North America
+<a class=heading-link href=#north-america-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Exploitive events dominate in this region, emphasizing cyberattacks aimed at extracting value, such as data breaches and financial theft. The prevalence of advanced digital infrastructures and lucrative targets make this a primary focus for cybercriminals.</p><h3 id=europe-1>Europe
+<a class=heading-link href=#europe-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>A mix of event types characterizes Europe, with exploitive and disruptive attacks both significant. The diversity reflects the region&rsquo;s dual role as a technological leader and a politically sensitive environment, which attracts varied attack motives.</p><h3 id=asia-1>Asia
+<a class=heading-link href=#asia-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Asia exhibits a notable concentration of both exploitive and mixed events, indicative of its rapid economic development and strategic geopolitical significance. The presence of major manufacturing hubs and increasing digital adoption contribute to this diverse landscape.</p><h3 id=africa-1>Africa
+<a class=heading-link href=#africa-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Africa shows a smaller footprint in terms of event types, potentially due to limited reporting or less frequent targeting. However, disruptive attacks may be emerging in regions experiencing political instability or infrastructure vulnerabilities.</p><h3 id=south-america-1>South America
+<a class=heading-link href=#south-america-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Exploitive events are prominent in South America, reflecting the region&rsquo;s rising digital economy and susceptibility to financially driven cybercrime. Disruptive events may also occur in areas with social or political tensions.</p><h3 id=oceania-1>Oceania
+<a class=heading-link href=#oceania-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Oceania primarily experiences exploitive attacks, aligning with its advanced digital connectivity and high-value economic targets. Disruptive events are likely less frequent but may arise in the context of regional geopolitical dynamics.</p><h3 id=global-observations-1>Global Observations
+<a class=heading-link href=#global-observations-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The presence of undetermined event types underscores gaps in attribution and analysis, reflecting disparities in global cybersecurity capabilities. Exploitive attacks emerge as a predominant global trend, highlighting the universal appeal of financial or data-related gains. Disruptive and mixed events are regionally significant, often correlating with specific political, social, or infrastructural contexts.</p><p>This distribution emphasizes the need for region-specific strategies to mitigate both exploitive and disruptive cyber threats effectively.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># a contingency table for actor_type and event_type</span>
+</span></span><span style=display:flex><span>actor_event_table <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>table</span>(df<span style=color:#ff7b72;font-weight:700>$</span>actor_type, df<span style=color:#ff7b72;font-weight:700>$</span>event_type)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># View the table</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(actor_event_table)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Calculate attack counts per year</span>
+</span></span><span style=display:flex><span>yearly_counts <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf_valid <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>group_by</span>(year) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>summarise</span>(
+</span></span><span style=display:flex><span>    attack_count <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>n</span>()
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Create the histogram with exact counts</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(yearly_counts, <span style=color:#d2a8ff;font-weight:700>aes</span>(x <span style=color:#ff7b72;font-weight:700>=</span> year, y <span style=color:#ff7b72;font-weight:700>=</span> attack_count)) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(stat <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;identity&#34;</span>, fill <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;steelblue&#34;</span>, alpha <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.7</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>geom_text</span>(<span style=color:#d2a8ff;font-weight:700>aes</span>(label <span style=color:#ff7b72;font-weight:700>=</span> attack_count), 
+</span></span><span style=display:flex><span>            vjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>-0.5</span>, 
+</span></span><span style=display:flex><span>            size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>3</span>) <span style=color:#ff7b72;font-weight:700>+</span>  <span style=color:#8b949e;font-style:italic># Add count labels above each bar</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>theme_minimal</span>() <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(
+</span></span><span style=display:flex><span>    title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Number of Attacks per Year&#34;</span>,
+</span></span><span style=display:flex><span>    x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Year&#34;</span>,
+</span></span><span style=display:flex><span>    y <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Number of Attacks&#34;</span>
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>theme</span>(
+</span></span><span style=display:flex><span>    plot.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_text</span>(hjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.5</span>, size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>14</span>),
+</span></span><span style=display:flex><span>    axis.text.x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_text</span>(angle <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>45</span>, hjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>1</span>),  <span style=color:#8b949e;font-style:italic># Rotate x-axis labels</span>
+</span></span><span style=display:flex><span>    panel.grid.minor <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_blank</span>()
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>scale_y_continuous</span>(
+</span></span><span style=display:flex><span>    expand <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>expansion</span>(mult <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>0</span>, <span style=color:#a5d6ff>0.1</span>))  <span style=color:#8b949e;font-style:italic># Add some space at the top for labels</span>
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggsave</span>(<span style=color:#a5d6ff>&#34;yearly_attacks_histogram.png&#34;</span>, width <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>10</span>, height <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>6</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true" alt="Yearly Attacks Histogram"></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summary</span>(yearly_counts)
+</span></span></code></pre></div><h2 id=number-of-attacks-per-year>Number of Attacks per Year
+<a class=heading-link href=#number-of-attacks-per-year><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The histogram shows an upward trend in attack counts per year, with notable increases in the 2019-2020 and 2021-2022 periods. During both of these intervals, the number of attacks rose by approximately 50%. With a median of 952, it seems likely that the number of attacks will continue to increase in the coming years.</p><p>Looking at monthly attack data, no clear seasonality is observed. However, after the COVID years of 2020 and 2021, there was a significant spike in attacks. A dip in 2021 followed by an immediate rise may reflect the changing workplace environment. With hybrid and remote work becoming more apparent companies and nations may see a rise in the coming as we see here in cyber attacks.</p><p>A similar trend of a sharp rise in attacks was observed between 2019 and 2021 but in this case, the increase may in part, be due to a shift in attack types. A brief literature review and analysis of prior research indicate that nation-states have made a more concerted effort to conduct cyberattacks during this period.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Create a temporary directory for individual frames</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>dir.create</span>(<span style=color:#a5d6ff>&#34;tmp_frames&#34;</span>, showWarnings <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>FALSE</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>create_histogram <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#ff7b72>function</span>(data, year, yearly_counts) {
+</span></span><span style=display:flex><span>  year_distribution <span style=color:#ff7b72;font-weight:700>&lt;-</span> data <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>filter</span>(year <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#ff7b72;font-weight:700>!!</span>year) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>group_by</span>(actor_type) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>summarise</span>(count <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>n</span>()) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>ungroup</span>() <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>mutate</span>(percentage <span style=color:#ff7b72;font-weight:700>=</span> count <span style=color:#ff7b72;font-weight:700>/</span> <span style=color:#d2a8ff;font-weight:700>sum</span>(count) <span style=color:#ff7b72;font-weight:700>*</span> <span style=color:#a5d6ff>100</span>)
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>ggplot</span>(year_distribution, <span style=color:#d2a8ff;font-weight:700>aes</span>(x <span style=color:#ff7b72;font-weight:700>=</span> actor_type, y <span style=color:#ff7b72;font-weight:700>=</span> count, fill <span style=color:#ff7b72;font-weight:700>=</span> actor_type)) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(stat <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;identity&#34;</span>, width <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.7</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>scale_fill_brewer</span>(palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>theme_minimal</span>() <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>labs</span>(
+</span></span><span style=display:flex><span>      title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;Attack Distribution (%s)&#34;</span>, <span style=color:#d2a8ff;font-weight:700>as.character</span>(year)),
+</span></span><span style=display:flex><span>      x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Actor Type&#34;</span>,
+</span></span><span style=display:flex><span>      y <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Number of Attacks&#34;</span>,
+</span></span><span style=display:flex><span>      fill <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Actor Type&#34;</span>
+</span></span><span style=display:flex><span>    ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>theme</span>(
+</span></span><span style=display:flex><span>      legend.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;right&#34;</span>,
+</span></span><span style=display:flex><span>      plot.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_text</span>(hjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.5</span>, size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>12</span>),
+</span></span><span style=display:flex><span>      axis.text.x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_text</span>(angle <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>45</span>, hjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>1</span>),
+</span></span><span style=display:flex><span>      panel.grid.major.x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>element_blank</span>()
+</span></span><span style=display:flex><span>    ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>geom_text</span>(
+</span></span><span style=display:flex><span>      <span style=color:#d2a8ff;font-weight:700>aes</span>(label <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>paste0</span>(count, <span style=color:#a5d6ff>&#34;\n(&#34;</span>, <span style=color:#d2a8ff;font-weight:700>round</span>(percentage, <span style=color:#a5d6ff>1</span>), <span style=color:#a5d6ff>&#34;%)&#34;</span>)),
+</span></span><span style=display:flex><span>      position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>position_stack</span>(vjust <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>-0.1</span>),
+</span></span><span style=display:flex><span>      size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>3</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Ensure year is numeric in the data and sort</span>
+</span></span><span style=display:flex><span>world_sf_valid <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf_valid <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>mutate</span>(year <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>as.numeric</span>(<span style=color:#d2a8ff;font-weight:700>as.character</span>(year))) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>arrange</span>(year)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Process data for dominant actors</span>
+</span></span><span style=display:flex><span>world_sf_valid <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf_valid <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>group_by</span>(year, geometry) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>mutate</span>(
+</span></span><span style=display:flex><span>    actor_count <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>n</span>(),
+</span></span><span style=display:flex><span>    dominant_actor <span style=color:#ff7b72;font-weight:700>=</span> actor_type<span style=color:#d2a8ff;font-weight:700>[which.max</span>(<span style=color:#d2a8ff;font-weight:700>table</span>(actor_type))]
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>ungroup</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Get sorted unique years</span>
+</span></span><span style=display:flex><span>years <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>sort</span>(<span style=color:#d2a8ff;font-weight:700>unique</span>(world_sf_valid<span style=color:#ff7b72;font-weight:700>$</span>year))
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(<span style=color:#d2a8ff;font-weight:700>paste</span>(<span style=color:#a5d6ff>&#34;Processing years in order:&#34;</span>, <span style=color:#d2a8ff;font-weight:700>paste</span>(years, collapse <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;, &#34;</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>combined_frames <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>list</span>()
+</span></span><span style=display:flex><span><span style=color:#ff7b72>for</span>(i <span style=color:#ff7b72>in</span> <span style=color:#d2a8ff;font-weight:700>seq_along</span>(years)) {
+</span></span><span style=display:flex><span>  current_year <span style=color:#ff7b72;font-weight:700>&lt;-</span> years[i]
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>print</span>(<span style=color:#d2a8ff;font-weight:700>paste</span>(<span style=color:#a5d6ff>&#34;Processing year:&#34;</span>, current_year))
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#8b949e;font-style:italic># Create histogram for current year</span>
+</span></span><span style=display:flex><span>  histogram <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>create_histogram</span>(world_sf_valid, current_year, yearly_counts)
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>ggsave</span>(
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;tmp_frames/histogram_%04d.png&#34;</span>, i),
+</span></span><span style=display:flex><span>    histogram,
+</span></span><span style=display:flex><span>    width <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>8</span>,  <span style=color:#8b949e;font-style:italic># Increased width to accommodate bars</span>
+</span></span><span style=display:flex><span>    height <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>6</span>,
+</span></span><span style=display:flex><span>    bg <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;white&#34;</span>
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#8b949e;font-style:italic># Create map for current year</span>
+</span></span><span style=display:flex><span>  current_map <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_valid <span style=color:#ff7b72;font-weight:700>%&gt;%</span> <span style=color:#d2a8ff;font-weight:700>filter</span>(year <span style=color:#ff7b72;font-weight:700>==</span> current_year)) <span style=color:#ff7b72;font-weight:700>+</span> 
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>tm_borders</span>() <span style=color:#ff7b72;font-weight:700>+</span>  
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(
+</span></span><span style=display:flex><span>      col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;dominant_actor&#34;</span>, 
+</span></span><span style=display:flex><span>      palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>, 
+</span></span><span style=display:flex><span>      title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Dominant Actor Type&#34;</span>
+</span></span><span style=display:flex><span>    ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(
+</span></span><span style=display:flex><span>      legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>,
+</span></span><span style=display:flex><span>      legend.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;bottom&#34;</span>),
+</span></span><span style=display:flex><span>      title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;Dominant Actors by Region (%s)&#34;</span>, <span style=color:#d2a8ff;font-weight:700>as.character</span>(current_year)),
+</span></span><span style=display:flex><span>      title.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;center&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tmap_save</span>(
+</span></span><span style=display:flex><span>    current_map, 
+</span></span><span style=display:flex><span>    filename <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;tmp_frames/map_%04d.png&#34;</span>, i),
+</span></span><span style=display:flex><span>    width <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>8</span>,
+</span></span><span style=display:flex><span>    height <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>6</span>
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  map_img <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_read</span>(<span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;tmp_frames/map_%04d.png&#34;</span>, i))
+</span></span><span style=display:flex><span>  hist_img <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_read</span>(<span style=color:#d2a8ff;font-weight:700>sprintf</span>(<span style=color:#a5d6ff>&#34;tmp_frames/histogram_%04d.png&#34;</span>, i))
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  map_img <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_scale</span>(map_img, <span style=color:#a5d6ff>&#34;800x700!&#34;</span>)
+</span></span><span style=display:flex><span>  hist_img <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_scale</span>(hist_img, <span style=color:#a5d6ff>&#34;700x500!&#34;</span>)  <span style=color:#8b949e;font-style:italic># Adjusted size for histogram</span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  combined <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_append</span>(<span style=color:#d2a8ff;font-weight:700>c</span>(map_img, hist_img))
+</span></span><span style=display:flex><span>  combined_frames[[i]] <span style=color:#ff7b72;font-weight:700>&lt;-</span> combined
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>combined_animation <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>image_join</span>(combined_frames)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>image_write_gif</span>(combined_animation, 
+</span></span><span style=display:flex><span>                <span style=color:#a5d6ff>&#34;attacks_distribution_by_year.gif&#34;</span>, 
+</span></span><span style=display:flex><span>                delay <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>4</span>)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>unlink</span>(<span style=color:#a5d6ff>&#34;tmp_frames&#34;</span>, recursive <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(<span style=color:#a5d6ff>&#34;GIF creation completed&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## made with help from Claude and </span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## https://r.geocompx.org/adv-map#prerequisites-7</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## https://r-tmap.github.io/tmap-book/tmshape.html</span>
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/attacks_distribution_by_year.gif?raw=true" alt="Attack Distribution by Year"></p><h2 id=attack-distribution-by-year>Attack Distribution by Year
+<a class=heading-link href=#attack-distribution-by-year><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h2 id=2014>2014
+<a class=heading-link href=#2014><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Criminal actors (light blue) are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives. Hacktivists (red) are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts.Nation-state actors (dark green) are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains. Undetermined actors (light green) are also present in various regions, indicating that some areas faced cyber activities without clear attribution.</p><h2 id=2015-2016>2015-2016
+<a class=heading-link href=#2015-2016><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The influence of nation-state actors expands, especially across East Asia and parts of the Middle East, pointing to an increase in government-backed cyber operations. This could be related to global geopolitical tensions and a rise in cyber espionage activities. Criminal actors continue to appear frequently across multiple continents, reflecting the steady persistence of financially motivated cybercrime globally.Hacktivist activity remains limited to specific areas but shows sporadic presence, suggesting that hacktivist campaigns may have been reactive to regional social and political events.</p><h2 id=2017-2018>2017-2018
+<a class=heading-link href=#2017-2018><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Nation-state actors maintain a strong presence in Asia and expand to new areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering. The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime. Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.</p><h2 id=2019-2020>2019-2020
+<a class=heading-link href=#2019-2020><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Nation-state actor dominance appears to further expand in Asia and parts of Europe, signaling the sustained importance of cyber capabilities in national security strategies. The criminal actor category continues to show prevalence across regions, highlighting the entrenchment of cybercrime in the global threat landscape. Undetermined actors show up in a few regions, which could imply either a lack of attribution or diverse motivations that make categorization difficult.</p><h2 id=2021-2022>2021-2022
+<a class=heading-link href=#2021-2022><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cyber criminals.Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.</p><h2 id=2023>2023
+<a class=heading-link href=#2023><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Nation-state actors continue to dominate many regions, showing how state-sponsored cyber activities have become a central component of international relations and security strategies. Criminal actor prevalence persists, particularly in economically significant or technologically advanced regions, indicating that cybercrime remains a persistent threat worldwide. Undetermined actor presence is observed in certain areas, implying ongoing difficulty in clearly attributing cyber activities in some regions.</p><h2 id=growth-rates>Growth Rates
+<a class=heading-link href=#growth-rates><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>growth_rate <span style=color:#ff7b72;font-weight:700>&lt;-</span> yearly_counts <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#8b949e;font-style:italic># Ensure &#39;year&#39; is numeric</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>mutate</span>(year <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>as.numeric</span>(<span style=color:#d2a8ff;font-weight:700>as.character</span>(year))) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#8b949e;font-style:italic># Sort by year</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>arrange</span>(year) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#8b949e;font-style:italic># Compute differences and growth rate</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>mutate</span>(
+</span></span><span style=display:flex><span>    Diff_year <span style=color:#ff7b72;font-weight:700>=</span> year <span style=color:#ff7b72;font-weight:700>-</span> <span style=color:#d2a8ff;font-weight:700>lag</span>(year),  <span style=color:#8b949e;font-style:italic># Calculate year difference</span>
+</span></span><span style=display:flex><span>    Diff_growth <span style=color:#ff7b72;font-weight:700>=</span> yearly_counts<span style=color:#ff7b72;font-weight:700>$</span>attack_count <span style=color:#ff7b72;font-weight:700>-</span> <span style=color:#d2a8ff;font-weight:700>lag</span>(yearly_counts<span style=color:#ff7b72;font-weight:700>$</span>attack_count),  <span style=color:#8b949e;font-style:italic># Calculate route difference</span>
+</span></span><span style=display:flex><span>    Rate_percent <span style=color:#ff7b72;font-weight:700>=</span> (Diff_growth <span style=color:#ff7b72;font-weight:700>/</span> Diff_year) <span style=color:#ff7b72;font-weight:700>/</span> <span style=color:#d2a8ff;font-weight:700>lag</span>(yearly_counts<span style=color:#ff7b72;font-weight:700>$</span>attack_count) <span style=color:#ff7b72;font-weight:700>*</span> <span style=color:#a5d6ff>100</span>  <span style=color:#8b949e;font-style:italic># Compute growth rate percentage</span>
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## made with help from https://forum.posit.co/t/growth-rate-calculation-in-r/38675/2</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Matthias</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## bennyishere</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>growth_rate
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Calculate percent change for each region</span>
+</span></span><span style=display:flex><span>world_sf_changes <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf_valid <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>group_by</span>(geometry) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>summarise</span>(
+</span></span><span style=display:flex><span>    start_count <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sum</span>(<span style=color:#d2a8ff;font-weight:700>ifelse</span>(year <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>2014</span>, event_count, <span style=color:#a5d6ff>0</span>)),
+</span></span><span style=display:flex><span>    end_count <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>sum</span>(<span style=color:#d2a8ff;font-weight:700>ifelse</span>(year <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>2022</span>, event_count, <span style=color:#a5d6ff>0</span>)),
+</span></span><span style=display:flex><span>    .groups <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#39;drop&#39;</span>
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>mutate</span>(
+</span></span><span style=display:flex><span>    percent_change <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>ifelse</span>(start_count <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>,
+</span></span><span style=display:flex><span>                           ((end_count <span style=color:#ff7b72;font-weight:700>-</span> start_count) <span style=color:#ff7b72;font-weight:700>/</span> start_count) <span style=color:#ff7b72;font-weight:700>*</span> <span style=color:#a5d6ff>100</span>,
+</span></span><span style=display:flex><span>                           <span style=color:#d2a8ff;font-weight:700>ifelse</span>(end_count <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>, <span style=color:#a5d6ff>100</span>, <span style=color:#a5d6ff>0</span>)),
+</span></span><span style=display:flex><span>    <span style=color:#8b949e;font-style:italic># Cap extreme values for better visualization</span>
+</span></span><span style=display:flex><span>    percent_change_capped <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>pmin</span>(<span style=color:#d2a8ff;font-weight:700>pmax</span>(percent_change, <span style=color:#a5d6ff>-100</span>), <span style=color:#a5d6ff>100</span>)
+</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Create a diverging color palette map</span>
+</span></span><span style=display:flex><span>map_changes <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_changes) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;darkgray&#34;</span>, lwd <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.5</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(
+</span></span><span style=display:flex><span>    col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;percent_change_capped&#34;</span>,
+</span></span><span style=display:flex><span>    title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;% Change (2014-2022)&#34;</span>,
+</span></span><span style=display:flex><span>    style <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;pretty&#34;</span>,
+</span></span><span style=display:flex><span>    palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;RdYlBu&#34;</span>,  <span style=color:#8b949e;font-style:italic># Red-Yellow-Blue diverging palette</span>
+</span></span><span style=display:flex><span>    midpoint <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>,        <span style=color:#8b949e;font-style:italic># Center the color scale at 0</span>
+</span></span><span style=display:flex><span>    contrast <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>0.2</span>, <span style=color:#a5d6ff>1</span>),
+</span></span><span style=display:flex><span>    n <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>9</span>,              <span style=color:#8b949e;font-style:italic># Number of color classes</span>
+</span></span><span style=display:flex><span>    legend.hist <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(
+</span></span><span style=display:flex><span>    main.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Event Frequency Change by Region (2014-2022)&#34;</span>,
+</span></span><span style=display:flex><span>    main.title.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;center&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>),
+</span></span><span style=display:flex><span>    main.title.size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>1.2</span>,
+</span></span><span style=display:flex><span>    legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>,
+</span></span><span style=display:flex><span>    legend.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;center&#34;</span>),
+</span></span><span style=display:flex><span>    legend.title.size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.8</span>,
+</span></span><span style=display:flex><span>    frame <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>FALSE</span>,
+</span></span><span style=display:flex><span>    bg.color <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;white&#34;</span>
+</span></span><span style=display:flex><span>  ) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_scale_bar</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;left&#34;</span>, <span style=color:#a5d6ff>&#34;bottom&#34;</span>)) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_grid</span>(alpha <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.2</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Save the map</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tmap_save</span>(
+</span></span><span style=display:flex><span>  map_changes,
+</span></span><span style=display:flex><span>  filename <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;event_frequency_changes.png&#34;</span>,
+</span></span><span style=display:flex><span>  width <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>12</span>,
+</span></span><span style=display:flex><span>  height <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>8</span>,
+</span></span><span style=display:flex><span>  bg <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;white&#34;</span>,
+</span></span><span style=display:flex><span>  dpi <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>300</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/event_frequency_changes.png?raw=true" alt="Event Frequency Changes"></p><h1 id=event-frequency-by-region>Event Frequency by Region
+<a class=heading-link href=#event-frequency-by-region><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h1><ul><li><p>North America: Stands out with significant activity, across the entire region.</p></li><li><p>Europe: A mix of low-to-moderate activity, with western European countries showing a hgiher percent change in the region. Which could be explained by regional conflicts.</p></li><li><p>Asia: Some regions in South Asia and East Asia show moderate to high activity. Which may be attributed to concentrated events in countries like India or China.</p></li><li><p>Africa and Oceania: Predominantly low-to-moderate activity in the African region. With few countries seeing moderate-to-high activity. Perhaps being attributted to the number of events in the region not being very high. In Oceania we can see moderate-to-high levels of activity in the region.</p></li></ul><h2 id=whats-happening>What&rsquo;s happening?
+<a class=heading-link href=#whats-happening><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li><p>Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.</p></li><li><p>Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.</p></li><li><p>Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.</p></li><li><p>Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.</p></li></ul><h3 id=overall-growth>Overall Growth:
+<a class=heading-link href=#overall-growth><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>From 2014 to 2023, the number of cyberattacks increased significantly. The attack count started at 570 in 2014 and rose to 2,163 in 2023, which reflects a substantial overall increase in cyberattacks over the period.</p><h2 id=annual-growth-variability>Annual Growth Variability:
+<a class=heading-link href=#annual-growth-variability><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.</p><p>From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median the mean can see around a 13% or 9% positive change annually. However given the amount of fluctuations in the short observable years, not much can be predicted accurately.</p><h2 id=peak-attack-years>Peak Attack Years:
+<a class=heading-link href=#peak-attack-years><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.</p></article></section></div><footer class=footer><section class=container>©
+2024
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
