@@ -15,6 +15,21 @@ draft: false
 This is a continuation of the previous work done by Dimitri Nilov(https://www.gotechinsights.com/blog/part2cybertrend). When I started this project I was not aware of the work he had done intially. However, from a review of his work I have focused on a time series analysis of the attacks. Focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
 <!--more-->
 
+## What's happening?
+
+- Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.
+
+- Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.
+
+- Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.
+
+- Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.
+
+
+From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median we can see around a 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. 
+## Peak Attack Years:
+The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.
+
 ```r
 # Data manipulation libraries
 library(sp)
@@ -513,20 +528,5 @@ tmap_save(
 - Asia: Some regions in South Asia and East Asia show moderate to high activity. Which may be attributed to concentrated events in countries like India or China.
 
 - Africa and Oceania: Predominantly low-to-moderate activity in the African region. With few countries seeing moderate-to-high activity. Perhaps being attributted to the number of events in the region not being very high. In Oceania we can see moderate-to-high levels of activity in the region. 
-
-## What's happening?
-
-- Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.
-
-- Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.
-
-- Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.
-
-- Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.
-
-
-From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median we can see around a 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. 
-## Peak Attack Years:
-The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.
 
 
