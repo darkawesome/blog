@@ -20,7 +20,7 @@
       <link>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</link>
       <pubDate>Tue, 19 Nov 2024 21:55:25 -0500</pubDate>
       <guid>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</guid>
-      <description>&lt;p&gt;This is a continuation of the previous work done by Dimitri Nilov (&lt;a href=&#34;https://www.gotechinsights.com/blog/part2cybertrends%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/part2cybertrends)&lt;/a&gt;. When I started this project I was not aware of the work he had done intially. However, from looking at his work I have focused on a time series analysis of the attacks to see if any trends emerge.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is a continuation of the previous work done by Dimitri Nilov(&lt;a href=&#34;https://www.gotechinsights.com/blog/part2cybertrend%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/part2cybertrend)&lt;/a&gt;. When I started this project I was not aware of the work he had done intially. However, from a review of his work I have focused on a time series analysis of the attacks. Focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Firepit</title>

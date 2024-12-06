@@ -54,6 +54,11 @@ ftable(table1)
 ```
 
 ![table1](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table1.png?raw=true)
+
+
+## 3 Way Table 
+Looking at the table of the motives, actor type, and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analysis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest hacktivists and Undetermined-Criminals would be the other groups that have a good amount of distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information. 
+
 ```r
 # FREQUENCY MARGINALS
 # row marginals - totals for each marital status across gender
@@ -71,9 +76,6 @@ margin.table(table1, 1)
 ![MarginTable1](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true)
 
 
-## 3 Way Table 
-Looking at the table of the motives, actor type, and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analysis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest hacktivists and Undetermined-Criminals would be the other groups that have a good amount of distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information. 
-
 ```r
 ggplot(df, aes(x = (event_type))) +
         geom_bar(aes(y = after_stat(count)/sum(after_stat(count)))) +
@@ -87,7 +89,7 @@ ggplot(df, aes(x = (event_type))) +
 
 
 ## Event Type histogram
-This histogram focuses on event types and actor types, excluding motives. At first glance, it’s clear that the majority of attacks are criminal. Looking at the histogram, similar findings emerge. However, we can also see that attacks attributed to nation-states have occurred quite frequently. The unimodal distribution can likely be attributed to several factors. The most apparent, in my view, is a reporting bias. Perhaps a nation-state doesn't realize they’ve been hacked, or they may choose not to publicly disclose the situation. The fact that hacktivists are the second most common group suggests that the latter explanation is more likely, as these groups typically claim responsibility or publicize their actions.
+This histogram focuses on event types and actor types, excluding motives. At first glance, it's clear that the majority of attacks are criminal. Looking at the histogram, similar findings emerge. However, we can also see that attacks attributed to nation-states have occurred quite frequently. The unimodal distribution can likely be attributed to several factors. The most apparent, in my view, is a reporting bias. Perhaps a nation-state doesn't realize they’ve been hacked, or they may choose not to publicly disclose the situation. The fact that hacktivists are the second most common group suggests that the latter explanation is more likely, as these groups typically claim responsibility or publicize their actions.
 
 
 ```r
@@ -99,7 +101,7 @@ ggplot(df, aes(x=month)) + geom_bar(fill='seagreen') +
 ![Monthly Attacks](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true)
 
 ## Attacks per Month
-Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March and August being the peaks do show some times where the events may be taking place more often across the years. However,looking at the surrounding months some fallacies could be apparent here. Mainly being the edge effects from when an event was coded to have occured. This has pushed me to look more at the years rather than the months of when these attacks occur.
+Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March, and August being the peaks do show times where the events may be taking place more often across the years. This pushed me further to focus primarily at the years rather than the months of when these attacks occur.
 
 ```r
 # install.packages("rnaturalearth")
@@ -399,15 +401,15 @@ print("GIF creation completed")
 
 ## Attack Distribution by Year
 ## 2014
-Criminal actors (light blue) are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives. Hacktivists (red) are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts.Nation-state actors (dark green) are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains. Undetermined actors (light green) are also present in various regions, indicating that some areas faced cyber activities without clear attribution.
+Criminal actors are widespread, especially in North America, parts of Latin America, and scattered regions in Asia. This indicates that cybercrime was a prominent issue globally, likely involving financial motives. Hacktivists are primarily concentrated in isolated areas, particularly in Europe, showing that politically or socially motivated cyber activities had specific regional impacts. Nation-state actors are notably present in East Asia, parts of the Middle East, and North America. This suggests that certain governments were already engaged in cyber operations, possibly for espionage or strategic gains. Undetermined actors are also present in various regions, indicating that some areas faced cyber activities without clear attribution.
 ## 2015-2016
 The influence of nation-state actors expands, especially across East Asia and parts of the Middle East, pointing to an increase in government-backed cyber operations. This could be related to global geopolitical tensions and a rise in cyber espionage activities. Criminal actors continue to appear frequently across multiple continents, reflecting the steady persistence of financially motivated cybercrime globally.Hacktivist activity remains limited to specific areas but shows sporadic presence, suggesting that hacktivist campaigns may have been reactive to regional social and political events.
 ## 2017-2018
-Nation-state actors maintain a strong presence in Asia and expand to new areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering. The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime. Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.
+Nation-state actors maintain a strong presence in Asia and expand to areas in Europe and North America, which could correlate with heightened global cyber espionage and intelligence-gathering. The dominance of criminal actors remains consistent in many countries, particularly in North America, Latin America, and parts of Europe, indicating an ongoing global problem with cybercrime. Hacktivist activity is sparse but visible in certain hotspots, implying that hacktivism remains active but localized, likely responding to specific issues.
 ## 2019-2020
 Nation-state actor dominance appears to further expand in Asia and parts of Europe, signaling the sustained importance of cyber capabilities in national security strategies. The criminal actor category continues to show prevalence across regions, highlighting the entrenchment of cybercrime in the global threat landscape. Undetermined actors show up in a few regions, which could imply either a lack of attribution or diverse motivations that make categorization difficult.
 ## 2021-2022
-Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cyber criminals.Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.
+Nation-state dominance becomes more pronounced, especially in strategic regions in Asia, Europe, and North America. This period likely reflects intensifying cyber operations by countries to protect national interests or gain intelligence. Criminal actors maintain a steady global footprint, emphasizing the resilience and adaptability of cyber criminals. Hacktivist activity remains minimal, suggesting that hacktivist movements have become less prominent, possibly due to stronger law enforcement or shifts in social movements.
 ## 2023 
 Nation-state actors continue to dominate many regions, showing how state-sponsored cyber activities have become a central component of international relations and security strategies. Criminal actor prevalence persists, particularly in economically significant or technologically advanced regions, indicating that cybercrime remains a persistent threat worldwide. Undetermined actor presence is observed in certain areas, implying ongoing difficulty in clearly attributing cyber activities in some regions.
 
@@ -523,8 +525,8 @@ tmap_save(
 - Undetermined actors persist in some regions, showing the complexity of attributing cyber activities accurately. This indicates a shift towards a more polarized cyber environment where geopolitical and economic factors drive cyber operations.
 
 
-From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median we can see around a 13% or 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. 
+From 2016 to 2017, there was a significant decrease in the number of attacks, with a drop of -27.7%. From 2019 to 2020, there was a sharp spike of 59.3%, possibly reflecting changes in attack patterns, maybe due to the COVID-19 pandemic and the shift to online activities. The largest growth occurred between 2021 and 2022, with a 68.1% increase in attacks, suggesting a notable escalation in cyber activity. Looking at the median we can see around a 9% positive change annually.  However given the amount of fluctuations in the short observable years, not much can be predicted accurately. 
 ## Peak Attack Years:
-The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year. 
+The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.
 
 
