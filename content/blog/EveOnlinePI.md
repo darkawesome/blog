@@ -189,7 +189,7 @@ Situated in the **Heimatar** region, **Rens** acts as a gateway for traders serv
 
 ## 6. Closing Thoughts
 
-This was a pretty fun project that I did for an in-game alliance mate for in-game currency, although it has a wealth of applications. The scalability of it is also very high, as you would just need to add more items to the table or add more systems. The same could be done with the P4s in building a greater amount of planetary interaction chains. However, the api has a limit for requests and other rules surrounding that. 
+This was a pretty fun project that I did for an in-game alliance mate, although it has a wealth of applications. The scalability of it is also very high, as you would just need to add more items to the table or add more systems. The same could be done with the P4s in building a greater amount of planetary interaction chains. However, the API has a limit for requests and other rules surrounding that. 
 
 
 
