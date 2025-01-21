@@ -10,7 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: false
 ---
 <!--more-->
 
@@ -22,13 +22,12 @@ draft: true
 
 EVE Online's intricate economy is a fascinating playground for strategists, traders, and industrialists. At its heart lies Planetary Interaction (PI), a cornerstone of the game's resource production. With its ties to production chains and interstellar logistics, PI commodities represent lucrative opportunities for those who understand the market dynamics.
 
-This blog post explores how to harness Google Sheets and the EVE ESI API for analyzing planetary commodity prices, optimizing trade routes, and identifying market trends. We'll focus on key market hubs like **Jita**, **Amarr**, and **Dodixie**, leveraging tools and data to make informed trading decisions.
+This blog post explores how to harness Google Sheets and the EVE ESI API to analyze planetary commodity prices, optimize trade routes, and identify market trends. We'll focus on key market hubs like Jita, Amarr, and Dodixie, leveraging tools and data to make informed trading decisions.
 
-For full disclosure, I did this project on behalf of an alliance mate for in-game currency.
 
 ![PI CookBook](https://github.com/darkawesome/blog/blob/main/content/img/EveOnline/PICookbook.png?raw=TRUE)
 
-Originally from dama.arishe@gmail.com but updated for the ESI api
+Originally from dama.arishe@gmail.com but updated for the ESI API
 
 
 
@@ -43,7 +42,7 @@ The EVE Swagger Interface (ESI) is CCP's official API, providing a wealth of dat
 
 ### Google Sheets Integration
 
-I used Google Apps Script to fetch live data from the ESI API, enabling dynamic updates of market data. Using the [GESI](https://github.com/Blacksmoke16/GESI) add-on, which provides an EVE Online SSO flow to authorize your character(s), as well as a wrapper around ESI in order to access your EVE Online data within Google Sheets™; much like `=importXML()` worked with the old XML API.
+I used Google Apps Script to fetch live data from the ESI API, enabling dynamic updates of market data. Using the [GESI](https://github.com/Blacksmoke16/GESI) add-on, which provides an EVE Online SSO flow to authorize your character(s), as well as a wrapper around ESI to access your EVE Online data within Google Sheets™; much like `=importXML()` worked with the old XML API.
 
 ## 2. Market Hubs in EVE Online
 
@@ -190,7 +189,7 @@ Situated in the **Heimatar** region, **Rens** acts as a gateway for traders serv
 
 ## 6. Closing Thoughts
 
-This was a pretty fun project that I did for an in-game alliance mate for in-game currency, although it has a wealth of applications. The scalability of it is also very high, as you would just need to add more items to the table or add more systems. The same could be done with the P4s in building a greater amount of planetary interaction chains.
+This was a pretty fun project that I did for an in-game alliance mate for in-game currency, although it has a wealth of applications. The scalability of it is also very high, as you would just need to add more items to the table or add more systems. The same could be done with the P4s in building a greater amount of planetary interaction chains. However, the api has a limit for requests and other rules surrounding that. 
 
 
 
