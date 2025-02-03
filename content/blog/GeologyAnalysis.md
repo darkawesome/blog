@@ -59,7 +59,7 @@ These points relate to the trails in the state of Pennsylvania. The data was col
 
 Topic/Source: Pennsylvania Spatial Data Access (PASDA) is Pennsylvania's official public access open geospatial data portal (1).
 
-There are 2466 rows with 15 columns. However I will only be using 7 of those columns in my analysis. I think some missing data would be where the Appalachain trail goes through pennsylvania and some other trails that cross state borders. The initial map I have of the area kind of shows this but if you had no knowledge of this area you wouldn't know why that pattern was there.
+There are 2466 rows with 15 columns. However, I will only be using 7 of those columns in my analysis. I think some missing data would be where the Appalachian trail goes through Pennsylvania and some other trails that cross state borders. The initial map I have of the area kind of shows this but if you had no knowledge of this area you wouldn't know why that pattern was there.
 
 ## Reading in Data
 
@@ -98,7 +98,7 @@ summary(df)
 
 Looking at the map before analysis there is a pattern that follows the Appalachian trail through the state.
 
-Each point in the data sets a point along the line feature for the trials in Pennsylvania. The data presented has been collected since November 2007 and has been updated since October 2009. There are 2466 data points in the data frame. With 15 columns in the original data frame and 7 in the data frame after data wrangling.
+Each point in the data sets a point-along-the-line feature for the trials in Pennsylvania. The data presented has been collected since November 2007 and has been updated since October 2009. There are 2466 data points in the data frame. With 15 columns in the original data frame and 7 in the data frame after data wrangling.
 
 ``` r
 mapdata<-data.frame(
@@ -170,13 +170,13 @@ wcss <- sum(kmeans_result$withinss)
 wcss
 ```
 
-A WCSS value of 473.5104 suggests that the data points are relatively close to the centroids within each cluster. With further analysis needed to find an elbow point or point where the point the reduction in WCSS starts to level off. Which tells us about the diminishing returns in terms of clustering quality as k increases.
+A WCSS value of 473.5104 suggests that the data points are relatively close to the centroids within each cluster. With further analysis is needed to find an elbow point or point where the point the reduction in WCSS starts to level off. This tells us about the diminishing returns in terms of clustering quality as k increases.
 
 With this point found an optimal distribution of trails can be made to have more dispersion throughout the state. However, given that the points we are using are taken from line graphs further analysis into the cluster would not be needed as the correlation would be inherent. Moving forward I will look at other factors across the state as it relates to the trail points.
 
 ## Analyzing the Network
 
-The Methodology behind the work below is from this paper on Spatial Statistics by Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan,Tilman M. Davies(2). In which they analyze research on the spatial analysis of events that occur along a network of lines.
+The Methodology behind the work below is from this paper on Spatial Statistics by Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan, and Tilman M. Davies(2). In which they analyze research on the spatial analysis of events that occur along a network of lines.
 
 ## Converting to Spatial Data
 
@@ -276,7 +276,7 @@ tmap_arrange(map1,map2,map3,map4)
 
 ![Maps looking at Socioeconomic Status (green),Racial and Ethnic Minority Status (blue) Persons with no HS Diploma (orange) Housing in buildings with 10 or more units (purple)](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/RPLTHeme1.png?raw=true)
 
-Looking at the socioeconomic status of the points across the census tracts as it relates to the trails we can not see any real disparities. Nor anything to suggest that areas with higher or lower socioeconomic status have a higher amount of trail near them.There may be other factors playing a role here like edge effects, ecological factors or even just different clusters of where people live. And this holds true across all of the other predictive factors looked at like Racial and Ethnic Minority Status.
+Looking at the socioeconomic status of the points across the census tracts as it relates to the trails we can not see any real disparities. Nor anything to suggest that areas with higher or lower socioeconomic status have a higher amount of trail near them. There may be other factors playing a role here like edge effects, ecological factors, or even just different clusters of where people live. And this holds true across all of the other predictive factors looked at like Racial and Ethnic Minority Status.
 
 ``` r
 ## Moran's I AutoCorrelation
@@ -303,7 +303,7 @@ abline(M1, col="blue")
 moran.test(tract.sovi.sf$EP_MUNIT, listw= lw)
 ```
 
-Moran I test under randomisation
+Moran's I test under randomization
 
 data: tract.sovi.sf\$EP_MUNIT\
 weights: lw\
@@ -325,12 +325,12 @@ plot(moran.mc(tract.sovi.sf$EP_MUNIT, lw, nsim=999, alternative="greater"))
 
 Moran’s I Statistic (0.3864):
 
-The positive value (0.3864) indicates a positive spatial autocorrelation, suggesting that similar values tend to be close to each other in space.Which we previously have seen with the data points for the trails in the state. Standard Deviate (37.838):
+The positive value (0.3864) indicates Housing in buildings with 10 or more units is somewhat, randomly dispersed. We have previously seen this with the data points for the trails in the state. Standard Deviate (37.838):
 
-The high standard deviate indicates that the observed Moran’s I value is significantly different from what we would expect under the assumption of spatial randomness. This is further supported by the very low p-value.
+The high standard deviation indicates that the observed Moran’s I value is significantly different from what we would expect under the assumption of spatial randomness. This is further supported by the very low p-value.
 ### P-value (2.2e-16):
 
-The extremely low p-value (2.2e-16) indicates strong evidence against the null hypothesis of spatial randomness. In practical terms, it suggests that the spatial pattern observed is unlikely to be due to random chance.The alternative hypothesis being “greater” suggests that the observed spatial autocorrelation is greater than what would be expected under the assumption of spatial randomness.Interpretation of a Moran’s I Plot:
+The extremely low p-value (2.2e-16) indicates strong evidence against the null hypothesis of spatial randomness. In practical terms, it suggests that the spatial pattern observed is unlikely to be due to random chance. The alternative hypothesis is “greater” which indicates that the observed spatial autocorrelation is greater than what would be expected under the assumption of spatial randomness. Interpretation of a Moran’s I Plot:
 
 Clustering in the Bottom Left Corner: This suggests local clusters of similar values. Meaning that neighboring areas tend to have similar values, contributing to positive spatial autocorrelation.
 
@@ -351,16 +351,16 @@ tmap_arrange(map1,map2,map3,map4)
 
 ### Socioeconomic Status
 
-Looking at the socioeconomic status across the state there are many areas of high socioeconomic status surrounded by low. Though a trend that we can see here is that the northern half of the state is more well of then the southern half. Though there are some counties that are “islands” were they are surrounded by better off counties.
+Looking at the socioeconomic status across the state there are many areas of high socioeconomic status surrounded by low. Though a trend that we can see here is that the northern half of the state is better off then the southern half. Though there are some counties that are “islands” were they are surrounded by better-off counties.
 ### Racial and Ethnic Minority Status
 
-The racial and ethnic minority status is similar as far as the “islands” are concerned. Though this time two of the counties have a higher racial & ethnic minority status than those surrounding them. With there being a cluster in the eastern and south eastern bit of the state. With the remainder of the state being quite dispersed until the border with Ohio which shows a fair bit of racial dispersion. Perhaps hinting at edge effects that may be because of how the state is overall. Or it may be because of the proximity of Pittsburgh and it being a major city in the state.
+The racial and ethnic minority status is similar as far as the “islands” are concerned. However, this time two of the counties have a higher racial & ethnic minority status than those surrounding them. With there being a cluster in the eastern and southeastern bit of the state. With the remainder of the state being quite dispersed until the border with Ohio which shows a fair bit of racial dispersion. Perhaps hinting at edge effects that may be because of how the state is overall. Or it may be because of the proximity of Pittsburgh and it being a major city in the state.
 ### Persons with no HS Diploma
 
-This map shows a lot of interesting information where we see in Centre county and those counties around Pittsburgh having a lot of people with high school diplomas. Though in Lancaster, Juniata, and Forest counties have the highest amount of people with a high school diploma. This is could be because of the amount of colleges in the areas or perhaps the renown that the colleges in the area have.
+This map shows a lot of interesting information where we see in Centre county and those counties around Pittsburgh having a lot of people with high school diplomas. Though in Lancaster, Juniata, and Forest counties have the highest amount of people with a high school diploma. This could be because of the number of colleges in the area or perhaps the renown that the colleges in the area have.
 ### Housing in buildings with 10 or more units
 
-Here though, our highest counties in this variable are in Centre county, around Philadelphia and Pittsburgh. Additionally, we do see a lot of clustering in some areas on the south east and south west edges of the state. Perhaps again attributed to edge effects from the surrounding states. With close proximity to New Jersey and Delaware some residents may be choosing to live in Pennsylvania to reap its benefits and not have to pay those in other states.
+Here though, our highest counties in this variable are in Centre County, around Philadelphia and Pittsburgh. Additionally, we do see a lot of clustering in some areas on the southeast and southwest edges of the state. Perhaps again attributed to edge effects from the surrounding states. With close proximity to New Jersey and Delaware, some residents may be choosing to live in Pennsylvania to reap its benefits and not have to pay those in other states.
 
 ``` r
 # Adding in the Age & Sex data
@@ -388,7 +388,7 @@ tmap_arrange(map5,map6)
 
 ![County level Sovi with trail points](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/sovitrail.png?raw=true)
 
-When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither. There are some hot spots in the 18 and older estimate. Though that could be attributed to the fact that the range of ages is significantly higher than 60 and older. On its head there are no real identifiable spots that stick out in any way in proximity to the trails. On the other hand the clusters seen in the south eastern part of the state for those 18 years old and above does look to be quite darker than other regions. There is a seemingly interesting bend near the middle of the eastern section.Where we see some darker regions following the trails but again we should take scale into account.
+When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither. There are some hot spots in the 18 and older estimate. Though that could be attributed to the fact that the range of ages is significantly higher than 60 and older. On its head, there are no real identifiable spots that stick out in any way in proximity to the trails. On the other hand, the clusters seen in the southeastern part of the state for those 18 years old and above does look to be quite darker than other regions. There is a seemingly interesting bend near the middle of the eastern section. Where we see some darker regions following the trails but again we should take scale into account.
 
 ``` r
 ##  Persons below 150% poverty (estimate 2016-2020),at the measuring sites
@@ -416,10 +416,10 @@ NoVehicle_map
 
 ### Persons Below 150% Poverty Estimate
 
-There seems to be a large cluster around the Philadelphia area. Which again can be due to edge effects for the reasons mentioned above or perhaps more. Additionally, surrounding Philadelphia their seem to be some clustering that is happening across different census tracts with areas west of Lancaster also included. Pittsburgh also is at the center of some clustering. However, when we look on the state as a whole there are few and far between areas of really bad poverty at the state level. At lower levels these would most likely be more pronounced. Especially in areas like Philadelphia being as the hot spots can be seen from the map projection.
+There seems to be a large cluster around the Philadelphia area. Which again can be due to edge effects for the reasons mentioned above or perhaps more. Additionally, surrounding Philadelphia their seem to be some clustering that is happening across different census tracts with areas west of Lancaster also included. Pittsburgh also is at the center of some clustering. However, when we look on the state as a whole there are few and far between areas of really bad poverty at the state level. At lower levels, these would most likely be more pronounced. Especially in areas like Philadelphia being as the hot spots can be seen from the map projection.
 ### Household with no Vehicle
 
-Looking at the whole state most households have vehicles. Though in the major cities we do see some separation from this. With some parts of the state beginning to enter a more deeper blue color. It would be a safe assumption to say that, for the majority of households withing the state, most have cars.And for that matter, of those who don’t they are near a major city in which they may not need a car for their lifestyle. Given public transportation or even the ability to walk, bike or use a ride sharing app to get to the places they need to go.
+Looking at the whole state most households have vehicles. However, in the major cities, we do see some separation from this. With some parts of the state beginning to enter a more deeper blue color. It would be a safe assumption to say that, for the majority of households withing the state, most have cars. And for that matter, of those who don’t, they are near a major city in which they may not need a car for their lifestyle. Given public transportation or even the ability to walk, bike, or use a ride-sharing app to get to the places they need to go.
 ## Part 4 Regression Analysis
 
 ``` r
@@ -472,7 +472,7 @@ ggplot(county.sovi.sf, aes( EP_NOHSDP, RPL_THEME1)) +
 
 ![OLS Regression](https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/olsReg.png/?raw=true)
 
-The coefficient for persons with no high school diploma (EP_NOHSDP) is 0.06620. This indicates that for a one-unit increase in persons with no high school diploma , socioeconomic status is expected to increase by 0.06620 units, if you were to hold the other variables constant.The intercept is -0.13861, representing the estimated value of socioeconomic status when persons with no high school diploma is zero.
+The coefficient for persons with no high school diploma (EP_NOHSDP) is 0.06620. This indicates that for a one-unit increase in persons with no high school diploma, socioeconomic status is expected to increase by 0.06620 units if you were to hold the other variables constant. The intercept is -0.13861, representing the estimated value of socioeconomic status when persons with no high school diploma are zero.
 ### Significance of Coefficients:
 
 The t-value for persons with no high school diploma is 5.890, and the corresponding p-value is very small (1.49e-07). This suggests that the coefficient for persons with no high school diploma is statistically significant, indicating that it’s unlikely to be zero.
@@ -483,7 +483,7 @@ The multiple R-squared is 0.348, meaning that approximately 34.8% of the variabi
 
 The F-statistic (34.69) tests the overall significance of the model. With a p-value of 1.495e-07, you can reject the null hypothesis that all coefficients are zero. This suggests that at least one predictor variable is related to the response variable.
 
-In summary, the model suggests that there is a statistically significant relationship between socioeconomic Status and persons with no high school diploma. The model explains about 34.8% of the variability in socioeconomic status, and the relationship is significant based on the low p-value from the F-test.
+In summary, the model suggests that there is a statistically significant relationship between socioeconomic status and persons with no high school diploma. The model explains about 34.8% of the variability in socioeconomic status, and the relationship is significant based on the low p-value from the F-test.
 
 ``` r
 # Histogram of the Response and Predictor Variable
@@ -557,7 +557,7 @@ summary(LinearFit)
 
 #### F-statistic: 34.69 on 1 and 65 DF, p-value: 1.495e-07
 
-The model suggests that there is a statistically significant linear relationship between socioeconomic status and persons with no high school diploma. The positive coefficient for persons with no high school diploma indicates that an increase in persons with no high school diplomais associated with an increase in socioeconomic status.
+The model suggests that there is a statistically significant linear relationship between socioeconomic status and persons with no high school diploma. The positive coefficient for persons with no high school diploma indicates that an increase in persons with no high school diploma is associated with an increase in socioeconomic status.
 
 The R-squared value indicates that the model explains about 34.8% of the variability in socioeconomic status. This means that other factors not included in the model may contribute to the remaining variability.
 
@@ -569,13 +569,13 @@ After exploring the spatial characteristics and network analysis of trails in th
 ## Key Findings: Spatial Analysis of Trails:
 
 Utilizing spatial analysis techniques, the study examined 2,466 trail data points collected from GPS units and cross-referenced with aerial imagery. A distinct pattern following the Appalachian Trail through the state was observed. K-Means clustering was employed to group trails into 10 clusters based on geographic coordinates.
-The resulting clusters provided insights into the distribution and dispersion of trails across the state.Network analysis using graph theory was initiated to study the connectivity of trail points. However, due to challenges with the loop structure, further exploration was curtailed. The study integrated data on socioeconomic status, racial and ethnic minority status, education levels, and housing characteristics at the census tract and county levels. The analysis revealed patterns and clusters in these demographic factors across the state. Moran’s I statistic indicated positive spatial autocorrelation, suggesting that similar values were clustered spatially.The analysis hinted at local clusters of similar socioeconomic conditions.Regression analysis was conducted to explore the relationship between socioeconomic status and the number of persons with no high school diploma. The model provided insights into the impact of education levels on socioeconomic status.
+The resulting clusters provided insights into the distribution and dispersion of trails across the state. Network analysis using graph theory was initiated to study the connectivity of trail points. However, due to challenges with the loop structure, further exploration was curtailed. The study integrated data on socioeconomic status, racial and ethnic minority status, education levels, and housing characteristics at the census tract and county levels. The analysis revealed patterns and clusters in these demographic factors across the state. Moran’s I statistic indicated positive spatial autocorrelation, suggesting that similar values were clustered spatially. The analysis hinted at local clusters of similar socioeconomic conditions. Regression analysis was conducted to explore the relationship between socioeconomic status and the number of persons with no high school diploma. The model provided insights into the impact of education levels on socioeconomic status.
 ### Implications and Recommendations:
 
 The study’s findings can be leveraged to enhance tourism promotion strategies. AI-driven mobile apps can recommend personalized trail experiences based on visitor interests and fitness levels. AI solutions can be deployed to predict and prioritize trail maintenance needs, ensuring efficient allocation of resources and enhancing trail safety Consideration of demographic patterns and socioeconomic factors can inform community engagement initiatives. Tailored programs can be developed to address the diverse needs and preferences of different regions.
 ### Further Network Analysis:
 
-Despite challenges in the initial network analysis, further exploration is recommended. Refining the loop structure and addressing errors in the code could provide valuable insights into the connectivity of trail points.Collaborative efforts with environmental scientists, ecologists, and urban planners can enrich the study’s findings. Exploring the relationship between trail networks and environmental factors may contribute to a more comprehensive understanding.
+Despite challenges in the initial network analysis, further exploration is recommended. Refining the loop structure and addressing errors in the code could provide valuable insights into the connectivity of trail points. Collaborative efforts with environmental scientists, ecologists, and urban planners can enrich the study’s findings. Exploring the relationship between trail networks and environmental factors may contribute to a more comprehensive understanding.
 
 In conclusion, the study presents a multifaceted analysis of Pennsylvania’s trail network, laying the groundwork for informed decision-making in trail management, tourism promotion, and community engagement. Further research and collaboration can build upon these findings for the continued enhancement of Pennsylvania’s recreational infrastructure.
 
@@ -590,10 +590,10 @@ In conclusion, the study presents a multifaceted analysis of Pennsylvania’s tr
     Trail updates are submitted by users through explorepatrails.com and are evaluated and updated on a regular basis.↩︎
 
 2.  Adrian Baddeley, Gopalan Nair, Suman Rakshit, Greg McSwiggan, Tilman M. Davies, Analysing point patterns on networks — A review, Spatial Statistics, Volume 42, 2021, 100435, ISSN 2211-6753, <https://doi.org/10.1016/j.spasta.2020.100435>.
-    (<https://www.sciencedirect.com/science/article/pii/S2211675320300294>) Abstract: We review recent research on statistical methods for analysing spatial patterns of points on a network of lines, such as road accident locations along a road network.
+    (<https://www.sciencedirect.com/science/article/pii/S2211675320300294>) Abstract: We review recent research on statistical methods for analyzing spatial patterns of points on a network of lines, such as road accident locations along a road network.
     Due to geometrical complexities, the analysis of such data is extremely challenging, and we describe several common methodological errors.
     The intrinsic lack of homogeneity in a network militates against the traditional methods of spatial statistics based on stationary processes.
-    Topics include kernel density estimation, relative risk estimation, parametric and non-parametric modelling of intensity, second-order analysis using the K-function and pair correlation function, and point process model construction.
+    Topics include kernel density estimation, relative risk estimation, parametric and non-parametric modeling of intensity, second-order analysis using the K-function and pair correlation function, and point process model construction.
     An important message is that the choice of distance metric on the network is pivotal in the theoretical development and in the analysis of real data.
     Challenges for statistical computation are discussed and open-source software is provided.
     Keywords: Distance metric; Kernel density estimation; K-function; Nonparametric estimation; Pair correlation function; Stationary process↩︎
