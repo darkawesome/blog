@@ -336,6 +336,8 @@ tm_shape(ozone.voronoi.sf) +
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true)
 
+**In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a "truer" image about how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites**
+
 ```r
 tm_shape(county.data.sf) +
                tm_polygons("OZONE_1000PPB",palette="YlGnBu",breaks=seq(0,100,by=20))+
@@ -346,6 +348,8 @@ tm_shape(county.data.sf) +
 ```
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneCounty.png?raw=true)
+
+**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.**
 
 ```r
 tm_shape(county.data.sf) +
@@ -359,12 +363,6 @@ tm_shape(county.data.sf) +
 ```
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true)
-
-### Comprehension
-
-In your own words, describe what each map is showing and what voronoi polygons are. Compare and contrast the three maps and explain the advantages and disadvantages of using each way to visualize the ozone data.
-
-**In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a "truer" image about how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites**
 
 **In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.**
 
@@ -429,15 +427,15 @@ plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
 
 ### Interpretation
 
-HO:The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.
+**HO : The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.**
 
 ### Monte Carlo
 
-The monte carlo approach takes a point and does and independent random process with polygons around it using an independent random process and seeing how likely it is.
+**The monte carlo approach takes a point and does and independent random process with polygons around it using an independent random process and seeing how likely it is.**
 
 ### A different variable
 
-Then, copy and edit my code to conduct a Moran’s I analysis of a variable (column) of your choice and interpret your findings in the text. Remember, you can go back to the lab 4 description to work out what columns are showing you - and names(moran.data) will show you the column names. ————————————————————————
+Then, copy and edit my code to conduct a Moran’s I analysis of a variable (column) of your choice and interpret your findings in the text. Remember, you can go back to the lab 4 description to work out what columns are showing you. And names (moran.data) will show you the column names.
 
 ### Section E. LISA
 
@@ -610,11 +608,14 @@ plot(moran.mc(moran.data1$EP_POV150, lw1, nsim=999, alternative="greater"))
 Using the lecture notes and readings interpret what the maps are showing you. Your write up should include
 
 -   What do each of the four colors/quadrants mean?
-    The colors for the mean ozone are showing the ozone levels and separating the breaks based on the abundance of the ozone in the different California counties.For the LISA the colors are showing the higher than average areas withing the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower than average areas that are surrounded by low ozone where nothing is.
+    
+      **The colors for the mean ozone are showing the ozone levels and separating the breaks based on the abundance of the ozone in the different California counties.For the LISA the colors are showing the higher than average areas withing the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower than average areas that are surrounded by low ozone where nothing is.**
 
--   How do they link to the Moran scatterplot
-    Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it. ## P values
+-   How do they link to the Moran scatterplot?
+    
+      **Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it. ## P values**
 
 Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.
 
 When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.
+
