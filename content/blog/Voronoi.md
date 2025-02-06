@@ -140,7 +140,7 @@ Tell me what patterns and processes you see in your maps. Referring to your maps
 
 ### Qu. 2E: MAUP
 
-Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census level SOVI data.
+Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census-level SOVI data.
 
 **Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph. If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.**
 
@@ -336,7 +336,7 @@ tm_shape(ozone.voronoi.sf) +
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true)
 
-**In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a "truer" image about how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites**
+**In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a "truer" image of how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites**
 
 ```r
 tm_shape(county.data.sf) +
@@ -349,7 +349,7 @@ tm_shape(county.data.sf) +
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneCounty.png?raw=true)
 
-**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.**
+**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the Voronoi Tesselations it can give lawmakers and others interested in the issue areas to survey to find what the cause may be as to why the ozone is different in different parts of the state.**
 
 ```r
 tm_shape(county.data.sf) +
@@ -364,9 +364,9 @@ tm_shape(county.data.sf) +
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true)
 
-**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.**
+**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the Voronoi Tesselations it can give lawmakers and others interested in the issue areas to survey to find what the cause may be as to why the ozone is different in different parts of the state.**
 
-**The final grpah gives a look at the issue looking at the individual testing sites. Although this doesn't give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or less sensors in an area has the potential to skew what we are seeing in the data. For law makers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.**
+**The final graph looks at the issue looking at the individual testing sites. Although this doesn't give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or fewer sensors in an area has the potential to skew what we are seeing in the data. For lawmakers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.**
 
 ### Section D. Moran’s I ozone
 
@@ -427,11 +427,11 @@ plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
 
 ### Interpretation
 
-**HO : The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.**
+**HO : The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that there is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.**
 
 ### Monte Carlo
 
-**The monte carlo approach takes a point and does and independent random process with polygons around it using an independent random process and seeing how likely it is.**
+**The Monte Carlo approach takes a point and does an independent random process with polygons around it using an independent random process and seeing how likely it is.**
 
 ### A different variable
 
@@ -609,7 +609,7 @@ Using the lecture notes and readings interpret what the maps are showing you. Yo
 
 -   What do each of the four colors/quadrants mean?
     
-      **The colors for the mean ozone are showing the ozone levels and separating the breaks based on the abundance of the ozone in the different California counties.For the LISA the colors are showing the higher than average areas withing the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower than average areas that are surrounded by low ozone where nothing is.**
+      **The colors for the mean ozone show the ozone levels and separate the breaks based on the abundance of the ozone in the different California counties. For the LISA the colors are showing the higher than average areas within the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower-than-average areas that are surrounded by low ozone where nothing is.**
 
 -   How do they link to the Moran scatterplot?
     
