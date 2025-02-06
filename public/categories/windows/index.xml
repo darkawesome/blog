@@ -6,8 +6,15 @@
     <description>Recent content in Windows on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Dec 2024 15:48:30 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 06 Feb 2025 13:24:11 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Voronoi</title>
+      <link>http://localhost:1313/blog/Voronoi/</link>
+      <pubDate>Thu, 06 Feb 2025 13:24:11 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Voronoi/</guid>
+      <description>&lt;p&gt;The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>EveOnlinePI</title>
       <link>http://localhost:1313/blog/EveOnlinePI/</link>
@@ -20,7 +27,7 @@
       <link>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</link>
       <pubDate>Tue, 19 Nov 2024 21:55:25 -0500</pubDate>
       <guid>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</guid>
-      <description>&lt;p&gt;This is a continuation of the previous work done by Dimitri Nilov(&lt;a href=&#34;https://www.gotechinsights.com/blog/part2cybertrend%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/part2cybertrend)&lt;/a&gt;. When I started this project I was not aware of the work he had done intially. However, from a review of his work I have focused on a time series analysis of the attacks. Focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is a continuation of Dimitri Nilov&amp;rsquo;s previous work (&lt;a href=&#34;https://www.gotechinsights.com/blog/part2cybertrend%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/part2cybertrend)&lt;/a&gt;. When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.&lt;/p&gt;&#xA;&lt;h3 id=&#34;update-december-17th-2024&#34;&gt;&#xA;  Update December 17th, 2024&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#update-december-17th-2024&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Similar work has been done by Derek Loughrey (&lt;a href=&#34;https://www.gotechinsights.com/blog/key-global-cyber-trends-2014-2024%29&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.gotechinsights.com/blog/key-global-cyber-trends-2014-2024)&lt;/a&gt;. His research looks at the dominance of criminal actors, the growing exploitation of vulnerable industries such as healthcare, and the geopolitical dimensions of cyber warfare, particularly in the context of Russia&amp;rsquo;s ongoing invasion of Ukraine.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cyber Defense Analysis</title>
