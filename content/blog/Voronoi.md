@@ -10,7 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: false
+draft: true
 ---
 
 The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. 
