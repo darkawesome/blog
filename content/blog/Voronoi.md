@@ -10,10 +10,10 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: true
+draft: false
 ---
 
-The following is work from my undergrad apart of a geology class in 2023 using Voronoi polygons and other tools to look at air quality in California.
+The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. Although this work doesn't reflect my current knowledge well it is a great example of some of the work I have done in the class. This also works for me as a repository of information to look back at if similar work were to be done in the future.
 <!--more-->
 
 ## Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
