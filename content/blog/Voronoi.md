@@ -127,8 +127,7 @@ tmap_arrange(map1,map2,map3,map4)
 ```
 
 
-![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/RPL+More.png
-?raw=true)
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/RPL+More.png?raw=true)
 
 ### Qu. 2D: Map interpretation
 
