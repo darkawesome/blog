@@ -427,7 +427,10 @@ plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
 
 ### Interpretation
 
-**HO : The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that there is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.**
+**HO: The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB)
+H1: The actual sample is different from the expected if H0 was true 
+test statistic: 5.7038 p-value: 5.858e-09 
+Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that there is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.**
 
 ### Monte Carlo
 
@@ -613,7 +616,7 @@ Using the lecture notes and readings interpret what the maps are showing you. Yo
 
 -   How do they link to the Moran scatterplot?
     
-      **Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it. ## P values**
+      **Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it.
 
 Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.
 
