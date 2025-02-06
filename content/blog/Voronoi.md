@@ -13,7 +13,7 @@ tags:
 draft: true
 ---
 
-The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California.
+The following is work from my undergrad apart of a geology class in 2023 using Voronoi polygons and other tools to look at air quality in California.
 <!--more-->
 
 ## Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
@@ -82,7 +82,7 @@ Edit for CA, then write a sentence explaining where the data is from and add a f
 
 How did I make my set-up code chunk invisible when this file knits? Hint look at the code chunk options.
 
-**Including “message=FALSE,warning=FALSE,echo=FALSE,include=FALSE” in the code chunk makes the chunk itsself invisible.**
+**Including “message=FALSE,warning=FALSE,echo=FALSE,include=FALSE” in the code chunk makes the chunk itself invisible.**
 
 ## Challenge 2. SOVI
 
@@ -90,7 +90,7 @@ How did I make my set-up code chunk invisible when this file knits? Hint look at
 
 Explain what SOVI is in your own words, using the lab instruction resources as a guide
 
-**SOVI is an index that sees how people are able to withstand hazards or things beyond their control that negatively affect their life.**
+**SOVI is an index that sees how people can withstand hazards or things beyond their control that negatively affect their lives.**
 
 ### Qu. 2B: Themes
 
@@ -131,15 +131,15 @@ tmap_arrange(map1,map2,map3,map4)
 
 ### Qu. 2D: Map interpretation
 
-Tell me what patterns and processes you see in your maps. Referring to your maps, which areas of California do you think might struggle with the social impact of air pollution and why.
+Tell me what patterns and processes you see in your maps. Referring to your maps, which areas of California do you think might struggle with the social impact of air pollution and why?
 
-**The southern and middle parts of California show a lot of overlap with socioeconomic status and racial and ethnic minority status. While the persons with no HS diploma are also represented in this group being centered just south of the middle of California. When it comes to who would be the most likely to struggle with the social impact of air pollution it looks as though it would be these persons in these areas. Although, having a HS diploma doesn’t make a person inherently more susceptible to air pollution economic mobility is affected.**
+**The southern and middle parts of California show a lot of overlap with socioeconomic status and racial and ethnic minority status. While the persons with no HS diploma are also represented in this group being centered just south of the middle of California. When it comes to who would be the most likely to struggle with the social impact of air pollution it looks as though it would be these persons in these areas. Although, having an HS diploma doesn’t make a person inherently more susceptible to air pollution economic mobility is affected.**
 
 ### Qu. 2E: MAUP
 
 Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census level SOVI data.
 
-**Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph.If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.**
+**Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph. If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.**
 
 
 ### Challenge 3. Ozone data
@@ -200,7 +200,7 @@ max(point.ozone.sf$POPULATION_DENSITY)
 
 -    What is the maximum population density? 406.6252
 
-### Qu. 3D. Ozone vs Population density.
+### Qu. 3D. Ozone vs Population Density.
 
 Using the plotly command, use this tutorial to make a map of ozone values vs population density at each location.
 
@@ -228,7 +228,7 @@ fig
 
 
 
-**Given the source of the data the ozone ppm seems smaller than what I thought it would be honestly. With the majoirty of the ozone present in a lower population density seems to be counter to what I would expect.**
+**Given the source of the data the ozone ppm seems smaller than what I thought it would be honestly. The majority of the ozone present in a lower population density seems to be counter to what would be expected.**
 
 ### Qu. 3E. Ozone maps
 
@@ -296,7 +296,7 @@ print(combined_map)
 
 
 ### Conclusion
-**The ozone is in areas that I would expect it to be as it covers the areas with less population density. In the areas with higher population density there are lower levels of ozone. Which may speak to the levels of people living in the area having an affect on the level of ozone in the atmosphere.**
+**The ozone is in areas that I would expect it to be as it covers the areas with less population density. In the areas with higher population density, there are lower levels of ozone. This may speak to the levels of people living in the area affecting the level of ozone in the atmosphere.**
 
 1.2020 Database State. https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html. Accessed on 11/06/2023.↩︎
 
