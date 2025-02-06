@@ -12,14 +12,15 @@ tags:
   - Ubuntu
 draft: false
 ---
-This is a continuation of the previous work done by Dimitri Nilov(https://www.gotechinsights.com/blog/part2cybertrend). When I started this project I was not aware of the work he had done intially. However, from a review of his work I have focused on a time series analysis of the attacks. Focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
+This is a continuation of Dimitri Nilov's previous work (https://www.gotechinsights.com/blog/part2cybertrend). When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
+
+update December 17th, 2024: Similar work has been done by Derek Loughrey. His research looks at the dominance of criminal actors, the growing exploitation of vulnerable industries such as healthcare, and the geopolitical dimensions of cyber warfare, particularly in the context of Russia's ongoing invasion of Ukraine. 
 <!--more-->
 
 ## What's happening?
 
+- Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact. As the most pervasive attack type year after year, it raises a real threat to all nation's economies. It also highlights the opportunities for policy input in this area.
 - Nation-state actors have consistently grown in influence from 2014 to 2023, particularly in Asia, Europe, and North America. This reflects the increasing use of cyber capabilities by governments for both defense and intelligence.
-
-- Criminal actors are widespread across all frames, highlighting that cybercrime is a constant, pervasive issue with global impact.
 
 - Hacktivists appear sporadically, usually concentrated in specific regions, suggesting that their activity is more event-driven and localized.
 
