@@ -1,336 +1,828 @@
-<!doctype html><html lang=en><head><title>Voronoi · DarkAwesome
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Voronoi"><meta name=twitter:description content="The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California."><meta property="og:url" content="http://darkawesome.github.io/blog/Voronoi/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Voronoi"><meta property="og:description" content="The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-02-06T13:24:11-05:00"><meta property="article:modified_time" content="2025-02-06T13:24:11-05:00"><meta property="article:tag" content="Ubuntu"><link rel=canonical href=http://darkawesome.github.io/blog/Voronoi/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
-</a><input type=checkbox id=menu-toggle>
-<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/Voronoi/>Voronoi</a></h1></header><p>The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California.</p><p>Although this work doesn&rsquo;t relect my current knowledge it is a great example of some of the work I have done in the past. This also exists as a repository of informaiton to look back at if similar work were to be done in the future. I have left in the instructions from the class as well. While some of the code is mine parts are from the professor Dr.G.</p><h2 id=lab-4-using-voronoi-polygons-for-air-quality-monitoring-network-design>Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
-<a class=heading-link href=#lab-4-using-voronoi-polygons-for-air-quality-monitoring-network-design><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>2023-12-05</p><h3 id=introduction>Introduction
-<a class=heading-link href=#introduction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>The objective of this lab is to introduce you to the concept of Voronoi polygons and demonstrate their practical application in designing an air quality monitoring network for California. You will learn how to create Voronoi polygons from ozone measurement data, identify suitable monitoring station locations, and explore the significance of such a network in air quality management. You will also compare this with spatial demographic data from the CDC/ATSDR Social Vulnerability Index.</p><h3 id=libraries>Libraries
-<a class=heading-link href=#libraries><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Feel free to add any additional libraries you need</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tmap)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(raster)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(gstat)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tidyverse)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tigris)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(plotly)
-</span></span></code></pre></div><h3 id=dr-gs-set-up-code>Dr G’s Set-Up Code
-<a class=heading-link href=#dr-gs-set-up-code><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>You do not need to edit the code chunk below, It should run and be invisible when you knit. I did this because I couldn’t suppress the loading messages in any other way. Dr G: My code does several things</p><ol><li>I use the Tigris package to read in the census tract and county borders for California</li><li>I then directly download the SOVI data from a government portal. If you put the url into an internet browser it will also directly download.</li><li>The SOVI files are huge. This is a one week lab, so I tidied up</li><li>I switched all the -999s to NA using the mutate command</li><li>Then I joined the SOVI data with the spatial census tract/county borders - to make<ol><li>tract.sovi.sf - the sovi data at census tract level</li><li>county.sovi.sf - the sovi data at county level</li></ol></li><li>Finally I changed the map projection to the North American Albers Equal Area Conic projection (AEA)</li></ol><p>You do not need to edit this code chunk, It should run and be invisible when you knit. I did this because it kept messing up my output when I knit.</p><h2 id=challenge-1-comprehension>Challenge 1. Comprehension
-<a class=heading-link href=#challenge-1-comprehension><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=qu-1a>Qu. 1A
-<a class=heading-link href=#qu-1a><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Describe what census tracts are and why they are commonly used as a spatial unit.</p><p>Census tracts are areas where a census would take place. These are used as a spatial unit to draw statistical information from a population area</p><h3 id=qu-1b>Qu. 1B
-<a class=heading-link href=#qu-1b><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>In my code, I change the data to the North American Albers Equal Area Conic projection (AEA). Explain what this is and how it’s different to lat/long or UTM data.</p><p><strong>This is different from lat/long or UTM data as it is a different type of projection that uses two standard parallels to reduce distortions. Making this best used for land masses in the middle latitudes like the United States and Europe.</strong></p><h3 id=qu-1c>Qu. 1C
-<a class=heading-link href=#qu-1c><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>In my code, I use the command rm(list=ls()).
-What does this do? Remember google/chatGPT in helping you answer this.</p><p><strong>This clears the environment data to give you a clean workspace as if you made a new project.</strong></p><h3 id=qu-1d>Qu. 1D
-<a class=heading-link href=#qu-1d><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>You will find the reference for SOVI here. <a href=https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html class=external-link target=_blank rel=noopener>https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html</a></p><p>Edit for CA, then write a sentence explaining where the data is from and add a footnote with your reference. To do this, click the visual button at the top, then go to Insert/Footnote. (HINT FOR PROJECTS)</p><p><strong>The data came from the CDC/ATSDR Social Vulnerability Index.</strong></p><h3 id=qu-1e>Qu. 1E
-<a class=heading-link href=#qu-1e><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>How did I make my set-up code chunk invisible when this file knits? Hint look at the code chunk options.</p><p><strong>Including “message=FALSE,warning=FALSE,echo=FALSE,include=FALSE” in the code chunk makes the chunk itself invisible.</strong></p><h2 id=challenge-2-sovi>Challenge 2. SOVI
-<a class=heading-link href=#challenge-2-sovi><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=qu-2a-sovi-basics>Qu. 2A. SOVI Basics
-<a class=heading-link href=#qu-2a-sovi-basics><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Explain what SOVI is in your own words, using the lab instruction resources as a guide</p><p><strong>SOVI is an index that sees how people can withstand hazards or things beyond their control that negatively affect their lives.</strong></p><h3 id=qu-2b-themes>Qu. 2B: Themes
-<a class=heading-link href=#qu-2b-themes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>In the sovi dataset, you should see these columns (“RPL_THEME1” “RPL_THEME2” “RPL_THEME3” “RPL_THEME4” “RPL_THEMES”). They are described here: Sovi documentation and in the SOVI recipe in the lab book.</p><p>Describe what each of these columns represents. If you talked about this in above, you can refer to your answer.</p><p><strong>RPL_THEME1 - Percentile ranking for Socioeconomic Status theme summary RPL_THEME2 - Percentile ranking for Household Characteristics theme summary RPL_THEME3 - Percentile ranking for Racial and Ethnic Minority Status theme RPL_THEME4 - Percentile ranking for Housing Type/ Transportation theme RPL_THEMES - Overall percentile ranking</strong></p><h3 id=qu-2c-sovi-theme-maps>Qu. 2C: SOVI theme maps
-<a class=heading-link href=#qu-2c-sovi-theme-maps><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>YOU HAVE A CHOICE.</p><p>If you’re interested and your computer is powerful, use the census-tract sovi sf data at any time. If your computer struggles/you use the cloud or you want it to run fast, use the county level sovi sf data.</p><p>Create four professional maps showing the SOVI Themes 1-4 for California.</p><p>Tmap is a little different with polygon data, so here’s some example code also showing how to do subplots</p><ul><li><p>When you have edited it and are ready, remove the # at the front of each line you want to run. Or you’re welcome to delve into the more complex tmap packages if you like <a href=https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html class=external-link target=_blank rel=noopener>https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html</a></p></li><li><p>For MANY color options, see <a href=https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf class=external-link target=_blank rel=noopener>https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf</a></p></li></ul><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color</span>
-</span></span><span style=display:flex><span>map1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>qtm</span>(county.sovi.sf,fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;RPL_THEME1&#34;</span>,fill.palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Greens&#34;</span>) <span style=color:#8b949e;font-style:italic>#Socioeconomic Status theme summary</span>
-</span></span><span style=display:flex><span>map2 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>qtm</span>(county.sovi.sf,fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;RPL_THEME3&#34;</span>,fill.palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Blues&#34;</span>) <span style=color:#8b949e;font-style:italic>#Racial and Ethnic Minority Status them</span>
-</span></span><span style=display:flex><span>map3 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>qtm</span>(county.sovi.sf,fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;EP_NOHSDP&#34;</span>,fill.palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Reds&#34;</span>) <span style=color:#8b949e;font-style:italic>#persons with no HS Diploma </span>
-</span></span><span style=display:flex><span>map4 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>qtm</span>(county.sovi.sf,fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;EP_MUNIT&#34;</span>,fill.palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Purples&#34;</span>) <span style=color:#8b949e;font-style:italic>#Housing in buildings with 10 or more units </span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tmap_arrange</span>(map1,map2,map3,map4)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/RPL+More.png?raw=true" alt=SOVI_Graphs></p><h3 id=qu-2d-map-interpretation>Qu. 2D: Map interpretation
-<a class=heading-link href=#qu-2d-map-interpretation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Tell me what patterns and processes you see in your maps. Referring to your maps, which areas of California do you think might struggle with the social impact of air pollution and why?</p><p><strong>The southern and middle parts of California show a lot of overlap with socioeconomic status and racial and ethnic minority status. While the persons with no HS diploma are also represented in this group being centered just south of the middle of California. When it comes to who would be the most likely to struggle with the social impact of air pollution it looks as though it would be these persons in these areas. Although, having an HS diploma doesn’t make a person inherently more susceptible to air pollution economic mobility is affected.</strong></p><h3 id=qu-2e-maup>Qu. 2E: MAUP
-<a class=heading-link href=#qu-2e-maup><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census-level SOVI data.</p><p><strong>Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph. If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.</strong></p><h3 id=challenge-3-ozone-data>Challenge 3. Ozone data
-<a class=heading-link href=#challenge-3-ozone-data><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><h3 id=qu-3a-ozone-summary>Qu. 3A. Ozone summary
-<a class=heading-link href=#qu-3a-ozone-summary><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>We will now read in some data on Ozone. You can read about it in the lab book. Summarise what the data is showing.
-Qu. 3B. Ozone read-in</p><p>Replace the XXXXXs with the correct values to get this to run. Your data should already be in your project file. Hint, not all the XXXXXs are the same!</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># point.ozone$LONGITUDE</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Read in Ozone Data</span>
-</span></span><span style=display:flex><span>point.ozone     <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>read.csv</span>(<span style=color:#a5d6ff>&#34;CA_OzonePopulation.csv&#34;</span>)
-</span></span><span style=display:flex><span>point.ozone.sf  <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_as_sf</span>(point.ozone, coords<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;LONGITUDE&#34;</span>,<span style=color:#a5d6ff>&#34;LATITUDE&#34;</span>),crs<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>4326</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Transform to projection 3310 - hint look at my set-up code chunk.</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># I&#39;m simply overwriting my sf data as my answer</span>
-</span></span><span style=display:flex><span>point.ozone.sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_transform</span>(point.ozone.sf,<span style=color:#a5d6ff>3310</span>)
-</span></span></code></pre></div><h3 id=qu-3c-ozone-summary>Qu. 3C. Ozone summary
-<a class=heading-link href=#qu-3c-ozone-summary><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Use R to summarise the ozone data, then answer these Qu.s in the text</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#summarise the ozone data</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summarise</span>(point.ozone.sf)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Simple feature collection with 1 feature and 0 fields</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Geometry type: MULTIPOINT</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Dimension:     XY</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Bounding box:  xmin: -353684.6 ymin: -624323.6 xmax: 501010.6 ymax: 432274.9</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Projected CRS: NAD83 / California Albers</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##                         geometry</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## 1 MULTIPOINT ((-353684.6 3143...</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#the max ozone point in ppb</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>max</span>(point.ozone.sf<span style=color:#ff7b72;font-weight:700>$</span>POPULATION_DENSITY)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## [1] 406.6252</span>
-</span></span></code></pre></div><ul><li><p>How many monitoring stations are there in the dataset? There are 451 monitoring stations</p></li><li><p>What is the Ozone at site name: Beverly Hills-Franklin? Remember units! 33.50973 ppb</p></li><li><p>What is the maximum population density? 406.6252</p></li></ul><h3 id=qu-3d-ozone-vs-population-density>Qu. 3D. Ozone vs Population Density.
-<a class=heading-link href=#qu-3d-ozone-vs-population-density><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Using the plotly command, use this tutorial to make a map of ozone values vs population density at each location.</p><p><a href=https://plotly.com/r/line-and-scatter/ class=external-link target=_blank rel=noopener>https://plotly.com/r/line-and-scatter/</a></p><p><a href=https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive class=external-link target=_blank rel=noopener>https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive</a></p><p>Explain do you see - is it what you expect given the sources of ozone data?</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(plotly)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>fig <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>plot_ly</span>(data <span style=color:#ff7b72;font-weight:700>=</span> point.ozone, x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>~</span>POPULATION_DENSITY, y <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>~</span>OZONE_1000PPB,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  color <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>~</span>OZONE_1000PPB, size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>~</span>POPULATION_DENSITY)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>fig
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/plotly.png?raw=true" alt=SOVI_Graphs></p><p><strong>Given the source of the data the ozone ppm seems smaller than what I thought it would be honestly. The majority of the ozone present in a lower population density seems to be counter to what would be expected.</strong></p><h3 id=qu-3e-ozone-maps>Qu. 3E. Ozone maps
-<a class=heading-link href=#qu-3e-ozone-maps><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Make two map showing the Ozone levels and the population density across California at the measuring sites. Hint (lab 3/reports etc). Bonus if you want to explore leaflet</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#plot(point.ozone$OZONE_1000PPB) placeholder just to copy the variables</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#plot(point.ozone$POPULATION_DENSITY) placeholder just to copy the variables </span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#map showing Ozone levels across California at the measuring sites</span>
-</span></span><span style=display:flex><span>ozone_map <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>ggplot</span>() <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>geom_sf</span>(data <span style=color:#ff7b72;font-weight:700>=</span> point.ozone.sf, <span style=color:#d2a8ff;font-weight:700>aes</span>(color <span style=color:#ff7b72;font-weight:700>=</span> OZONE_1000PPB), size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>3</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>scale_color_gradient</span>(low <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;blue&#34;</span>, high <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;red&#34;</span>, name <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Ozone Level&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Ozone Levels at Measuring Sites&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>theme_minimal</span>()
-</span></span><span style=display:flex><span>ozone_map
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/airqual.png?raw=true" alt=SOVI_Graphs></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#map showing Population Density across California at the measuring sites</span>
-</span></span><span style=display:flex><span>density_map <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>ggplot</span>() <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>geom_sf</span>(data <span style=color:#ff7b72;font-weight:700>=</span> point.ozone.sf, <span style=color:#d2a8ff;font-weight:700>aes</span>(color <span style=color:#ff7b72;font-weight:700>=</span> POPULATION_DENSITY), size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>3</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>scale_color_gradient</span>(low <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;lightblue&#34;</span>, high <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;darkblue&#34;</span>, name <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Population Density&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Population Density at Measuring Sites&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>theme_minimal</span>()
-</span></span><span style=display:flex><span>density_map
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densitymap.png?raw=true" alt=SOVI_Graphs></p><p>Compare the maps visually. Is the ozone where you expect it to be? What might be happening? (hint, ozone is VERY light and CA is coastal)</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#package to combine the 2 mpas to be on 1 graph</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#install.packages(&#34;gridExtra&#34;)</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(gridExtra)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>combined_map <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>grid.arrange</span>(density_map, ozone_map, ncol <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>2</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Display the combined map</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(combined_map)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/density+airq.png?raw=true" alt=SOVI_Graphs></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## TableGrob (1 x 2) &#34;arrange&#34;: 2 grobs</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##   z     cells    name           grob</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## 1 1 (1-1,1-1) arrange gtable[layout]</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## 2 2 (1-1,2-2) arrange gtable[layout]</span>
-</span></span></code></pre></div><h3 id=conclusion>Conclusion
-<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><strong>The ozone is in areas that I would expect it to be as it covers the areas with less population density. In the areas with higher population density, there are lower levels of ozone. This may speak to the levels of people living in the area affecting the level of ozone in the atmosphere.</strong></p><p>1.2020 Database State. <a href=https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html class=external-link target=_blank rel=noopener>https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html</a>. Accessed on 11/06/2023.↩︎</p><h2 id=lab-5-morans-i-and-lisa>Lab 5: Moran’s I and LISA
-<a class=heading-link href=#lab-5-morans-i-and-lisa><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=section-a-set-up>Section A. Set-up
-<a class=heading-link href=#section-a-set-up><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>The objective of this lab is to introduce you to the concept of Voronoi polygons, Moran’s I and LISA; building on Lab 4 to look at air pollution in California.</p><h3 id=libraries-1>Libraries
-<a class=heading-link href=#libraries-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Make sure to install any additional libraries you need</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tmap)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(raster)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(gstat)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tidyverse)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tigris)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(plotly)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(terra)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(spdep)
-</span></span></code></pre></div><p>Reading in the data</p><p>I did most of the set up and analysis you did in Lab 4 separately to save computational power for those on R studio cloud. Make sure that the data files from Canvas are in your project folder, then this should just run</p><h2 id=section-b---voronoi-polygons>Section B - Voronoi Polygons
-<a class=heading-link href=#section-b---voronoi-polygons><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>You should be able to simply run this code. If not, ask Harman or Dr G.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># you should be able to simply run this code</span>
-</span></span><span style=display:flex><span>ozone.terra      <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>vect</span>(ozone.sf)
-</span></span><span style=display:flex><span>ozone.voronoi.sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>voronoi</span>(ozone.terra)
-</span></span><span style=display:flex><span>ozone.voronoi.sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_as_sf</span>(<span style=color:#d2a8ff;font-weight:700>crop</span>(ozone.voronoi.sf,state.border.terra))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(ozone.voronoi.sf) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_polygons</span>(<span style=color:#a5d6ff>&#34;OZONE_1000PPB&#34;</span>,palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;YlGnBu&#34;</span>)<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_legend</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Voroni Tesselation of Ozone in CA (1000 PPB)&#34;</span>,
-</span></span><span style=display:flex><span>                         main.title.size<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.8</span>,main.title.fontface<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true" alt=SOVI_Graphs></p><p><strong>In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a &ldquo;truer&rdquo; image of how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites</strong></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(county.data.sf) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_polygons</span>(<span style=color:#a5d6ff>&#34;OZONE_1000PPB&#34;</span>,palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;YlGnBu&#34;</span>,breaks<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#d2a8ff;font-weight:700>seq</span>(<span style=color:#a5d6ff>0</span>,<span style=color:#a5d6ff>100</span>,by<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>20</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_legend</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;County Averages of Ozone in CA (1000 PPB)&#34;</span>,
-</span></span><span style=display:flex><span>                         main.title.size<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.8</span>,main.title.fontface<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneCounty.png?raw=true" alt=SOVI_Graphs></p><p><strong>In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn&rsquo;t give as clear of an image as the Voronoi Tesselations it can give lawmakers and others interested in the issue areas to survey to find what the cause may be as to why the ozone is different in different parts of the state.</strong></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(county.data.sf) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_borders</span>()<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_shape</span>(ozone.sf) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_dots</span>(col<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;OZONE_1000PPB&#34;</span>,palette<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;YlGnBu&#34;</span>,size<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.4</span>,alpha<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.6</span>)<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_legend</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>               <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;Point values of Ozone in CA (1000 PPB)&#34;</span>,
-</span></span><span style=display:flex><span>                         main.title.size<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.8</span>,main.title.fontface<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true" alt=SOVI_Graphs></p><p><strong>The final graph looks at the issue looking at the individual testing sites. Although this doesn&rsquo;t give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or fewer sensors in an area has the potential to skew what we are seeing in the data. For lawmakers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.</strong></p><h3 id=section-d-morans-i-ozone>Section D. Moran’s I ozone
-<a class=heading-link href=#section-d-morans-i-ozone><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Here I have provided a shortened version of the code in Dr Gimond’s tutorial. My code is set to look at the ozone levels. Get it running.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Choose the data you want.  To help your comprehension,</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Switch between this and ozone.voronoi.sf &amp; see how it changes</span>
-</span></span><span style=display:flex><span>moran.data <span style=color:#ff7b72;font-weight:700>&lt;-</span> county.data.sf
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># R hates empty polygons, so we&#39;re removing them</span>
-</span></span><span style=display:flex><span>moran.data <span style=color:#ff7b72;font-weight:700>&lt;-</span> moran.data[moran.data<span style=color:#ff7b72;font-weight:700>$</span>OZONE_1000PPB <span style=color:#ff7b72;font-weight:700>&gt;</span>  <span style=color:#a5d6ff>0</span> , ]
-</span></span><span style=display:flex><span>tracts_empty  <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_is_empty</span>(moran.data)
-</span></span><span style=display:flex><span>moran.data <span style=color:#ff7b72;font-weight:700>&lt;-</span> moran.data<span style=color:#d2a8ff;font-weight:700>[which</span>(tracts_empty<span style=color:#ff7b72;font-weight:700>==</span><span style=color:#79c0ff>FALSE</span>), ]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># make the nearest neighbours and weights matrix</span>
-</span></span><span style=display:flex><span>nb <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>poly2nb</span>(moran.data, queen<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>TRUE</span>)
-</span></span><span style=display:flex><span>lw <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>nb2listw</span>(nb, style<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;W&#34;</span>, zero.policy<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>TRUE</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Make the moran scatter plot</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>moran.plot</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>OZONE_1000PPB, 
-</span></span><span style=display:flex><span>           labels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#d2a8ff;font-weight:700>as.character</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>COUNTY),
-</span></span><span style=display:flex><span>           listw<span style=color:#ff7b72;font-weight:700>=</span> lw,
-</span></span><span style=display:flex><span>           xlab <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Value of Ozone per polygon (1000 PPB)&#34;</span>,
-</span></span><span style=display:flex><span>           ylab <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Average Ozone in neighbouring polygons (1000 PPB)&#34;</span>,
-</span></span><span style=display:flex><span>           zero.policy <span style=color:#ff7b72;font-weight:700>=</span> T)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avgOzone.png?raw=true" alt=SOVI_Graphs></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># And conduct the moran hypothesis test</span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>moran.test</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>OZONE_1000PPB, listw<span style=color:#ff7b72;font-weight:700>=</span> lw)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##  Moran I test under randomisation</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## data:  moran.data$OZONE_1000PPB  </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## weights: lw    </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Moran I statistic standard deviate = 5.7038, p-value = 5.858e-09</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## alternative hypothesis: greater</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## sample estimates:</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Moran I statistic       Expectation          Variance </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##       0.500936524      -0.018867925       0.008305187</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>plot</span>(<span style=color:#d2a8ff;font-weight:700>moran.mc</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>OZONE_1000PPB, lw, nsim<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>999</span>, alternative<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;greater&#34;</span>))
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/moranI.png?raw=true" alt=SOVI_Graphs></p><h3 id=interpretation>Interpretation
-<a class=heading-link href=#interpretation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><strong>HO: The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB)</strong></p><p><strong>H1: The actual sample is different from the expected if H0 was true</strong></p><p><strong>Test statistic: 5.7038 p-value: 5.858e-09</strong></p><p><strong>Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that there is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.</strong></p><h3 id=monte-carlo>Monte Carlo
-<a class=heading-link href=#monte-carlo><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><strong>The Monte Carlo approach takes a point and does an independent random process with polygons around it using an independent random process and seeing how likely it is.</strong></p><h3 id=a-different-variable>A different variable
-<a class=heading-link href=#a-different-variable><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Then, copy and edit my code to conduct a Moran’s I analysis of a variable (column) of your choice and interpret your findings in the text. Remember, you can go back to the lab 4 description to work out what columns are showing you. And names (moran.data) will show you the column names.</p><h3 id=section-e-lisa>Section E. LISA
-<a class=heading-link href=#section-e-lisa><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>My code for the LISA analysis should just run. I have split it into several code chunks to make it easier for the cloud and to explain what is happening. Get them all running then see below for questions.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># We can either create the Raw LISA values using the theoretical approach or Monte Carlo</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#  - Padjust allows us to account for mulitple testing issues.</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#  - adjust.x allows us to omit polygons with no neighbours as needed</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#  - zero.policy allows us to keep but ignore polygons with no neighbours</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#  - nsim: number of simulations, If this crashes the cloud try reducing to say 50</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>LocalMoran_Output <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>localmoran_perm</span>(x <span style=color:#ff7b72;font-weight:700>=</span> moran.data<span style=color:#ff7b72;font-weight:700>$</span>OZONE_1000PPB, 
-</span></span><span style=display:flex><span>                                     listw <span style=color:#ff7b72;font-weight:700>=</span> lw, 
-</span></span><span style=display:flex><span>                                     nsim<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>499</span>,
-</span></span><span style=display:flex><span>                                     adjust.x <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>,
-</span></span><span style=display:flex><span>                                     zero.policy <span style=color:#ff7b72;font-weight:700>=</span> T)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># The column names are less intuitive to newbies, so let&#39;s rename them </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># (to see the originals, type ?localmoran into the console)</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># The skew and kurtosis are because the histogram of IRP I might not look normal</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># To do this I force the output to be a standard dataframe</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>LocalMoran_Table <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>as.data.frame</span>(LocalMoran_Output)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>names</span>(LocalMoran_Table) <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;Observed_LocalI&#34;</span>, <span style=color:#a5d6ff>&#34;IRP_estimate_LocalI&#34;</span>,   <span style=color:#a5d6ff>&#34;Variance_I&#34;</span>,
-</span></span><span style=display:flex><span>                             <span style=color:#a5d6ff>&#34;ZScore_I&#34;</span>,  <span style=color:#a5d6ff>&#34;PValue_Theoretical&#34;</span>,  <span style=color:#a5d6ff>&#34;PValue_MonteCarlo&#34;</span>,
-</span></span><span style=display:flex><span>                             <span style=color:#a5d6ff>&#34;Skew_I&#34;</span>,<span style=color:#a5d6ff>&#34;Kurtosis_I&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Merge with our data</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>moran.data <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>cbind</span>(moran.data,LocalMoran_Table[,<span style=color:#a5d6ff>4</span><span style=color:#ff7b72;font-weight:700>:</span><span style=color:#a5d6ff>6</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># It turns out that the quadrants are secretly stored in the output, </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># so we don&#39;t even have to manually calculate them</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>attr</span>(LocalMoran_Output,<span style=color:#a5d6ff>&#34;quadr&#34;</span>)<span style=color:#ff7b72;font-weight:700>$</span>mean
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Remove polygons that are unlikely to be significant</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># YOU GET TO CHOOSE THE THRESHOLD HERE</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Find the rows where your p-value is &gt; your threshold</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>critical_threshold <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#a5d6ff>0.05</span>
-</span></span><span style=display:flex><span>RowsOverThreshold <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>which</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>PValue_MonteCarlo <span style=color:#ff7b72;font-weight:700>&gt;</span> critical_threshold) 
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Make the column a character to make life easy</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Then rename the quadrant in those rows p&gt;0.05, or </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># whatever your threshold is</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant_Plot <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>as.character</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant)
-</span></span><span style=display:flex><span>moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant_Plot[RowsOverThreshold] <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>paste</span>(<span style=color:#a5d6ff>&#34;P&gt;&#34;</span>,critical_threshold,sep<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;&#34;</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Make a factor again</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant_Plot <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>factor</span>(moran.data<span style=color:#ff7b72;font-weight:700>$</span>LISA_Quadrant_Plot,
-</span></span><span style=display:flex><span>                               levels<span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;High-High&#34;</span>,<span style=color:#a5d6ff>&#34;High-Low&#34;</span>, 
-</span></span><span style=display:flex><span>                                         <span style=color:#a5d6ff>&#34;Low-High&#34;</span>, <span style=color:#a5d6ff>&#34;Low-Low&#34;</span>,
-</span></span><span style=display:flex><span>                                         <span style=color:#d2a8ff;font-weight:700>paste</span>(<span style=color:#a5d6ff>&#34;P&gt;&#34;</span>,critical_threshold,sep<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;&#34;</span>)))
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># And make a plot</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>mapLISA <span style=color:#ff7b72;font-weight:700>&lt;-</span> 
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_shape</span>(moran.data)  <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>( <span style=color:#a5d6ff>&#34;LISA_Quadrant_Plot&#34;</span>,id<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;NAME&#34;</span>,  alpha<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.6</span>,
-</span></span><span style=display:flex><span>           palette<span style=color:#ff7b72;font-weight:700>=</span>  <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;#ca0020&#34;</span>,<span style=color:#a5d6ff>&#34;#f4a582&#34;</span>,<span style=color:#a5d6ff>&#34;#92c5de&#34;</span>,<span style=color:#a5d6ff>&#34;#0571b0&#34;</span>,<span style=color:#a5d6ff>&#34;white&#34;</span>), title<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>(alpha<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.5</span>) <span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_legend</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;left&#34;</span>, <span style=color:#a5d6ff>&#34;bottom&#34;</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>paste</span>(<span style=color:#a5d6ff>&#34;LISA,sig= &#34;</span>,critical_threshold), title.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># compare against the raw values </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#---------------------------------------------------</span>
-</span></span><span style=display:flex><span>mapRaw <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>tm_shape</span>(moran.data) <span style=color:#ff7b72;font-weight:700>+</span> 
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;OZONE_1000PPB&#34;</span>, 
-</span></span><span style=display:flex><span>              style <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;pretty&#34;</span>,
-</span></span><span style=display:flex><span>              palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;YlGnBu&#34;</span>, 
-</span></span><span style=display:flex><span>              border.alpha <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>, 
-</span></span><span style=display:flex><span>              title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;&#34;</span>,alpha<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.6</span>) <span style=color:#ff7b72;font-weight:700>+</span>  
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Mean Ozone&#34;</span>, title.position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;right&#34;</span>, <span style=color:#a5d6ff>&#34;top&#34;</span>))<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>(alpha<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.5</span>)<span style=color:#ff7b72;font-weight:700>+</span>
-</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_legend</span>(position <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;left&#34;</span>, <span style=color:#a5d6ff>&#34;bottom&#34;</span>))
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tmap_options</span>(check.and.fix <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tmap_mode</span>(<span style=color:#a5d6ff>&#34;plot&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tmap_arrange</span>(mapRaw,mapLISA)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/lisa.png?raw=true" alt=SOVI_Graphs></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Choose the data you want.  To help your comprehension,</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Switch between this and ozone.voronoi.sf &amp; see how it changes</span>
-</span></span><span style=display:flex><span>moran.data1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> county.data.sf
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># R hates empty polygons, so we&#39;re removing them</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#Change the data value to be EP_Age65 to look at the elderly </span>
-</span></span><span style=display:flex><span>moran.data1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> moran.data1[moran.data1<span style=color:#ff7b72;font-weight:700>$</span>EP_POV150 <span style=color:#ff7b72;font-weight:700>&gt;</span>  <span style=color:#a5d6ff>0</span> , ]
-</span></span><span style=display:flex><span>tracts_empty  <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_is_empty</span>(moran.data1)
-</span></span><span style=display:flex><span>moran.data1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> moran.data1<span style=color:#d2a8ff;font-weight:700>[which</span>(tracts_empty<span style=color:#ff7b72;font-weight:700>==</span><span style=color:#79c0ff>FALSE</span>), ]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># make the nearest neighbours and weights matrix</span>
-</span></span><span style=display:flex><span>nb1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>poly2nb</span>(moran.data1, queen<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>TRUE</span>)
-</span></span><span style=display:flex><span>lw1 <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>nb2listw</span>(nb1, style<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;W&#34;</span>, zero.policy<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>TRUE</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Make the moran scatter plot</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>#include labels showing whats happening </span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>moran.plot</span>(moran.data1<span style=color:#ff7b72;font-weight:700>$</span>EP_POV150, 
-</span></span><span style=display:flex><span>           labels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#d2a8ff;font-weight:700>as.character</span>(moran.data1<span style=color:#ff7b72;font-weight:700>$</span>COUNTY),
-</span></span><span style=display:flex><span>           listw<span style=color:#ff7b72;font-weight:700>=</span> lw1,
-</span></span><span style=display:flex><span>           xlab <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;estimate of pop 65 +&#34;</span>,
-</span></span><span style=display:flex><span>           ylab <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Average elderly in neighbouring polygons &#34;</span>,
-</span></span><span style=display:flex><span>           zero.policy <span style=color:#ff7b72;font-weight:700>=</span> T)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avg65.png?raw=true" alt=SOVI_Graphs></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># And conduct the moran hypothesis test</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># To show the autocorrelation </span>
-</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>moran.test</span>(moran.data1<span style=color:#ff7b72;font-weight:700>$</span>EP_POV150, listw<span style=color:#ff7b72;font-weight:700>=</span> lw1)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##  Moran I test under randomisation</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## data:  moran.data1$EP_POV150  </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## weights: lw1    </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Moran I statistic standard deviate = 4.0864, p-value = 2.191e-05</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## alternative hypothesis: greater</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## sample estimates:</span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## Moran I statistic       Expectation          Variance </span>
-</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>##       0.327435936      -0.017543860       0.007127149</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>plot</span>(<span style=color:#d2a8ff;font-weight:700>moran.mc</span>(moran.data1<span style=color:#ff7b72;font-weight:700>$</span>EP_POV150, lw1, nsim<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>999</span>, alternative<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#34;greater&#34;</span>))
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densityMo.png?raw=true" alt=SOVI_Graphs></p><h3 id=interpretation-1>Interpretation
-<a class=heading-link href=#interpretation-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Using the lecture notes and readings interpret what the maps are showing you. Your write up should include</p><ul><li><p>What do each of the four colors/quadrants mean?</p><p><strong>The colors for the mean ozone show the ozone levels and separate the breaks based on the abundance of the ozone in the different California counties. For the LISA the colors are showing the higher than average areas within the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower-than-average areas that are surrounded by low ozone where nothing is.</strong></p></li><li><p>How do they link to the Moran scatterplot?</p><p>**Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it.</p></li></ul><p>Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.</p><p>When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.</p></article></section></div><footer class=footer><section class=container>©
-2025
-DarkAwesome
-·
-Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <title>
+  Voronoi · DarkAwesome
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="DarkAwesome">
+<meta name="description" content="The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Voronoi">
+  <meta name="twitter:description" content="The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.">
+
+<meta property="og:url" content="http://localhost:1313/blog/Voronoi/">
+  <meta property="og:site_name" content="DarkAwesome">
+  <meta property="og:title" content="Voronoi">
+  <meta property="og:description" content="The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-02-06T13:24:11-05:00">
+    <meta property="article:modified_time" content="2025-02-06T13:24:11-05:00">
+    <meta property="article:tag" content="Ubuntu">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/blog/Voronoi/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/blog/">
+      DarkAwesome
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/contact/">Contact</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/">Posts</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/Voronoi/">
+          Voronoi
+        </a>
+      </h1>
+    </header>
+
+    <p>The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.</p>
+<h2 id="lab-4-using-voronoi-polygons-for-air-quality-monitoring-network-design">
+  Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
+  <a class="heading-link" href="#lab-4-using-voronoi-polygons-for-air-quality-monitoring-network-design">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>2023-12-05</p>
+<h3 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The objective of this lab is to introduce you to the concept of Voronoi polygons and demonstrate their practical application in designing an air quality monitoring network for California. You will learn how to create Voronoi polygons from ozone measurement data, identify suitable monitoring station locations, and explore the significance of such a network in air quality management. You will also compare this with spatial demographic data from the CDC/ATSDR Social Vulnerability Index.</p>
+<h3 id="libraries">
+  Libraries
+  <a class="heading-link" href="#libraries">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Feel free to add any additional libraries you need</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tmap)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(raster)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gstat)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tigris)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(plotly)
+</span></span></code></pre></div><h3 id="dr-gs-set-up-code">
+  Dr G’s Set-Up Code
+  <a class="heading-link" href="#dr-gs-set-up-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>You do not need to edit the code chunk below, It should run and be invisible when you knit. I did this because I couldn’t suppress the loading messages in any other way. Dr G: My code does several things</p>
+<ol>
+<li>I use the Tigris package to read in the census tract and county borders for California</li>
+<li>I then directly download the SOVI data from a government portal. If you put the url into an internet browser it will also directly download.</li>
+<li>The SOVI files are huge. This is a one week lab, so I tidied up</li>
+<li>I switched all the -999s to NA using the mutate command</li>
+<li>Then I joined the SOVI data with the spatial census tract/county borders - to make
+<ol>
+<li>tract.sovi.sf - the sovi data at census tract level</li>
+<li>county.sovi.sf - the sovi data at county level</li>
+</ol>
+</li>
+<li>Finally I changed the map projection to the North American Albers Equal Area Conic projection (AEA)</li>
+</ol>
+<p>You do not need to edit this code chunk, It should run and be invisible when you knit. I did this because it kept messing up my output when I knit.</p>
+<h2 id="challenge-1-comprehension">
+  Challenge 1. Comprehension
+  <a class="heading-link" href="#challenge-1-comprehension">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="qu-1a">
+  Qu. 1A
+  <a class="heading-link" href="#qu-1a">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Describe what census tracts are and why they are commonly used as a spatial unit.</p>
+<p>Census tracts are areas where a census would take place. These are used as a spatial unit to draw statistical information from a population area</p>
+<h3 id="qu-1b">
+  Qu. 1B
+  <a class="heading-link" href="#qu-1b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In my code, I change the data to the North American Albers Equal Area Conic projection (AEA). Explain what this is and how it’s different to lat/long or UTM data.</p>
+<p><strong>This is different from lat/long or UTM data as it is a different type of projection that uses two standard parallels to reduce distortions. Making this best used for land masses in the middle latitudes like the United States and Europe.</strong></p>
+<h3 id="qu-1c">
+  Qu. 1C
+  <a class="heading-link" href="#qu-1c">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In my code, I use the command rm(list=ls()).
+What does this do? Remember google/chatGPT in helping you answer this.</p>
+<p><strong>This clears the environment data to give you a clean workspace as if you made a new project.</strong></p>
+<h3 id="qu-1d">
+  Qu. 1D
+  <a class="heading-link" href="#qu-1d">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>You will find the reference for SOVI here. <a href="https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html"  class="external-link" target="_blank" rel="noopener">https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html</a></p>
+<p>Edit for CA, then write a sentence explaining where the data is from and add a footnote with your reference. To do this, click the visual button at the top, then go to Insert/Footnote. (HINT FOR PROJECTS)</p>
+<p><strong>The data came from the CDC/ATSDR Social Vulnerability Index.</strong></p>
+<h3 id="qu-1e">
+  Qu. 1E
+  <a class="heading-link" href="#qu-1e">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>How did I make my set-up code chunk invisible when this file knits? Hint look at the code chunk options.</p>
+<p><strong>Including “message=FALSE,warning=FALSE,echo=FALSE,include=FALSE” in the code chunk makes the chunk itsself invisible.</strong></p>
+<h2 id="challenge-2-sovi">
+  Challenge 2. SOVI
+  <a class="heading-link" href="#challenge-2-sovi">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="qu-2a-sovi-basics">
+  Qu. 2A. SOVI Basics
+  <a class="heading-link" href="#qu-2a-sovi-basics">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Explain what SOVI is in your own words, using the lab instruction resources as a guide</p>
+<p><strong>SOVI is an index that sees how people are able to withstand hazards or things beyond their control that negatively affect their life.</strong></p>
+<h3 id="qu-2b-themes">
+  Qu. 2B: Themes
+  <a class="heading-link" href="#qu-2b-themes">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In the sovi dataset, you should see these columns (“RPL_THEME1” “RPL_THEME2” “RPL_THEME3” “RPL_THEME4” “RPL_THEMES”). They are described here: Sovi documentation and in the SOVI recipe in the lab book.</p>
+<p>Describe what each of these columns represents. If you talked about this in above, you can refer to your answer.</p>
+<p><strong>RPL_THEME1 - Percentile ranking for Socioeconomic Status theme summary RPL_THEME2 - Percentile ranking for Household Characteristics theme summary RPL_THEME3 - Percentile ranking for Racial and Ethnic Minority Status theme RPL_THEME4 - Percentile ranking for Housing Type/ Transportation theme RPL_THEMES - Overall percentile ranking</strong></p>
+<h3 id="qu-2c-sovi-theme-maps">
+  Qu. 2C: SOVI theme maps
+  <a class="heading-link" href="#qu-2c-sovi-theme-maps">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>YOU HAVE A CHOICE.</p>
+<p>If you’re interested and your computer is powerful, use the census-tract sovi sf data at any time. If your computer struggles/you use the cloud or you want it to run fast, use the county level sovi sf data.</p>
+<p>Create four professional maps showing the SOVI Themes 1-4 for California.</p>
+<p>Tmap is a little different with polygon data, so here’s some example code also showing how to do subplots</p>
+<ul>
+<li>
+<p>When you have edited it and are ready, remove the # at the front of each line you want to run. Or you’re welcome to delve into the more complex tmap packages if you like <a href="https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html"  class="external-link" target="_blank" rel="noopener">https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html</a></p>
+</li>
+<li>
+<p>For MANY color options, see <a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf"  class="external-link" target="_blank" rel="noopener">https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf</a></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color</span>
+</span></span><span style="display:flex;"><span>map1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;RPL_THEME1&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Greens&#34;</span>) <span style="color:#8b949e;font-style:italic">#Socioeconomic Status theme summary</span>
+</span></span><span style="display:flex;"><span>map2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;RPL_THEME3&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Blues&#34;</span>) <span style="color:#8b949e;font-style:italic">#Racial and Ethnic Minority Status them</span>
+</span></span><span style="display:flex;"><span>map3 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;EP_NOHSDP&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Reds&#34;</span>) <span style="color:#8b949e;font-style:italic">#persons with no HS Diploma </span>
+</span></span><span style="display:flex;"><span>map4 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;EP_MUNIT&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Purples&#34;</span>) <span style="color:#8b949e;font-style:italic">#Housing in buildings with 10 or more units </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_arrange</span>(map1,map2,map3,map4)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/RPL+More.png?raw=true" alt="SOVI_Graphs"></p>
+<h3 id="qu-2d-map-interpretation">
+  Qu. 2D: Map interpretation
+  <a class="heading-link" href="#qu-2d-map-interpretation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Tell me what patterns and processes you see in your maps. Referring to your maps, which areas of California do you think might struggle with the social impact of air pollution and why.</p>
+<p><strong>The southern and middle parts of California show a lot of overlap with socioeconomic status and racial and ethnic minority status. While the persons with no HS diploma are also represented in this group being centered just south of the middle of California. When it comes to who would be the most likely to struggle with the social impact of air pollution it looks as though it would be these persons in these areas. Although, having a HS diploma doesn’t make a person inherently more susceptible to air pollution economic mobility is affected.</strong></p>
+<h3 id="qu-2e-maup">
+  Qu. 2E: MAUP
+  <a class="heading-link" href="#qu-2e-maup">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census level SOVI data.</p>
+<p><strong>Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph.If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.</strong></p>
+<h3 id="challenge-3-ozone-data">
+  Challenge 3. Ozone data
+  <a class="heading-link" href="#challenge-3-ozone-data">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h3 id="qu-3a-ozone-summary">
+  Qu. 3A. Ozone summary
+  <a class="heading-link" href="#qu-3a-ozone-summary">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We will now read in some data on Ozone. You can read about it in the lab book. Summarise what the data is showing.
+Qu. 3B. Ozone read-in</p>
+<p>Replace the XXXXXs with the correct values to get this to run. Your data should already be in your project file. Hint, not all the XXXXXs are the same!</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># point.ozone$LONGITUDE</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Read in Ozone Data</span>
+</span></span><span style="display:flex;"><span>point.ozone     <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read.csv</span>(<span style="color:#a5d6ff">&#34;CA_OzonePopulation.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>point.ozone.sf  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_as_sf</span>(point.ozone, coords<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;LONGITUDE&#34;</span>,<span style="color:#a5d6ff">&#34;LATITUDE&#34;</span>),crs<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4326</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Transform to projection 3310 - hint look at my set-up code chunk.</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># I&#39;m simply overwriting my sf data as my answer</span>
+</span></span><span style="display:flex;"><span>point.ozone.sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_transform</span>(point.ozone.sf,<span style="color:#a5d6ff">3310</span>)
+</span></span></code></pre></div><h3 id="qu-3c-ozone-summary">
+  Qu. 3C. Ozone summary
+  <a class="heading-link" href="#qu-3c-ozone-summary">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Use R to summarise the ozone data, then answer these Qu.s in the text</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#summarise the ozone data</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summarise</span>(point.ozone.sf)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Simple feature collection with 1 feature and 0 fields</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Geometry type: MULTIPOINT</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Dimension:     XY</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Bounding box:  xmin: -353684.6 ymin: -624323.6 xmax: 501010.6 ymax: 432274.9</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Projected CRS: NAD83 / California Albers</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##                         geometry</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## 1 MULTIPOINT ((-353684.6 3143...</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#the max ozone point in ppb</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">max</span>(point.ozone.sf<span style="color:#ff7b72;font-weight:bold">$</span>POPULATION_DENSITY)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## [1] 406.6252</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>How many monitoring stations are there in the dataset? There are 451 monitoring stations</p>
+</li>
+<li>
+<p>What is the Ozone at site name: Beverly Hills-Franklin? Remember units! 33.50973 ppb</p>
+</li>
+<li>
+<p>What is the maximum population density? 406.6252</p>
+</li>
+</ul>
+<h3 id="qu-3d-ozone-vs-population-density">
+  Qu. 3D. Ozone vs Population density.
+  <a class="heading-link" href="#qu-3d-ozone-vs-population-density">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Using the plotly command, use this tutorial to make a map of ozone values vs population density at each location.</p>
+<p><a href="https://plotly.com/r/line-and-scatter/"  class="external-link" target="_blank" rel="noopener">https://plotly.com/r/line-and-scatter/</a></p>
+<p><a href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive"  class="external-link" target="_blank" rel="noopener">https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive</a></p>
+<p>Explain do you see - is it what you expect given the sources of ozone data?</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(plotly)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">plot_ly</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> point.ozone, x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">~</span>POPULATION_DENSITY, y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">~</span>OZONE_1000PPB,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  color <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">~</span>OZONE_1000PPB, size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">~</span>POPULATION_DENSITY)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/plotly.png?raw=true" alt="SOVI_Graphs"></p>
+<p><strong>Given the source of the data the ozone ppm seems smaller than what I thought it would be honestly. With the majoirty of the ozone present in a lower population density seems to be counter to what I would expect.</strong></p>
+<h3 id="qu-3e-ozone-maps">
+  Qu. 3E. Ozone maps
+  <a class="heading-link" href="#qu-3e-ozone-maps">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Make two map showing the Ozone levels and the population density across California at the measuring sites. Hint (lab 3/reports etc). Bonus if you want to explore leaflet</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#plot(point.ozone$OZONE_1000PPB) placeholder just to copy the variables</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#plot(point.ozone$POPULATION_DENSITY) placeholder just to copy the variables </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#map showing Ozone levels across California at the measuring sites</span>
+</span></span><span style="display:flex;"><span>ozone_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ggplot</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_sf</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> point.ozone.sf, <span style="color:#d2a8ff;font-weight:bold">aes</span>(color <span style="color:#ff7b72;font-weight:bold">=</span> OZONE_1000PPB), size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_color_gradient</span>(low <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;blue&#34;</span>, high <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;red&#34;</span>, name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Ozone Level&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Ozone Levels at Measuring Sites&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>()
+</span></span><span style="display:flex;"><span>ozone_map
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/airqual.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#map showing Population Density across California at the measuring sites</span>
+</span></span><span style="display:flex;"><span>density_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ggplot</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_sf</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> point.ozone.sf, <span style="color:#d2a8ff;font-weight:bold">aes</span>(color <span style="color:#ff7b72;font-weight:bold">=</span> POPULATION_DENSITY), size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_color_gradient</span>(low <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightblue&#34;</span>, high <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;darkblue&#34;</span>, name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Population Density&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Population Density at Measuring Sites&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>()
+</span></span><span style="display:flex;"><span>density_map
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densitymap.png?raw=true" alt="SOVI_Graphs"></p>
+<p>Compare the maps visually. Is the ozone where you expect it to be? What might be happening? (hint, ozone is VERY light and CA is coastal)</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#package to combine the 2 mpas to be on 1 graph</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#install.packages(&#34;gridExtra&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gridExtra)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>combined_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">grid.arrange</span>(density_map, ozone_map, ncol <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">2</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Display the combined map</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(combined_map)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/density+airq.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## TableGrob (1 x 2) &#34;arrange&#34;: 2 grobs</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##   z     cells    name           grob</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## 1 1 (1-1,1-1) arrange gtable[layout]</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## 2 2 (1-1,2-2) arrange gtable[layout]</span>
+</span></span></code></pre></div><h3 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>The ozone is in areas that I would expect it to be as it covers the areas with less population density. In the areas with higher population density there are lower levels of ozone. Which may speak to the levels of people living in the area having an affect on the level of ozone in the atmosphere.</strong></p>
+<p>1.2020 Database State. <a href="https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html"  class="external-link" target="_blank" rel="noopener">https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html</a>. Accessed on 11/06/2023.↩︎</p>
+<h2 id="lab-5-morans-i-and-lisa">
+  Lab 5: Moran’s I and LISA
+  <a class="heading-link" href="#lab-5-morans-i-and-lisa">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="section-a-set-up">
+  Section A. Set-up
+  <a class="heading-link" href="#section-a-set-up">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The objective of this lab is to introduce you to the concept of Voronoi polygons, Moran’s I and LISA; building on Lab 4 to look at air pollution in California.</p>
+<h3 id="libraries-1">
+  Libraries
+  <a class="heading-link" href="#libraries-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Make sure to install any additional libraries you need</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tmap)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(raster)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gstat)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tigris)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(plotly)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(terra)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spdep)
+</span></span></code></pre></div><p>Reading in the data</p>
+<p>I did most of the set up and analysis you did in Lab 4 separately to save computational power for those on R studio cloud. Make sure that the data files from Canvas are in your project folder, then this should just run</p>
+<h2 id="section-b---voronoi-polygons">
+  Section B - Voronoi Polygons
+  <a class="heading-link" href="#section-b---voronoi-polygons">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>You should be able to simply run this code. If not, ask Harman or Dr G.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># you should be able to simply run this code</span>
+</span></span><span style="display:flex;"><span>ozone.terra      <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">vect</span>(ozone.sf)
+</span></span><span style="display:flex;"><span>ozone.voronoi.sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">voronoi</span>(ozone.terra)
+</span></span><span style="display:flex;"><span>ozone.voronoi.sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_as_sf</span>(<span style="color:#d2a8ff;font-weight:bold">crop</span>(ozone.voronoi.sf,state.border.terra))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(ozone.voronoi.sf) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_polygons</span>(<span style="color:#a5d6ff">&#34;OZONE_1000PPB&#34;</span>,palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;YlGnBu&#34;</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_legend</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Voroni Tesselation of Ozone in CA (1000 PPB)&#34;</span>,
+</span></span><span style="display:flex;"><span>                         main.title.size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.8</span>,main.title.fontface<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(county.data.sf) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_polygons</span>(<span style="color:#a5d6ff">&#34;OZONE_1000PPB&#34;</span>,palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;YlGnBu&#34;</span>,breaks<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">seq</span>(<span style="color:#a5d6ff">0</span>,<span style="color:#a5d6ff">100</span>,by<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">20</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_legend</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;County Averages of Ozone in CA (1000 PPB)&#34;</span>,
+</span></span><span style="display:flex;"><span>                         main.title.size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.8</span>,main.title.fontface<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneCounty.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(county.data.sf) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>()<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(ozone.sf) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_dots</span>(col<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;OZONE_1000PPB&#34;</span>,palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;YlGnBu&#34;</span>,size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.4</span>,alpha<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.6</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_legend</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Point values of Ozone in CA (1000 PPB)&#34;</span>,
+</span></span><span style="display:flex;"><span>                         main.title.size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.8</span>,main.title.fontface<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true" alt="SOVI_Graphs"></p>
+<h3 id="comprehension">
+  Comprehension
+  <a class="heading-link" href="#comprehension">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In your own words, describe what each map is showing and what voronoi polygons are. Compare and contrast the three maps and explain the advantages and disadvantages of using each way to visualize the ozone data.</p>
+<p><strong>In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a &ldquo;truer&rdquo; image about how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites</strong></p>
+<p><strong>In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn&rsquo;t give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.</strong></p>
+<p><strong>The final grpah gives a look at the issue looking at the individual testing sites. Although this doesn&rsquo;t give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or less sensors in an area has the potential to skew what we are seeing in the data. For law makers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.</strong></p>
+<h3 id="section-d-morans-i-ozone">
+  Section D. Moran’s I ozone
+  <a class="heading-link" href="#section-d-morans-i-ozone">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Here I have provided a shortened version of the code in Dr Gimond’s tutorial. My code is set to look at the ozone levels. Get it running.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Choose the data you want.  To help your comprehension,</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Switch between this and ozone.voronoi.sf &amp; see how it changes</span>
+</span></span><span style="display:flex;"><span>moran.data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> county.data.sf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># R hates empty polygons, so we&#39;re removing them</span>
+</span></span><span style="display:flex;"><span>moran.data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> moran.data[moran.data<span style="color:#ff7b72;font-weight:bold">$</span>OZONE_1000PPB <span style="color:#ff7b72;font-weight:bold">&gt;</span>  <span style="color:#a5d6ff">0</span> , ]
+</span></span><span style="display:flex;"><span>tracts_empty  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_is_empty</span>(moran.data)
+</span></span><span style="display:flex;"><span>moran.data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> moran.data<span style="color:#d2a8ff;font-weight:bold">[which</span>(tracts_empty<span style="color:#ff7b72;font-weight:bold">==</span><span style="color:#79c0ff">FALSE</span>), ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># make the nearest neighbours and weights matrix</span>
+</span></span><span style="display:flex;"><span>nb <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">poly2nb</span>(moran.data, queen<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>)
+</span></span><span style="display:flex;"><span>lw <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">nb2listw</span>(nb, style<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;W&#34;</span>, zero.policy<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Make the moran scatter plot</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">moran.plot</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>OZONE_1000PPB, 
+</span></span><span style="display:flex;"><span>           labels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">as.character</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>COUNTY),
+</span></span><span style="display:flex;"><span>           listw<span style="color:#ff7b72;font-weight:bold">=</span> lw,
+</span></span><span style="display:flex;"><span>           xlab <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Value of Ozone per polygon (1000 PPB)&#34;</span>,
+</span></span><span style="display:flex;"><span>           ylab <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Average Ozone in neighbouring polygons (1000 PPB)&#34;</span>,
+</span></span><span style="display:flex;"><span>           zero.policy <span style="color:#ff7b72;font-weight:bold">=</span> T)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avgOzone.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># And conduct the moran hypothesis test</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">moran.test</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>OZONE_1000PPB, listw<span style="color:#ff7b72;font-weight:bold">=</span> lw)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##  Moran I test under randomisation</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## data:  moran.data$OZONE_1000PPB  </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## weights: lw    </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran I statistic standard deviate = 5.7038, p-value = 5.858e-09</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## alternative hypothesis: greater</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## sample estimates:</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran I statistic       Expectation          Variance </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##       0.500936524      -0.018867925       0.008305187</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(<span style="color:#d2a8ff;font-weight:bold">moran.mc</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>OZONE_1000PPB, lw, nsim<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">999</span>, alternative<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;greater&#34;</span>))
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/moranI.png?raw=true" alt="SOVI_Graphs"></p>
+<h3 id="interpretation">
+  Interpretation
+  <a class="heading-link" href="#interpretation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>HO:The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.</p>
+<h3 id="monte-carlo">
+  Monte Carlo
+  <a class="heading-link" href="#monte-carlo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The monte carlo approach takes a point and does and independent random process with polygons around it using an independent random process and seeing how likely it is.</p>
+<h3 id="a-different-variable">
+  A different variable
+  <a class="heading-link" href="#a-different-variable">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Then, copy and edit my code to conduct a Moran’s I analysis of a variable (column) of your choice and interpret your findings in the text. Remember, you can go back to the lab 4 description to work out what columns are showing you - and names(moran.data) will show you the column names. ————————————————————————</p>
+<h3 id="section-e-lisa">
+  Section E. LISA
+  <a class="heading-link" href="#section-e-lisa">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>My code for the LISA analysis should just run. I have split it into several code chunks to make it easier for the cloud and to explain what is happening. Get them all running then see below for questions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># We can either create the Raw LISA values using the theoretical approach or Monte Carlo</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  - Padjust allows us to account for mulitple testing issues.</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  - adjust.x allows us to omit polygons with no neighbours as needed</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  - zero.policy allows us to keep but ignore polygons with no neighbours</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  - nsim: number of simulations, If this crashes the cloud try reducing to say 50</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>LocalMoran_Output <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">localmoran_perm</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> moran.data<span style="color:#ff7b72;font-weight:bold">$</span>OZONE_1000PPB, 
+</span></span><span style="display:flex;"><span>                                     listw <span style="color:#ff7b72;font-weight:bold">=</span> lw, 
+</span></span><span style="display:flex;"><span>                                     nsim<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">499</span>,
+</span></span><span style="display:flex;"><span>                                     adjust.x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>,
+</span></span><span style="display:flex;"><span>                                     zero.policy <span style="color:#ff7b72;font-weight:bold">=</span> T)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># The column names are less intuitive to newbies, so let&#39;s rename them </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># (to see the originals, type ?localmoran into the console)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># The skew and kurtosis are because the histogram of IRP I might not look normal</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># To do this I force the output to be a standard dataframe</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>LocalMoran_Table <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">as.data.frame</span>(LocalMoran_Output)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">names</span>(LocalMoran_Table) <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Observed_LocalI&#34;</span>, <span style="color:#a5d6ff">&#34;IRP_estimate_LocalI&#34;</span>,   <span style="color:#a5d6ff">&#34;Variance_I&#34;</span>,
+</span></span><span style="display:flex;"><span>                             <span style="color:#a5d6ff">&#34;ZScore_I&#34;</span>,  <span style="color:#a5d6ff">&#34;PValue_Theoretical&#34;</span>,  <span style="color:#a5d6ff">&#34;PValue_MonteCarlo&#34;</span>,
+</span></span><span style="display:flex;"><span>                             <span style="color:#a5d6ff">&#34;Skew_I&#34;</span>,<span style="color:#a5d6ff">&#34;Kurtosis_I&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Merge with our data</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>moran.data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">cbind</span>(moran.data,LocalMoran_Table[,<span style="color:#a5d6ff">4</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">6</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># It turns out that the quadrants are secretly stored in the output, </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># so we don&#39;t even have to manually calculate them</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">attr</span>(LocalMoran_Output,<span style="color:#a5d6ff">&#34;quadr&#34;</span>)<span style="color:#ff7b72;font-weight:bold">$</span>mean
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Remove polygons that are unlikely to be significant</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># YOU GET TO CHOOSE THE THRESHOLD HERE</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Find the rows where your p-value is &gt; your threshold</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>critical_threshold <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#a5d6ff">0.05</span>
+</span></span><span style="display:flex;"><span>RowsOverThreshold <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">which</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>PValue_MonteCarlo <span style="color:#ff7b72;font-weight:bold">&gt;</span> critical_threshold) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Make the column a character to make life easy</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Then rename the quadrant in those rows p&gt;0.05, or </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># whatever your threshold is</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant_Plot <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">as.character</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant)
+</span></span><span style="display:flex;"><span>moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant_Plot[RowsOverThreshold] <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;P&gt;&#34;</span>,critical_threshold,sep<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Make a factor again</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant_Plot <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(moran.data<span style="color:#ff7b72;font-weight:bold">$</span>LISA_Quadrant_Plot,
+</span></span><span style="display:flex;"><span>                               levels<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;High-High&#34;</span>,<span style="color:#a5d6ff">&#34;High-Low&#34;</span>, 
+</span></span><span style="display:flex;"><span>                                         <span style="color:#a5d6ff">&#34;Low-High&#34;</span>, <span style="color:#a5d6ff">&#34;Low-Low&#34;</span>,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;P&gt;&#34;</span>,critical_threshold,sep<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;&#34;</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># And make a plot</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>mapLISA <span style="color:#ff7b72;font-weight:bold">&lt;-</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(moran.data)  <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>( <span style="color:#a5d6ff">&#34;LISA_Quadrant_Plot&#34;</span>,id<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;NAME&#34;</span>,  alpha<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.6</span>,
+</span></span><span style="display:flex;"><span>           palette<span style="color:#ff7b72;font-weight:bold">=</span>  <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;#ca0020&#34;</span>,<span style="color:#a5d6ff">&#34;#f4a582&#34;</span>,<span style="color:#a5d6ff">&#34;#92c5de&#34;</span>,<span style="color:#a5d6ff">&#34;#0571b0&#34;</span>,<span style="color:#a5d6ff">&#34;white&#34;</span>), title<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>(alpha<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.5</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_legend</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;left&#34;</span>, <span style="color:#a5d6ff">&#34;bottom&#34;</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">paste</span>(<span style="color:#a5d6ff">&#34;LISA,sig= &#34;</span>,critical_threshold), title.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># compare against the raw values </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#---------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>mapRaw <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(moran.data) <span style="color:#ff7b72;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;OZONE_1000PPB&#34;</span>, 
+</span></span><span style="display:flex;"><span>              style <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;pretty&#34;</span>,
+</span></span><span style="display:flex;"><span>              palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;YlGnBu&#34;</span>, 
+</span></span><span style="display:flex;"><span>              border.alpha <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>, 
+</span></span><span style="display:flex;"><span>              title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;&#34;</span>,alpha<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.6</span>) <span style="color:#ff7b72;font-weight:bold">+</span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Mean Ozone&#34;</span>, title.position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;right&#34;</span>, <span style="color:#a5d6ff">&#34;top&#34;</span>))<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>(alpha<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.5</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_legend</span>(position <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;left&#34;</span>, <span style="color:#a5d6ff">&#34;bottom&#34;</span>))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_options</span>(check.and.fix <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_mode</span>(<span style="color:#a5d6ff">&#34;plot&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_arrange</span>(mapRaw,mapLISA)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/lisa.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Choose the data you want.  To help your comprehension,</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Switch between this and ozone.voronoi.sf &amp; see how it changes</span>
+</span></span><span style="display:flex;"><span>moran.data1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> county.data.sf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># R hates empty polygons, so we&#39;re removing them</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Change the data value to be EP_Age65 to look at the elderly </span>
+</span></span><span style="display:flex;"><span>moran.data1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> moran.data1[moran.data1<span style="color:#ff7b72;font-weight:bold">$</span>EP_POV150 <span style="color:#ff7b72;font-weight:bold">&gt;</span>  <span style="color:#a5d6ff">0</span> , ]
+</span></span><span style="display:flex;"><span>tracts_empty  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_is_empty</span>(moran.data1)
+</span></span><span style="display:flex;"><span>moran.data1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> moran.data1<span style="color:#d2a8ff;font-weight:bold">[which</span>(tracts_empty<span style="color:#ff7b72;font-weight:bold">==</span><span style="color:#79c0ff">FALSE</span>), ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># make the nearest neighbours and weights matrix</span>
+</span></span><span style="display:flex;"><span>nb1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">poly2nb</span>(moran.data1, queen<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>)
+</span></span><span style="display:flex;"><span>lw1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">nb2listw</span>(nb1, style<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;W&#34;</span>, zero.policy<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Make the moran scatter plot</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#include labels showing whats happening </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">moran.plot</span>(moran.data1<span style="color:#ff7b72;font-weight:bold">$</span>EP_POV150, 
+</span></span><span style="display:flex;"><span>           labels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">as.character</span>(moran.data1<span style="color:#ff7b72;font-weight:bold">$</span>COUNTY),
+</span></span><span style="display:flex;"><span>           listw<span style="color:#ff7b72;font-weight:bold">=</span> lw1,
+</span></span><span style="display:flex;"><span>           xlab <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;estimate of pop 65 +&#34;</span>,
+</span></span><span style="display:flex;"><span>           ylab <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Average elderly in neighbouring polygons &#34;</span>,
+</span></span><span style="display:flex;"><span>           zero.policy <span style="color:#ff7b72;font-weight:bold">=</span> T)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avg65.png?raw=true" alt="SOVI_Graphs"></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># And conduct the moran hypothesis test</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># To show the autocorrelation </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">moran.test</span>(moran.data1<span style="color:#ff7b72;font-weight:bold">$</span>EP_POV150, listw<span style="color:#ff7b72;font-weight:bold">=</span> lw1)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##  Moran I test under randomisation</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## data:  moran.data1$EP_POV150  </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## weights: lw1    </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran I statistic standard deviate = 4.0864, p-value = 2.191e-05</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## alternative hypothesis: greater</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## sample estimates:</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran I statistic       Expectation          Variance </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##       0.327435936      -0.017543860       0.007127149</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(<span style="color:#d2a8ff;font-weight:bold">moran.mc</span>(moran.data1<span style="color:#ff7b72;font-weight:bold">$</span>EP_POV150, lw1, nsim<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">999</span>, alternative<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;greater&#34;</span>))
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densityMo.png?raw=true" alt="SOVI_Graphs"></p>
+<h3 id="interpretation-1">
+  Interpretation
+  <a class="heading-link" href="#interpretation-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Using the lecture notes and readings interpret what the maps are showing you. Your write up should include</p>
+<ul>
+<li>
+<p>What do each of the four colors/quadrants mean?
+The colors for the mean ozone are showing the ozone levels and separating the breaks based on the abundance of the ozone in the different California counties.For the LISA the colors are showing the higher than average areas withing the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower than average areas that are surrounded by low ozone where nothing is.</p>
+</li>
+<li>
+<p>How do they link to the Moran scatterplot
+Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it. ## P values</p>
+</li>
+</ul>
+<p>Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.</p>
+<p>When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.</p>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     DarkAwesome 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/blog/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
