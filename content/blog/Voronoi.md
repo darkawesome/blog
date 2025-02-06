@@ -13,21 +13,23 @@ tags:
 draft: false
 ---
 
-<<<<<<< HEAD
-The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.
-=======
-The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. Although this work doesn't reflect my current knowledge well it is a great example of some of the work I have done in the class. This also works for me as a repository of information to look back at if similar work were to be done in the future.
->>>>>>> e7e34c8bbc66458904efeb2a5ec2f815b693e0fa
+The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. 
 <!--more-->
 
+Although this work doesn't relect my current knowledge it is a great example of some of the work I have done in the past. This also exists as a repository of informaiton to look back at if similar work were to be done in the future. I have left in the instructions from the class as well. While some of the code is mine parts are from the professor Dr.G.
+
 ## Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
+
 2023-12-05
+
 ### Introduction
 
 The objective of this lab is to introduce you to the concept of Voronoi polygons and demonstrate their practical application in designing an air quality monitoring network for California. You will learn how to create Voronoi polygons from ozone measurement data, identify suitable monitoring station locations, and explore the significance of such a network in air quality management. You will also compare this with spatial demographic data from the CDC/ATSDR Social Vulnerability Index.
+
 ### Libraries
 
 Feel free to add any additional libraries you need
+
 ```r
 library(tmap)
 library(raster)
@@ -112,13 +114,11 @@ If you’re interested and your computer is powerful, use the census-tract sovi 
 
 Create four professional maps showing the SOVI Themes 1-4 for California.
 
-
 Tmap is a little different with polygon data, so here’s some example code also showing how to do subplots
 
 -    When you have edited it and are ready, remove the # at the front of each line you want to run. Or you’re welcome to delve into the more complex tmap packages if you like https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html
 
 -    For MANY color options, see https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf
-
 
 ```r
 #testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color
@@ -129,7 +129,6 @@ map4 <- qtm(county.sovi.sf,fill="EP_MUNIT",fill.palette="Purples") #Housing in b
 tmap_arrange(map1,map2,map3,map4)
 
 ```
-
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/RPL+More.png?raw=true)
 
@@ -145,7 +144,6 @@ Think about MAUP and gerrymandering. Explain why is it important to think hard a
 
 **Depending upon which is used a completely different story could be told. For instance, one could show low levels of something while one doesn’t have enough data to even show up on a graph. If you need a more detailed and localized understanding of social vulnerability, census-level data is likely the better choice. However, if you are looking at larger geographic trends or making high-level policy decisions, county-level data might be sufficient.**
 
-
 ### Challenge 3. Ozone data
 
 ### Qu. 3A. Ozone summary
@@ -154,7 +152,6 @@ We will now read in some data on Ozone. You can read about it in the lab book. S
 Qu. 3B. Ozone read-in
 
 Replace the XXXXXs with the correct values to get this to run. Your data should already be in your project file. Hint, not all the XXXXXs are the same!
-
 
 ```r
 # point.ozone$LONGITUDE
@@ -172,12 +169,10 @@ point.ozone.sf <- st_transform(point.ozone.sf,3310)
 
 Use R to summarise the ozone data, then answer these Qu.s in the text
 
-
 ```r
 #summarise the ozone data
 summarise(point.ozone.sf)
 ```
-
 
 ```r
 ## Simple feature collection with 1 feature and 0 fields
@@ -214,7 +209,6 @@ https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive
 
 Explain do you see - is it what you expect given the sources of ozone data?
 
-
 ```r
 library(plotly)
 
@@ -229,8 +223,6 @@ fig
 ```
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/plotly.png?raw=true)
-
-
 
 **Given the source of the data the ozone ppm seems smaller than what I thought it would be honestly. The majority of the ozone present in a lower population density seems to be counter to what would be expected.**
 
@@ -255,8 +247,6 @@ ozone_map
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/airqual.png?raw=true)
 
-
-
 ```r
 #map showing Population Density across California at the measuring sites
 density_map <- ggplot() +
@@ -270,9 +260,7 @@ density_map
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densitymap.png?raw=true)
 
-
 Compare the maps visually. Is the ozone where you expect it to be? What might be happening? (hint, ozone is VERY light and CA is coastal)
-
 
 ```r
 #package to combine the 2 mpas to be on 1 graph
@@ -290,7 +278,6 @@ print(combined_map)
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/density+airq.png?raw=true)
 
-
 ```r
 ## TableGrob (1 x 2) "arrange": 2 grobs
 ##   z     cells    name           grob
@@ -298,20 +285,17 @@ print(combined_map)
 ## 2 2 (1-1,2-2) arrange gtable[layout]
 ```
 
-
 ### Conclusion
+
 **The ozone is in areas that I would expect it to be as it covers the areas with less population density. In the areas with higher population density, there are lower levels of ozone. This may speak to the levels of people living in the area affecting the level of ozone in the atmosphere.**
 
 1.2020 Database State. https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html. Accessed on 11/06/2023.↩︎
-
-
 
 ## Lab 5: Moran’s I and LISA
 
 ### Section A. Set-up
 
 The objective of this lab is to introduce you to the concept of Voronoi polygons, Moran’s I and LISA; building on Lab 4 to look at air pollution in California.
-
 
 ### Libraries
 
@@ -348,7 +332,7 @@ tm_shape(ozone.voronoi.sf) +
                tm_legend(position = c("right", "top"))+
                tm_layout(main.title="Voroni Tesselation of Ozone in CA (1000 PPB)",
                          main.title.size=.8,main.title.fontface=2)
-``` 
+```
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true)
 
@@ -373,6 +357,7 @@ tm_shape(county.data.sf) +
                          main.title.size=.8,main.title.fontface=2)
 
 ```
+
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true)
 
 ### Comprehension
@@ -389,7 +374,7 @@ In your own words, describe what each map is showing and what voronoi polygons a
 
 Here I have provided a shortened version of the code in Dr Gimond’s tutorial. My code is set to look at the ozone levels. Get it running.
 
-```r 
+```r
 # Choose the data you want.  To help your comprehension,
 # Switch between this and ozone.voronoi.sf & see how it changes
 moran.data <- county.data.sf
@@ -415,8 +400,7 @@ moran.plot(moran.data$OZONE_1000PPB,
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avgOzone.png?raw=true)
 
-
-```r 
+```r
 # And conduct the moran hypothesis test
 moran.test(moran.data$OZONE_1000PPB, listw= lw)
 
@@ -436,7 +420,7 @@ moran.test(moran.data$OZONE_1000PPB, listw= lw)
 ##       0.500936524      -0.018867925       0.008305187
 ```
 
-```r 
+```r
 plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
 
 ```
@@ -446,7 +430,6 @@ plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
 ### Interpretation
 
 HO:The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.
-
 
 ### Monte Carlo
 
@@ -460,8 +443,7 @@ Then, copy and edit my code to conduct a Moran’s I analysis of a variable (col
 
 My code for the LISA analysis should just run. I have split it into several code chunks to make it easier for the cloud and to explain what is happening. Get them all running then see below for questions.
 
-
-```r 
+```r
 
 #---------------------------------------------------
 # We can either create the Raw LISA values using the theoretical approach or Monte Carlo
@@ -521,7 +503,7 @@ moran.data$LISA_Quadrant_Plot <- as.character(moran.data$LISA_Quadrant)
 moran.data$LISA_Quadrant_Plot[RowsOverThreshold] <- paste("P>",critical_threshold,sep="")
 ```
 
-```r 
+```r
 
 #---------------------------------------------------
 # Make a factor again
@@ -532,7 +514,7 @@ moran.data$LISA_Quadrant_Plot <- factor(moran.data$LISA_Quadrant_Plot,
                                          paste("P>",critical_threshold,sep="")))
 ```
 
-```r 
+```r
 
 #---------------------------------------------------
 # And make a plot
@@ -596,13 +578,13 @@ moran.plot(moran.data1$EP_POV150,
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avg65.png?raw=true)
 
-```r 
+```r
 # And conduct the moran hypothesis test
 # To show the autocorrelation 
 moran.test(moran.data1$EP_POV150, listw= lw1)
 ```
 
-```r 
+```r
 ## 
 ##  Moran I test under randomisation
 ## 
@@ -616,7 +598,7 @@ moran.test(moran.data1$EP_POV150, listw= lw1)
 ##       0.327435936      -0.017543860       0.007127149
 ```
 
-```r 
+```r
 plot(moran.mc(moran.data1$EP_POV150, lw1, nsim=999, alternative="greater"))
 
 ```
@@ -636,4 +618,3 @@ Using the lecture notes and readings interpret what the maps are showing you. Yo
 Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.
 
 When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.
-
