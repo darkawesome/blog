@@ -13,7 +13,7 @@ tags:
 draft: true
 ---
 
-The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California.
+The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.
 <!--more-->
 
 ## Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
@@ -302,16 +302,334 @@ print(combined_map)
 
 
 
+## Lab 5: Moran’s I and LISA
+
+### Section A. Set-up
+
+The objective of this lab is to introduce you to the concept of Voronoi polygons, Moran’s I and LISA; building on Lab 4 to look at air pollution in California.
 
 
+### Libraries
+
+Make sure to install any additional libraries you need
+
+```r
+library(tmap)
+library(raster)
+library(gstat)
+library(sf)
+library(tidyverse)
+library(tigris)
+library(plotly)
+library(terra)
+library(spdep)
+```
+
+Reading in the data
+
+I did most of the set up and analysis you did in Lab 4 separately to save computational power for those on R studio cloud. Make sure that the data files from Canvas are in your project folder, then this should just run
+
+## Section B - Voronoi Polygons
+
+You should be able to simply run this code. If not, ask Harman or Dr G.
+
+```r
+# you should be able to simply run this code
+ozone.terra      <- vect(ozone.sf)
+ozone.voronoi.sf <- voronoi(ozone.terra)
+ozone.voronoi.sf <- st_as_sf(crop(ozone.voronoi.sf,state.border.terra))
+
+tm_shape(ozone.voronoi.sf) +
+               tm_polygons("OZONE_1000PPB",palette="YlGnBu")+
+               tm_legend(position = c("right", "top"))+
+               tm_layout(main.title="Voroni Tesselation of Ozone in CA (1000 PPB)",
+                         main.title.size=.8,main.title.fontface=2)
+``` 
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/voronoiCA.png?raw=true)
+
+```r
+tm_shape(county.data.sf) +
+               tm_polygons("OZONE_1000PPB",palette="YlGnBu",breaks=seq(0,100,by=20))+
+               tm_legend(position = c("right", "top"))+
+               tm_layout(main.title="County Averages of Ozone in CA (1000 PPB)",
+                         main.title.size=.8,main.title.fontface=2)
+
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneCounty.png?raw=true)
+
+```r
+tm_shape(county.data.sf) +
+               tm_borders()+
+               tm_shape(ozone.sf) +
+               tm_dots(col="OZONE_1000PPB",palette="YlGnBu",size=.4,alpha=.6)+
+               tm_legend(position = c("right", "top"))+
+               tm_layout(main.title="Point values of Ozone in CA (1000 PPB)",
+                         main.title.size=.8,main.title.fontface=2)
+
+```
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true)
+
+### Comprehension
+
+In your own words, describe what each map is showing and what voronoi polygons are. Compare and contrast the three maps and explain the advantages and disadvantages of using each way to visualize the ozone data.
+
+**In the first graph looking at the Voroni Tesselations, we get a view of the state without the counties to see the values of the ozone across the state. This can give a "truer" image about how the ozone spread looks throughout the state rather than across county lines or at the specific testing sites**
+
+**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the voronoi Tesselations it can give law makers and others interested in the issue areas to survey to find what the cause may be to why the ozone is different in different parts of the state.**
+
+**The final grpah gives a look at the issue looking at the individual testing sites. Although this doesn't give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or less sensors in an area has the potential to skew what we are seeing in the data. For law makers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.**
+
+### Section D. Moran’s I ozone
+
+Here I have provided a shortened version of the code in Dr Gimond’s tutorial. My code is set to look at the ozone levels. Get it running.
+
+```r 
+# Choose the data you want.  To help your comprehension,
+# Switch between this and ozone.voronoi.sf & see how it changes
+moran.data <- county.data.sf
+
+# R hates empty polygons, so we're removing them
+moran.data <- moran.data[moran.data$OZONE_1000PPB >  0 , ]
+tracts_empty  <- st_is_empty(moran.data)
+moran.data <- moran.data[which(tracts_empty==FALSE), ]
+
+# make the nearest neighbours and weights matrix
+nb <- poly2nb(moran.data, queen=TRUE)
+lw <- nb2listw(nb, style="W", zero.policy=TRUE)
+
+# Make the moran scatter plot
+moran.plot(moran.data$OZONE_1000PPB, 
+           labels=as.character(moran.data$COUNTY),
+           listw= lw,
+           xlab = "Value of Ozone per polygon (1000 PPB)",
+           ylab = "Average Ozone in neighbouring polygons (1000 PPB)",
+           zero.policy = T)
+
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avgOzone.png?raw=true)
 
 
+```r 
+# And conduct the moran hypothesis test
+moran.test(moran.data$OZONE_1000PPB, listw= lw)
+
+```
+
+```r
+## 
+##  Moran I test under randomisation
+## 
+## data:  moran.data$OZONE_1000PPB  
+## weights: lw    
+## 
+## Moran I statistic standard deviate = 5.7038, p-value = 5.858e-09
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##       0.500936524      -0.018867925       0.008305187
+```
+
+```r 
+plot(moran.mc(moran.data$OZONE_1000PPB, lw, nsim=999, alternative="greater"))
+
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/moranI.png?raw=true)
+
+### Interpretation
+
+HO:The average ozone in neighboring polygons (1000PPB) caused the value of ozone per polygon (1000PPB) H1:the actual sample is different to the expected I if H0 was true test statistic: 5.7038 p-value: 5.858e-09 Interpretation: Looking at the scatter plot the data seems to be independent. With there also being some clustering within the neighborhood and the ozone value per polygon. With a p-value so low we can reject the H0 hypothesis as there is sufficient evidence that their is higher than average ozone in surrounding polygons. With our Moran’s I statistic being 5 we have a strong positive autocorrelation here.
 
 
+### Monte Carlo
+
+The monte carlo approach takes a point and does and independent random process with polygons around it using an independent random process and seeing how likely it is.
+
+### A different variable
+
+Then, copy and edit my code to conduct a Moran’s I analysis of a variable (column) of your choice and interpret your findings in the text. Remember, you can go back to the lab 4 description to work out what columns are showing you - and names(moran.data) will show you the column names. ————————————————————————
+
+### Section E. LISA
+
+My code for the LISA analysis should just run. I have split it into several code chunks to make it easier for the cloud and to explain what is happening. Get them all running then see below for questions.
 
 
+```r 
+
+#---------------------------------------------------
+# We can either create the Raw LISA values using the theoretical approach or Monte Carlo
+# 
+#  - Padjust allows us to account for mulitple testing issues.
+#  - adjust.x allows us to omit polygons with no neighbours as needed
+#  - zero.policy allows us to keep but ignore polygons with no neighbours
+#  - nsim: number of simulations, If this crashes the cloud try reducing to say 50
+#---------------------------------------------------
+LocalMoran_Output <- localmoran_perm(x = moran.data$OZONE_1000PPB, 
+                                     listw = lw, 
+                                     nsim=499,
+                                     adjust.x = TRUE,
+                                     zero.policy = T)
+```
+
+```r
+#---------------------------------------------------
+# The column names are less intuitive to newbies, so let's rename them 
+# (to see the originals, type ?localmoran into the console)
+# The skew and kurtosis are because the histogram of IRP I might not look normal
+# To do this I force the output to be a standard dataframe
+#---------------------------------------------------
+LocalMoran_Table <- as.data.frame(LocalMoran_Output)
+names(LocalMoran_Table) <- c("Observed_LocalI", "IRP_estimate_LocalI",   "Variance_I",
+                             "ZScore_I",  "PValue_Theoretical",  "PValue_MonteCarlo",
+                             "Skew_I","Kurtosis_I")
+
+#---------------------------------------------------
+# Merge with our data
+#---------------------------------------------------
+moran.data <- cbind(moran.data,LocalMoran_Table[,4:6])
+
+#---------------------------------------------------
+# It turns out that the quadrants are secretly stored in the output, 
+# so we don't even have to manually calculate them
+#---------------------------------------------------
+moran.data$LISA_Quadrant <- attr(LocalMoran_Output,"quadr")$mean
+
+```
+
+```r
+#---------------------------------------------------
+# Remove polygons that are unlikely to be significant
+# YOU GET TO CHOOSE THE THRESHOLD HERE
+# Find the rows where your p-value is > your threshold
+#---------------------------------------------------
+critical_threshold <- 0.05
+RowsOverThreshold <- which(moran.data$PValue_MonteCarlo > critical_threshold) 
+
+#---------------------------------------------------
+# Make the column a character to make life easy
+# Then rename the quadrant in those rows p>0.05, or 
+# whatever your threshold is
+#---------------------------------------------------
+moran.data$LISA_Quadrant_Plot <- as.character(moran.data$LISA_Quadrant)
+moran.data$LISA_Quadrant_Plot[RowsOverThreshold] <- paste("P>",critical_threshold,sep="")
+```
+
+```r 
+
+#---------------------------------------------------
+# Make a factor again
+#---------------------------------------------------
+moran.data$LISA_Quadrant_Plot <- factor(moran.data$LISA_Quadrant_Plot,
+                               levels= c("High-High","High-Low", 
+                                         "Low-High", "Low-Low",
+                                         paste("P>",critical_threshold,sep="")))
+```
+
+```r 
+
+#---------------------------------------------------
+# And make a plot
+#---------------------------------------------------
+mapLISA <- 
+  tm_shape(moran.data)  +
+  tm_fill( "LISA_Quadrant_Plot",id="NAME",  alpha=.6,
+           palette=  c("#ca0020","#f4a582","#92c5de","#0571b0","white"), title="") +
+  tm_borders(alpha=.5) +
+  tm_legend(position = c("left", "bottom"))+
+  tm_layout(title = paste("LISA,sig= ",critical_threshold), title.position = c("right", "top"))
 
 
+#---------------------------------------------------
+# compare against the raw values 
+#---------------------------------------------------
+mapRaw <- tm_shape(moran.data) + 
+  tm_fill(col = "OZONE_1000PPB", 
+              style = "pretty",
+              palette = "YlGnBu", 
+              border.alpha = 0, 
+              title = "",alpha=.6) +  
+  tm_layout(title = "Mean Ozone", title.position = c("right", "top"))+
+  tm_borders(alpha=.5)+
+  tm_legend(position = c("left", "bottom"))
+  
 
 
+tmap_options(check.and.fix = TRUE)
+tmap_mode("plot")
+tmap_arrange(mapRaw,mapLISA)
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/lisa.png?raw=true)
+
+```r
+# Choose the data you want.  To help your comprehension,
+# Switch between this and ozone.voronoi.sf & see how it changes
+moran.data1 <- county.data.sf
+
+# R hates empty polygons, so we're removing them
+#Change the data value to be EP_Age65 to look at the elderly 
+moran.data1 <- moran.data1[moran.data1$EP_POV150 >  0 , ]
+tracts_empty  <- st_is_empty(moran.data1)
+moran.data1 <- moran.data1[which(tracts_empty==FALSE), ]
+
+# make the nearest neighbours and weights matrix
+nb1 <- poly2nb(moran.data1, queen=TRUE)
+lw1 <- nb2listw(nb1, style="W", zero.policy=TRUE)
+
+# Make the moran scatter plot
+#include labels showing whats happening 
+moran.plot(moran.data1$EP_POV150, 
+           labels=as.character(moran.data1$COUNTY),
+           listw= lw1,
+           xlab = "estimate of pop 65 +",
+           ylab = "Average elderly in neighbouring polygons ",
+           zero.policy = T)
+
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/avg65.png?raw=true)
+
+```r 
+# And conduct the moran hypothesis test
+# To show the autocorrelation 
+moran.test(moran.data1$EP_POV150, listw= lw1)
+```
+
+```r 
+## 
+##  Moran I test under randomisation
+## 
+## data:  moran.data1$EP_POV150  
+## weights: lw1    
+## 
+## Moran I statistic standard deviate = 4.0864, p-value = 2.191e-05
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##       0.327435936      -0.017543860       0.007127149
+```
+
+```r 
+plot(moran.mc(moran.data1$EP_POV150, lw1, nsim=999, alternative="greater"))
+
+```
+
+![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/densityMo.png?raw=true)
+
+### Interpretation
+
+Using the lecture notes and readings interpret what the maps are showing you. Your write up should include
+
+-   What do each of the four colors/quadrants mean?
+    The colors for the mean ozone are showing the ozone levels and separating the breaks based on the abundance of the ozone in the different California counties.For the LISA the colors are showing the higher than average areas withing the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower than average areas that are surrounded by low ozone where nothing is.
+
+-   How do they link to the Moran scatterplot
+    Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it. ## P values
+
+Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.
+
+When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.
 
