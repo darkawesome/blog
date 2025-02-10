@@ -10,7 +10,7 @@ categories:
   - Networking
 tags:
   - Ubuntu
-draft: false
+draft: true
 ---
 
 The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. 
@@ -363,8 +363,6 @@ tm_shape(county.data.sf) +
 ```
 
 ![SOVI_Graphs](https://github.com/darkawesome/blog/blob/main/content/img/Voronoi/ozoneLoc.png?raw=true)
-
-**In the second graph we get a look at how the makeup of the state is across county lines showing in what counties the ozone is in greater or lower amounts. Although this doesn't give as clear of an image as the Voronoi Tesselations it can give lawmakers and others interested in the issue areas to survey to find what the cause may be as to why the ozone is different in different parts of the state.**
 
 **The final graph looks at the issue looking at the individual testing sites. Although this doesn't give a full view of the issue it may add to why we are seeing in the first graph compared to the second. Whether there are more or fewer sensors in an area has the potential to skew what we are seeing in the data. For lawmakers, a recommendation could be to increase the amount of sensors or perhaps even spread them out to other sections where there are few. This could also call into question why the sensors are in the specific locations they are in.**
 
