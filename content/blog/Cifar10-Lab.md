@@ -127,7 +127,7 @@ display_dataset(trainset, list_of_convs=[three_channel_conv1, three_channel_conv
 
 ![Tainset](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image1.png?raw=true)
 
-![3-Channel Convolution](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/imag2.png?raw=true)
+![3-Channel Convolution](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image2.png?raw=true)
 
 ![3- Channel Convolution2](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image3.png?raw=true)
 
