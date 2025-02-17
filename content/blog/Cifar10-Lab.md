@@ -16,7 +16,7 @@ The following is code from 3 years ago at a Nittany Data Labs workshop. As we we
 
 A Convolutional Neural Network can be described as a type of deep learning neural netowrk. This type is typically used for computer vision.
 
-![CNN Architecture](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/max.png?raw=true)
+![CNN Architecture](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/max.png?raw=true)
 
 ```py
 import torch
