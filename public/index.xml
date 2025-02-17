@@ -6,14 +6,21 @@
     <description>Recent content on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Feb 2025 13:24:11 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2025 11:27:05 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cifar10 Lab</title>
+      <link>http://localhost:1313/blog/Cifar10-Lab/</link>
+      <pubDate>Mon, 17 Feb 2025 11:27:05 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Cifar10-Lab/</guid>
+      <description>&lt;p&gt;An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Voronoi</title>
       <link>http://localhost:1313/blog/Voronoi/</link>
       <pubDate>Thu, 06 Feb 2025 13:24:11 -0500</pubDate>
       <guid>http://localhost:1313/blog/Voronoi/</guid>
-      <description>&lt;p&gt;The following is work from my undergrad apart of a geology class in 2023 using voroni polygons and other tools to look at air quality in California. I have left in the instructions from the class. While some of the code is mine parts are from the professor Dr.G.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California.&lt;/p&gt;</description>
     </item>
     <item>
       <title>EveOnlinePI</title>

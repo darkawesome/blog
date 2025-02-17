@@ -125,11 +125,11 @@ def display_dataset(dataset, num_of_images=12, list_of_convs=[]):
 display_dataset(trainset, list_of_convs=[three_channel_conv1, three_channel_conv2])
 ```
 
-![CNN Architecture](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/image1.png?raw=true)
+![Tainset](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image1.png?raw=true)
 
-![CNN Architecture](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/imag2.png?raw=true)
+![3-Channel Convolution](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/imag2.png?raw=true)
 
-![CNN Architecture](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/image3.png?raw=true)
+![3- Channel Convolution2](https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image3.png?raw=true)
 
 ```py
 # network
