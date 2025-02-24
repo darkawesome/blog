@@ -35,15 +35,16 @@ Thankfully, I was showing this to someone in my group within the game that expla
 
 This was the command that I started implementing to 10x my process and made the implementation of a new ships materials take about 3 or 5 minutes depending on if I got the colors right the first time or not.
 
-![Phoenix_Navy](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For Sky Capitals - Phoenix Navy_page-0001.png?raw=true)
+![Phoenix_Navy](
+https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Phoenix%20Navy_page-0001.jpg?raw=true)
 
-![Phoenix_Navy](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For Sky Capitals - Phoenix Navy_page-0004.png?raw=true)
+![Phoenix_Navy](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Phoenix%20Navy_page-0004.jpg?raw=true)
 
 The above images show approximately what one ship's worth of information looks like to implement. Given a change to the highlighted sections, you can figure out how much will be needed for each material and what the price would be given the largest market in the game.
 
 The master table looks like the following and mainly is there to show what the sum of the needed materials would be. The thought process was to make it so a single sheet could be used on its own or if you want to look at the totals the master sheet shows the same information.
 
-![Master_table](https://github.com/darkawesome/blog/blob/main/content/img//PriceQuote/For Sky Capitals - Master Table_page-0001.png?raw=true)
+![Master_table](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Master%20Table_page-0001.jpg?raw=true)
 
 I did leave some notes in the margins to make calling the API easier. I guess for something professional this would be a faux pas but I think it's fine for this.
 

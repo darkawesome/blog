@@ -6,14 +6,14 @@
     <description>Recent content in Windows on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Feb 2025 13:24:11 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 24 Feb 2025 10:24:03 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/categories/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Voronoi</title>
-      <link>http://localhost:1313/blog/Voronoi/</link>
-      <pubDate>Thu, 06 Feb 2025 13:24:11 -0500</pubDate>
-      <guid>http://localhost:1313/blog/Voronoi/</guid>
-      <description>&lt;p&gt;The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California.&lt;/p&gt;</description>
+      <title>PriceQuote</title>
+      <link>http://localhost:1313/blog/PriceQuote/</link>
+      <pubDate>Mon, 24 Feb 2025 10:24:03 -0500</pubDate>
+      <guid>http://localhost:1313/blog/PriceQuote/</guid>
+      <description>&lt;p&gt;This is a continuation of my API learning from the previous EVE Online project. This time I was making a spreadsheet to aid a person within my alliance that would calculate the price to produce certain ships.&lt;/p&gt;</description>
     </item>
     <item>
       <title>EveOnlinePI</title>

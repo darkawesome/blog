@@ -3,36 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/blog/blog/</loc>
-    <lastmod>2025-02-17T11:27:05-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/Cifar10-Lab/</loc>
-    <lastmod>2025-02-17T11:27:05-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2025-02-17T11:27:05-05:00</lastmod>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/linux/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/networking/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/tags/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/Voronoi/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
+    <loc>http://localhost:1313/blog/PriceQuote/</loc>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/categories/windows/</loc>
-    <lastmod>2025-02-06T13:24:11-05:00</lastmod>
+    <lastmod>2025-02-24T10:24:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/EveOnlinePI/</loc>
+    <lastmod>2024-12-05T15:48:30-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/</loc>
+    <lastmod>2024-12-05T15:48:30-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/ubuntu/</loc>
     <lastmod>2024-12-05T15:48:30-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/Cyber-Defense-Analysis-Part2/</loc>
