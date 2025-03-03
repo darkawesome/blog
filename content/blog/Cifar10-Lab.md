@@ -5,7 +5,7 @@ date: 2025-02-17T11:27:05-05:00
 url: /Cifar10-Lab/
 image: /images/2020-thumbs/Cifar10-Lab.jpg
 
-draft: true
+draft: false
 ---
 An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.
 <!--more-->
