@@ -35,8 +35,7 @@ Thankfully, I was showing this to someone in my group within the game that expla
 
 This was the command that I started implementing to 10x my process and made the implementation of a new ships materials take about 3 or 5 minutes depending on if I got the colors right the first time or not.
 
-![Phoenix_Navy](
-https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Phoenix%20Navy_page-0001.jpg?raw=true)
+![Phoenix_Navy](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Phoenix%20Navy_page-0001.jpg?raw=true)
 
 ![Phoenix_Navy](https://github.com/darkawesome/blog/blob/main/content/img/PriceQuote/For%20Sky%20Capitals%20-%20Phoenix%20Navy_page-0004.jpg?raw=true)
 
