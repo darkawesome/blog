@@ -4,14 +4,10 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 url: /{{ .Name }}/
 image: /images/2020-thumbs/{{ .Name }}.jpg
-categories:
-  - Linux
-  - Windows
-  - Networking
-tags:
-  - Ubuntu
+
 draft: true
 ---
+
 <!--more-->
 
 
@@ -22,10 +18,10 @@ draft: true
 _Note: YouTube Video - Hold Ctrl + Left Click to open in new window_
 
 
+importing images 
 
-#### Social
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true)
 
-- YouTube - <https://www.youtube.com/channel/UCdvsMWPh4kQIyWELSkaGkPg>
 
 
 ## Conclusion
