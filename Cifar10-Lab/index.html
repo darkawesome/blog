@@ -1,273 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
-  <title>
-  Cifar10 Lab · DarkAwesome
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="DarkAwesome">
-<meta name="description" content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.">
-<meta name="keywords" content="">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cifar10 Lab">
-  <meta name="twitter:description" content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.">
-
-<meta property="og:url" content="http://localhost:1313/blog/Cifar10-Lab/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Cifar10 Lab">
-  <meta property="og:description" content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-02-17T11:27:05-05:00">
-    <meta property="article:modified_time" content="2025-02-17T11:27:05-05:00">
-
-
-
-
-<link rel="canonical" href="http://localhost:1313/blog/Cifar10-Lab/">
-
-
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-
-
-  
-  
-  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
-
-
-
-
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="http://localhost:1313/blog/">
-      DarkAwesome
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/contact/">Contact</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/">Posts</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container page">
-  <article>
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="http://localhost:1313/blog/Cifar10-Lab/">
-          Cifar10 Lab
-        </a>
-      </h1>
-    </header>
-
-    <p>An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.</p>
-<p>With all the hype currently around Artificial Intelligence I wanted to showcase some prior work done with it as well as look at what I could do in the future based on what I have learned.</p>
-<p>The following is code from 3 years ago at a Nittany Data Labs workshop. As we went through the workshop there was an indepth explanation of what was happening.</p>
-<p>A Convolutional Neural Network can be described as a type of deep learning neural netowrk. This type is typically used for computer vision.</p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/max.png?raw=true" alt="CNN Architecture"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torchvision</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torchvision.transforms</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">transforms</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">PIL</span> <span style="color:#ff7b72">import</span> Image
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">math</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch.nn</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">nn</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torchvision.transforms</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">transforms</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torchvision.datasets</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">datasets</span> 
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">torch.utils.data</span> <span style="color:#ff7b72">import</span> DataLoader
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">matplotlib.pyplot</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">plt</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">PIL</span> <span style="color:#ff7b72">import</span> Image
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">mpl_toolkits.axes_grid1</span> <span style="color:#ff7b72">import</span> ImageGrid
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch.nn.functional</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">F</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch.optim</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">optim</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># utilize gpu if available</span>
-</span></span><span style="display:flex;"><span>device <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>device(<span style="color:#a5d6ff">&#39;cuda:0&#39;</span> <span style="color:#ff7b72">if</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cuda<span style="color:#ff7b72;font-weight:bold">.</span>is_available() <span style="color:#ff7b72">else</span> <span style="color:#a5d6ff">&#39;cpu&#39;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#a5d6ff">&#39;You are using </span><span style="color:#a5d6ff">{device}</span><span style="color:#a5d6ff">&#39;</span><span style="color:#ff7b72;font-weight:bold">.</span>format(device<span style="color:#ff7b72;font-weight:bold">=</span>device))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># hyperparameters / specifics to tune our neural network</span>
-</span></span><span style="display:flex;"><span>batch_size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">32</span> <span style="color:#8b949e;font-style:italic"># number of inputs into neural network</span>
-</span></span><span style="display:flex;"><span>learning_rate <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.001</span>      <span style="color:#8b949e;font-style:italic"># lr: the speed at which your network &#34;learns&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># the list of cifar10 classes</span>
-</span></span><span style="display:flex;"><span>classes <span style="color:#ff7b72;font-weight:bold">=</span> (<span style="color:#a5d6ff">&#39;plane&#39;</span>, <span style="color:#a5d6ff">&#39;car&#39;</span>, <span style="color:#a5d6ff">&#39;bird&#39;</span>, <span style="color:#a5d6ff">&#39;cat&#39;</span>,
-</span></span><span style="display:flex;"><span>           <span style="color:#a5d6ff">&#39;deer&#39;</span>, <span style="color:#a5d6ff">&#39;dog&#39;</span>, <span style="color:#a5d6ff">&#39;frog&#39;</span>, <span style="color:#a5d6ff">&#39;horse&#39;</span>, <span style="color:#a5d6ff">&#39;ship&#39;</span>, <span style="color:#a5d6ff">&#39;truck&#39;</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># downloading the dataset CIFAR10</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># transforming the data to be interpretted by network easier</span>
-</span></span><span style="display:flex;"><span>transform <span style="color:#ff7b72;font-weight:bold">=</span> transforms<span style="color:#ff7b72;font-weight:bold">.</span>Compose(
-</span></span><span style="display:flex;"><span>    [transforms<span style="color:#ff7b72;font-weight:bold">.</span>ToTensor(),
-</span></span><span style="display:flex;"><span>     transforms<span style="color:#ff7b72;font-weight:bold">.</span>Normalize((<span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">0.5</span>), (<span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">0.5</span>))])
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># training data</span>
-</span></span><span style="display:flex;"><span>trainset <span style="color:#ff7b72;font-weight:bold">=</span> torchvision<span style="color:#ff7b72;font-weight:bold">.</span>datasets<span style="color:#ff7b72;font-weight:bold">.</span>CIFAR10(root<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;./data&#39;</span>, train<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>,
-</span></span><span style="display:flex;"><span>                                        download<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>, transform<span style="color:#ff7b72;font-weight:bold">=</span>transform)
-</span></span><span style="display:flex;"><span>trainloader <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>utils<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>DataLoader(trainset, batch_size<span style="color:#ff7b72;font-weight:bold">=</span>batch_size,
-</span></span><span style="display:flex;"><span>                                          shuffle<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>, num_workers<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># test data</span>
-</span></span><span style="display:flex;"><span>testset <span style="color:#ff7b72;font-weight:bold">=</span> torchvision<span style="color:#ff7b72;font-weight:bold">.</span>datasets<span style="color:#ff7b72;font-weight:bold">.</span>CIFAR10(root<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;./data&#39;</span>, train<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">False</span>,
-</span></span><span style="display:flex;"><span>                                       download<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>, transform<span style="color:#ff7b72;font-weight:bold">=</span>transform)
-</span></span><span style="display:flex;"><span>testloader <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>utils<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>DataLoader(testset, batch_size<span style="color:#ff7b72;font-weight:bold">=</span>batch_size,
-</span></span><span style="display:flex;"><span>                                         shuffle<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">False</span>, num_workers<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># two convolutional layers to customize</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">three_channel_conv1</span>(image): 
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> isinstance(image,(np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray, np<span style="color:#ff7b72;font-weight:bold">.</span>generic)):
-</span></span><span style="display:flex;"><span>        image <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(image)
-</span></span><span style="display:flex;"><span>    c <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Conv2d(in_channels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>, out_channels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>, kernel_size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4</span>, stride<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)
-</span></span><span style="display:flex;"><span>    d <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Dropout(<span style="color:#a5d6ff">.2</span>)
-</span></span><span style="display:flex;"><span>    mp <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>MaxPool2d(<span style="color:#a5d6ff">2</span>)
-</span></span><span style="display:flex;"><span>    img <span style="color:#ff7b72;font-weight:bold">=</span> image
-</span></span><span style="display:flex;"><span>    out <span style="color:#ff7b72;font-weight:bold">=</span> c(img)
-</span></span><span style="display:flex;"><span>    out <span style="color:#ff7b72;font-weight:bold">=</span> d(out)
-</span></span><span style="display:flex;"><span>    out <span style="color:#ff7b72;font-weight:bold">=</span> mp(out)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> out
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">three_channel_conv2</span>(image, dropout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.1</span>, maxpool<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2</span>, kernelSize<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4</span>, kernelStride<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>): 
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> isinstance(image, (np<span style="color:#ff7b72;font-weight:bold">.</span>ndarray, np<span style="color:#ff7b72;font-weight:bold">.</span>generic) ):
-</span></span><span style="display:flex;"><span>        image <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(image)
-</span></span><span style="display:flex;"><span>    c <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Conv2d(in_channels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>, out_channels<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>, kernel_size<span style="color:#ff7b72;font-weight:bold">=</span>kernelSize, stride<span style="color:#ff7b72;font-weight:bold">=</span>kernelStride)
-</span></span><span style="display:flex;"><span>    d <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Dropout(dropout)
-</span></span><span style="display:flex;"><span>    mp <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>MaxPool2d(maxpool)
-</span></span><span style="display:flex;"><span>    out <span style="color:#ff7b72;font-weight:bold">=</span> c(image)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> out
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># visualize convolutional layers output</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">display_dataset</span>(dataset, num_of_images<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">12</span>, list_of_convs<span style="color:#ff7b72;font-weight:bold">=</span>[]):    
-</span></span><span style="display:flex;"><span>    cols <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">4</span>
-</span></span><span style="display:flex;"><span>    t <span style="color:#ff7b72;font-weight:bold">=</span> transforms<span style="color:#ff7b72;font-weight:bold">.</span>ToPILImage()
-</span></span><span style="display:flex;"><span>    rows <span style="color:#ff7b72;font-weight:bold">=</span> int(math<span style="color:#ff7b72;font-weight:bold">.</span>ceil((num_of_images<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#a5d6ff">4</span>)))
-</span></span><span style="display:flex;"><span>    fig_list <span style="color:#ff7b72;font-weight:bold">=</span> []
-</span></span><span style="display:flex;"><span>    image_grid_list <span style="color:#ff7b72;font-weight:bold">=</span> []
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> i <span style="color:#ff7b72;font-weight:bold">in</span> range(len(list_of_convs)<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>):
-</span></span><span style="display:flex;"><span>        fig_list<span style="color:#ff7b72;font-weight:bold">.</span>append(plt<span style="color:#ff7b72;font-weight:bold">.</span>figure(figsize<span style="color:#ff7b72;font-weight:bold">=</span>(<span style="color:#a5d6ff">6.0</span>, <span style="color:#a5d6ff">6.0</span>)))
-</span></span><span style="display:flex;"><span>        image_grid_list<span style="color:#ff7b72;font-weight:bold">.</span>append(ImageGrid(fig_list[i], <span style="color:#a5d6ff">111</span>, nrows_ncols<span style="color:#ff7b72;font-weight:bold">=</span>(rows, cols),
-</span></span><span style="display:flex;"><span>                     axes_pad<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0.1</span>))
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> j <span style="color:#ff7b72;font-weight:bold">in</span> range(num_of_images):
-</span></span><span style="display:flex;"><span>        reg_img <span style="color:#ff7b72;font-weight:bold">=</span> dataset[j][<span style="color:#a5d6ff">0</span>]
-</span></span><span style="display:flex;"><span>        image_grid_list[<span style="color:#a5d6ff">0</span>][j]<span style="color:#ff7b72;font-weight:bold">.</span>imshow(t(reg_img))
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> i <span style="color:#ff7b72;font-weight:bold">in</span> range(len(list_of_convs)):
-</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> j <span style="color:#ff7b72;font-weight:bold">in</span> range(num_of_images):
-</span></span><span style="display:flex;"><span>            img <span style="color:#ff7b72;font-weight:bold">=</span> dataset[j][<span style="color:#a5d6ff">0</span>]
-</span></span><span style="display:flex;"><span>            img <span style="color:#ff7b72;font-weight:bold">=</span> list_of_convs[i](img)
-</span></span><span style="display:flex;"><span>            image_grid_list[i<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>][j]<span style="color:#ff7b72;font-weight:bold">.</span>imshow(t(img))
-</span></span><span style="display:flex;"><span>    plt<span style="color:#ff7b72;font-weight:bold">.</span>show()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># print dataset</span>
-</span></span><span style="display:flex;"><span>display_dataset(trainset, list_of_convs<span style="color:#ff7b72;font-weight:bold">=</span>[three_channel_conv1, three_channel_conv2])
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image1.png?raw=true" alt="Tainset"></p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image2.png?raw=true" alt="3-Channel Convolution"></p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image3.png?raw=true" alt="3- Channel Convolution2"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># network</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">Net</span>(nn<span style="color:#ff7b72;font-weight:bold">.</span>Module):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __init__(self):
-</span></span><span style="display:flex;"><span>        super()<span style="color:#ff7b72;font-weight:bold">.</span>__init__()
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conv1 <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Conv2d(<span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">6</span>, <span style="color:#a5d6ff">5</span>)
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>pool <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>MaxPool2d(<span style="color:#a5d6ff">2</span>, <span style="color:#a5d6ff">2</span>)
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conv2 <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Conv2d(<span style="color:#a5d6ff">6</span>, <span style="color:#a5d6ff">16</span>, <span style="color:#a5d6ff">5</span>)
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>fc1 <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">16</span> <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">5</span> <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">5</span>, <span style="color:#a5d6ff">120</span>)
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>fc2 <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">120</span>, <span style="color:#a5d6ff">84</span>)
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>fc3 <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">84</span>, <span style="color:#a5d6ff">10</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">forward</span>(self, x):
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>pool(F<span style="color:#ff7b72;font-weight:bold">.</span>relu(self<span style="color:#ff7b72;font-weight:bold">.</span>conv1(x)))
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>pool(F<span style="color:#ff7b72;font-weight:bold">.</span>relu(self<span style="color:#ff7b72;font-weight:bold">.</span>conv2(x)))
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>flatten(x, <span style="color:#a5d6ff">1</span>) <span style="color:#8b949e;font-style:italic"># flatten all dimensions except batch</span>
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> F<span style="color:#ff7b72;font-weight:bold">.</span>relu(self<span style="color:#ff7b72;font-weight:bold">.</span>fc1(x))
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> F<span style="color:#ff7b72;font-weight:bold">.</span>relu(self<span style="color:#ff7b72;font-weight:bold">.</span>fc2(x))
-</span></span><span style="display:flex;"><span>        x <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>fc3(x)
-</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> x
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>net <span style="color:#ff7b72;font-weight:bold">=</span> Net()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># uses GPU if available</span>
-</span></span><span style="display:flex;"><span>net<span style="color:#ff7b72;font-weight:bold">.</span>to(device)
+<!doctype html><html lang=en><head><title>Cifar10 Lab · DarkAwesome
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Cifar10 Lab"><meta name=twitter:description content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset."><meta property="og:url" content="http://darkawesome.github.io/blog/Cifar10-Lab/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Cifar10 Lab"><meta property="og:description" content="An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-02-17T11:27:05-05:00"><meta property="article:modified_time" content="2025-02-17T11:27:05-05:00"><link rel=canonical href=http://darkawesome.github.io/blog/Cifar10-Lab/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/Cifar10-Lab/>Cifar10 Lab</a></h1></header><p>An intorduction to Convolutional Neural Networks using the CIFAR-10 Dataset.</p><p>With all the hype currently around Artificial Intelligence I wanted to showcase some prior work done with it as well as look at what I could do in the future based on what I have learned.</p><p>The following is code from 3 years ago at a Nittany Data Labs workshop. As we went through the workshop there was an indepth explanation of what was happening.</p><p>A Convolutional Neural Network can be described as a type of deep learning neural netowrk. This type is typically used for computer vision.</p><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/max.png?raw=true" alt="CNN Architecture"></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torch</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torchvision</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torchvision.transforms</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>transforms</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>PIL</span> <span style=color:#ff7b72>import</span> Image
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>math</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torch.nn</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>nn</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>numpy</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>np</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torchvision.transforms</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>transforms</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torchvision.datasets</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>datasets</span> 
+</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>torch.utils.data</span> <span style=color:#ff7b72>import</span> DataLoader
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>matplotlib.pyplot</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>plt</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>PIL</span> <span style=color:#ff7b72>import</span> Image
+</span></span><span style=display:flex><span><span style=color:#ff7b72>from</span> <span style=color:#ff7b72>mpl_toolkits.axes_grid1</span> <span style=color:#ff7b72>import</span> ImageGrid
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torch.nn.functional</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>F</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>import</span> <span style=color:#ff7b72>torch.optim</span> <span style=color:#ff7b72>as</span> <span style=color:#ff7b72>optim</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># utilize gpu if available</span>
+</span></span><span style=display:flex><span>device <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>device(<span style=color:#a5d6ff>&#39;cuda:0&#39;</span> <span style=color:#ff7b72>if</span> torch<span style=color:#ff7b72;font-weight:700>.</span>cuda<span style=color:#ff7b72;font-weight:700>.</span>is_available() <span style=color:#ff7b72>else</span> <span style=color:#a5d6ff>&#39;cpu&#39;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#a5d6ff>&#39;You are using </span><span style=color:#a5d6ff>{device}</span><span style=color:#a5d6ff>&#39;</span><span style=color:#ff7b72;font-weight:700>.</span>format(device<span style=color:#ff7b72;font-weight:700>=</span>device))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># hyperparameters / specifics to tune our neural network</span>
+</span></span><span style=display:flex><span>batch_size <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>32</span> <span style=color:#8b949e;font-style:italic># number of inputs into neural network</span>
+</span></span><span style=display:flex><span>learning_rate <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.001</span>      <span style=color:#8b949e;font-style:italic># lr: the speed at which your network &#34;learns&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># the list of cifar10 classes</span>
+</span></span><span style=display:flex><span>classes <span style=color:#ff7b72;font-weight:700>=</span> (<span style=color:#a5d6ff>&#39;plane&#39;</span>, <span style=color:#a5d6ff>&#39;car&#39;</span>, <span style=color:#a5d6ff>&#39;bird&#39;</span>, <span style=color:#a5d6ff>&#39;cat&#39;</span>,
+</span></span><span style=display:flex><span>           <span style=color:#a5d6ff>&#39;deer&#39;</span>, <span style=color:#a5d6ff>&#39;dog&#39;</span>, <span style=color:#a5d6ff>&#39;frog&#39;</span>, <span style=color:#a5d6ff>&#39;horse&#39;</span>, <span style=color:#a5d6ff>&#39;ship&#39;</span>, <span style=color:#a5d6ff>&#39;truck&#39;</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># downloading the dataset CIFAR10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># transforming the data to be interpretted by network easier</span>
+</span></span><span style=display:flex><span>transform <span style=color:#ff7b72;font-weight:700>=</span> transforms<span style=color:#ff7b72;font-weight:700>.</span>Compose(
+</span></span><span style=display:flex><span>    [transforms<span style=color:#ff7b72;font-weight:700>.</span>ToTensor(),
+</span></span><span style=display:flex><span>     transforms<span style=color:#ff7b72;font-weight:700>.</span>Normalize((<span style=color:#a5d6ff>0.5</span>, <span style=color:#a5d6ff>0.5</span>, <span style=color:#a5d6ff>0.5</span>), (<span style=color:#a5d6ff>0.5</span>, <span style=color:#a5d6ff>0.5</span>, <span style=color:#a5d6ff>0.5</span>))])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># training data</span>
+</span></span><span style=display:flex><span>trainset <span style=color:#ff7b72;font-weight:700>=</span> torchvision<span style=color:#ff7b72;font-weight:700>.</span>datasets<span style=color:#ff7b72;font-weight:700>.</span>CIFAR10(root<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;./data&#39;</span>, train<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>True</span>,
+</span></span><span style=display:flex><span>                                        download<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>True</span>, transform<span style=color:#ff7b72;font-weight:700>=</span>transform)
+</span></span><span style=display:flex><span>trainloader <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>utils<span style=color:#ff7b72;font-weight:700>.</span>data<span style=color:#ff7b72;font-weight:700>.</span>DataLoader(trainset, batch_size<span style=color:#ff7b72;font-weight:700>=</span>batch_size,
+</span></span><span style=display:flex><span>                                          shuffle<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>True</span>, num_workers<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>)
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># test data</span>
+</span></span><span style=display:flex><span>testset <span style=color:#ff7b72;font-weight:700>=</span> torchvision<span style=color:#ff7b72;font-weight:700>.</span>datasets<span style=color:#ff7b72;font-weight:700>.</span>CIFAR10(root<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;./data&#39;</span>, train<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>False</span>,
+</span></span><span style=display:flex><span>                                       download<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>True</span>, transform<span style=color:#ff7b72;font-weight:700>=</span>transform)
+</span></span><span style=display:flex><span>testloader <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>utils<span style=color:#ff7b72;font-weight:700>.</span>data<span style=color:#ff7b72;font-weight:700>.</span>DataLoader(testset, batch_size<span style=color:#ff7b72;font-weight:700>=</span>batch_size,
+</span></span><span style=display:flex><span>                                         shuffle<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#79c0ff>False</span>, num_workers<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># two convolutional layers to customize</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>three_channel_conv1</span>(image): 
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> isinstance(image,(np<span style=color:#ff7b72;font-weight:700>.</span>ndarray, np<span style=color:#ff7b72;font-weight:700>.</span>generic)):
+</span></span><span style=display:flex><span>        image <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>from_numpy(image)
+</span></span><span style=display:flex><span>    c <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Conv2d(in_channels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>3</span>, out_channels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>1</span>, kernel_size<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>4</span>, stride<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>1</span>)
+</span></span><span style=display:flex><span>    d <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Dropout(<span style=color:#a5d6ff>.2</span>)
+</span></span><span style=display:flex><span>    mp <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>MaxPool2d(<span style=color:#a5d6ff>2</span>)
+</span></span><span style=display:flex><span>    img <span style=color:#ff7b72;font-weight:700>=</span> image
+</span></span><span style=display:flex><span>    out <span style=color:#ff7b72;font-weight:700>=</span> c(img)
+</span></span><span style=display:flex><span>    out <span style=color:#ff7b72;font-weight:700>=</span> d(out)
+</span></span><span style=display:flex><span>    out <span style=color:#ff7b72;font-weight:700>=</span> mp(out)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> out
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>three_channel_conv2</span>(image, dropout<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>.1</span>, maxpool<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2</span>, kernelSize<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>4</span>, kernelStride<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>1</span>): 
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>if</span> isinstance(image, (np<span style=color:#ff7b72;font-weight:700>.</span>ndarray, np<span style=color:#ff7b72;font-weight:700>.</span>generic) ):
+</span></span><span style=display:flex><span>        image <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>from_numpy(image)
+</span></span><span style=display:flex><span>    c <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Conv2d(in_channels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>3</span>, out_channels<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>1</span>, kernel_size<span style=color:#ff7b72;font-weight:700>=</span>kernelSize, stride<span style=color:#ff7b72;font-weight:700>=</span>kernelStride)
+</span></span><span style=display:flex><span>    d <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Dropout(dropout)
+</span></span><span style=display:flex><span>    mp <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>MaxPool2d(maxpool)
+</span></span><span style=display:flex><span>    out <span style=color:#ff7b72;font-weight:700>=</span> c(image)
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>return</span> out
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># visualize convolutional layers output</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>display_dataset</span>(dataset, num_of_images<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>12</span>, list_of_convs<span style=color:#ff7b72;font-weight:700>=</span>[]):    
+</span></span><span style=display:flex><span>    cols <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>4</span>
+</span></span><span style=display:flex><span>    t <span style=color:#ff7b72;font-weight:700>=</span> transforms<span style=color:#ff7b72;font-weight:700>.</span>ToPILImage()
+</span></span><span style=display:flex><span>    rows <span style=color:#ff7b72;font-weight:700>=</span> int(math<span style=color:#ff7b72;font-weight:700>.</span>ceil((num_of_images<span style=color:#ff7b72;font-weight:700>/</span><span style=color:#a5d6ff>4</span>)))
+</span></span><span style=display:flex><span>    fig_list <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>    image_grid_list <span style=color:#ff7b72;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> i <span style=color:#ff7b72;font-weight:700>in</span> range(len(list_of_convs)<span style=color:#ff7b72;font-weight:700>+</span><span style=color:#a5d6ff>1</span>):
+</span></span><span style=display:flex><span>        fig_list<span style=color:#ff7b72;font-weight:700>.</span>append(plt<span style=color:#ff7b72;font-weight:700>.</span>figure(figsize<span style=color:#ff7b72;font-weight:700>=</span>(<span style=color:#a5d6ff>6.0</span>, <span style=color:#a5d6ff>6.0</span>)))
+</span></span><span style=display:flex><span>        image_grid_list<span style=color:#ff7b72;font-weight:700>.</span>append(ImageGrid(fig_list[i], <span style=color:#a5d6ff>111</span>, nrows_ncols<span style=color:#ff7b72;font-weight:700>=</span>(rows, cols),
+</span></span><span style=display:flex><span>                     axes_pad<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>0.1</span>))
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> j <span style=color:#ff7b72;font-weight:700>in</span> range(num_of_images):
+</span></span><span style=display:flex><span>        reg_img <span style=color:#ff7b72;font-weight:700>=</span> dataset[j][<span style=color:#a5d6ff>0</span>]
+</span></span><span style=display:flex><span>        image_grid_list[<span style=color:#a5d6ff>0</span>][j]<span style=color:#ff7b72;font-weight:700>.</span>imshow(t(reg_img))
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> i <span style=color:#ff7b72;font-weight:700>in</span> range(len(list_of_convs)):
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> j <span style=color:#ff7b72;font-weight:700>in</span> range(num_of_images):
+</span></span><span style=display:flex><span>            img <span style=color:#ff7b72;font-weight:700>=</span> dataset[j][<span style=color:#a5d6ff>0</span>]
+</span></span><span style=display:flex><span>            img <span style=color:#ff7b72;font-weight:700>=</span> list_of_convs[i](img)
+</span></span><span style=display:flex><span>            image_grid_list[i<span style=color:#ff7b72;font-weight:700>+</span><span style=color:#a5d6ff>1</span>][j]<span style=color:#ff7b72;font-weight:700>.</span>imshow(t(img))
+</span></span><span style=display:flex><span>    plt<span style=color:#ff7b72;font-weight:700>.</span>show()
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># print dataset</span>
+</span></span><span style=display:flex><span>display_dataset(trainset, list_of_convs<span style=color:#ff7b72;font-weight:700>=</span>[three_channel_conv1, three_channel_conv2])
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image1.png?raw=true" alt=Tainset></p><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image2.png?raw=true" alt="3-Channel Convolution"></p><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cifar/image3.png?raw=true" alt="3- Channel Convolution2"></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># network</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>class</span> <span style=color:#f0883e;font-weight:700>Net</span>(nn<span style=color:#ff7b72;font-weight:700>.</span>Module):
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>def</span> __init__(self):
+</span></span><span style=display:flex><span>        super()<span style=color:#ff7b72;font-weight:700>.</span>__init__()
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>conv1 <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Conv2d(<span style=color:#a5d6ff>3</span>, <span style=color:#a5d6ff>6</span>, <span style=color:#a5d6ff>5</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>pool <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>MaxPool2d(<span style=color:#a5d6ff>2</span>, <span style=color:#a5d6ff>2</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>conv2 <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Conv2d(<span style=color:#a5d6ff>6</span>, <span style=color:#a5d6ff>16</span>, <span style=color:#a5d6ff>5</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>fc1 <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Linear(<span style=color:#a5d6ff>16</span> <span style=color:#ff7b72;font-weight:700>*</span> <span style=color:#a5d6ff>5</span> <span style=color:#ff7b72;font-weight:700>*</span> <span style=color:#a5d6ff>5</span>, <span style=color:#a5d6ff>120</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>fc2 <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Linear(<span style=color:#a5d6ff>120</span>, <span style=color:#a5d6ff>84</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#ff7b72;font-weight:700>.</span>fc3 <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>Linear(<span style=color:#a5d6ff>84</span>, <span style=color:#a5d6ff>10</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>def</span> <span style=color:#d2a8ff;font-weight:700>forward</span>(self, x):
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> self<span style=color:#ff7b72;font-weight:700>.</span>pool(F<span style=color:#ff7b72;font-weight:700>.</span>relu(self<span style=color:#ff7b72;font-weight:700>.</span>conv1(x)))
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> self<span style=color:#ff7b72;font-weight:700>.</span>pool(F<span style=color:#ff7b72;font-weight:700>.</span>relu(self<span style=color:#ff7b72;font-weight:700>.</span>conv2(x)))
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>flatten(x, <span style=color:#a5d6ff>1</span>) <span style=color:#8b949e;font-style:italic># flatten all dimensions except batch</span>
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> F<span style=color:#ff7b72;font-weight:700>.</span>relu(self<span style=color:#ff7b72;font-weight:700>.</span>fc1(x))
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> F<span style=color:#ff7b72;font-weight:700>.</span>relu(self<span style=color:#ff7b72;font-weight:700>.</span>fc2(x))
+</span></span><span style=display:flex><span>        x <span style=color:#ff7b72;font-weight:700>=</span> self<span style=color:#ff7b72;font-weight:700>.</span>fc3(x)
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>return</span> x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>net <span style=color:#ff7b72;font-weight:700>=</span> Net()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># uses GPU if available</span>
+</span></span><span style=display:flex><span>net<span style=color:#ff7b72;font-weight:700>.</span>to(device)
 </span></span></code></pre></div><p>Net(
 (conv1): Conv2d(3, 6, kernel_size=(5, 5), stride=(1, 1))
 (pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
@@ -275,180 +121,104 @@
 (fc1): Linear(in_features=400, out_features=120, bias=True)
 (fc2): Linear(in_features=120, out_features=84, bias=True)
 (fc3): Linear(in_features=84, out_features=10, bias=True)
-)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># formula for calculating how correct the network is</span>
-</span></span><span style="display:flex;"><span>criterion <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>CrossEntropyLoss()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># how we decide to improve the network</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># adam is the current state of the art optimizer</span>
-</span></span><span style="display:flex;"><span>optimizer <span style="color:#ff7b72;font-weight:bold">=</span> optim<span style="color:#ff7b72;font-weight:bold">.</span>Adam(net<span style="color:#ff7b72;font-weight:bold">.</span>parameters(), lr<span style="color:#ff7b72;font-weight:bold">=</span>learning_rate)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># load dataset if you want to, comment out if you don&#39;t want to</span>
-</span></span><span style="display:flex;"><span>net<span style="color:#ff7b72;font-weight:bold">.</span>load_state_dict(torch<span style="color:#ff7b72;font-weight:bold">.</span>load(<span style="color:#a5d6ff">&#39;./nets/cifar10-best&#39;</span>))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>best_loss <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.2</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> epoch <span style="color:#ff7b72;font-weight:bold">in</span> range(<span style="color:#a5d6ff">2</span>):  <span style="color:#8b949e;font-style:italic"># loop over the dataset multiple times</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    curr_loss <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.0</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> i, data <span style="color:#ff7b72;font-weight:bold">in</span> enumerate(trainloader, <span style="color:#a5d6ff">0</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># get the inputs; data is a list of [inputs, labels]</span>
-</span></span><span style="display:flex;"><span>        inputs, labels <span style="color:#ff7b72;font-weight:bold">=</span> data
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># zero the parameter gradients</span>
-</span></span><span style="display:flex;"><span>        optimizer<span style="color:#ff7b72;font-weight:bold">.</span>zero_grad()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># forward + backward + optimize</span>
-</span></span><span style="display:flex;"><span>        outputs <span style="color:#ff7b72;font-weight:bold">=</span> net(inputs)
-</span></span><span style="display:flex;"><span>        loss <span style="color:#ff7b72;font-weight:bold">=</span> criterion(outputs, labels)
-</span></span><span style="display:flex;"><span>        loss<span style="color:#ff7b72;font-weight:bold">.</span>backward()
-</span></span><span style="display:flex;"><span>        optimizer<span style="color:#ff7b72;font-weight:bold">.</span>step()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># print statistics</span>
-</span></span><span style="display:flex;"><span>        curr_loss <span style="color:#ff7b72;font-weight:bold">+=</span> loss<span style="color:#ff7b72;font-weight:bold">.</span>item()
-</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> i <span style="color:#ff7b72;font-weight:bold">%</span> <span style="color:#a5d6ff">500</span> <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">0</span>:    <span style="color:#8b949e;font-style:italic"># print every 2000 mini-batches</span>
-</span></span><span style="display:flex;"><span>            print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;[</span><span style="color:#a5d6ff">{</span>epoch <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">, </span><span style="color:#a5d6ff">{</span>i <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span><span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">5d</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">] loss: </span><span style="color:#a5d6ff">{</span>curr_loss <span style="color:#ff7b72;font-weight:bold">/</span> <span style="color:#a5d6ff">2000</span><span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.3f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
-</span></span><span style="display:flex;"><span>            curr_loss <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.0</span>
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> curr_loss <span style="color:#ff7b72;font-weight:bold">&lt;</span> best_loss <span style="color:#ff7b72;font-weight:bold">and</span> i <span style="color:#ff7b72;font-weight:bold">!=</span> <span style="color:#a5d6ff">0</span>:
-</span></span><span style="display:flex;"><span>                best_loss <span style="color:#ff7b72;font-weight:bold">=</span> curr_loss
-</span></span><span style="display:flex;"><span>                <span style="color:#8b949e;font-style:italic"># torch.save(net.state_dict(), &#39;./nets/cifar10-{loss}&#39;.format(loss=curr_loss))</span>
-</span></span><span style="display:flex;"><span>                
-</span></span><span style="display:flex;"><span>                <span style="color:#8b949e;font-style:italic"># make sure you load dataset if you want to run this as it will overwrite the previous weights</span>
-</span></span><span style="display:flex;"><span>                torch<span style="color:#ff7b72;font-weight:bold">.</span>save(net<span style="color:#ff7b72;font-weight:bold">.</span>state_dict(), <span style="color:#a5d6ff">&#39;./nets/cifar10-best&#39;</span><span style="color:#ff7b72;font-weight:bold">.</span>format(loss<span style="color:#ff7b72;font-weight:bold">=</span>curr_loss))
-</span></span><span style="display:flex;"><span>                print(<span style="color:#a5d6ff">&#39;saving best model&#39;</span>)
-</span></span><span style="display:flex;"><span>                
-</span></span><span style="display:flex;"><span>print(<span style="color:#a5d6ff">&#39;Finished Training&#39;</span>)
-</span></span></code></pre></div><p>[1,     1] loss: 0.000
-[1,   501] loss: 0.156
+)</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># formula for calculating how correct the network is</span>
+</span></span><span style=display:flex><span>criterion <span style=color:#ff7b72;font-weight:700>=</span> nn<span style=color:#ff7b72;font-weight:700>.</span>CrossEntropyLoss()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># how we decide to improve the network</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># adam is the current state of the art optimizer</span>
+</span></span><span style=display:flex><span>optimizer <span style=color:#ff7b72;font-weight:700>=</span> optim<span style=color:#ff7b72;font-weight:700>.</span>Adam(net<span style=color:#ff7b72;font-weight:700>.</span>parameters(), lr<span style=color:#ff7b72;font-weight:700>=</span>learning_rate)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># load dataset if you want to, comment out if you don&#39;t want to</span>
+</span></span><span style=display:flex><span>net<span style=color:#ff7b72;font-weight:700>.</span>load_state_dict(torch<span style=color:#ff7b72;font-weight:700>.</span>load(<span style=color:#a5d6ff>&#39;./nets/cifar10-best&#39;</span>))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span>best_loss <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.2</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>for</span> epoch <span style=color:#ff7b72;font-weight:700>in</span> range(<span style=color:#a5d6ff>2</span>):  <span style=color:#8b949e;font-style:italic># loop over the dataset multiple times</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    curr_loss <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.0</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> i, data <span style=color:#ff7b72;font-weight:700>in</span> enumerate(trainloader, <span style=color:#a5d6ff>0</span>):
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># get the inputs; data is a list of [inputs, labels]</span>
+</span></span><span style=display:flex><span>        inputs, labels <span style=color:#ff7b72;font-weight:700>=</span> data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># zero the parameter gradients</span>
+</span></span><span style=display:flex><span>        optimizer<span style=color:#ff7b72;font-weight:700>.</span>zero_grad()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># forward + backward + optimize</span>
+</span></span><span style=display:flex><span>        outputs <span style=color:#ff7b72;font-weight:700>=</span> net(inputs)
+</span></span><span style=display:flex><span>        loss <span style=color:#ff7b72;font-weight:700>=</span> criterion(outputs, labels)
+</span></span><span style=display:flex><span>        loss<span style=color:#ff7b72;font-weight:700>.</span>backward()
+</span></span><span style=display:flex><span>        optimizer<span style=color:#ff7b72;font-weight:700>.</span>step()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># print statistics</span>
+</span></span><span style=display:flex><span>        curr_loss <span style=color:#ff7b72;font-weight:700>+=</span> loss<span style=color:#ff7b72;font-weight:700>.</span>item()
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>if</span> i <span style=color:#ff7b72;font-weight:700>%</span> <span style=color:#a5d6ff>500</span> <span style=color:#ff7b72;font-weight:700>==</span> <span style=color:#a5d6ff>0</span>:    <span style=color:#8b949e;font-style:italic># print every 2000 mini-batches</span>
+</span></span><span style=display:flex><span>            print(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#39;[</span><span style=color:#a5d6ff>{</span>epoch <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#a5d6ff>1</span><span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>, </span><span style=color:#a5d6ff>{</span>i <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#a5d6ff>1</span><span style=color:#a5d6ff>:</span><span style=color:#a5d6ff>5d</span><span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>] loss: </span><span style=color:#a5d6ff>{</span>curr_loss <span style=color:#ff7b72;font-weight:700>/</span> <span style=color:#a5d6ff>2000</span><span style=color:#a5d6ff>:</span><span style=color:#a5d6ff>.3f</span><span style=color:#a5d6ff>}</span><span style=color:#a5d6ff>&#39;</span>)
+</span></span><span style=display:flex><span>            curr_loss <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0.0</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> curr_loss <span style=color:#ff7b72;font-weight:700>&lt;</span> best_loss <span style=color:#ff7b72;font-weight:700>and</span> i <span style=color:#ff7b72;font-weight:700>!=</span> <span style=color:#a5d6ff>0</span>:
+</span></span><span style=display:flex><span>                best_loss <span style=color:#ff7b72;font-weight:700>=</span> curr_loss
+</span></span><span style=display:flex><span>                <span style=color:#8b949e;font-style:italic># torch.save(net.state_dict(), &#39;./nets/cifar10-{loss}&#39;.format(loss=curr_loss))</span>
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                <span style=color:#8b949e;font-style:italic># make sure you load dataset if you want to run this as it will overwrite the previous weights</span>
+</span></span><span style=display:flex><span>                torch<span style=color:#ff7b72;font-weight:700>.</span>save(net<span style=color:#ff7b72;font-weight:700>.</span>state_dict(), <span style=color:#a5d6ff>&#39;./nets/cifar10-best&#39;</span><span style=color:#ff7b72;font-weight:700>.</span>format(loss<span style=color:#ff7b72;font-weight:700>=</span>curr_loss))
+</span></span><span style=display:flex><span>                print(<span style=color:#a5d6ff>&#39;saving best model&#39;</span>)
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>print(<span style=color:#a5d6ff>&#39;Finished Training&#39;</span>)
+</span></span></code></pre></div><p>[1, 1] loss: 0.000
+[1, 501] loss: 0.156
 saving best model
-[1,  1001] loss: 0.161
-[1,  1501] loss: 0.168
-[2,     1] loss: 0.000
-[2,   501] loss: 0.148
-[2,  1001] loss: 0.158
-[2,  1501] loss: 0.162
-Finished Training</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>correct <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
-</span></span><span style="display:flex;"><span>total <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># since we&#39;re not training, we don&#39;t need to calculate the gradients for our outputs</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">with</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>no_grad():
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> data <span style="color:#ff7b72;font-weight:bold">in</span> testloader:
-</span></span><span style="display:flex;"><span>        images, labels <span style="color:#ff7b72;font-weight:bold">=</span> data
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># calculate outputs by running images through the network</span>
-</span></span><span style="display:flex;"><span>        outputs <span style="color:#ff7b72;font-weight:bold">=</span> net(images)
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># the class with the highest energy is what we choose as prediction</span>
-</span></span><span style="display:flex;"><span>        _, predicted <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>max(outputs<span style="color:#ff7b72;font-weight:bold">.</span>data, <span style="color:#a5d6ff">1</span>)
-</span></span><span style="display:flex;"><span>        total <span style="color:#ff7b72;font-weight:bold">+=</span> labels<span style="color:#ff7b72;font-weight:bold">.</span>size(<span style="color:#a5d6ff">0</span>)
-</span></span><span style="display:flex;"><span>        correct <span style="color:#ff7b72;font-weight:bold">+=</span> (predicted <span style="color:#ff7b72;font-weight:bold">==</span> labels)<span style="color:#ff7b72;font-weight:bold">.</span>sum()<span style="color:#ff7b72;font-weight:bold">.</span>item()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;Accuracy of the network on the 10000 test images: </span><span style="color:#a5d6ff">{</span><span style="color:#a5d6ff">100</span> <span style="color:#ff7b72;font-weight:bold">*</span> correct <span style="color:#ff7b72;font-weight:bold">//</span> total<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> %&#39;</span>)
-</span></span></code></pre></div><p>Accuracy of the network on the 10000 test images: 63 %</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># prepare to count predictions for each class</span>
-</span></span><span style="display:flex;"><span>correct_pred <span style="color:#ff7b72;font-weight:bold">=</span> {classname: <span style="color:#a5d6ff">0</span> <span style="color:#ff7b72">for</span> classname <span style="color:#ff7b72;font-weight:bold">in</span> classes}
-</span></span><span style="display:flex;"><span>total_pred <span style="color:#ff7b72;font-weight:bold">=</span> {classname: <span style="color:#a5d6ff">0</span> <span style="color:#ff7b72">for</span> classname <span style="color:#ff7b72;font-weight:bold">in</span> classes}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># again no gradients needed</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">with</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>no_grad():
-</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> data <span style="color:#ff7b72;font-weight:bold">in</span> testloader:
-</span></span><span style="display:flex;"><span>        images, labels <span style="color:#ff7b72;font-weight:bold">=</span> data
-</span></span><span style="display:flex;"><span>        outputs <span style="color:#ff7b72;font-weight:bold">=</span> net(images)
-</span></span><span style="display:flex;"><span>        _, predictions <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>max(outputs, <span style="color:#a5d6ff">1</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># collect the correct predictions for each class</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> label, prediction <span style="color:#ff7b72;font-weight:bold">in</span> zip(labels, predictions):
-</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> label <span style="color:#ff7b72;font-weight:bold">==</span> prediction:
-</span></span><span style="display:flex;"><span>                correct_pred[classes[label]] <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#a5d6ff">1</span>
-</span></span><span style="display:flex;"><span>            total_pred[classes[label]] <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#a5d6ff">1</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># print accuracy for each class</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> classname, correct_count <span style="color:#ff7b72;font-weight:bold">in</span> correct_pred<span style="color:#ff7b72;font-weight:bold">.</span>items():
-</span></span><span style="display:flex;"><span>    accuracy <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">100</span> <span style="color:#ff7b72;font-weight:bold">*</span> float(correct_count) <span style="color:#ff7b72;font-weight:bold">/</span> total_pred[classname]
-</span></span><span style="display:flex;"><span>    print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;Accuracy for class: </span><span style="color:#a5d6ff">{</span>classname<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">5s</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> is </span><span style="color:#a5d6ff">{</span>accuracy<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.1f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> %&#39;</span>)
+[1, 1001] loss: 0.161
+[1, 1501] loss: 0.168
+[2, 1] loss: 0.000
+[2, 501] loss: 0.148
+[2, 1001] loss: 0.158
+[2, 1501] loss: 0.162
+Finished Training</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span>correct <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>
+</span></span><span style=display:flex><span>total <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># since we&#39;re not training, we don&#39;t need to calculate the gradients for our outputs</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>with</span> torch<span style=color:#ff7b72;font-weight:700>.</span>no_grad():
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> data <span style=color:#ff7b72;font-weight:700>in</span> testloader:
+</span></span><span style=display:flex><span>        images, labels <span style=color:#ff7b72;font-weight:700>=</span> data
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># calculate outputs by running images through the network</span>
+</span></span><span style=display:flex><span>        outputs <span style=color:#ff7b72;font-weight:700>=</span> net(images)
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># the class with the highest energy is what we choose as prediction</span>
+</span></span><span style=display:flex><span>        _, predicted <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>max(outputs<span style=color:#ff7b72;font-weight:700>.</span>data, <span style=color:#a5d6ff>1</span>)
+</span></span><span style=display:flex><span>        total <span style=color:#ff7b72;font-weight:700>+=</span> labels<span style=color:#ff7b72;font-weight:700>.</span>size(<span style=color:#a5d6ff>0</span>)
+</span></span><span style=display:flex><span>        correct <span style=color:#ff7b72;font-weight:700>+=</span> (predicted <span style=color:#ff7b72;font-weight:700>==</span> labels)<span style=color:#ff7b72;font-weight:700>.</span>sum()<span style=color:#ff7b72;font-weight:700>.</span>item()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#39;Accuracy of the network on the 10000 test images: </span><span style=color:#a5d6ff>{</span><span style=color:#a5d6ff>100</span> <span style=color:#ff7b72;font-weight:700>*</span> correct <span style=color:#ff7b72;font-weight:700>//</span> total<span style=color:#a5d6ff>}</span><span style=color:#a5d6ff> %&#39;</span>)
+</span></span></code></pre></div><p>Accuracy of the network on the 10000 test images: 63 %</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span><span style=color:#8b949e;font-style:italic># prepare to count predictions for each class</span>
+</span></span><span style=display:flex><span>correct_pred <span style=color:#ff7b72;font-weight:700>=</span> {classname: <span style=color:#a5d6ff>0</span> <span style=color:#ff7b72>for</span> classname <span style=color:#ff7b72;font-weight:700>in</span> classes}
+</span></span><span style=display:flex><span>total_pred <span style=color:#ff7b72;font-weight:700>=</span> {classname: <span style=color:#a5d6ff>0</span> <span style=color:#ff7b72>for</span> classname <span style=color:#ff7b72;font-weight:700>in</span> classes}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># again no gradients needed</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>with</span> torch<span style=color:#ff7b72;font-weight:700>.</span>no_grad():
+</span></span><span style=display:flex><span>    <span style=color:#ff7b72>for</span> data <span style=color:#ff7b72;font-weight:700>in</span> testloader:
+</span></span><span style=display:flex><span>        images, labels <span style=color:#ff7b72;font-weight:700>=</span> data
+</span></span><span style=display:flex><span>        outputs <span style=color:#ff7b72;font-weight:700>=</span> net(images)
+</span></span><span style=display:flex><span>        _, predictions <span style=color:#ff7b72;font-weight:700>=</span> torch<span style=color:#ff7b72;font-weight:700>.</span>max(outputs, <span style=color:#a5d6ff>1</span>)
+</span></span><span style=display:flex><span>        <span style=color:#8b949e;font-style:italic># collect the correct predictions for each class</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff7b72>for</span> label, prediction <span style=color:#ff7b72;font-weight:700>in</span> zip(labels, predictions):
+</span></span><span style=display:flex><span>            <span style=color:#ff7b72>if</span> label <span style=color:#ff7b72;font-weight:700>==</span> prediction:
+</span></span><span style=display:flex><span>                correct_pred[classes[label]] <span style=color:#ff7b72;font-weight:700>+=</span> <span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>            total_pred[classes[label]] <span style=color:#ff7b72;font-weight:700>+=</span> <span style=color:#a5d6ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># print accuracy for each class</span>
+</span></span><span style=display:flex><span><span style=color:#ff7b72>for</span> classname, correct_count <span style=color:#ff7b72;font-weight:700>in</span> correct_pred<span style=color:#ff7b72;font-weight:700>.</span>items():
+</span></span><span style=display:flex><span>    accuracy <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>100</span> <span style=color:#ff7b72;font-weight:700>*</span> float(correct_count) <span style=color:#ff7b72;font-weight:700>/</span> total_pred[classname]
+</span></span><span style=display:flex><span>    print(<span style=color:#79c0ff>f</span><span style=color:#a5d6ff>&#39;Accuracy for class: </span><span style=color:#a5d6ff>{</span>classname<span style=color:#a5d6ff>:</span><span style=color:#a5d6ff>5s</span><span style=color:#a5d6ff>}</span><span style=color:#a5d6ff> is </span><span style=color:#a5d6ff>{</span>accuracy<span style=color:#a5d6ff>:</span><span style=color:#a5d6ff>.1f</span><span style=color:#a5d6ff>}</span><span style=color:#a5d6ff> %&#39;</span>)
 </span></span></code></pre></div><p>Accuracy for class: plane is 73.7 %
-Accuracy for class: car   is 82.5 %
-Accuracy for class: bird  is 43.9 %
-Accuracy for class: cat   is 39.0 %
-Accuracy for class: deer  is 60.5 %
-Accuracy for class: dog   is 61.6 %
-Accuracy for class: frog  is 71.0 %
+Accuracy for class: car is 82.5 %
+Accuracy for class: bird is 43.9 %
+Accuracy for class: cat is 39.0 %
+Accuracy for class: deer is 60.5 %
+Accuracy for class: dog is 61.6 %
+Accuracy for class: frog is 71.0 %
 Accuracy for class: horse is 61.9 %
-Accuracy for class: ship  is 66.2 %
-Accuracy for class: truck is 73.0 %</p>
-<h2 id="conclusion">
-  Conclusion
-  <a class="heading-link" href="#conclusion">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>What I want to do is work with another deep learning network and look at the Cyber Defense Network. My plan is to train it on the already available data from 2023 and then test it on the data from 2024.</p>
-<p>From what I have learned here the process will be somewhat the same however, I am not using words not images.</p>
-<p>I think this project has the potential to be useful in the classification of the attacks. However, I cannot be sure of this since labeling process includes the definitions from the codebook. And the labeling includes having to look at news sources for what is happening.</p>
-  </article>
-</section>
-
-  
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-    2025
-     DarkAwesome 
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/blog/js/coder.js"></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+Accuracy for class: ship is 66.2 %
+Accuracy for class: truck is 73.0 %</p><h2 id=conclusion>Conclusion
+<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>What I want to do is work with another deep learning network and look at the Cyber Defense Network. My plan is to train it on the already available data from 2023 and then test it on the data from 2024.</p><p>From what I have learned here the process will be somewhat the same however, I am not using words not images.</p><p>I think this project has the potential to be useful in the classification of the attacks. However, I cannot be sure of this since labeling process includes the definitions from the codebook. And the labeling includes having to look at news sources for what is happening.</p></article></section></div><footer class=footer><section class=container>©
+2025
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
