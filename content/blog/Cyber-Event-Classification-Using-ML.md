@@ -11,7 +11,7 @@ draft: false
 The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.
 <!--more-->
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/Random-Forest-Algorithm.webp?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/Random-Forest-Algorithm.jpg?raw=true)
 
 This took many weeks of reading documentation and learning more about AI. I started trying to use deep learning but rethought my approach to be more based on what I already knew from statistics. This transition was a lot easier as my pretraining was essentially the same.
 The primary goal of this project was to build a machine learning model capable of predicting key attributes of cybersecurity incidents based on textual descriptions. The attributes predicted include:
@@ -30,9 +30,9 @@ The description field (a textual representation of each event) was vectorized us
 Initially, 4,000 features were extracted, later expanded to 6,000 for improved performance. Unigrams and bigrams were used in vectorization to capture both individual words and two-word phrases.
 Given the high-dimensional nature of TF-IDF features, Truncated SVD (a variation of PCA for sparse data) was applied. What happens in this step is that the top 4,000 most important words (features) will be kept, [changed to 6000 for testing] based on their frequency and uniqueness across the dataset, and will ignore those that are frequently included like "the".
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/IDF-Formula.webp?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/IDF-Formula.jpg?raw=true)
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/The-TF-Formula.webp?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/The-TF-Formula.jpg?raw=true)
 
 Key findings:
 
