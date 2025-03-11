@@ -13,10 +13,10 @@ tags:
 draft: true
 ---
 
-The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California. 
+The following is work from my undergrad geology class in 2023. Which used Voronoi polygons and other tools to look at air quality in California.
 <!--more-->
 
-Although this work doesn't relect my current knowledge it is a great example of some of the work I have done in the past. This also exists as a repository of informaiton to look back at if similar work were to be done in the future. I have left in the instructions from the class as well. While some of the code is mine parts are from the professor Dr.G.
+Although this work doesn't relect my current knowledge it is a great example of some of the work I have done in the past. This also exists as a repository of informaiton to look back at if similar work were to be done in the future. I have left in the instructions from the class as well. The majority of my work here is interpretation with a few parts being minor adjustments to the instructional code.
 
 ## Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design
 
@@ -44,14 +44,14 @@ library(plotly)
 
 You do not need to edit the code chunk below, It should run and be invisible when you knit. I did this because I couldn’t suppress the loading messages in any other way. Dr G: My code does several things
 
-1.    I use the Tigris package to read in the census tract and county borders for California
-2.   I then directly download the SOVI data from a government portal. If you put the url into an internet browser it will also directly download.
-3.    The SOVI files are huge. This is a one week lab, so I tidied up
-4.    I switched all the -999s to NA using the mutate command
-5.    Then I joined the SOVI data with the spatial census tract/county borders - to make
-      1.  tract.sovi.sf - the sovi data at census tract level
-      2.  county.sovi.sf - the sovi data at county level
-6.    Finally I changed the map projection to the North American Albers Equal Area Conic projection (AEA)
+1. I use the Tigris package to read in the census tract and county borders for California
+2. I then directly download the SOVI data from a government portal. If you put the url into an internet browser it will also directly download.
+3. The SOVI files are huge. This is a one week lab, so I tidied up
+4. I switched all the -999s to NA using the mutate command
+5. Then I joined the SOVI data with the spatial census tract/county borders - to make
+      1. tract.sovi.sf - the sovi data at census tract level
+      2. county.sovi.sf - the sovi data at county level
+6. Finally I changed the map projection to the North American Albers Equal Area Conic projection (AEA)
 
 You do not need to edit this code chunk, It should run and be invisible when you knit. I did this because it kept messing up my output when I knit.
 
@@ -116,9 +116,9 @@ Create four professional maps showing the SOVI Themes 1-4 for California.
 
 Tmap is a little different with polygon data, so here’s some example code also showing how to do subplots
 
--    When you have edited it and are ready, remove the # at the front of each line you want to run. Or you’re welcome to delve into the more complex tmap packages if you like https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html
+- When you have edited it and are ready, remove the # at the front of each line you want to run. Or you’re welcome to delve into the more complex tmap packages if you like https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html
 
--    For MANY color options, see https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf
+- For MANY color options, see https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf
 
 ```r
 #testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color
@@ -193,11 +193,11 @@ max(point.ozone.sf$POPULATION_DENSITY)
 ## [1] 406.6252
 ```
 
--    How many monitoring stations are there in the dataset? There are 451 monitoring stations
+- How many monitoring stations are there in the dataset? There are 451 monitoring stations
 
--    What is the Ozone at site name: Beverly Hills-Franklin? Remember units! 33.50973 ppb
+- What is the Ozone at site name: Beverly Hills-Franklin? Remember units! 33.50973 ppb
 
--    What is the maximum population density? 406.6252
+- What is the maximum population density? 406.6252
 
 ### Qu. 3D. Ozone vs Population Density.
 
@@ -611,15 +611,14 @@ plot(moran.mc(moran.data1$EP_POV150, lw1, nsim=999, alternative="greater"))
 
 Using the lecture notes and readings interpret what the maps are showing you. Your write up should include
 
--   What do each of the four colors/quadrants mean?
-    
-      **The colors for the mean ozone show the ozone levels and separate the breaks based on the abundance of the ozone in the different California counties. For the LISA the colors are showing the higher than average areas within the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower-than-average areas that are surrounded by low ozone where nothing is.**
+- What do each of the four colors/quadrants mean?
 
--   How do they link to the Moran scatterplot?
-    
-      **Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it.
+  **The colors for the mean ozone show the ozone levels and separate the breaks based on the abundance of the ozone in the different California counties. For the LISA the colors are showing the higher than average areas within the cluster that are surrounded by high ozone beyond the critical threshold (0.05). Likewise the same is true for the lower-than-average areas that are surrounded by low ozone where nothing is.**
+
+- How do they link to the Moran scatterplot?
+
+  **Looking at the scatter plot the map on the right shows our outliers and points deep within the cluster. While the one on the left looks more at the cluster itself with all of the points within it.**
 
 Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California.
 
-When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.
-
+**When we change the point at which we have our critical threshold we effectively “move the goal post” farther or closer. When going lower to 0.01 the higher bar leaves less at the edges of our cluster as our confidence interval is a lot larger. When we go higher to 0.1 the confidence interval is much smaller and more areas appear on the LISA map.**

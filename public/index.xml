@@ -6,8 +6,15 @@
     <description>Recent content on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Feb 2025 10:24:03 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 10 Mar 2025 14:45:28 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyber Event Classification Using ML</title>
+      <link>http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/</link>
+      <pubDate>Mon, 10 Mar 2025 14:45:28 -0400</pubDate>
+      <guid>http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/</guid>
+      <description>&lt;p&gt;The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>PriceQuote</title>
       <link>http://localhost:1313/blog/PriceQuote/</link>
