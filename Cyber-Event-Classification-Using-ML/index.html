@@ -1,450 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
-  <title>
-  Cyber Event Classification Using ML · DarkAwesome
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="DarkAwesome">
-<meta name="description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
-<meta name="keywords" content="">
-
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cyber Event Classification Using ML">
-  <meta name="twitter:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
-
-<meta property="og:url" content="http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Cyber Event Classification Using ML">
-  <meta property="og:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-03-10T14:45:28-04:00">
-    <meta property="article:modified_time" content="2025-03-10T14:45:28-04:00">
-
-
-
-
-<link rel="canonical" href="http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/">
-
-
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-
-
-  
-  
-  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
-
-
-
-
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="http://localhost:1313/blog/">
-      DarkAwesome
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/contact/">Contact</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/">Posts</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container page">
-  <article>
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/">
-          Cyber Event Classification Using ML
-        </a>
-      </h1>
-    </header>
-
-    <p>The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.</p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/Random-Forest-Algorithm.webp?raw=true" alt="Summary"></p>
-<p>This took many weeks of reading documentation and learning more about AI. I started trying to use deep learning but rethought my approach to be more based on what I already knew from statistics. This transition was a lot easier as my pretraining was essentially the same.
-The primary goal of this project was to build a machine learning model capable of predicting key attributes of cybersecurity incidents based on textual descriptions. The attributes predicted include:</p>
-<ul>
-<li>Event Type</li>
-<li>Actor Type</li>
-<li>Industry</li>
-<li>Motive</li>
-<li>Event Subtype</li>
-</ul>
-<p>The pipeline integrates natural language processing (NLP), feature engineering, and machine learning classification to analyze and categorize cybersecurity event data.</p>
-<h2 id="handling-text-data">
-  Handling Text Data
-  <a class="heading-link" href="#handling-text-data">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The description field (a textual representation of each event) was vectorized using TF-IDF (Term Frequency-Inverse Document Frequency).
+<!doctype html><html lang=en><head><title>Cyber Event Classification Using ML · DarkAwesome
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Cyber Event Classification Using ML"><meta name=twitter:description content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques."><meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Event-Classification-Using-ML/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Cyber Event Classification Using ML"><meta property="og:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-03-10T14:45:28-04:00"><meta property="article:modified_time" content="2025-03-10T14:45:28-04:00"><link rel=canonical href=http://darkawesome.github.io/blog/Cyber-Event-Classification-Using-ML/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.aa5ef26fa979d6793724ae2dbd71efa94fd16cb1c5c7db3b6651f21f9892a5fd.css integrity="sha256-ql7yb6l51nk3JK4tvXHvqU/RbLHFx9s7ZlHyH5iSpf0=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/Cyber-Event-Classification-Using-ML/>Cyber Event Classification Using ML</a></h1></header><p>The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.</p><p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/Random-Forest-Algorithm.webp?raw=true" alt=Summary></p><p>This took many weeks of reading documentation and learning more about AI. I started trying to use deep learning but rethought my approach to be more based on what I already knew from statistics. This transition was a lot easier as my pretraining was essentially the same.
+The primary goal of this project was to build a machine learning model capable of predicting key attributes of cybersecurity incidents based on textual descriptions. The attributes predicted include:</p><ul><li>Event Type</li><li>Actor Type</li><li>Industry</li><li>Motive</li><li>Event Subtype</li></ul><p>The pipeline integrates natural language processing (NLP), feature engineering, and machine learning classification to analyze and categorize cybersecurity event data.</p><h2 id=handling-text-data>Handling Text Data
+<a class=heading-link href=#handling-text-data><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The description field (a textual representation of each event) was vectorized using TF-IDF (Term Frequency-Inverse Document Frequency).
 Initially, 4,000 features were extracted, later expanded to 6,000 for improved performance. Unigrams and bigrams were used in vectorization to capture both individual words and two-word phrases.
-Given the high-dimensional nature of TF-IDF features, Truncated SVD (a variation of PCA for sparse data) was applied. What happens in this step is that the top 4,000 most important words (features) will be kept, [changed to 6000 for testing] based on their frequency and uniqueness across the dataset, and will ignore those that are frequently included like &ldquo;the&rdquo;.</p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/IDF-Formula.webp?raw=true" alt="Summary"></p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/The-TF-Formula.webp?raw=true" alt="Summary"></p>
-<p>Key findings:</p>
-<ul>
-<li>2,500 components preserved 91.95% variance.</li>
-<li>3,000 components preserved 95.07% variance but took over 15 minutes to run.</li>
-</ul>
-<p>I went with 2,500 components as a tradeoff between accuracy and computational efficiency. This was being run on a laptop and waiting the 15 minutes was not something I wanted to do after every change. Initially, multiple train-test splits were performed separately for each target variable, which could introduce data leakage.
-A single consistent train-test split was implemented using numpy indexing to ensure that all models were trained and tested on the same subsets of data.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>tfidf <span style="color:#ff7b72;font-weight:bold">=</span> TfidfVectorizer(max_features<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">6000</span>, ngram_range<span style="color:#ff7b72;font-weight:bold">=</span>(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>))
-</span></span></code></pre></div><p>The lower and upper boundary of the range of n-values for different word n-grams or char n-grams to be extracted. Which means unigrams and bigrams ( words or tokens of consecutive words) that allow us to see which words commonly co-occur within a given dataset,</p>
-<h3 id="feature-extraction-with-dimensionality">
-  Feature extraction with Dimensionality
-  <a class="heading-link" href="#feature-extraction-with-dimensionality">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Running this at 3000 components runtime &gt;15 minutes</p>
-<ul>
-<li>
-<p>explained variance ratio was 95.07%
-Running this at 2500 components runtime &gt;12 minutes</p>
-</li>
-<li>
-<p>explained variance ratio was 91.95%</p>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>svd <span style="color:#ff7b72;font-weight:bold">=</span> TruncatedSVD(n_components<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2500</span>, random_state<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">42</span>)
-</span></span><span style="display:flex;"><span>X_tfidf_reduced <span style="color:#ff7b72;font-weight:bold">=</span> svd<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(X_tfidf)
+Given the high-dimensional nature of TF-IDF features, Truncated SVD (a variation of PCA for sparse data) was applied. What happens in this step is that the top 4,000 most important words (features) will be kept, [changed to 6000 for testing] based on their frequency and uniqueness across the dataset, and will ignore those that are frequently included like &ldquo;the&rdquo;.</p><p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/IDF-Formula.webp?raw=true" alt=Summary></p><p><img src="https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/The-TF-Formula.webp?raw=true" alt=Summary></p><p>Key findings:</p><ul><li>2,500 components preserved 91.95% variance.</li><li>3,000 components preserved 95.07% variance but took over 15 minutes to run.</li></ul><p>I went with 2,500 components as a tradeoff between accuracy and computational efficiency. This was being run on a laptop and waiting the 15 minutes was not something I wanted to do after every change. Initially, multiple train-test splits were performed separately for each target variable, which could introduce data leakage.
+A single consistent train-test split was implemented using numpy indexing to ensure that all models were trained and tested on the same subsets of data.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span>tfidf <span style=color:#ff7b72;font-weight:700>=</span> TfidfVectorizer(max_features<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>6000</span>, ngram_range<span style=color:#ff7b72;font-weight:700>=</span>(<span style=color:#a5d6ff>1</span>, <span style=color:#a5d6ff>2</span>))
+</span></span></code></pre></div><p>The lower and upper boundary of the range of n-values for different word n-grams or char n-grams to be extracted. Which means unigrams and bigrams ( words or tokens of consecutive words) that allow us to see which words commonly co-occur within a given dataset,</p><h3 id=feature-extraction-with-dimensionality>Feature extraction with Dimensionality
+<a class=heading-link href=#feature-extraction-with-dimensionality><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Running this at 3000 components runtime >15 minutes</p><ul><li><p>explained variance ratio was 95.07%
+Running this at 2500 components runtime >12 minutes</p></li><li><p>explained variance ratio was 91.95%</p></li></ul><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span>svd <span style=color:#ff7b72;font-weight:700>=</span> TruncatedSVD(n_components<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>2500</span>, random_state<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>42</span>)
+</span></span><span style=display:flex><span>X_tfidf_reduced <span style=color:#ff7b72;font-weight:700>=</span> svd<span style=color:#ff7b72;font-weight:700>.</span>fit_transform(X_tfidf)
 </span></span></code></pre></div><p>Tells you how much of the total variance in the original data is captured by each component after dimensionality reduction.
 To reduce dimensions, the algorithm tries to preserve as much of the original information as possible.
-For an explained variance ratio sum of 0.85, your 1000 components capture 85% of the information that was in the original 6000 features.</p>
-<h2 id="encoding">
-  Encoding
-  <a class="heading-link" href="#encoding">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>One-Hot Encoding for categorical features in the dataset converts categorical variables into a binary matrix where each unique category gets its column.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>X_encoded <span style="color:#ff7b72;font-weight:bold">=</span> encoder<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(df[[<span style="color:#a5d6ff">&#34;event_type&#34;</span>,<span style="color:#a5d6ff">&#34;actor_type&#34;</span>, <span style="color:#a5d6ff">&#34;industry&#34;</span>,<span style="color:#a5d6ff">&#34;motive&#34;</span>,<span style="color:#a5d6ff">&#34;event_subtype&#34;</span>]])
-</span></span></code></pre></div><h2 id="model-training">
-  Model Training
-  <a class="heading-link" href="#model-training">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>At first I was going to solve this using a neural net, however, that 1.3 million parameter model was not as efficient as it could have been. The sklearn library RandomForestClassifier was used here to help me not code an entire random forest calculation. It would have been cool, but I was more interested in getting to the prediction than seeing the decision tree.</p>
-<p>I created a single consistent train-test split and had a problem with data leaking information from outside the training dataset that was used to create the model.</p>
-<p>I madee index arrays for splitting then convert to CSR format for indexing. Split X data based on these indices using CSR format then I split all y targets using the same indices.</p>
-<p><img src="https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/csr-1561649498.gif?raw=true" alt="Summary"></p>
-<p>Parameters used:</p>
-<ul>
-<li>400 trees</li>
-<li>Max depth = 3</li>
-<li>Class-weight = balanced_subsample</li>
-</ul>
-<p>Each of the five target variables had a separate Random Forest model trained. The “balanced_subsample” mode is the same as “balanced” except that weights are computed based on the bootstrap sample for every tree grown. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier"  class="external-link" target="_blank" rel="noopener">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier</a>.</p>
-<h2 id="prediction-function">
-  Prediction Function
-  <a class="heading-link" href="#prediction-function">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>A function (predict_fields) was built to:</p>
-<ul>
-<li>Process new textual descriptions using the trained TF-IDF vectorizer.</li>
-<li>Generate one-hot encoded features for categorical placeholders.</li>
-<li>Combine all features into the same format used during training.</li>
-<li>Use trained models to predict event type, actor type, industry, motive, and event subtype.</li>
-</ul>
-<p>Challenges and solutions:
+For an explained variance ratio sum of 0.85, your 1000 components capture 85% of the information that was in the original 6000 features.</p><h2 id=encoding>Encoding
+<a class=heading-link href=#encoding><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>One-Hot Encoding for categorical features in the dataset converts categorical variables into a binary matrix where each unique category gets its column.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=display:flex><span>X_encoded <span style=color:#ff7b72;font-weight:700>=</span> encoder<span style=color:#ff7b72;font-weight:700>.</span>fit_transform(df[[<span style=color:#a5d6ff>&#34;event_type&#34;</span>,<span style=color:#a5d6ff>&#34;actor_type&#34;</span>, <span style=color:#a5d6ff>&#34;industry&#34;</span>,<span style=color:#a5d6ff>&#34;motive&#34;</span>,<span style=color:#a5d6ff>&#34;event_subtype&#34;</span>]])
+</span></span></code></pre></div><h2 id=model-training>Model Training
+<a class=heading-link href=#model-training><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>At first I was going to solve this using a neural net, however, that 1.3 million parameter model was not as efficient as it could have been. The sklearn library RandomForestClassifier was used here to help me not code an entire random forest calculation. It would have been cool, but I was more interested in getting to the prediction than seeing the decision tree.</p><p>I created a single consistent train-test split and had a problem with data leaking information from outside the training dataset that was used to create the model.</p><p>I madee index arrays for splitting then convert to CSR format for indexing. Split X data based on these indices using CSR format then I split all y targets using the same indices.</p><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/csr-1561649498.gif?raw=true" alt=Summary></p><p>Parameters used:</p><ul><li>400 trees</li><li>Max depth = 3</li><li>Class-weight = balanced_subsample</li></ul><p>Each of the five target variables had a separate Random Forest model trained. The “balanced_subsample” mode is the same as “balanced” except that weights are computed based on the bootstrap sample for every tree grown. <a href=https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier class=external-link target=_blank rel=noopener>https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier</a>.</p><h2 id=prediction-function>Prediction Function
+<a class=heading-link href=#prediction-function><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>A function (predict_fields) was built to:</p><ul><li>Process new textual descriptions using the trained TF-IDF vectorizer.</li><li>Generate one-hot encoded features for categorical placeholders.</li><li>Combine all features into the same format used during training.</li><li>Use trained models to predict event type, actor type, industry, motive, and event subtype.</li></ul><p>Challenges and solutions:
 The model initially expected the full feature set, but predictions were being made using only TF-IDF features.
-To fix this, placeholder categorical and numeric values were added during the transformation process.</p>
-<h2 id="model-evaluation">
-  Model Evaluation
-  <a class="heading-link" href="#model-evaluation">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<h3 id="model-evaluation-metrics">
-  Model Evaluation Metrics
-  <a class="heading-link" href="#model-evaluation-metrics">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>To assess the model&rsquo;s performance, we analyze the following:</p>
-<ul>
-<li>Accuracy: Measures correct predictions out of total samples.</li>
-<li>Cross-validation results: Ensures robustness.</li>
-<li>Train-test split accuracy: Detects overfitting.</li>
-</ul>
-<h3 id="accuracy">
-  Accuracy
-  <a class="heading-link" href="#accuracy">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Event Type</th>
-          <th>97.8%</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Actor Type</td>
-          <td>94.6%</td>
-      </tr>
-      <tr>
-          <td>Induestry</td>
-          <td>99.8%</td>
-      </tr>
-      <tr>
-          <td>Motive</td>
-          <td>97.8%</td>
-      </tr>
-      <tr>
-          <td>Event Subtype</td>
-          <td>99.8%</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="cross-validation-results">
-  Cross-Validation Results
-  <a class="heading-link" href="#cross-validation-results">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>5-fold cross-validation was used to assess model robustness.
-Results were stored in a dictionary for easy retrieval.</p>
-<p>These results show the mean accuracy across five folds, with the standard deviation indicating consistency:</p>
-<p>Cross-validation results for actor_type:
+To fix this, placeholder categorical and numeric values were added during the transformation process.</p><h2 id=model-evaluation>Model Evaluation
+<a class=heading-link href=#model-evaluation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=model-evaluation-metrics>Model Evaluation Metrics
+<a class=heading-link href=#model-evaluation-metrics><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>To assess the model&rsquo;s performance, we analyze the following:</p><ul><li>Accuracy: Measures correct predictions out of total samples.</li><li>Cross-validation results: Ensures robustness.</li><li>Train-test split accuracy: Detects overfitting.</li></ul><h3 id=accuracy>Accuracy
+<a class=heading-link href=#accuracy><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><table><thead><tr><th>Event Type</th><th>97.8%</th></tr></thead><tbody><tr><td>Actor Type</td><td>94.6%</td></tr><tr><td>Induestry</td><td>99.8%</td></tr><tr><td>Motive</td><td>97.8%</td></tr><tr><td>Event Subtype</td><td>99.8%</td></tr></tbody></table><h3 id=cross-validation-results>Cross-Validation Results
+<a class=heading-link href=#cross-validation-results><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>5-fold cross-validation was used to assess model robustness.
+Results were stored in a dictionary for easy retrieval.</p><p>These results show the mean accuracy across five folds, with the standard deviation indicating consistency:</p><p>Cross-validation results for actor_type:
 Mean Score: 0.9661
 Standard Deviation: 0.0118
-Individual Scores: [0.98058691 0.95846501 0.97922313 0.95076784 0.96160795]</p>
-<p>Cross-validation results for motive:
+Individual Scores: [0.98058691 0.95846501 0.97922313 0.95076784 0.96160795]</p><p>Cross-validation results for motive:
 Mean Score: 0.9777
 Standard Deviation: 0.0047
-Individual Scores: [0.98645598 0.97336343 0.97606143 0.97425474 0.97831978]</p>
-<p>Cross-validation results for industry:
+Individual Scores: [0.98645598 0.97336343 0.97606143 0.97425474 0.97831978]</p><p>Cross-validation results for industry:
 Mean Score: 0.9957
 Standard Deviation: 0.0024
-Individual Scores: [0.99097065 0.99638826 0.99638663 0.99819332 0.99638663]</p>
-<p>Cross-validation results for event_type:
+Individual Scores: [0.99097065 0.99638826 0.99638663 0.99819332 0.99638663]</p><p>Cross-validation results for event_type:
 Mean Score: 0.9617
 Standard Deviation: 0.0073
-Individual Scores: [0.951693   0.95485327 0.96431798 0.97109304 0.96657633]</p>
-<p>Cross-validation results for event_subtype:
+Individual Scores: [0.951693 0.95485327 0.96431798 0.97109304 0.96657633]</p><p>Cross-validation results for event_subtype:
 Mean Score: 0.9971
 Standard Deviation: 0.0008
-Individual Scores: [0.99774266 0.99593679 0.99728997 0.99819332 0.99638663]</p>
-<h3 id="train-test-split">
-  Train-test split
-  <a class="heading-link" href="#train-test-split">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Created a function to check for overfitting by comparing train and test accuracy.
-Overfitting was not a major issue due to controlled depth (max_depth=3) and other statistical tools.</p>
-<p>Here are the train-test accuracy results for each classification task:</p>
-<ul>
-<li>Event Type: Train = 97.28%, Test = 97.83%</li>
-<li>Actor Type: Train = 94.51%, Test = 94.58%</li>
-<li>Industry: Train = 99.84%, Test = 97.72%</li>
-<li>Motive: Train = 97.91%, Test = 97.76%</li>
-<li>Event Subtype: Train = 99.99%, Test = 99.82%</li>
-</ul>
-<h3 id="what-does-this-mean">
-  What does this mean
-  <a class="heading-link" href="#what-does-this-mean">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>With all of this information the model has minimal overfitting, with test accuracies generally matching or exceeding training accuracies, which is good. This suggests that the model will generalize well to new data.</p>
-<h3 id="lessons-learned">
-  Lessons Learned
-  <a class="heading-link" href="#lessons-learned">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>Data leakage is a major risk in machine learning pipelines.</p>
-<p>The initial approach led to possible contamination of training data. A single consistent train-test split solved the issue. Dimensionality reduction is crucial for performance.</p>
-<p>SVD significantly reduced computational load while preserving &gt;90% of the variance. Without it, the TF-IDF feature matrix would have been too large to handle efficiently.
-Class imbalance impacts prediction accuracy.</p>
-<p>Using class_weight=&lsquo;balanced_subsample&rsquo; in RandomForest helped adjust for imbalances in class distribution and works better than simply balanced given even_subtype.</p>
-<p>Combining numeric, categorical, and text-based features required thoughtful encoding and transformation.
-Using scipy sparse matrices made computations feasible.</p>
-<h3 id="final-thoughts">
-  Final Thoughts
-  <a class="heading-link" href="#final-thoughts">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
-<p>This project involved text-based classification with dimensionality reduction, data transformation, and machine learning modeling. Despite challenges with data leakage, feature encoding, and model performance, the system effectively categorizes cybersecurity incidents and serves as a foundation for further improvements. However, given that the user could simply hit enter to autocomplete and just enter the other fields, I don&rsquo;t think this tool is a best practice. It has a real potential to be misused and produce bad data quality.</p>
-<p>A lot of the work done was informed by prior statistics classes, getting guidance from professors, and reading Geeks for Geeks writeups on functions. I have never done a real project like this and it was fun to get a working project at the end of it. I would&rsquo;ve liked to create a user interface with a nice text box that shows the current row to be submitted to the file, but I am a graduate student and there are papers to write. After learning a bit more about the libraries that Python has for machine learning, I have a real appreciation for all of the LLM companies and GitHub projects out there. It speaks a lot to their patience and the real pressure to produce something that works better than the last iteration. This was a pretty simple project in comparison, but shed a lot of light on a single process. I didn&rsquo;t share all of my code here as I think more people are interested in the thought process and whether or not the code works. And since it does, I am just showing my results and what I learned. I could be wrong, and if so I will release the code I used later to show the entire process.</p>
-<p>So far, for writing to the csv file, it predicts the targeted fields and then opens the csv. From there it gathers user input for the other rows and then writes it to the csv. I am working on an API for this dataset, which would complicate this process more, but I don&rsquo;t think it would be too bad if it&rsquo;s just one insert at a time. It would be slower but than a BULK INSERT query but the actual work behind coding the work could be easier. All of that is yet to be seen as I am in the middle of three papers for school and for some reason they won&rsquo;t write themselves.</p>
-<p><img src="https://github.com/darkawesome/blog/blob/blog/content/img/CyberClassifi/Screenshot-2024-03-07-212513.png?raw=true" alt="Summary"></p>
-  </article>
-</section>
-
-  
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-    2025
-     DarkAwesome 
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/blog/js/coder.js"></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+Individual Scores: [0.99774266 0.99593679 0.99728997 0.99819332 0.99638663]</p><h3 id=train-test-split>Train-test split
+<a class=heading-link href=#train-test-split><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Created a function to check for overfitting by comparing train and test accuracy.
+Overfitting was not a major issue due to controlled depth (max_depth=3) and other statistical tools.</p><p>Here are the train-test accuracy results for each classification task:</p><ul><li>Event Type: Train = 97.28%, Test = 97.83%</li><li>Actor Type: Train = 94.51%, Test = 94.58%</li><li>Industry: Train = 99.84%, Test = 97.72%</li><li>Motive: Train = 97.91%, Test = 97.76%</li><li>Event Subtype: Train = 99.99%, Test = 99.82%</li></ul><h3 id=what-does-this-mean>What does this mean
+<a class=heading-link href=#what-does-this-mean><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>With all of this information the model has minimal overfitting, with test accuracies generally matching or exceeding training accuracies, which is good. This suggests that the model will generalize well to new data.</p><h3 id=lessons-learned>Lessons Learned
+<a class=heading-link href=#lessons-learned><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Data leakage is a major risk in machine learning pipelines.</p><p>The initial approach led to possible contamination of training data. A single consistent train-test split solved the issue. Dimensionality reduction is crucial for performance.</p><p>SVD significantly reduced computational load while preserving >90% of the variance. Without it, the TF-IDF feature matrix would have been too large to handle efficiently.
+Class imbalance impacts prediction accuracy.</p><p>Using class_weight=&lsquo;balanced_subsample&rsquo; in RandomForest helped adjust for imbalances in class distribution and works better than simply balanced given even_subtype.</p><p>Combining numeric, categorical, and text-based features required thoughtful encoding and transformation.
+Using scipy sparse matrices made computations feasible.</p><h3 id=final-thoughts>Final Thoughts
+<a class=heading-link href=#final-thoughts><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>This project involved text-based classification with dimensionality reduction, data transformation, and machine learning modeling. Despite challenges with data leakage, feature encoding, and model performance, the system effectively categorizes cybersecurity incidents and serves as a foundation for further improvements. However, given that the user could simply hit enter to autocomplete and just enter the other fields, I don&rsquo;t think this tool is a best practice. It has a real potential to be misused and produce bad data quality.</p><p>A lot of the work done was informed by prior statistics classes, getting guidance from professors, and reading Geeks for Geeks writeups on functions. I have never done a real project like this and it was fun to get a working project at the end of it. I would&rsquo;ve liked to create a user interface with a nice text box that shows the current row to be submitted to the file, but I am a graduate student and there are papers to write. After learning a bit more about the libraries that Python has for machine learning, I have a real appreciation for all of the LLM companies and GitHub projects out there. It speaks a lot to their patience and the real pressure to produce something that works better than the last iteration. This was a pretty simple project in comparison, but shed a lot of light on a single process. I didn&rsquo;t share all of my code here as I think more people are interested in the thought process and whether or not the code works. And since it does, I am just showing my results and what I learned. I could be wrong, and if so I will release the code I used later to show the entire process.</p><p>So far, for writing to the csv file, it predicts the targeted fields and then opens the csv. From there it gathers user input for the other rows and then writes it to the csv. I am working on an API for this dataset, which would complicate this process more, but I don&rsquo;t think it would be too bad if it&rsquo;s just one insert at a time. It would be slower but than a BULK INSERT query but the actual work behind coding the work could be easier. All of that is yet to be seen as I am in the middle of three papers for school and for some reason they won&rsquo;t write themselves.</p><p><img src="https://github.com/darkawesome/blog/blob/blog/content/img/CyberClassifi/Screenshot-2024-03-07-212513.png?raw=true" alt=Summary></p></article></section></div><footer class=footer><section class=container>©
+2025
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
