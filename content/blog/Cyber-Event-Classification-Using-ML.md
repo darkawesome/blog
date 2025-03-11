@@ -11,7 +11,7 @@ draft: false
 The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.
 <!--more-->
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/Random-Forest-Algorithm.jpg?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/Random-Forest-Algorithm.jpg?raw=true)
 
 This took many weeks of reading documentation and learning more about AI. I started trying to use deep learning but rethought my approach to be more based on what I already knew from statistics. This transition was a lot easier as my pretraining was essentially the same.
 The primary goal of this project was to build a machine learning model capable of predicting key attributes of cybersecurity incidents based on textual descriptions. The attributes predicted include:
@@ -30,9 +30,9 @@ The description field (a textual representation of each event) was vectorized us
 Initially, 4,000 features were extracted, later expanded to 6,000 for improved performance. Unigrams and bigrams were used in vectorization to capture both individual words and two-word phrases.
 Given the high-dimensional nature of TF-IDF features, Truncated SVD (a variation of PCA for sparse data) was applied. What happens in this step is that the top 4,000 most important words (features) will be kept, [changed to 6000 for testing] based on their frequency and uniqueness across the dataset, and will ignore those that are frequently included like "the".
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/IDF-Formula.jpg?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/IDF-Formula.jpg?raw=true)
 
-![Summary](https://github.com/darkawesome/blog/blob/main/blog/content/img/CyberClassifi/The-TF-Formula.jpg?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/The-TF-Formula.jpg?raw=true)
 
 Key findings:
 
@@ -50,19 +50,19 @@ The lower and upper boundary of the range of n-values for different word n-grams
 
 ### Feature extraction with Dimensionality
 
-Running this at 3000 components runtime >15 minutes
+Running this at 3000 components runtime > 15 minutes
 
-- explained variance ratio was 95.07%
-Running this at 2500 components runtime >12 minutes
+- Explained variance ratio was 95.07%
+Running this at 2500 components runtime > 12 minutes
 
-- explained variance ratio was 91.95%
+- Explained variance ratio was 91.95%
 
 ``` py
 svd = TruncatedSVD(n_components=2500, random_state=42)
 X_tfidf_reduced = svd.fit_transform(X_tfidf)
 ```
 
-Tells you how much of the total variance in the original data is captured by each component after dimensionality reduction.
+This tells you how much of the total variance in the original data is captured by each component after dimensionality reduction.
 To reduce dimensions, the algorithm tries to preserve as much of the original information as possible.
 For an explained variance ratio sum of 0.85, your 1000 components capture 85% of the information that was in the original 6000 features.
 
@@ -90,7 +90,7 @@ Parameters used:
 - Max depth = 3
 - Class-weight = balanced_subsample
 
-Each of the five target variables had a separate Random Forest model trained. The “balanced_subsample” mode is the same as “balanced” except that weights are computed based on the bootstrap sample for every tree grown. <https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier>.
+Each of the five target variables had a separate Random Forest model trained. The “balanced_subsample” mode is the same as “balanced” except that weights are computed based on the bootstrap sample for every tree grown. <https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier>
 
 ## Prediction Function
 
@@ -195,4 +195,4 @@ A lot of the work done was informed by prior statistics classes, getting guidanc
 
 So far, for writing to the csv file, it predicts the targeted fields and then opens the csv. From there it gathers user input for the other rows and then writes it to the csv. I am working on an API for this dataset, which would complicate this process more, but I don't think it would be too bad if it's just one insert at a time. It would be slower but than a BULK INSERT query but the actual work behind coding the work could be easier. All of that is yet to be seen as I am in the middle of three papers for school and for some reason they won't write themselves.
 
-![Summary](https://github.com/darkawesome/blog/blob/blog/content/img/CyberClassifi/Screenshot-2024-03-07-212513.png?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/Screenshot-2024-03-07-212513.png?raw=true)
