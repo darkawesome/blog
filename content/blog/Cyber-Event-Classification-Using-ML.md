@@ -14,6 +14,7 @@ The Following is the code from a recent random forest classification model that 
 ![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/Random-Forest-Algorithm.jpg?raw=true)
 
 This took many weeks of reading documentation and learning more about AI. I started trying to use deep learning but rethought my approach to be more based on what I already knew from statistics. This transition was a lot easier as my pretraining was essentially the same.
+
 The primary goal of this project was to build a machine learning model capable of predicting key attributes of cybersecurity incidents based on textual descriptions. The attributes predicted include:
 
 - Event Type
@@ -27,7 +28,9 @@ The pipeline integrates natural language processing (NLP), feature engineering, 
 ## Handling Text Data
 
 The description field (a textual representation of each event) was vectorized using TF-IDF (Term Frequency-Inverse Document Frequency).
+
 Initially, 4,000 features were extracted, later expanded to 6,000 for improved performance. Unigrams and bigrams were used in vectorization to capture both individual words and two-word phrases.
+
 Given the high-dimensional nature of TF-IDF features, Truncated SVD (a variation of PCA for sparse data) was applied. What happens in this step is that the top 4,000 most important words (features) will be kept, [changed to 6000 for testing] based on their frequency and uniqueness across the dataset, and will ignore those that are frequently included like "the".
 
 ![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/IDF-Formula.jpg?raw=true)
@@ -40,6 +43,7 @@ Key findings:
 - 3,000 components preserved 95.07% variance but took over 15 minutes to run.
 
 I went with 2,500 components as a tradeoff between accuracy and computational efficiency. This was being run on a laptop and waiting the 15 minutes was not something I wanted to do after every change. Initially, multiple train-test splits were performed separately for each target variable, which could introduce data leakage.
+
 A single consistent train-test split was implemented using numpy indexing to ensure that all models were trained and tested on the same subsets of data.
 
 ``` py
@@ -63,7 +67,9 @@ X_tfidf_reduced = svd.fit_transform(X_tfidf)
 ```
 
 This tells you how much of the total variance in the original data is captured by each component after dimensionality reduction.
+
 To reduce dimensions, the algorithm tries to preserve as much of the original information as possible.
+
 For an explained variance ratio sum of 0.85, your 1000 components capture 85% of the information that was in the original 6000 features.
 
 ## Encoding
@@ -78,9 +84,7 @@ X_encoded = encoder.fit_transform(df[["event_type","actor_type", "industry","mot
 
 At first I was going to solve this using a neural net, however, that 1.3 million parameter model was not as efficient as it could have been. The sklearn library RandomForestClassifier was used here to help me not code an entire random forest calculation. It would have been cool, but I was more interested in getting to the prediction than seeing the decision tree.
 
-I created a single consistent train-test split and had a problem with data leaking information from outside the training dataset that was used to create the model.
-
-I madee index arrays for splitting then convert to CSR format for indexing. Split X data based on these indices using CSR format then I split all y targets using the same indices.
+I created a single consistent train-test split and had a problem with data leaking information from outside the training dataset that was used to create the model. I then made index arrays for splitting then convert to CSR format for indexing. Split X data based on these indices using CSR format then I split all y targets using the same indices.
 
 ![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/csr-1561649498.gif?raw=true)
 
@@ -101,7 +105,8 @@ A function (predict_fields) was built to:
 - Combine all features into the same format used during training.
 - Use trained models to predict event type, actor type, industry, motive, and event subtype.
 
-Challenges and solutions:
+### Challenges and solutions
+
 The model initially expected the full feature set, but predictions were being made using only TF-IDF features.
 To fix this, placeholder categorical and numeric values were added during the transformation process.
 
