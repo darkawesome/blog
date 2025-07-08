@@ -7,35 +7,9 @@ draft: false
 
 **Personal Statement:**
 
-Masters student with hands-on experience in consulting, project management, and data analysis. Skilled in collaborating with teams and leadership to deliver market research, reports, advertising strategies, and website development for multiple companies. With a strong foundation in geospatial information science, political methodology, and statistics, I am eager to leverage my tech and policy skills to contribute to impactful, results-driven work in my next role.
+Master's student who brings a multi-disciplinary background across policy and technology domains. Leveraging skills as a data analyst and software engineer to transform complex challenges into innovative, data-driven solutions.
 
 <!--more-->
-***EDUCATION**
-
-**The University of Maryland**, Master of Public Policy , **Expected Graduation: May 2026**
-
-**The Pennsylvania State University, University Park, PA**, Bachelor of Science in Political Science, Graduated: December 2023
-
-**TECHNICAL SKILLS**
-
-Programming & Tools: Python, R, SQL, Linux/Unix, ArcGIS & ArcPro
-
-Languages: Intermediate Spanish
-
-**Student Leadership Council**
-
-Multicultural Leadership Society
-
-The Pennsylvania State University, University Park, PA
-
-Aug. 2022 - Dec 2023
-
-- Contributed to diversity, equity, and inclusion initiatives at Penn State through active participation in the Multicultural Resource Center (MRC) and Student Leadership Council (SLC).
-- Organized and facilitated various activities including tabling events, study sessions, and workshops to engage and support students from diverse backgrounds.
-- Participated in involvement fairs to showcase MRC resources and foster a culture of awareness and accessibility among the student body.
-- Played a key role in affinity groups such as the Black and Latino Male Empowerment Group, providing a supportive environment for candid discussions and personal growth.
-- Collaborated with counselors and mentors, including Dr. Vernon Carraway, to offer guidance and support, contributing to fellow students' personal and academic development.
-- Strived to inspire change and empower students by extending transformative support and fostering a positive impact within the Penn State community.
 
 **Teacher Assistant, Foundations of Public Policy PLCY 100**
 
@@ -65,12 +39,9 @@ Pennsylvania State Senate, Harrisburg, PA
 
 May 2023 - Aug. 2023
 
-- Conducted policy research and drafted legislative documents
-- Aided Senate staff in analyzing and writing legislation
-- Evaluated funding needs of state departments
-- Communicated with constituent groups, providing research memoranda on special requests by Senator Hughes and staff
-- Assisted Senate staff in evaluating department budgets and preparing materials for budget hearings
-- Tracked legislation necessary to implement the final budget
+- Drafted a bill on AI usage as it pertains to advertising and transparency, to establish clear regulatory guidelines and accountability in the industry
+- Conducted in-depth analysis of all appropriations bills, providing Senate Appropriations staff with critical insights to support informed legislative decisions.
+- Evaluated department budgets and prepared materials for hearings, equipping policymakers with data-driven recommendations to optimize resource allocation
 
 **Consulting Intern**
 
@@ -78,10 +49,10 @@ Surge Business Consulting, State College, PA
 
 May 2022 - Aug. 2022
 
-- Worked in a team managing our clients and projects in a self-paced environment
-- Formulated social media campaigns, created merchandise and branding products
-- Performed competitive analysis, market research, and strategic positioning
-- Designed and executed email marketing campaigns using CRM tools, improving client outreach and engagement
+- Identified and resolved a billing discrepancy, uncovering $2,600 in unused services
+- Formulated social media campaigns, and created merchandise and branding products using the Adobe suite to enhance brand visibility
+- Performed competitive analysis, market research, and strategic positioning, providing actionable insights to strengthen market presence
+- Designed and executed email marketing campaigns using CRM tools, increasing client outreach and engagement through targeted communications
 
 **Information Systems and Technology Support I & II**
 
@@ -89,12 +60,18 @@ The University of Pittsburgh at Bradford, Bradford, PA
 
 Sep. 2019 - Apr. 2021
 
-- Trained new hires on computer imaging and troubleshooting
-- Supported student and faculty computers including virus/malware remediation and wireless configuration
-- Installation of software and hardware repairs for students and faculty
-- Deployed images to and networked lab faculty computers
-- Maintained printers through repair and replacement of cartridges
-- Serviced a ticketing system(osTicket) for help desk support
-- Utilized a Nagios server to monitor systems and servers on campus
+- Trained and onboarded new hires streamlining the process and reducing onboarding time
+- Engineered classroom lab environment from setup to deployment, including system imaging, critical updates, and installation of required educational software 
+- Utilized a Nagios server to monitor devices, improving reliability and reducing downtime
+
+***EDUCATION**
+
+**The University of Maryland**, Master of Public Policy , **Expected Graduation: May 2026**
+
+**The Pennsylvania State University, University Park, PA**, Bachelor of Science in Political Science, Graduated: December 2023
+
+**Technical Skills**
+Python (Pandas, NumPy, Scikit-learn),  R, Git, Predictive modeling(Lsogistic regression, Decision trees), Stata, ArcGIS, Aspire, TinkerCAD, SolidWorks, Various power tools and shop machines
+
 
 **References available upon request.**
