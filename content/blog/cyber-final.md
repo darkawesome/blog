@@ -73,6 +73,8 @@ The data suggests that nation-state actors represent a disproportionate threat c
 
 For my project I had to provide policy recommendations. However, I am skeptical that increasing eduction, literacy programs or increasing reporting will effectively change the current trajectory of the issue. I would rather suggest a more diplomatic approach like what was had during the Obama presidency with China. Geopolitical tensions and supoprting the Ukraine war showed increases in cyber attacks making the environment around the issue more complex. A diplomatic solution here could create norms around its use and perhaps reduce the use altogether if that is still possible. Given how it is sometimes hard to verify who the individuals are behind a hack or even if you have been hacked.
 
+More posts to come...
+
 ---
 
 *Note: This analysis is based on documented nation-state cyber attack patterns and represents ongoing threats to international cybersecurity and stability.*
