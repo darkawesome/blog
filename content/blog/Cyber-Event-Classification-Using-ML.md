@@ -200,4 +200,4 @@ A lot of the work done was informed by prior statistics classes, getting guidanc
 
 So far, for writing to the csv file, it predicts the targeted fields and then opens the csv. From there it gathers user input for the other rows and then writes it to the csv. I am working on an API for this dataset, which would complicate this process more, but I don't think it would be too bad if it's just one insert at a time. It would be slower but than a BULK INSERT query but the actual work behind coding the work could be easier. All of that is yet to be seen as I am in the middle of three papers for school and for some reason they won't write themselves.
 
-![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/SystemMap.png?raw=true)
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/CyberClassifi/SysMap.png?raw=true)
