@@ -6,8 +6,36 @@
     <description>Recent content in Blogs on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Mar 2025 14:45:28 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 16 Nov 2025 11:19:10 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New Ai Threats</title>
+      <link>http://localhost:1313/blog/New-Ai-Threats/</link>
+      <pubDate>Sun, 16 Nov 2025 11:19:10 -0500</pubDate>
+      <guid>http://localhost:1313/blog/New-Ai-Threats/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TypeMarket</title>
+      <link>http://localhost:1313/blog/typeMarket/</link>
+      <pubDate>Sun, 16 Nov 2025 11:17:36 -0500</pubDate>
+      <guid>http://localhost:1313/blog/typeMarket/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>BuybackJanice</title>
+      <link>http://localhost:1313/blog/BuybackJanice/</link>
+      <pubDate>Sun, 16 Nov 2025 11:17:01 -0500</pubDate>
+      <guid>http://localhost:1313/blog/BuybackJanice/</guid>
+      <description>&lt;p&gt;This article explores the development of an optimized desktop application that solves this problem by interfacing with EVE Online&amp;rsquo;s ESI (EVE Swagger Interface) API to provide real-time transportation analysis.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cyber Final</title>
+      <link>http://localhost:1313/blog/cyber-final/</link>
+      <pubDate>Tue, 08 Jul 2025 12:03:46 -0400</pubDate>
+      <guid>http://localhost:1313/blog/cyber-final/</guid>
+      <description>&lt;p&gt;The following is from my final project on nation state cyber threat actors. I did a surface level look at who and how they attack their targets based on the best available data.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cyber Event Classification Using ML</title>
       <link>http://localhost:1313/blog/Cyber-Event-Classification-Using-ML/</link>
@@ -202,7 +230,7 @@
       <link>http://localhost:1313/blog/blog/resume/</link>
       <pubDate>Thu, 02 Sep 2021 07:34:13 -0400</pubDate>
       <guid>http://localhost:1313/blog/blog/resume/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Personal Statement:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Masters student with hands-on experience in consulting, project management, and data analysis. Skilled in collaborating with teams and leadership to deliver market research, reports, advertising strategies, and website development for multiple companies. With a strong foundation in geospatial information science, political methodology, and statistics, I am eager to leverage my tech and policy skills to contribute to impactful, results-driven work in my next role.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Personal Statement:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Master&amp;rsquo;s student who brings a multi-disciplinary background across policy and technology domains. Leveraging skills as a data analyst and software engineer to transform complex challenges into innovative, data-driven solutions.&lt;/p&gt;</description>
     </item>
     <item>
       <title>PLSC309 Final</title>

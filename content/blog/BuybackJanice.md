@@ -94,41 +94,6 @@ User Input → Parser → Thread Pool → ESI API → Results Table
                   Price Database (one-time fetch)
 ```
 
-### The Parser: Flexible Input Handling
-
-The parser handles multiple input formats gracefully:
-
-```python
-def parse_input_lines(self):
-    # Pattern 1: "Item Name 1234"
-    m = re.match(r"^(.+?)\s+([0-9,\.]+)$", l)
-    
-    # Pattern 2: "Item Name, 1,234"
-    if "," in l:
-        parts = [p.strip() for p in l.split(",")]
-    
-    # Pattern 3: Excel drag-and-drop
-    df = pd.read_excel(path)
-```
-
-This flexibility allows users to:
-- Paste from spreadsheets
-- Copy from in-game cargo manifests
-- Drag-and-drop Excel/CSV files
-
-### The Worker Thread: Non-Blocking Operations
-
-PyQt5's `QThread` enables responsive UI during potentially lengthy network operations:
-
-```python
-class DataFetcherThread(QThread):
-    progress = pyqtSignal(int, str)
-    finished = pyqtSignal(list)
-    error = pyqtSignal(str)
-```
-
-Signals provide thread-safe communication between the worker thread and UI thread, preventing the dreaded "Application Not Responding" dialog.
-
 ### ESI API Integration
 
 The application makes three types of ESI calls:
@@ -157,7 +122,6 @@ Each has appropriate error handling and timeout settings to handle EVE's occasio
 
 Subsequent runs with cached items: **<5 seconds** (24× faster)
 
-## Advanced Features
 
 ### Aggregate Summary Calculation
 
@@ -184,12 +148,6 @@ if isk_per_m3 >= 1_000_000:  # 1M ISK/m³ threshold
 
 This warns haulers about gank-worthy cargo requiring additional escort or lower-profile shipping methods.
 
-### Excel Export with Metadata
-
-Results export to structured Excel files with:
-- Detailed item breakdown (Items sheet)
-- Aggregate summary (Summary sheet)
-- Market price data for insurance claims
 
 ## Error Handling Strategy
 
@@ -215,30 +173,6 @@ except Exception as e:
 
 Failed items don't crash the application; they appear in results with error descriptions.
 
-## UI/UX Considerations
-
-### Drag-and-Drop Support
-
-The main window accepts drag-and-drop events:
-
-```python
-def dragEnterEvent(self, event: QDragEnterEvent):
-    if event.mimeData().hasUrls():
-        event.acceptProposedAction()
-```
-
-This reduces friction for users working with multiple spreadsheets.
-
-### Progressive Feedback
-
-The progress bar provides real-time feedback:
-
-```python
-progress_pct = 10 + int((completed / total) * 90)
-self.progress.emit(progress_pct, f"Processed {completed}/{total} items")
-```
-
-Users see exactly which items are being processed, reducing perceived wait time.
 
 ### Color-Coded Ship Requirements
 
@@ -258,21 +192,13 @@ Fetching 33,000 prices in one call beats 50 individual lookups every time, despi
 ### 3. Parallel Processing Has Overhead
 Beyond 5-7 concurrent workers, we hit diminishing returns due to ESI rate limiting and connection overhead.
 
-### 4. User Input Is Messy
-Supporting multiple formats (whitespace-separated, comma-separated, Excel) handles 95% of real-world use cases gracefully.
-
-### 5. Thread Safety Is Non-Negotiable
-PyQt5's signal/slot mechanism is the correct way to communicate between threads. Direct UI manipulation from worker threads causes crashes.
-
 ## Future Enhancements
 
-Potential improvements for v2.0:
+Potential improvements:
 
 1. **Route Planning**: Integrate ESI's route API for jump calculations
 2. **Contract Parsing**: Auto-import from in-game contracts via ESI authentication
-3. **Historical Price Data**: Trend analysis for market timing
-4. **Collateral Calculator**: Automatic courier contract collateral recommendations
-5. **Multi-Destination Support**: Split large manifests across multiple destinations optimally
+
 
 ## Conclusion
 
@@ -282,12 +208,8 @@ The complete source code is available, and the techniques demonstrated here appl
 
 ---
 
-**Technical Specs:**
-- Language: Python 3.8+
-- GUI Framework: PyQt5
-- API: EVE ESI v1
 - Dependencies: requests, pandas, openpyxl
-- Performance: Processes 50 items in ~15 seconds (8× optimization factor)
+- Performance: Processes 50 items in ~15 seconds
 
 **Links:**
 - [EVE ESI Documentation](https://esi.evetech.net/ui/)
@@ -298,8 +220,6 @@ importing images
 ![Summary](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true)
 
 
-
-## Conclusion
 
 
 
