@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  <title>
+  TypeMarket · DarkAwesome
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="DarkAwesome">
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TypeMarket">
+
+<meta property="og:url" content="http://localhost:1313/blog/typeMarket/">
+  <meta property="og:site_name" content="DarkAwesome">
+  <meta property="og:title" content="TypeMarket">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-11-16T11:17:36-05:00">
+    <meta property="article:modified_time" content="2025-11-16T11:17:36-05:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/blog/typeMarket/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/blog/">
+      DarkAwesome
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/contact/">Contact</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/blog/">Posts</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/typeMarket/">
+          TypeMarket
+        </a>
+      </h1>
+    </header>
+
+    <h1 id="building-a-high-performance-eve-online-market-data-pipeline-with-duckdb">
+  Building a High-Performance EVE Online Market Data Pipeline with DuckDB
+  <a class="heading-link" href="#building-a-high-performance-eve-online-market-data-pipeline-with-duckdb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>EVE Online&rsquo;s player-driven economy generates millions of market orders daily across New Eden&rsquo;s trade hubs. For market traders, industrialists, and data analysts, accessing this treasure trove of economic data is essential for identifying arbitrage opportunities, tracking price trends, and understanding market dynamics.</p>
+<p>This article examines the development of a lightweight yet powerful data pipeline that extracts real-time market data from EVE&rsquo;s ESI API and loads it into DuckDB—a high-performance analytical database designed for OLAP workloads. We&rsquo;ll explore why DuckDB is the perfect choice for EVE market analysis and how to build a scalable data ingestion system.</p>
+<h2 id="the-problem-eve-market-data-at-scale">
+  The Problem: EVE Market Data at Scale
+  <a class="heading-link" href="#the-problem-eve-market-data-at-scale">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="understanding-eves-market-structure">
+  Understanding EVE&rsquo;s Market Structure
+  <a class="heading-link" href="#understanding-eves-market-structure">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>EVE Online&rsquo;s market system spans:</p>
+<ul>
+<li><strong>60+ regions</strong> across high-sec, low-sec, null-sec, and wormhole space</li>
+<li><strong>~33,000 tradeable item types</strong> from ammunition to capital ships</li>
+<li><strong>Millions of active orders</strong> with real-time price discovery</li>
+<li><strong>Paginated API responses</strong> requiring multiple HTTP requests per region</li>
+</ul>
+<p><strong>Example</strong>: The Forge region (home to Jita, EVE&rsquo;s largest trade hub) typically has 200,000+ active orders across 20+ API pages.</p>
+<h3 id="the-data-challenge">
+  The Data Challenge
+  <a class="heading-link" href="#the-data-challenge">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Traditional approaches face several issues:</p>
+<ol>
+<li><strong>Relational Database Overkill</strong>: PostgreSQL/MySQL add unnecessary complexity for analytical workloads</li>
+<li><strong>CSV Limitations</strong>: No type safety, poor query performance, manual schema management</li>
+<li><strong>In-Memory Constraints</strong>: Pandas DataFrames consume excessive RAM for large datasets</li>
+<li><strong>Query Inefficiency</strong>: Aggregating millions of rows without proper indexing is slow</li>
+</ol>
+<h2 id="why-duckdb">
+  Why DuckDB?
+  <a class="heading-link" href="#why-duckdb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>DuckDB is an embedded analytical database (think &ldquo;SQLite for analytics&rdquo;) that excels at our use case:</p>
+<h3 id="key-advantages">
+  Key Advantages
+  <a class="heading-link" href="#key-advantages">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Benefit for Market Data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Columnar Storage</strong></td>
+          <td>Fast aggregations on price/volume columns</td>
+      </tr>
+      <tr>
+          <td><strong>Embedded Architecture</strong></td>
+          <td>No server setup, runs in-process</td>
+      </tr>
+      <tr>
+          <td><strong>SQL Interface</strong></td>
+          <td>Complex analytics without pandas gymnastics</td>
+      </tr>
+      <tr>
+          <td><strong>Parquet Support</strong></td>
+          <td>Efficient on-disk format for historical data</td>
+      </tr>
+      <tr>
+          <td><strong>Zero-Copy Integration</strong></td>
+          <td>Direct pandas DataFrame ingestion</td>
+      </tr>
+      <tr>
+          <td><strong>ACID Compliance</strong></td>
+          <td>Safe concurrent reads during analysis</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="performance-comparison">
+  Performance Comparison
+  <a class="heading-link" href="#performance-comparison">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For a typical Jita market snapshot (~200,000 orders):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Database</th>
+          <th>Load Time</th>
+          <th>Aggregation Query</th>
+          <th>Disk Usage</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>DuckDB</strong></td>
+          <td>~2 seconds</td>
+          <td>~50ms</td>
+          <td>12 MB</td>
+      </tr>
+      <tr>
+          <td>PostgreSQL</td>
+          <td>~8 seconds</td>
+          <td>~200ms</td>
+          <td>45 MB</td>
+      </tr>
+      <tr>
+          <td>CSV</td>
+          <td>~5 seconds</td>
+          <td>~3 seconds</td>
+          <td>85 MB</td>
+      </tr>
+      <tr>
+          <td>Pandas (RAM only)</td>
+          <td>~3 seconds</td>
+          <td>~500ms</td>
+          <td>180 MB RAM</td>
+      </tr>
+  </tbody>
+</table>
+<p>DuckDB provides the best balance of load speed, query performance, and resource efficiency.</p>
+<h2 id="system-architecture">
+  System Architecture
+  <a class="heading-link" href="#system-architecture">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="high-level-data-flow">
+  High-Level Data Flow
+  <a class="heading-link" href="#high-level-data-flow">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<pre tabindex="0"><code>ESI API → Pagination Handler → DataFrame → DuckDB
+   ↓                ↓              ↓           ↓
+Paginated      Progress Bar    Type Safe   Columnar
+ JSON            (tqdm)        Conversion   Storage
+</code></pre><h3 id="component-breakdown">
+  Component Breakdown
+  <a class="heading-link" href="#component-breakdown">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<h4 id="1-api-client-layer">
+  1. <strong>API Client Layer</strong>
+  <a class="heading-link" href="#1-api-client-layer">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data</span>(url):
+</span></span><span style="display:flex;"><span>    r <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url)
+</span></span><span style="display:flex;"><span>    r<span style="color:#ff7b72;font-weight:bold">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> r<span style="color:#ff7b72;font-weight:bold">.</span>json()
+</span></span></code></pre></div><p>Simple, focused function that:</p>
+<ul>
+<li>Handles a single HTTP GET request</li>
+<li>Raises exceptions for HTTP errors (4xx, 5xx)</li>
+<li>Returns parsed JSON</li>
+</ul>
+<p><strong>Design Decision</strong>: Separating single-page fetching from pagination logic enables easy retry logic and testing.</p>
+<h4 id="2-pagination-engine">
+  2. <strong>Pagination Engine</strong>
+  <a class="heading-link" href="#2-pagination-engine">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>total_pages <span style="color:#ff7b72;font-weight:bold">=</span> int(response<span style="color:#ff7b72;font-weight:bold">.</span>headers<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#a5d6ff">&#39;X-Pages&#39;</span>, <span style="color:#a5d6ff">1</span>))
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> page <span style="color:#ff7b72;font-weight:bold">in</span> tqdm(range(<span style="color:#a5d6ff">2</span>, total_pages <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>)):
+</span></span><span style="display:flex;"><span>    all_orders<span style="color:#ff7b72;font-weight:bold">.</span>extend(get_esi_data(page_url))
+</span></span></code></pre></div><p>The ESI API uses HTTP headers to communicate pagination metadata:</p>
+<ul>
+<li><code>X-Pages</code>: Total number of pages available</li>
+<li>Each page contains up to 1,000 orders</li>
+<li>Pages are 1-indexed (start at page 1)</li>
+</ul>
+<p><strong>Progressive Feedback</strong>: <code>tqdm</code> provides a real-time progress bar, critical for multi-minute downloads.</p>
+<h4 id="3-data-loading-pipeline">
+  3. <strong>Data Loading Pipeline</strong>
+  <a class="heading-link" href="#3-data-loading-pipeline">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame(orders_data)
+</span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE OR REPLACE TABLE market_orders AS SELECT * FROM df&#34;</span>)
+</span></span></code></pre></div><p>DuckDB&rsquo;s killer feature: <strong>zero-copy DataFrame ingestion</strong>. The <code>FROM df</code> syntax reads pandas DataFrames directly without serialization.</p>
+<h2 id="implementation-deep-dive">
+  Implementation Deep Dive
+  <a class="heading-link" href="#implementation-deep-dive">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="the-fetch-function-handling-esi-pagination">
+  The Fetch Function: Handling ESI Pagination
+  <a class="heading-link" href="#the-fetch-function-handling-esi-pagination">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">fetch_all_market_orders</span>(region_id, type_id<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>):
+</span></span><span style="display:flex;"><span>    url <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;https://esi.evetech.net/latest/markets/</span><span style="color:#a5d6ff">{</span>region_id<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">/orders/&#34;</span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#a5d6ff">&#34;?datasource=tranquility&amp;order_type=all&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">if</span> type_id:
+</span></span><span style="display:flex;"><span>        url <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;&amp;type_id=</span><span style="color:#a5d6ff">{</span>type_id<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>
+</span></span></code></pre></div><p><strong>URL Construction Strategy</strong>:</p>
+<ul>
+<li><code>region_id</code>: Numeric identifier (e.g., 10000002 for The Forge)</li>
+<li><code>order_type=all</code>: Returns both buy and sell orders</li>
+<li><code>type_id</code>: Optional filter for single item analysis</li>
+</ul>
+<p><strong>Pagination Loop</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">&#34;&amp;page=1&#34;</span>)
+</span></span><span style="display:flex;"><span>total_pages <span style="color:#ff7b72;font-weight:bold">=</span> int(response<span style="color:#ff7b72;font-weight:bold">.</span>headers<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#a5d6ff">&#39;X-Pages&#39;</span>, <span style="color:#a5d6ff">1</span>))
+</span></span><span style="display:flex;"><span>all_orders <span style="color:#ff7b72;font-weight:bold">=</span> response<span style="color:#ff7b72;font-weight:bold">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> page <span style="color:#ff7b72;font-weight:bold">in</span> tqdm(range(<span style="color:#a5d6ff">2</span>, total_pages <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>)):
+</span></span><span style="display:flex;"><span>    page_url <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;</span><span style="color:#a5d6ff">{</span>url<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&amp;page=</span><span style="color:#a5d6ff">{</span>page<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>
+</span></span><span style="display:flex;"><span>    all_orders<span style="color:#ff7b72;font-weight:bold">.</span>extend(get_esi_data(page_url))
+</span></span></code></pre></div><p>Why start at page 2? We&rsquo;ve already fetched page 1 to read the <code>X-Pages</code> header.</p>
+<h3 id="duckdb-integration-automatic-schema-inference">
+  DuckDB Integration: Automatic Schema Inference
+  <a class="heading-link" href="#duckdb-integration-automatic-schema-inference">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>connect(database<span style="color:#ff7b72;font-weight:bold">=</span>db_path)
+</span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE OR REPLACE TABLE market_orders AS SELECT * FROM df&#34;</span>)
+</span></span></code></pre></div><p><strong>What&rsquo;s Happening Under the Hood</strong>:</p>
+<ol>
+<li>DuckDB reads the DataFrame&rsquo;s dtypes</li>
+<li>Maps pandas types to SQL types:
+<ul>
+<li><code>int64</code> → <code>BIGINT</code></li>
+<li><code>float64</code> → <code>DOUBLE</code></li>
+<li><code>object</code> → <code>VARCHAR</code></li>
+<li><code>datetime64</code> → <code>TIMESTAMP</code></li>
+</ul>
+</li>
+<li>Creates columnar storage with compression</li>
+<li>Builds internal indexes for query optimization</li>
+</ol>
+<p><strong>CREATE OR REPLACE</strong>: Idempotent operation—rerunning the script overwrites the table cleanly.</p>
+<h3 id="sample-esi-response-structure">
+  Sample ESI Response Structure
+  <a class="heading-link" href="#sample-esi-response-structure">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;duration&#34;</span>: <span style="color:#a5d6ff">90</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;is_buy_order&#34;</span>: <span style="color:#79c0ff">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;issued&#34;</span>: <span style="color:#a5d6ff">&#34;2024-01-15T12:34:56Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;location_id&#34;</span>: <span style="color:#a5d6ff">60003760</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;min_volume&#34;</span>: <span style="color:#a5d6ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;order_id&#34;</span>: <span style="color:#a5d6ff">6514363498</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;price&#34;</span>: <span style="color:#a5d6ff">5.47</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;range&#34;</span>: <span style="color:#a5d6ff">&#34;region&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;system_id&#34;</span>: <span style="color:#a5d6ff">30000142</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;type_id&#34;</span>: <span style="color:#a5d6ff">34</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;volume_remain&#34;</span>: <span style="color:#a5d6ff">9574126</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;volume_total&#34;</span>: <span style="color:#a5d6ff">10000000</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Key Fields</strong>:</p>
+<ul>
+<li><code>is_buy_order</code>: Distinguishes bids from asks</li>
+<li><code>price</code>: ISK per unit</li>
+<li><code>volume_remain</code>: Current unfilled quantity</li>
+<li><code>location_id</code>: Station/structure identifier</li>
+<li><code>type_id</code>: Item type reference</li>
+</ul>
+<h2 id="advanced-analytics-with-duckdb">
+  Advanced Analytics with DuckDB
+  <a class="heading-link" href="#advanced-analytics-with-duckdb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Once loaded, DuckDB enables sophisticated market analysis with pure SQL:</p>
+<h3 id="1-bid-ask-spread-analysis">
+  1. <strong>Bid-Ask Spread Analysis</strong>
+  <a class="heading-link" href="#1-bid-ask-spread-analysis">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">WITH</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span><span style="color:#ff7b72">MAX</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>best_buy<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">true</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>sell_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span><span style="color:#ff7b72">MIN</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>best_sell<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>b.type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>b.best_buy,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>s.best_sell,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>(s.best_sell<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span>b.best_buy)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>spread,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>((s.best_sell<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span>b.best_buy)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#6e7681"> </span>b.best_buy<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">100</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>spread_pct<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span>b<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>sell_orders<span style="color:#6e7681"> </span>s<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>b.type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span>s.type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>spread_pct<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">10</span>;<span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>Identifies arbitrage opportunities</strong> where spread exceeds transaction costs.</p>
+<h3 id="2-volume-weighted-average-price-vwap">
+  2. <strong>Volume-Weighted Average Price (VWAP)</strong>
+  <a class="heading-link" href="#2-volume-weighted-average-price-vwap">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(price<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span>volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">SUM</span>(volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>vwap<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id;<span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>VWAP</strong> provides more accurate pricing than simple averages for thin markets.</p>
+<h3 id="3-market-depth-analysis">
+  3. <strong>Market Depth Analysis</strong>
+  <a class="heading-link" href="#3-market-depth-analysis">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>is_buy_order,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>num_orders,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_volume,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">AVG</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>avg_price,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>STDDEV(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>price_volatility<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>is_buy_order;<span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>Market depth metrics</strong> indicate liquidity and price stability.</p>
+<h3 id="4-station-competition-analysis">
+  4. <strong>Station Competition Analysis</strong>
+  <a class="heading-link" href="#4-station-competition-analysis">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>location_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72">DISTINCT</span><span style="color:#6e7681"> </span>type_id)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>items_traded,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_orders,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(volume_remain<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span>price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_market_value<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>location_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>total_market_value<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">20</span>;<span style="color:#6e7681">
+</span></span></span></code></pre></div><p><strong>Identifies major trade hubs</strong> and emerging markets.</p>
+<h2 id="performance-optimization-strategies">
+  Performance Optimization Strategies
+  <a class="heading-link" href="#performance-optimization-strategies">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="1-incremental-loading">
+  1. <strong>Incremental Loading</strong>
+  <a class="heading-link" href="#1-incremental-loading">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For continuous data collection, use <code>INSERT</code> instead of <code>CREATE OR REPLACE</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># First load</span>
+</span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE TABLE IF NOT EXISTS market_orders AS SELECT * FROM df&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Subsequent loads</span>
+</span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;INSERT INTO market_orders SELECT * FROM df&#34;</span>)
+</span></span></code></pre></div><p>Add a timestamp column for tracking:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df[<span style="color:#a5d6ff">&#39;snapshot_time&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>Timestamp<span style="color:#ff7b72;font-weight:bold">.</span>now()
+</span></span></code></pre></div><h3 id="2-partitioning-by-region">
+  2. <strong>Partitioning by Region</strong>
+  <a class="heading-link" href="#2-partitioning-by-region">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For multi-region analysis, partition data:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders_partitioned<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>snapshot_time<span style="color:#6e7681"> </span><span style="color:#ff7b72">TIMESTAMP</span>,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>region_id<span style="color:#6e7681"> </span>INTEGER,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- other columns
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>)<span style="color:#6e7681"> </span>PARTITION<span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>(region_id);<span style="color:#6e7681">
+</span></span></span></code></pre></div><p>Queries filtering by region skip irrelevant partitions.</p>
+<h3 id="3-compression">
+  3. <strong>Compression</strong>
+  <a class="heading-link" href="#3-compression">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>DuckDB automatically compresses columnar data. For long-term storage, export to Parquet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;COPY market_orders TO &#39;jita_2024_01_15.parquet&#39; (FORMAT PARQUET)&#34;</span>)
+</span></span></code></pre></div><p>Parquet files achieve 10-20× compression vs CSV with faster load times.</p>
+<h3 id="4-connection-pooling">
+  4. <strong>Connection Pooling</strong>
+  <a class="heading-link" href="#4-connection-pooling">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For high-frequency updates, reuse connections:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">MarketDataPipeline</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">__init__</span>(self, db_path):
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conn <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>connect(database<span style="color:#ff7b72;font-weight:bold">=</span>db_path)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">ingest</span>(self, orders_data):
+</span></span><span style="display:flex;"><span>        df <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame(orders_data)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;INSERT INTO market_orders SELECT * FROM df&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">close</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conn<span style="color:#ff7b72;font-weight:bold">.</span>close()
+</span></span></code></pre></div><h2 id="error-handling-and-resilience">
+  Error Handling and Resilience
+  <a class="heading-link" href="#error-handling-and-resilience">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="http-error-management">
+  HTTP Error Management
+  <a class="heading-link" href="#http-error-management">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data_with_retry</span>(url, max_retries<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> attempt <span style="color:#ff7b72;font-weight:bold">in</span> range(max_retries):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">try</span>:
+</span></span><span style="display:flex;"><span>            r <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url, timeout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">10</span>)
+</span></span><span style="display:flex;"><span>            r<span style="color:#ff7b72;font-weight:bold">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">return</span> r<span style="color:#ff7b72;font-weight:bold">.</span>json()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">except</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>exceptions<span style="color:#ff7b72;font-weight:bold">.</span>RequestException <span style="color:#ff7b72">as</span> e:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> attempt <span style="color:#ff7b72;font-weight:bold">==</span> max_retries <span style="color:#ff7b72;font-weight:bold">-</span> <span style="color:#a5d6ff">1</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#ff7b72">raise</span>
+</span></span><span style="display:flex;"><span>            time<span style="color:#ff7b72;font-weight:bold">.</span>sleep(<span style="color:#a5d6ff">2</span> <span style="color:#ff7b72;font-weight:bold">**</span> attempt)  <span style="color:#8b949e;font-style:italic"># Exponential backoff</span>
+</span></span></code></pre></div><p><strong>ESI Rate Limiting</strong>: CCP implements rate limits. Exponential backoff prevents cascading failures.</p>
+<h3 id="data-validation">
+  Data Validation
+  <a class="heading-link" href="#data-validation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">validate_market_data</span>(df):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> <span style="color:#a5d6ff">&#39;order_id&#39;</span> <span style="color:#ff7b72;font-weight:bold">in</span> df<span style="color:#ff7b72;font-weight:bold">.</span>columns, <span style="color:#a5d6ff">&#34;Missing order_id column&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> df[<span style="color:#a5d6ff">&#39;price&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>min() <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">&#34;Invalid negative prices found&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> df[<span style="color:#a5d6ff">&#39;volume_remain&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>min() <span style="color:#ff7b72;font-weight:bold">&gt;=</span> <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">&#34;Invalid negative volume&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> df
+</span></span></code></pre></div><p><strong>Sanity checks</strong> prevent corrupted data from entering the database.</p>
+<h3 id="graceful-degradation">
+  Graceful Degradation
+  <a class="heading-link" href="#graceful-degradation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">if</span> <span style="color:#79c0ff">__name__</span> <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">try</span>:
+</span></span><span style="display:flex;"><span>        market_data <span style="color:#ff7b72;font-weight:bold">=</span> fetch_all_market_orders(REGION_ID)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> market_data:
+</span></span><span style="display:flex;"><span>            load_data_to_duckdb(market_data)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">except</span> <span style="color:#f0883e;font-weight:bold">Exception</span> <span style="color:#ff7b72">as</span> e:
+</span></span><span style="display:flex;"><span>        logging<span style="color:#ff7b72;font-weight:bold">.</span>error(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;Pipeline failed: </span><span style="color:#a5d6ff">{</span>e<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># Send alert, retry later, etc.</span>
+</span></span></code></pre></div><h2 id="real-world-use-cases">
+  Real-World Use Cases
+  <a class="heading-link" href="#real-world-use-cases">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="1-station-trading-bot">
+  1. <strong>Station Trading Bot</strong>
+  <a class="heading-link" href="#1-station-trading-bot">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Load market data every 5 minutes, identify arbitrage opportunities with &lt;2% spread, execute profitable trades.</p>
+<h3 id="2-market-trend-dashboard">
+  2. <strong>Market Trend Dashboard</strong>
+  <a class="heading-link" href="#2-market-trend-dashboard">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Historical snapshots enable time-series analysis:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>DATE_TRUNC(<span style="color:#a5d6ff">&#39;hour&#39;</span>,<span style="color:#6e7681"> </span>snapshot_time)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>hour,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">AVG</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>avg_hourly_price<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">34</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Tritanium
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour,<span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour;<span style="color:#6e7681">
+</span></span></span></code></pre></div><h3 id="3-industry-profitability-calculator">
+  3. <strong>Industry Profitability Calculator</strong>
+  <a class="heading-link" href="#3-industry-profitability-calculator">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Join market data with manufacturing recipes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>blueprint_type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(input_cost)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>material_cost,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>output_price<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">SUM</span>(input_cost)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>profit_margin<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>manufacturing_jobs<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>...<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>blueprint_type_id;<span style="color:#6e7681">
+</span></span></span></code></pre></div><h3 id="4-regional-price-comparison">
+  4. <strong>Regional Price Comparison</strong>
+  <a class="heading-link" href="#4-regional-price-comparison">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Load multiple regions, compare prices:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>region_id,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">MIN</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>lowest_sell<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>region_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">HAVING</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">&gt;</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">5</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Liquid markets only
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>lowest_sell;<span style="color:#6e7681">
+</span></span></span></code></pre></div><h2 id="lessons-learned">
+  Lessons Learned
+  <a class="heading-link" href="#lessons-learned">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="1-duckdb-is-not-a-replacement-for-everything">
+  1. <strong>DuckDB Is Not a Replacement for Everything</strong>
+  <a class="heading-link" href="#1-duckdb-is-not-a-replacement-for-everything">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>✅ <strong>Use for</strong>: Analytics, data science, ETL pipelines</li>
+<li>❌ <strong>Don&rsquo;t use for</strong>: High-concurrency OLTP, web application backends</li>
+</ul>
+<h3 id="2-schema-evolution-requires-planning">
+  2. <strong>Schema Evolution Requires Planning</strong>
+  <a class="heading-link" href="#2-schema-evolution-requires-planning">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>DuckDB&rsquo;s automatic schema inference is convenient but brittle. Production systems should define explicit schemas:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>order_id<span style="color:#6e7681"> </span>BIGINT<span style="color:#6e7681"> </span><span style="color:#ff7b72">PRIMARY</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">KEY</span>,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id<span style="color:#6e7681"> </span>INTEGER<span style="color:#6e7681"> </span><span style="color:#ff7b72">NOT</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">NULL</span>,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>price<span style="color:#6e7681"> </span>DOUBLE<span style="color:#6e7681"> </span><span style="color:#ff7b72">NOT</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">NULL</span>,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>);<span style="color:#6e7681">
+</span></span></span></code></pre></div><h3 id="3-progress-feedback-is-essential">
+  3. <strong>Progress Feedback Is Essential</strong>
+  <a class="heading-link" href="#3-progress-feedback-is-essential">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Fetching 20+ pages takes minutes. Without <code>tqdm</code>, users assume the script has hung.</p>
+<h3 id="4-pagination-edge-cases-exist">
+  4. <strong>Pagination Edge Cases Exist</strong>
+  <a class="heading-link" href="#4-pagination-edge-cases-exist">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>Empty regions return 0 pages (not 1)</li>
+<li>Expired orders may disappear mid-fetch</li>
+<li>ESI sometimes returns 500 errors under load</li>
+</ul>
+<p>Robust production code handles these gracefully.</p>
+<h3 id="5-duckdb">
+  5. <strong>DuckDB&rsquo;s Columnar Format Shines for Aggregations</strong>
+  <a class="heading-link" href="#5-duckdb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Calculating average prices across 200,000 orders:</p>
+<ul>
+<li><strong>Row-based database</strong>: Reads entire table (slow)</li>
+<li><strong>DuckDB</strong>: Reads only <code>price</code> column (fast)</li>
+</ul>
+<h2 id="future-enhancements">
+  Future Enhancements
+  <a class="heading-link" href="#future-enhancements">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="1-time-series-database-integration">
+  1. <strong>Time-Series Database Integration</strong>
+  <a class="heading-link" href="#1-time-series-database-integration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Export to TimescaleDB or InfluxDB for advanced temporal queries.</p>
+<h3 id="2-websocket-streaming">
+  2. <strong>WebSocket Streaming</strong>
+  <a class="heading-link" href="#2-websocket-streaming">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>ESI offers WebSocket feeds for real-time updates instead of polling.</p>
+<h3 id="3-distributed-processing">
+  3. <strong>Distributed Processing</strong>
+  <a class="heading-link" href="#3-distributed-processing">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Use Dask or Ray for parallel multi-region ingestion.</p>
+<h3 id="4-machine-learning-pipeline">
+  4. <strong>Machine Learning Pipeline</strong>
+  <a class="heading-link" href="#4-machine-learning-pipeline">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Train price prediction models:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">duckdb</span>
+</span></span><span style="display:flex;"><span>features <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>sql(<span style="color:#a5d6ff">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">  SELECT type_id, hour_of_day, day_of_week, avg_price, volume
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">  FROM market_snapshots
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;&#34;&#34;</span>)<span style="color:#ff7b72;font-weight:bold">.</span>df()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Train scikit-learn model</span>
+</span></span></code></pre></div><h3 id="5-data-quality-monitoring">
+  5. <strong>Data Quality Monitoring</strong>
+  <a class="heading-link" href="#5-data-quality-monitoring">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Track metrics:</p>
+<ul>
+<li>Missing order IDs</li>
+<li>Price anomalies (&gt;3 standard deviations)</li>
+<li>API failure rates</li>
+</ul>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This EVE Online market data pipeline demonstrates DuckDB&rsquo;s power for analytical workloads. By combining ESI&rsquo;s comprehensive market API with DuckDB&rsquo;s high-performance columnar storage, we&rsquo;ve built a system that:</p>
+<ul>
+<li>✅ Ingests 200,000+ orders in seconds</li>
+<li>✅ Enables complex SQL analytics without database administration</li>
+<li>✅ Scales from laptop prototypes to production pipelines</li>
+<li>✅ Provides a foundation for algorithmic trading and market research</li>
+</ul>
+<p>The design patterns shown here—pagination handling, zero-copy ingestion, columnar analytics—apply broadly to any data pipeline working with REST APIs and analytical queries.</p>
+<p>For EVE market traders and data enthusiasts, this pipeline unlocks insights previously accessible only to dedicated market analysts with enterprise database infrastructure. DuckDB democratizes high-performance analytics.</p>
+<hr>
+<p><strong>Technical Specifications:</strong></p>
+<ul>
+<li><strong>Language</strong>: Python 3.8+</li>
+<li><strong>Database</strong>: DuckDB 0.9+</li>
+<li><strong>Dependencies</strong>: requests, pandas, duckdb, tqdm</li>
+<li><strong>API</strong>: EVE ESI v1</li>
+<li><strong>Performance</strong>: ~2 seconds to load 200,000 orders</li>
+<li><strong>Storage</strong>: ~12 MB for Jita market snapshot (compressed)</li>
+</ul>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://duckdb.org/docs/"  class="external-link" target="_blank" rel="noopener">DuckDB Documentation</a></li>
+<li><a href="https://esi.evetech.net/ui/#/Market"  class="external-link" target="_blank" rel="noopener">EVE ESI Market Endpoint</a></li>
+<li><a href="https://duckdb.org/2021/05/14/sql-on-pandas.html"  class="external-link" target="_blank" rel="noopener">DuckDB vs Pandas Performance</a></li>
+<li><a href="https://www.fuzzwork.co.uk/discord/"  class="external-link" target="_blank" rel="noopener">EVE Market Data Discord</a></li>
+</ul>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     DarkAwesome 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/blog/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
