@@ -5,7 +5,7 @@ date: 2025-11-16T11:17:01-05:00
 url: /BuybackJanice/
 image: /images/2020-thumbs/BuybackJanice.jpg
 
-draft: true
+draft: false
 ---
 
 This article explores the development of an optimized desktop application that solves this problem by interfacing with EVE Online's ESI (EVE Swagger Interface) API to provide real-time transportation analysis.

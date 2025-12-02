@@ -5,7 +5,7 @@ date: 2025-12-02T15:18:04-05:00
 url: /Ai-paper/
 image: /images/2020-thumbs/Ai-paper.jpg
 
-draft: true
+draft: false
 ---
 AI Governance in an Anarchical World:Lessons from Open-Source and Proprietary Software
 

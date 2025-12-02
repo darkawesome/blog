@@ -5,7 +5,7 @@ date: 2025-11-16T11:19:10-05:00
 url: /New-Ai-Threats/
 image: /images/2020-thumbs/New-Ai-Threats.jpg
 
-draft: true
+draft: false
 ---
 
 The perceptin of threats in AI. Or the threats to the way we perceive AI
