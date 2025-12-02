@@ -215,11 +215,10 @@ The complete source code is available, and the techniques demonstrated here appl
 - [EVE ESI Documentation](https://esi.evetech.net/ui/)
 - [PyQt5 Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt5/)
 - [EVE University: Hauling](https://wiki.eveuniversity.org/Hauling)
-importing images 
 
 ![Summary](https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true)
 
-
+![Summary](https://github.com/darkawesome/blog/blob/main/content/img/buyback.webp?raw=true)
 
 
 

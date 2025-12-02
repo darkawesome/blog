@@ -6,14 +6,21 @@
     <description>Recent content in Blogs on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Nov 2025 11:19:10 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 02 Dec 2025 15:18:04 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ai Paper</title>
+      <link>http://localhost:1313/blog/Ai-paper/</link>
+      <pubDate>Tue, 02 Dec 2025 15:18:04 -0500</pubDate>
+      <guid>http://localhost:1313/blog/Ai-paper/</guid>
+      <description>&lt;p&gt;AI Governance in an Anarchical World:Lessons from Open-Source and Proprietary Software&lt;/p&gt;</description>
+    </item>
     <item>
       <title>New Ai Threats</title>
       <link>http://localhost:1313/blog/New-Ai-Threats/</link>
       <pubDate>Sun, 16 Nov 2025 11:19:10 -0500</pubDate>
       <guid>http://localhost:1313/blog/New-Ai-Threats/</guid>
-      <description></description>
+      <description>&lt;p&gt;The perceptin of threats in AI. Or the threats to the way we perceive AI&lt;/p&gt;</description>
     </item>
     <item>
       <title>TypeMarket</title>
