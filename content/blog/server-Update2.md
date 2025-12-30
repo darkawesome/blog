@@ -5,7 +5,6 @@ build:
   list: never
   publishResources: false
 
-date: 2025-12-02T15:18:04-05:00
 draft: false
 ---
 
