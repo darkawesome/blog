@@ -28,25 +28,25 @@
 </span></span><span style=display:flex><span><span style=color:#ff7b72>function</span> getAveragePrice(typeID) {
 </span></span><span style=display:flex><span> <span style=color:#ff7b72>try</span> {
 </span></span><span style=display:flex><span>   <span style=color:#8b949e;font-style:italic>// Fetch market prices using the markets_prices function for the given TypeID
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>   <span style=color:#ff7b72>var</span> result <span style=color:#ff7b72;font-weight:700>=</span> GESI.invoke(<span style=color:#a5d6ff>&#34;markets_prices&#34;</span>, { type_id<span style=color:#ff7b72;font-weight:700>:</span> typeID });
+</span></span></span><span style=display:flex><span>   <span style=color:#ff7b72>var</span> result <span style=color:#ff7b72;font-weight:700>=</span> GESI.invoke(<span style=color:#a5d6ff>&#34;markets_prices&#34;</span>, { type_id<span style=color:#ff7b72;font-weight:700>:</span> typeID });
 </span></span><span style=display:flex><span>  
 </span></span><span style=display:flex><span>   <span style=color:#8b949e;font-style:italic>// Check if result data is available
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>   <span style=color:#ff7b72>if</span> (result <span style=color:#ff7b72;font-weight:700>&amp;&amp;</span> result.length <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>) {
+</span></span></span><span style=display:flex><span>   <span style=color:#ff7b72>if</span> (result <span style=color:#ff7b72;font-weight:700>&amp;&amp;</span> result.length <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>0</span>) {
 </span></span><span style=display:flex><span>     <span style=color:#8b949e;font-style:italic>// Iterate through the result to find the matching TypeID and get the average price
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>     <span style=color:#ff7b72>for</span> (<span style=color:#ff7b72>var</span> i <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>; i <span style=color:#ff7b72;font-weight:700>&lt;</span> result.length; i<span style=color:#ff7b72;font-weight:700>++</span>) {
+</span></span></span><span style=display:flex><span>     <span style=color:#ff7b72>for</span> (<span style=color:#ff7b72>var</span> i <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>0</span>; i <span style=color:#ff7b72;font-weight:700>&lt;</span> result.length; i<span style=color:#ff7b72;font-weight:700>++</span>) {
 </span></span><span style=display:flex><span>       <span style=color:#8b949e;font-style:italic>// The TypeID is in the third column (index 2)
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       <span style=color:#ff7b72>if</span> (result[i][<span style=color:#a5d6ff>2</span>] <span style=color:#ff7b72;font-weight:700>==</span> typeID) {
+</span></span></span><span style=display:flex><span>       <span style=color:#ff7b72>if</span> (result[i][<span style=color:#a5d6ff>2</span>] <span style=color:#ff7b72;font-weight:700>==</span> typeID) {
 </span></span><span style=display:flex><span>         <span style=color:#ff7b72>var</span> averagePrice <span style=color:#ff7b72;font-weight:700>=</span> result[i][<span style=color:#a5d6ff>1</span>];  <span style=color:#8b949e;font-style:italic>// The average price is in the second column (index 1)
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>         <span style=color:#ff7b72>return</span> averagePrice <span style=color:#ff7b72;font-weight:700>?</span> averagePrice <span style=color:#ff7b72;font-weight:700>:</span> <span style=color:#a5d6ff>&#34;Price not found&#34;</span>;  <span style=color:#8b949e;font-style:italic>// Return average price or &#34;Price not found&#34;
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       }
+</span></span></span><span style=display:flex><span>         <span style=color:#ff7b72>return</span> averagePrice <span style=color:#ff7b72;font-weight:700>?</span> averagePrice <span style=color:#ff7b72;font-weight:700>:</span> <span style=color:#a5d6ff>&#34;Price not found&#34;</span>;  <span style=color:#8b949e;font-style:italic>// Return average price or &#34;Price not found&#34;
+</span></span></span><span style=display:flex><span>       }
 </span></span><span style=display:flex><span>     }
 </span></span><span style=display:flex><span>     <span style=color:#ff7b72>return</span> <span style=color:#a5d6ff>&#34;TypeID not found in market data&#34;</span>;  <span style=color:#8b949e;font-style:italic>// Return if no matching TypeID is found
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>   } <span style=color:#ff7b72>else</span> {
+</span></span></span><span style=display:flex><span>   } <span style=color:#ff7b72>else</span> {
 </span></span><span style=display:flex><span>     <span style=color:#ff7b72>return</span> <span style=color:#a5d6ff>&#34;No market data available&#34;</span>;  <span style=color:#8b949e;font-style:italic>// Return if no data is available
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>   }
+</span></span></span><span style=display:flex><span>   }
 </span></span><span style=display:flex><span> } <span style=color:#ff7b72>catch</span> (e) {
 </span></span><span style=display:flex><span>   <span style=color:#8b949e;font-style:italic>// Handle errors (e.g., invalid TypeID or network issues)
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>   <span style=color:#ff7b72>return</span> <span style=color:#a5d6ff>&#34;Error: &#34;</span> <span style=color:#ff7b72;font-weight:700>+</span> e.message;
+</span></span></span><span style=display:flex><span>   <span style=color:#ff7b72>return</span> <span style=color:#a5d6ff>&#34;Error: &#34;</span> <span style=color:#ff7b72;font-weight:700>+</span> e.message;
 </span></span><span style=display:flex><span> }
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
@@ -71,34 +71,34 @@
 </span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic>*/</span>
 </span></span><span style=display:flex><span><span style=color:#ff7b72>function</span> typePriceData(typeID, locationID, regionID) {
 </span></span><span style=display:flex><span> <span style=color:#8b949e;font-style:italic>// Fetch market data
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span> <span style=color:#ff7b72>var</span> data <span style=color:#ff7b72;font-weight:700>=</span> locationID <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>10000000000000</span>
+</span></span></span><span style=display:flex><span> <span style=color:#ff7b72>var</span> data <span style=color:#ff7b72;font-weight:700>=</span> locationID <span style=color:#ff7b72;font-weight:700>&gt;</span> <span style=color:#a5d6ff>10000000000000</span>
 </span></span><span style=display:flex><span>   <span style=color:#ff7b72;font-weight:700>?</span> GESI.invokeRaw(<span style=color:#a5d6ff>&#34;markets_structure_structure&#34;</span>, { structure_id<span style=color:#ff7b72;font-weight:700>:</span> locationID })
 </span></span><span style=display:flex><span>   <span style=color:#ff7b72;font-weight:700>:</span> GESI.invokeRaw(<span style=color:#a5d6ff>&#34;markets_region_orders&#34;</span>, { region_id<span style=color:#ff7b72;font-weight:700>:</span> regionID, order_type<span style=color:#ff7b72;font-weight:700>:</span> <span style=color:#a5d6ff>&#34;all&#34;</span>, type_id<span style=color:#ff7b72;font-weight:700>:</span> typeID });
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#8b949e;font-style:italic>// Initialize prices
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span> <span style=color:#ff7b72>var</span> minSell <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>null</span>;
+</span></span></span><span style=display:flex><span> <span style=color:#ff7b72>var</span> minSell <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>null</span>;
 </span></span><span style=display:flex><span> <span style=color:#ff7b72>var</span> maxBuy <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>null</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#8b949e;font-style:italic>// Process each order
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span> data.forEach(<span style=color:#ff7b72>function</span>(order) {
+</span></span></span><span style=display:flex><span> data.forEach(<span style=color:#ff7b72>function</span>(order) {
 </span></span><span style=display:flex><span>   <span style=color:#ff7b72>if</span> (order.type_id <span style=color:#ff7b72;font-weight:700>===</span> typeID) {  <span style=color:#8b949e;font-style:italic>// Match the TypeID
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>     <span style=color:#ff7b72>if</span> (order.is_buy_order) { <span style=color:#8b949e;font-style:italic>// Buy order
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       <span style=color:#ff7b72>if</span> (<span style=color:#ff7b72;font-weight:700>!</span>maxBuy <span style=color:#ff7b72;font-weight:700>||</span> order.price <span style=color:#ff7b72;font-weight:700>&gt;</span> maxBuy) {
+</span></span></span><span style=display:flex><span>     <span style=color:#ff7b72>if</span> (order.is_buy_order) { <span style=color:#8b949e;font-style:italic>// Buy order
+</span></span></span><span style=display:flex><span>       <span style=color:#ff7b72>if</span> (<span style=color:#ff7b72;font-weight:700>!</span>maxBuy <span style=color:#ff7b72;font-weight:700>||</span> order.price <span style=color:#ff7b72;font-weight:700>&gt;</span> maxBuy) {
 </span></span><span style=display:flex><span>         maxBuy <span style=color:#ff7b72;font-weight:700>=</span> order.price; <span style=color:#8b949e;font-style:italic>// Update max buy price
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       }
+</span></span></span><span style=display:flex><span>       }
 </span></span><span style=display:flex><span>     } <span style=color:#ff7b72>else</span> { <span style=color:#8b949e;font-style:italic>// Sell order
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       <span style=color:#ff7b72>if</span> (<span style=color:#ff7b72;font-weight:700>!</span>minSell <span style=color:#ff7b72;font-weight:700>||</span> order.price <span style=color:#ff7b72;font-weight:700>&lt;</span> minSell) {
+</span></span></span><span style=display:flex><span>       <span style=color:#ff7b72>if</span> (<span style=color:#ff7b72;font-weight:700>!</span>minSell <span style=color:#ff7b72;font-weight:700>||</span> order.price <span style=color:#ff7b72;font-weight:700>&lt;</span> minSell) {
 </span></span><span style=display:flex><span>         minSell <span style=color:#ff7b72;font-weight:700>=</span> order.price; <span style=color:#8b949e;font-style:italic>// Update min sell price
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span>       }
+</span></span></span><span style=display:flex><span>       }
 </span></span><span style=display:flex><span>     }
 </span></span><span style=display:flex><span>   }
 </span></span><span style=display:flex><span> });
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#8b949e;font-style:italic>// Return results
-</span></span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic></span> <span style=color:#ff7b72>return</span> [[maxBuy, minSell]];
+</span></span></span><span style=display:flex><span> <span style=color:#ff7b72>return</span> [[maxBuy, minSell]];
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h2 id=4-major-problems>4. Major Problems
 <a class=heading-link href=#4-major-problems><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
