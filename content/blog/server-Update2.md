@@ -4,6 +4,8 @@ build:
   render: never
   list: never
   publishResources: false
+  
+draft: false
 ---
 
 Tailscale, Ticketing System, Pihole for Clients
