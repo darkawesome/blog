@@ -9,7 +9,7 @@ style = "github-dark"
 [params]
 	commentoURL = "https://cdn.commento.io"  # Replace if you use a custom domain 
 	author = "DarkAwesome"
-	info = "Software Engineer | Arch User | Data Analyst "
+	info = "Backend Engineer | System Administrator | Data Analyst "
   colorScheme = "auto"
   hideColorSchemeToggle = false
   maxSeeAlsoItems = 5

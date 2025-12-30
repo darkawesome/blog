@@ -18,6 +18,4 @@ I am Darkawesome, I am a jack of all trades. A master of none, but often times b
 Github : Darkawesome
 
 ## How to reach me?
-    IRC: Banana-Prince @ libera.chat
     The email address on my job application
-  
