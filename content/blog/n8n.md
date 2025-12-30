@@ -5,7 +5,7 @@ date: 2025-12-30T16:00:13-05:00
 url: /n8n/
 image: /images/2020-thumbs/n8n.jpg
 
-draft: true
+draft: false
 ---
 
 N8n - Cyber Events Trends Agent

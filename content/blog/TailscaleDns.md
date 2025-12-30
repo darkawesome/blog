@@ -5,7 +5,7 @@ date: 2025-12-30T16:00:58-05:00
 url: /TailscaleDns/
 image: /images/2020-thumbs/TailscaleDns.jpg
 
-draft: true
+draft: false
 ---
 
 Tailscale, Ticketing System, Pihole for Clients
