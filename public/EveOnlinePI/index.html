@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+<head>
   <title>
   EveOnlinePI · DarkAwesome
 </title>
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="EveOnlinePI">
 
-<meta property="og:url" content="http://localhost:1313/blog/EveOnlinePI/">
+<meta property="og:url" content="http://darkawesome.github.io/blog/EveOnlinePI/">
   <meta property="og:site_name" content="DarkAwesome">
   <meta property="og:title" content="EveOnlinePI">
   <meta property="og:locale" content="en_us">
@@ -34,7 +34,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:1313/blog/EveOnlinePI/">
+<link rel="canonical" href="http://darkawesome.github.io/blog/EveOnlinePI/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,7 +44,7 @@
 
   
   
-  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+  <link rel="stylesheet" href="/blog/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -54,7 +54,7 @@
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -102,7 +102,7 @@
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="http://localhost:1313/blog/">
+    <a class="navigation-title" href="http://darkawesome.github.io/blog/">
       DarkAwesome
     </a>
     
@@ -140,7 +140,7 @@
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="http://localhost:1313/blog/EveOnlinePI/">
+        <a class="title-link" href="http://darkawesome.github.io/blog/EveOnlinePI/">
           EveOnlinePI
         </a>
       </h1>
@@ -238,25 +238,25 @@
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">function</span> getAveragePrice(typeID) {
 </span></span><span style="display:flex;"><span> <span style="color:#ff7b72">try</span> {
 </span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Fetch market prices using the markets_prices function for the given TypeID
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">var</span> result <span style="color:#ff7b72;font-weight:bold">=</span> GESI.invoke(<span style="color:#a5d6ff">&#34;markets_prices&#34;</span>, { type_id<span style="color:#ff7b72;font-weight:bold">:</span> typeID });
+</span></span></span><span style="display:flex;"><span>   <span style="color:#ff7b72">var</span> result <span style="color:#ff7b72;font-weight:bold">=</span> GESI.invoke(<span style="color:#a5d6ff">&#34;markets_prices&#34;</span>, { type_id<span style="color:#ff7b72;font-weight:bold">:</span> typeID });
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Check if result data is available
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">if</span> (result <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> result.length <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>) {
+</span></span></span><span style="display:flex;"><span>   <span style="color:#ff7b72">if</span> (result <span style="color:#ff7b72;font-weight:bold">&amp;&amp;</span> result.length <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>) {
 </span></span><span style="display:flex;"><span>     <span style="color:#8b949e;font-style:italic">// Iterate through the result to find the matching TypeID and get the average price
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>     <span style="color:#ff7b72">for</span> (<span style="color:#ff7b72">var</span> i <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>; i <span style="color:#ff7b72;font-weight:bold">&lt;</span> result.length; i<span style="color:#ff7b72;font-weight:bold">++</span>) {
+</span></span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">for</span> (<span style="color:#ff7b72">var</span> i <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>; i <span style="color:#ff7b72;font-weight:bold">&lt;</span> result.length; i<span style="color:#ff7b72;font-weight:bold">++</span>) {
 </span></span><span style="display:flex;"><span>       <span style="color:#8b949e;font-style:italic">// The TypeID is in the third column (index 2)
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (result[i][<span style="color:#a5d6ff">2</span>] <span style="color:#ff7b72;font-weight:bold">==</span> typeID) {
+</span></span></span><span style="display:flex;"><span>       <span style="color:#ff7b72">if</span> (result[i][<span style="color:#a5d6ff">2</span>] <span style="color:#ff7b72;font-weight:bold">==</span> typeID) {
 </span></span><span style="display:flex;"><span>         <span style="color:#ff7b72">var</span> averagePrice <span style="color:#ff7b72;font-weight:bold">=</span> result[i][<span style="color:#a5d6ff">1</span>];  <span style="color:#8b949e;font-style:italic">// The average price is in the second column (index 1)
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>         <span style="color:#ff7b72">return</span> averagePrice <span style="color:#ff7b72;font-weight:bold">?</span> averagePrice <span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#34;Price not found&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return average price or &#34;Price not found&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span></span><span style="display:flex;"><span>         <span style="color:#ff7b72">return</span> averagePrice <span style="color:#ff7b72;font-weight:bold">?</span> averagePrice <span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#34;Price not found&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return average price or &#34;Price not found&#34;
+</span></span></span><span style="display:flex;"><span>       }
 </span></span><span style="display:flex;"><span>     }
 </span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;TypeID not found in market data&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return if no matching TypeID is found
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   } <span style="color:#ff7b72">else</span> {
+</span></span></span><span style="display:flex;"><span>   } <span style="color:#ff7b72">else</span> {
 </span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;No market data available&#34;</span>;  <span style="color:#8b949e;font-style:italic">// Return if no data is available
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   }
+</span></span></span><span style="display:flex;"><span>   }
 </span></span><span style="display:flex;"><span> } <span style="color:#ff7b72">catch</span> (e) {
 </span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic">// Handle errors (e.g., invalid TypeID or network issues)
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>   <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;Error: &#34;</span> <span style="color:#ff7b72;font-weight:bold">+</span> e.message;
+</span></span></span><span style="display:flex;"><span>   <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34;Error: &#34;</span> <span style="color:#ff7b72;font-weight:bold">+</span> e.message;
 </span></span><span style="display:flex;"><span> }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -281,34 +281,34 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">*/</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">function</span> typePriceData(typeID, locationID, regionID) {
 </span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Fetch market data
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">var</span> data <span style="color:#ff7b72;font-weight:bold">=</span> locationID <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">10000000000000</span>
+</span></span></span><span style="display:flex;"><span> <span style="color:#ff7b72">var</span> data <span style="color:#ff7b72;font-weight:bold">=</span> locationID <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">10000000000000</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#ff7b72;font-weight:bold">?</span> GESI.invokeRaw(<span style="color:#a5d6ff">&#34;markets_structure_structure&#34;</span>, { structure_id<span style="color:#ff7b72;font-weight:bold">:</span> locationID })
 </span></span><span style="display:flex;"><span>   <span style="color:#ff7b72;font-weight:bold">:</span> GESI.invokeRaw(<span style="color:#a5d6ff">&#34;markets_region_orders&#34;</span>, { region_id<span style="color:#ff7b72;font-weight:bold">:</span> regionID, order_type<span style="color:#ff7b72;font-weight:bold">:</span> <span style="color:#a5d6ff">&#34;all&#34;</span>, type_id<span style="color:#ff7b72;font-weight:bold">:</span> typeID });
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Initialize prices
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">var</span> minSell <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">null</span>;
+</span></span></span><span style="display:flex;"><span> <span style="color:#ff7b72">var</span> minSell <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">null</span>;
 </span></span><span style="display:flex;"><span> <span style="color:#ff7b72">var</span> maxBuy <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">null</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Process each order
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> data.forEach(<span style="color:#ff7b72">function</span>(order) {
+</span></span></span><span style="display:flex;"><span> data.forEach(<span style="color:#ff7b72">function</span>(order) {
 </span></span><span style="display:flex;"><span>   <span style="color:#ff7b72">if</span> (order.type_id <span style="color:#ff7b72;font-weight:bold">===</span> typeID) {  <span style="color:#8b949e;font-style:italic">// Match the TypeID
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>     <span style="color:#ff7b72">if</span> (order.is_buy_order) { <span style="color:#8b949e;font-style:italic">// Buy order
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>maxBuy <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&gt;</span> maxBuy) {
+</span></span></span><span style="display:flex;"><span>     <span style="color:#ff7b72">if</span> (order.is_buy_order) { <span style="color:#8b949e;font-style:italic">// Buy order
+</span></span></span><span style="display:flex;"><span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>maxBuy <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&gt;</span> maxBuy) {
 </span></span><span style="display:flex;"><span>         maxBuy <span style="color:#ff7b72;font-weight:bold">=</span> order.price; <span style="color:#8b949e;font-style:italic">// Update max buy price
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span></span><span style="display:flex;"><span>       }
 </span></span><span style="display:flex;"><span>     } <span style="color:#ff7b72">else</span> { <span style="color:#8b949e;font-style:italic">// Sell order
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>minSell <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&lt;</span> minSell) {
+</span></span></span><span style="display:flex;"><span>       <span style="color:#ff7b72">if</span> (<span style="color:#ff7b72;font-weight:bold">!</span>minSell <span style="color:#ff7b72;font-weight:bold">||</span> order.price <span style="color:#ff7b72;font-weight:bold">&lt;</span> minSell) {
 </span></span><span style="display:flex;"><span>         minSell <span style="color:#ff7b72;font-weight:bold">=</span> order.price; <span style="color:#8b949e;font-style:italic">// Update min sell price
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>       }
+</span></span></span><span style="display:flex;"><span>       }
 </span></span><span style="display:flex;"><span>     }
 </span></span><span style="display:flex;"><span>   }
 </span></span><span style="display:flex;"><span> });
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#8b949e;font-style:italic">// Return results
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span> <span style="color:#ff7b72">return</span> [[maxBuy, minSell]];
+</span></span></span><span style="display:flex;"><span> <span style="color:#ff7b72">return</span> [[maxBuy, minSell]];
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="4-major-problems">
   4. Major Problems
@@ -394,7 +394,7 @@
   <section class="container">
     ©
     
-    2025
+    2026
      DarkAwesome 
     ·
     
@@ -409,7 +409,7 @@
 
   
   
-  <script src="/blog/js/coder.js"></script>
+  <script src="/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
 
   

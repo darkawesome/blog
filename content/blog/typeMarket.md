@@ -5,7 +5,7 @@ date: 2025-11-16T11:17:36-05:00
 url: /typeMarket/
 image: /images/2020-thumbs/typeMarket.jpg
 
-draft: true
+draft: false
 ---
 
 <!--more-->

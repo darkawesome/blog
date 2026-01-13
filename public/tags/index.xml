@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on DarkAwesome</title>
-    <link>http://localhost:1313/blog/tags/</link>
+    <link>http://darkawesome.github.io/blog/tags/</link>
     <description>Recent content in Tags on DarkAwesome</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Feb 2025 13:24:11 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Dec 2024 15:48:30 -0500</lastBuildDate>
+    <atom:link href="http://darkawesome.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ubuntu</title>
-      <link>http://localhost:1313/blog/tags/ubuntu/</link>
-      <pubDate>Thu, 06 Feb 2025 13:24:11 -0500</pubDate>
-      <guid>http://localhost:1313/blog/tags/ubuntu/</guid>
+      <link>http://darkawesome.github.io/blog/tags/ubuntu/</link>
+      <pubDate>Thu, 05 Dec 2024 15:48:30 -0500</pubDate>
+      <guid>http://darkawesome.github.io/blog/tags/ubuntu/</guid>
       <description></description>
     </item>
     <item>
       <title>Lifestyle</title>
-      <link>http://localhost:1313/blog/tags/lifestyle/</link>
+      <link>http://darkawesome.github.io/blog/tags/lifestyle/</link>
       <pubDate>Mon, 18 Nov 2024 10:50:45 -0500</pubDate>
-      <guid>http://localhost:1313/blog/tags/lifestyle/</guid>
+      <guid>http://darkawesome.github.io/blog/tags/lifestyle/</guid>
       <description></description>
     </item>
     <item>
       <title>Blog</title>
-      <link>http://localhost:1313/blog/tags/blog/</link>
+      <link>http://darkawesome.github.io/blog/tags/blog/</link>
       <pubDate>Mon, 13 Nov 2023 09:00:26 -0500</pubDate>
-      <guid>http://localhost:1313/blog/tags/blog/</guid>
+      <guid>http://darkawesome.github.io/blog/tags/blog/</guid>
       <description></description>
     </item>
   </channel>
