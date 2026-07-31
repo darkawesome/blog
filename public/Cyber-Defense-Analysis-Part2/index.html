@@ -26,22 +26,22 @@ Similar work has been done by Derek Loughrey (https://www.gotechinsights.com/blo
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cyber Defense Analysis Part2">
-  <meta name="twitter:description" content="This is a continuation of Dimitri Nilov’s previous work (https://www.gotechinsights.com/blog/part2cybertrend). When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Cyber Defense Analysis Part2">
+	<meta name="twitter:description" content="This is a continuation of Dimitri Nilov’s previous work (https://www.gotechinsights.com/blog/part2cybertrend). When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
 Update December 17th, 2024 Link to heading Similar work has been done by Derek Loughrey (https://www.gotechinsights.com/blog/key-global-cyber-trends-2014-2024). His research looks at the dominance of criminal actors, the growing exploitation of vulnerable industries such as healthcare, and the geopolitical dimensions of cyber warfare, particularly in the context of Russia’s ongoing invasion of Ukraine.">
 
 <meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Defense-Analysis-Part2/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Cyber Defense Analysis Part2">
-  <meta property="og:description" content="This is a continuation of Dimitri Nilov’s previous work (https://www.gotechinsights.com/blog/part2cybertrend). When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
+	<meta property="og:site_name" content="DarkAwesome">
+	<meta property="og:title" content="Cyber Defense Analysis Part2">
+	<meta property="og:description" content="This is a continuation of Dimitri Nilov’s previous work (https://www.gotechinsights.com/blog/part2cybertrend). When I started this project, I was not aware of his work initially. However, after reviewing his work, I have focused on a time series analysis of the attacks, focusing primarily on 2014 - 2022 to see if any trends emerge from year to year.
 Update December 17th, 2024 Link to heading Similar work has been done by Derek Loughrey (https://www.gotechinsights.com/blog/key-global-cyber-trends-2014-2024). His research looks at the dominance of criminal actors, the growing exploitation of vulnerable industries such as healthcare, and the geopolitical dimensions of cyber warfare, particularly in the context of Russia’s ongoing invasion of Ukraine.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2024-11-19T21:55:25-05:00">
-    <meta property="article:modified_time" content="2024-11-19T21:55:25-05:00">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="blog">
+		<meta property="article:published_time" content="2024-11-19T21:55:25-05:00">
+		<meta property="article:modified_time" content="2024-11-19T21:55:25-05:00">
+		<meta property="article:tag" content="Ubuntu">
 
 
 
@@ -66,7 +66,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -197,7 +197,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   </a>
 </h2>
 <p>The peak year for cyberattacks was 2023 with 2,163 attacks, following the rise seen in 2022. The total attack count in these years is higher than the earlier years, however, the database needs to be updated to fully reflect the attacks for that year.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spatstat)
@@ -212,13 +212,13 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spData)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gganimate)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(readxl)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(readxl)
 </span></span><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_excel</span>(<span style="color:#a5d6ff">&#34;E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">subset</span>(data, select<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">c</span>(slug,description,source_url,industry_code))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/summary.png?raw=true" alt="Summary"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>table1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>motive, df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>table1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>motive, df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, 
 </span></span><span style="display:flex;"><span>                df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ftable</span>(table1)
@@ -231,14 +231,14 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   </a>
 </h2>
 <p>Looking at the table of the motives, actor type, and event type we can see that a lot of the attacks have a financial motive. With it being the combination with the greatest distribution further analysis could reveal more on why. Or perhaps show when this became an issue or if it always was an issue. Protest hacktivists and Undetermined-Criminals would be the other groups that have a good amount of distribution among the attacks. Although it doesn’t have the same levels of distribution these are also areas that can show more information.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># FREQUENCY MARGINALS</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># FREQUENCY MARGINALS</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># row marginals - totals for each marital status across gender</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">2</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/table2.png?raw=true" alt="table2"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># colum marginals - totals for each gender across marital status</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># colum marginals - totals for each gender across marital status</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">margin.table</span>(table1, <span style="color:#a5d6ff">1</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/MarginTable1.png?raw=true" alt="MarginTable1"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> (event_type))) <span style="color:#ff7b72;font-weight:bold">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> (event_type))) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">after_stat</span>(count)))) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">xlab</span>(<span style="color:#a5d6ff">&#34;Event Types&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">ylab</span>(<span style="color:#a5d6ff">&#34;Count&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">facet_grid</span>(<span style="color:#ff7b72;font-weight:bold">~</span>actor_type) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;coral2&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
@@ -252,7 +252,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   </a>
 </h2>
 <p>This histogram focuses on event types and actor types, excluding motives. At first glance, it&rsquo;s clear that the majority of attacks are criminal. Looking at the histogram, similar findings emerge. However, we can also see that attacks attributed to nation-states have occurred quite frequently. The unimodal distribution can likely be attributed to several factors. The most apparent, in my view, is a reporting bias. Perhaps a nation-state doesn&rsquo;t realize they’ve been hacked, or they may choose not to publicly disclose the situation. The fact that hacktivists are the second most common group suggests that the latter explanation is more likely, as these groups typically claim responsibility or publicize their actions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/Monthly.png?raw=true" alt="Monthly Attacks"></p>
 <h2 id="attacks-per-month">
@@ -263,11 +263,11 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   </a>
 </h2>
 <p>Looking at this histogram we can see no seasonality among the data. Nor can we see any times in which the attacks spike relative to the normal distribution of data. January, March, and August being the peaks do show times where the events may be taking place more often across the years. This pushed me further to focus primarily at the years rather than the months of when these attacks occur.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(rnaturalearth)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
 </span></span><span style="display:flex;"><span>countries_geom <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ne_countries</span>(scale <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;small&#34;</span>, returnclass <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;sf&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Merge the geometries with the country names</span>
@@ -277,16 +277,16 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Set the CRS (WGS84 is EPSG:4326, which is common for world maps)</span>
 </span></span><span style="display:flex;"><span>countries_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_set_crs</span>(countries_sf, <span style="color:#a5d6ff">4326</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># getting rid of bloat in the sf dataframe</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># getting rid of bloat in the sf dataframe</span>
 </span></span><span style="display:flex;"><span>world_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_sf <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
 </span></span><span style="display:flex;"><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
 </span></span></code></pre></div><p>A problem was caught here with a value being coded incorrectly in the excel sheet. The single data point was dealing with Telecommunications companies in Sundan.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>invalid_geometries <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf[<span style="color:#ff7b72;font-weight:bold">!</span><span style="color:#d2a8ff;font-weight:bold">st_is_valid</span>(world_sf), ]
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>invalid_geometries <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf[<span style="color:#ff7b72;font-weight:bold">!</span><span style="color:#d2a8ff;font-weight:bold">st_is_valid</span>(world_sf), ]
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(invalid_geometries, n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">Inf</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
 </span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf<span style="color:#d2a8ff;font-weight:bold">[st_is_valid</span>(world_sf), ]
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
@@ -352,7 +352,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 </h3>
 <p>Undetermined motives suggest ongoing challenges in attributing cyberattacks and highlight regional disparities in reporting or investigation capacity. Broadly, financial motives dominate the global landscape, followed by political espionage and protest-related incidents.</p>
 <p>This analysis underscores the importance of tailoring cybersecurity measures to the unique threats and vulnerabilities within each region.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## this takes a minute to load </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
@@ -418,12 +418,12 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 </h3>
 <p>The presence of undetermined event types underscores gaps in attribution and analysis, reflecting disparities in global cybersecurity capabilities. Exploitive attacks emerge as a predominant global trend, highlighting the universal appeal of financial or data-related gains. Disruptive and mixed events are regionally significant, often correlating with specific political, social, or infrastructural contexts.</p>
 <p>This distribution emphasizes the need for region-specific strategies to mitigate both exploitive and disruptive cyber threats effectively.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># a contingency table for actor_type and event_type</span>
 </span></span><span style="display:flex;"><span>actor_event_table <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(df<span style="color:#ff7b72;font-weight:bold">$</span>actor_type, df<span style="color:#ff7b72;font-weight:bold">$</span>event_type)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View the table</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(actor_event_table)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate attack counts per year</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate attack counts per year</span>
 </span></span><span style="display:flex;"><span>yearly_counts <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(year) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summarise</span>(
@@ -453,7 +453,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggsave</span>(<span style="color:#a5d6ff">&#34;yearly_attacks_histogram.png&#34;</span>, width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10</span>, height <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Cyber-Analysis/yearly_attacks_histogram.png?raw=true" alt="Yearly Attacks Histogram"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(yearly_counts)
 </span></span></code></pre></div><h2 id="number-of-attacks-per-year">
   Number of Attacks per Year
   <a class="heading-link" href="#number-of-attacks-per-year">
@@ -464,7 +464,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
 <p>The histogram shows an upward trend in attack counts per year, with notable increases in the 2019-2020 and 2021-2022 periods. During both of these intervals, the number of attacks rose by approximately 50%. With a median of 952, it seems likely that the number of attacks will continue to increase in the coming years.</p>
 <p>Looking at monthly attack data, no clear seasonality is observed. However, after the COVID years of 2020 and 2021, there was a significant spike in attacks. A dip in 2021 followed by an immediate rise may reflect the changing workplace environment. With hybrid and remote work becoming more apparent companies and nations may see a rise in the coming as we see here in cyber attacks.</p>
 <p>A similar trend of a sharp rise in attacks was observed between 2019 and 2021 but in this case, the increase may in part, be due to a shift in attack types. A brief literature review and analysis of prior research indicate that nation-states have made a more concerted effort to conduct cyberattacks during this period.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a temporary directory for individual frames</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">dir.create</span>(<span style="color:#a5d6ff">&#34;tmp_frames&#34;</span>, showWarnings <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span><span style="display:flex;"><span>
@@ -638,7 +638,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>growth_rate <span style="color:#ff7b72;font-weight:bold">&lt;-</span> yearly_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>growth_rate <span style="color:#ff7b72;font-weight:bold">&lt;-</span> yearly_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Ensure &#39;year&#39; is numeric</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(year <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">as.character</span>(year))) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#8b949e;font-style:italic"># Sort by year</span>
@@ -671,7 +671,7 @@ Update December 17th, 2024 Link to heading Similar work has been done by Derek L
   </a>
 </h2>
 <p>The growth rate year-on-year is highly variable. For example: The growth from 2014 to 2015 was moderate, at around 23%. The growth from 2015 to 2016 saw a steep rise of 35.8%.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Calculate percent change for each region</span>
 </span></span><span style="display:flex;"><span>world_sf_changes <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf_valid <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(geometry) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>

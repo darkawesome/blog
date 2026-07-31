@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+<head>
   <title>
   TypeMarket · DarkAwesome
 </title>
@@ -18,22 +18,22 @@
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TypeMarket">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="TypeMarket">
 
-<meta property="og:url" content="http://localhost:1313/blog/typeMarket/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="TypeMarket">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-11-16T11:17:36-05:00">
-    <meta property="article:modified_time" content="2025-11-16T11:17:36-05:00">
-
-
+<meta property="og:url" content="http://darkawesome.github.io/blog/typeMarket/">
+	<meta property="og:site_name" content="DarkAwesome">
+	<meta property="og:title" content="TypeMarket">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="blog">
+		<meta property="article:published_time" content="2025-11-16T11:17:36-05:00">
+		<meta property="article:modified_time" content="2025-11-16T11:17:36-05:00">
 
 
-<link rel="canonical" href="http://localhost:1313/blog/typeMarket/">
+
+
+<link rel="canonical" href="http://darkawesome.github.io/blog/typeMarket/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,7 +43,7 @@
 
   
   
-  <link rel="stylesheet" href="/blog/css/coder.css" media="screen">
+  <link rel="stylesheet" href="/blog/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
 
 
 
@@ -53,7 +53,7 @@
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.css" media="screen">
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -101,7 +101,7 @@
     <nav class="navigation">
   <section class="container">
     
-    <a class="navigation-title" href="http://localhost:1313/blog/">
+    <a class="navigation-title" href="http://darkawesome.github.io/blog/">
       DarkAwesome
     </a>
     
@@ -139,7 +139,7 @@
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="http://localhost:1313/blog/typeMarket/">
+        <a class="title-link" href="http://darkawesome.github.io/blog/typeMarket/">
           TypeMarket
         </a>
       </h1>
@@ -213,38 +213,38 @@
   </a>
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th>Benefit for Market Data</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Columnar Storage</strong></td>
-          <td>Fast aggregations on price/volume columns</td>
-      </tr>
-      <tr>
-          <td><strong>Embedded Architecture</strong></td>
-          <td>No server setup, runs in-process</td>
-      </tr>
-      <tr>
-          <td><strong>SQL Interface</strong></td>
-          <td>Complex analytics without pandas gymnastics</td>
-      </tr>
-      <tr>
-          <td><strong>Parquet Support</strong></td>
-          <td>Efficient on-disk format for historical data</td>
-      </tr>
-      <tr>
-          <td><strong>Zero-Copy Integration</strong></td>
-          <td>Direct pandas DataFrame ingestion</td>
-      </tr>
-      <tr>
-          <td><strong>ACID Compliance</strong></td>
-          <td>Safe concurrent reads during analysis</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>Benefit for Market Data</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Columnar Storage</strong></td>
+					<td>Fast aggregations on price/volume columns</td>
+			</tr>
+			<tr>
+					<td><strong>Embedded Architecture</strong></td>
+					<td>No server setup, runs in-process</td>
+			</tr>
+			<tr>
+					<td><strong>SQL Interface</strong></td>
+					<td>Complex analytics without pandas gymnastics</td>
+			</tr>
+			<tr>
+					<td><strong>Parquet Support</strong></td>
+					<td>Efficient on-disk format for historical data</td>
+			</tr>
+			<tr>
+					<td><strong>Zero-Copy Integration</strong></td>
+					<td>Direct pandas DataFrame ingestion</td>
+			</tr>
+			<tr>
+					<td><strong>ACID Compliance</strong></td>
+					<td>Safe concurrent reads during analysis</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="performance-comparison">
   Performance Comparison
@@ -255,40 +255,40 @@
 </h3>
 <p>For a typical Jita market snapshot (~200,000 orders):</p>
 <table>
-  <thead>
-      <tr>
-          <th>Database</th>
-          <th>Load Time</th>
-          <th>Aggregation Query</th>
-          <th>Disk Usage</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>DuckDB</strong></td>
-          <td>~2 seconds</td>
-          <td>~50ms</td>
-          <td>12 MB</td>
-      </tr>
-      <tr>
-          <td>PostgreSQL</td>
-          <td>~8 seconds</td>
-          <td>~200ms</td>
-          <td>45 MB</td>
-      </tr>
-      <tr>
-          <td>CSV</td>
-          <td>~5 seconds</td>
-          <td>~3 seconds</td>
-          <td>85 MB</td>
-      </tr>
-      <tr>
-          <td>Pandas (RAM only)</td>
-          <td>~3 seconds</td>
-          <td>~500ms</td>
-          <td>180 MB RAM</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Database</th>
+					<th>Load Time</th>
+					<th>Aggregation Query</th>
+					<th>Disk Usage</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>DuckDB</strong></td>
+					<td>~2 seconds</td>
+					<td>~50ms</td>
+					<td>12 MB</td>
+			</tr>
+			<tr>
+					<td>PostgreSQL</td>
+					<td>~8 seconds</td>
+					<td>~200ms</td>
+					<td>45 MB</td>
+			</tr>
+			<tr>
+					<td>CSV</td>
+					<td>~5 seconds</td>
+					<td>~3 seconds</td>
+					<td>85 MB</td>
+			</tr>
+			<tr>
+					<td>Pandas (RAM only)</td>
+					<td>~3 seconds</td>
+					<td>~500ms</td>
+					<td>180 MB RAM</td>
+			</tr>
+	</tbody>
 </table>
 <p>DuckDB provides the best balance of load speed, query performance, and resource efficiency.</p>
 <h2 id="system-architecture">
@@ -323,7 +323,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data</span>(url):
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data</span>(url):
 </span></span><span style="display:flex;"><span>    r <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url)
 </span></span><span style="display:flex;"><span>    r<span style="color:#ff7b72;font-weight:bold">.</span>raise_for_status()
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> r<span style="color:#ff7b72;font-weight:bold">.</span>json()
@@ -341,7 +341,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>total_pages <span style="color:#ff7b72;font-weight:bold">=</span> int(response<span style="color:#ff7b72;font-weight:bold">.</span>headers<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#a5d6ff">&#39;X-Pages&#39;</span>, <span style="color:#a5d6ff">1</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>total_pages <span style="color:#ff7b72;font-weight:bold">=</span> int(response<span style="color:#ff7b72;font-weight:bold">.</span>headers<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#a5d6ff">&#39;X-Pages&#39;</span>, <span style="color:#a5d6ff">1</span>))
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> page <span style="color:#ff7b72;font-weight:bold">in</span> tqdm(range(<span style="color:#a5d6ff">2</span>, total_pages <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>)):
 </span></span><span style="display:flex;"><span>    all_orders<span style="color:#ff7b72;font-weight:bold">.</span>extend(get_esi_data(page_url))
 </span></span></code></pre></div><p>The ESI API uses HTTP headers to communicate pagination metadata:</p>
@@ -358,7 +358,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame(orders_data)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>DataFrame(orders_data)
 </span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE OR REPLACE TABLE market_orders AS SELECT * FROM df&#34;</span>)
 </span></span></code></pre></div><p>DuckDB&rsquo;s killer feature: <strong>zero-copy DataFrame ingestion</strong>. The <code>FROM df</code> syntax reads pandas DataFrames directly without serialization.</p>
 <h2 id="implementation-deep-dive">
@@ -375,7 +375,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">fetch_all_market_orders</span>(region_id, type_id<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>):
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">fetch_all_market_orders</span>(region_id, type_id<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>):
 </span></span><span style="display:flex;"><span>    url <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;https://esi.evetech.net/latest/markets/</span><span style="color:#a5d6ff">{</span>region_id<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">/orders/&#34;</span>
 </span></span><span style="display:flex;"><span>    url <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#a5d6ff">&#34;?datasource=tranquility&amp;order_type=all&#34;</span>
 </span></span><span style="display:flex;"><span>    
@@ -388,7 +388,7 @@ Paginated      Progress Bar    Type Safe   Columnar
 <li><code>type_id</code>: Optional filter for single item analysis</li>
 </ul>
 <p><strong>Pagination Loop</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">&#34;&amp;page=1&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">&#34;&amp;page=1&#34;</span>)
 </span></span><span style="display:flex;"><span>total_pages <span style="color:#ff7b72;font-weight:bold">=</span> int(response<span style="color:#ff7b72;font-weight:bold">.</span>headers<span style="color:#ff7b72;font-weight:bold">.</span>get(<span style="color:#a5d6ff">&#39;X-Pages&#39;</span>, <span style="color:#a5d6ff">1</span>))
 </span></span><span style="display:flex;"><span>all_orders <span style="color:#ff7b72;font-weight:bold">=</span> response<span style="color:#ff7b72;font-weight:bold">.</span>json()
 </span></span><span style="display:flex;"><span>
@@ -403,7 +403,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>connect(database<span style="color:#ff7b72;font-weight:bold">=</span>db_path)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>connect(database<span style="color:#ff7b72;font-weight:bold">=</span>db_path)
 </span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE OR REPLACE TABLE market_orders AS SELECT * FROM df&#34;</span>)
 </span></span></code></pre></div><p><strong>What&rsquo;s Happening Under the Hood</strong>:</p>
 <ol>
@@ -427,7 +427,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;duration&#34;</span>: <span style="color:#a5d6ff">90</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;is_buy_order&#34;</span>: <span style="color:#79c0ff">false</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;issued&#34;</span>: <span style="color:#a5d6ff">&#34;2024-01-15T12:34:56Z&#34;</span>,
@@ -464,28 +464,28 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">WITH</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">WITH</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span><span style="color:#ff7b72">MAX</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>best_buy<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">true</span><span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>),<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>sell_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span>),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span>sell_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">AS</span><span style="color:#6e7681"> </span>(<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span><span style="color:#ff7b72">MIN</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>best_sell<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>)<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+</span></span></span><span style="display:flex;"><span>)<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>b.type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>b.best_buy,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>s.best_sell,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>(s.best_sell<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span>b.best_buy)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>spread,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>((s.best_sell<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span>b.best_buy)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#6e7681"> </span>b.best_buy<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">100</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>spread_pct<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span>b<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>sell_orders<span style="color:#6e7681"> </span>s<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>b.type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span>s.type_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>spread_pct<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">10</span>;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>buy_orders<span style="color:#6e7681"> </span>b<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>sell_orders<span style="color:#6e7681"> </span>s<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>b.type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span>s.type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>spread_pct<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">10</span>;<span style="color:#6e7681">
 </span></span></span></code></pre></div><p><strong>Identifies arbitrage opportunities</strong> where spread exceeds transaction costs.</p>
 <h3 id="2-volume-weighted-average-price-vwap">
   2. <strong>Volume-Weighted Average Price (VWAP)</strong>
@@ -494,12 +494,12 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(price<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span>volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">SUM</span>(volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>vwap<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id;<span style="color:#6e7681">
 </span></span></span></code></pre></div><p><strong>VWAP</strong> provides more accurate pricing than simple averages for thin markets.</p>
 <h3 id="3-market-depth-analysis">
   3. <strong>Market Depth Analysis</strong>
@@ -508,15 +508,15 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>is_buy_order,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>num_orders,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(volume_remain)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_volume,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">AVG</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>avg_price,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>STDDEV(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>price_volatility<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>is_buy_order;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>is_buy_order;<span style="color:#6e7681">
 </span></span></span></code></pre></div><p><strong>Market depth metrics</strong> indicate liquidity and price stability.</p>
 <h3 id="4-station-competition-analysis">
   4. <strong>Station Competition Analysis</strong>
@@ -525,15 +525,15 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>location_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72">DISTINCT</span><span style="color:#6e7681"> </span>type_id)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>items_traded,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_orders,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(volume_remain<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#6e7681"> </span>price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>total_market_value<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>location_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>total_market_value<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">20</span>;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>location_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>total_market_value<span style="color:#6e7681"> </span><span style="color:#ff7b72">DESC</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">LIMIT</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">20</span>;<span style="color:#6e7681">
 </span></span></span></code></pre></div><p><strong>Identifies major trade hubs</strong> and emerging markets.</p>
 <h2 id="performance-optimization-strategies">
   Performance Optimization Strategies
@@ -550,13 +550,13 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>For continuous data collection, use <code>INSERT</code> instead of <code>CREATE OR REPLACE</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># First load</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># First load</span>
 </span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;CREATE TABLE IF NOT EXISTS market_orders AS SELECT * FROM df&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Subsequent loads</span>
 </span></span><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;INSERT INTO market_orders SELECT * FROM df&#34;</span>)
 </span></span></code></pre></div><p>Add a timestamp column for tracking:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df[<span style="color:#a5d6ff">&#39;snapshot_time&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>Timestamp<span style="color:#ff7b72;font-weight:bold">.</span>now()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df[<span style="color:#a5d6ff">&#39;snapshot_time&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> pd<span style="color:#ff7b72;font-weight:bold">.</span>Timestamp<span style="color:#ff7b72;font-weight:bold">.</span>now()
 </span></span></code></pre></div><h3 id="2-partitioning-by-region">
   2. <strong>Partitioning by Region</strong>
   <a class="heading-link" href="#2-partitioning-by-region">
@@ -565,11 +565,11 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>For multi-region analysis, partition data:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders_partitioned<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders_partitioned<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>snapshot_time<span style="color:#6e7681"> </span><span style="color:#ff7b72">TIMESTAMP</span>,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>region_id<span style="color:#6e7681"> </span>INTEGER,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- other columns
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>)<span style="color:#6e7681"> </span>PARTITION<span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>(region_id);<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span>)<span style="color:#6e7681"> </span>PARTITION<span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>(region_id);<span style="color:#6e7681">
 </span></span></span></code></pre></div><p>Queries filtering by region skip irrelevant partitions.</p>
 <h3 id="3-compression">
   3. <strong>Compression</strong>
@@ -579,7 +579,7 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>DuckDB automatically compresses columnar data. For long-term storage, export to Parquet:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;COPY market_orders TO &#39;jita_2024_01_15.parquet&#39; (FORMAT PARQUET)&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conn<span style="color:#ff7b72;font-weight:bold">.</span>execute(<span style="color:#a5d6ff">&#34;COPY market_orders TO &#39;jita_2024_01_15.parquet&#39; (FORMAT PARQUET)&#34;</span>)
 </span></span></code></pre></div><p>Parquet files achieve 10-20× compression vs CSV with faster load times.</p>
 <h3 id="4-connection-pooling">
   4. <strong>Connection Pooling</strong>
@@ -589,7 +589,7 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>For high-frequency updates, reuse connections:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">MarketDataPipeline</span>:
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">MarketDataPipeline</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">__init__</span>(self, db_path):
 </span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>conn <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>connect(database<span style="color:#ff7b72;font-weight:bold">=</span>db_path)
 </span></span><span style="display:flex;"><span>    
@@ -613,7 +613,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data_with_retry</span>(url, max_retries<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>):
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_esi_data_with_retry</span>(url, max_retries<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> attempt <span style="color:#ff7b72;font-weight:bold">in</span> range(max_retries):
 </span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">try</span>:
 </span></span><span style="display:flex;"><span>            r <span style="color:#ff7b72;font-weight:bold">=</span> requests<span style="color:#ff7b72;font-weight:bold">.</span>get(url, timeout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">10</span>)
@@ -631,7 +631,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">validate_market_data</span>(df):
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">validate_market_data</span>(df):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> <span style="color:#a5d6ff">&#39;order_id&#39;</span> <span style="color:#ff7b72;font-weight:bold">in</span> df<span style="color:#ff7b72;font-weight:bold">.</span>columns, <span style="color:#a5d6ff">&#34;Missing order_id column&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> df[<span style="color:#a5d6ff">&#39;price&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>min() <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">&#34;Invalid negative prices found&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">assert</span> df[<span style="color:#a5d6ff">&#39;volume_remain&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>min() <span style="color:#ff7b72;font-weight:bold">&gt;=</span> <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">&#34;Invalid negative volume&#34;</span>
@@ -644,7 +644,7 @@ Paginated      Progress Bar    Type Safe   Columnar
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">if</span> <span style="color:#79c0ff">__name__</span> <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#34;__main__&#34;</span>:
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">if</span> <span style="color:#79c0ff">__name__</span> <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">try</span>:
 </span></span><span style="display:flex;"><span>        market_data <span style="color:#ff7b72;font-weight:bold">=</span> fetch_all_market_orders(REGION_ID)
 </span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> market_data:
@@ -675,14 +675,14 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>Historical snapshots enable time-series analysis:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>DATE_TRUNC(<span style="color:#a5d6ff">&#39;hour&#39;</span>,<span style="color:#6e7681"> </span>snapshot_time)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>hour,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">AVG</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>avg_hourly_price<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">34</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Tritanium
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour,<span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>type_id<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">34</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Tritanium
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour,<span style="color:#6e7681"> </span>type_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>hour;<span style="color:#6e7681">
 </span></span></span></code></pre></div><h3 id="3-industry-profitability-calculator">
   3. <strong>Industry Profitability Calculator</strong>
   <a class="heading-link" href="#3-industry-profitability-calculator">
@@ -691,13 +691,13 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>Join market data with manufacturing recipes:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>blueprint_type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">SUM</span>(input_cost)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>material_cost,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>output_price<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">SUM</span>(input_cost)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>profit_margin<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>manufacturing_jobs<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>...<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>blueprint_type_id;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>manufacturing_jobs<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">JOIN</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span><span style="color:#ff7b72">ON</span><span style="color:#6e7681"> </span>...<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>blueprint_type_id;<span style="color:#6e7681">
 </span></span></span></code></pre></div><h3 id="4-regional-price-comparison">
   4. <strong>Regional Price Comparison</strong>
   <a class="heading-link" href="#4-regional-price-comparison">
@@ -706,15 +706,15 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>Load multiple regions, compare prices:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">SELECT</span><span style="color:#6e7681"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>region_id,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#ff7b72">MIN</span>(price)<span style="color:#6e7681"> </span><span style="color:#ff7b72">as</span><span style="color:#6e7681"> </span>lowest_sell<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>region_id<span style="color:#6e7681">
-</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span><span style="color:#ff7b72">HAVING</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">&gt;</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">5</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Liquid markets only
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>lowest_sell;<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">FROM</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">WHERE</span><span style="color:#6e7681"> </span>is_buy_order<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">false</span><span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">GROUP</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>region_id<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">HAVING</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">COUNT</span>(<span style="color:#ff7b72;font-weight:bold">*</span>)<span style="color:#6e7681"> </span><span style="color:#ff7b72;font-weight:bold">&gt;</span><span style="color:#6e7681"> </span><span style="color:#a5d6ff">5</span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- Liquid markets only
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">ORDER</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">BY</span><span style="color:#6e7681"> </span>type_id,<span style="color:#6e7681"> </span>lowest_sell;<span style="color:#6e7681">
 </span></span></span></code></pre></div><h2 id="lessons-learned">
   Lessons Learned
   <a class="heading-link" href="#lessons-learned">
@@ -741,12 +741,12 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>DuckDB&rsquo;s automatic schema inference is convenient but brittle. Production systems should define explicit schemas:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff7b72">CREATE</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">TABLE</span><span style="color:#6e7681"> </span>market_orders<span style="color:#6e7681"> </span>(<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>order_id<span style="color:#6e7681"> </span>BIGINT<span style="color:#6e7681"> </span><span style="color:#ff7b72">PRIMARY</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">KEY</span>,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>type_id<span style="color:#6e7681"> </span>INTEGER<span style="color:#6e7681"> </span><span style="color:#ff7b72">NOT</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">NULL</span>,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span>price<span style="color:#6e7681"> </span>DOUBLE<span style="color:#6e7681"> </span><span style="color:#ff7b72">NOT</span><span style="color:#6e7681"> </span><span style="color:#ff7b72">NULL</span>,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">  </span><span style="color:#8b949e;font-style:italic">-- etc.
-</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>);<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span>);<span style="color:#6e7681">
 </span></span></span></code></pre></div><h3 id="3-progress-feedback-is-essential">
   3. <strong>Progress Feedback Is Essential</strong>
   <a class="heading-link" href="#3-progress-feedback-is-essential">
@@ -819,7 +819,7 @@ Paginated      Progress Bar    Type Safe   Columnar
   </a>
 </h3>
 <p>Train price prediction models:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">duckdb</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">duckdb</span>
 </span></span><span style="display:flex;"><span>features <span style="color:#ff7b72;font-weight:bold">=</span> duckdb<span style="color:#ff7b72;font-weight:bold">.</span>sql(<span style="color:#a5d6ff">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">  SELECT type_id, hour_of_day, day_of_week, avg_price, volume
 </span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">  FROM market_snapshots
@@ -883,7 +883,7 @@ Paginated      Progress Bar    Type Safe   Columnar
   <section class="container">
     ©
     
-    2025
+    2026
      DarkAwesome 
     ·
     
@@ -898,7 +898,7 @@ Paginated      Progress Bar    Type Safe   Columnar
 
   
   
-  <script src="/blog/js/coder.js"></script>
+  <script src="/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
   
 
   

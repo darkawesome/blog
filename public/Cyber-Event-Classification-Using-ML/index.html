@@ -18,19 +18,19 @@
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cyber Event Classification Using ML">
-  <meta name="twitter:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Cyber Event Classification Using ML">
+	<meta name="twitter:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
 
 <meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Event-Classification-Using-ML/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Cyber Event Classification Using ML">
-  <meta property="og:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-03-10T14:45:28-04:00">
-    <meta property="article:modified_time" content="2025-03-10T14:45:28-04:00">
+	<meta property="og:site_name" content="DarkAwesome">
+	<meta property="og:title" content="Cyber Event Classification Using ML">
+	<meta property="og:description" content="The Following is the code from a recent random forest classification model that I did. Some of the topics covered were TF-IDF, Dimensionality reductions, encoding, ensemble learning, and some model evaluation techniques.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="blog">
+		<meta property="article:published_time" content="2025-03-10T14:45:28-04:00">
+		<meta property="article:modified_time" content="2025-03-10T14:45:28-04:00">
 
 
 
@@ -55,7 +55,7 @@
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -178,7 +178,7 @@
 </ul>
 <p>I went with 2,500 components as a tradeoff between accuracy and computational efficiency. This was being run on a laptop and waiting the 15 minutes was not something I wanted to do after every change. Initially, multiple train-test splits were performed separately for each target variable. I later learned that doing it this way could introduce data leakage. With the multiple train-test splits they were not consistenlty chosen for training and testing. Which led to weird results that were overfitting.</p>
 <p>A single consistent train-test split was implemented using numpy indexing to ensure that all models were trained and tested on the same subsets of data.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>tfidf <span style="color:#ff7b72;font-weight:bold">=</span> TfidfVectorizer(max_features<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">6000</span>, ngram_range<span style="color:#ff7b72;font-weight:bold">=</span>(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>tfidf <span style="color:#ff7b72;font-weight:bold">=</span> TfidfVectorizer(max_features<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">6000</span>, ngram_range<span style="color:#ff7b72;font-weight:bold">=</span>(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">2</span>))
 </span></span></code></pre></div><p>The lower and upper boundary of the range of n-values for different word n-grams or char n-grams to be extracted. Which means unigrams and bigrams ( words or tokens of consecutive words) that allow us to see which words commonly co-occur within a given dataset,</p>
 <h3 id="feature-extraction-with-dimensionality">
   Feature extraction with Dimensionality
@@ -195,7 +195,7 @@
 <ul>
 <li>Explained variance ratio was 91.95%</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>svd <span style="color:#ff7b72;font-weight:bold">=</span> TruncatedSVD(n_components<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2500</span>, random_state<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">42</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>svd <span style="color:#ff7b72;font-weight:bold">=</span> TruncatedSVD(n_components<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">2500</span>, random_state<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">42</span>)
 </span></span><span style="display:flex;"><span>X_tfidf_reduced <span style="color:#ff7b72;font-weight:bold">=</span> svd<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(X_tfidf)
 </span></span></code></pre></div><p>This tells you how much of the total variance in the original data is captured by each component after dimensionality reduction.To reduce dimensions, the algorithm tries to preserve as much of the original information as possible.</p>
 <p>To explain what all of this data means, an explained variance ratio sum of 0.85, mean that your 1000 components capture 85% of the information that was in the original 6000 features.</p>
@@ -207,7 +207,7 @@
   </a>
 </h2>
 <p>One-Hot Encoding for categorical features in the dataset converts categorical variables into a binary matrix where each unique category gets its column.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>X_encoded <span style="color:#ff7b72;font-weight:bold">=</span> encoder<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(df[[<span style="color:#a5d6ff">&#34;event_type&#34;</span>,<span style="color:#a5d6ff">&#34;actor_type&#34;</span>, <span style="color:#a5d6ff">&#34;industry&#34;</span>,<span style="color:#a5d6ff">&#34;motive&#34;</span>,<span style="color:#a5d6ff">&#34;event_subtype&#34;</span>]])
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>X_encoded <span style="color:#ff7b72;font-weight:bold">=</span> encoder<span style="color:#ff7b72;font-weight:bold">.</span>fit_transform(df[[<span style="color:#a5d6ff">&#34;event_type&#34;</span>,<span style="color:#a5d6ff">&#34;actor_type&#34;</span>, <span style="color:#a5d6ff">&#34;industry&#34;</span>,<span style="color:#a5d6ff">&#34;motive&#34;</span>,<span style="color:#a5d6ff">&#34;event_subtype&#34;</span>]])
 </span></span></code></pre></div><h2 id="model-training">
   Model Training
   <a class="heading-link" href="#model-training">
@@ -274,30 +274,30 @@
   </a>
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>Event Type</th>
-          <th>97.8%</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Actor Type</td>
-          <td>94.6%</td>
-      </tr>
-      <tr>
-          <td>Induestry</td>
-          <td>99.8%</td>
-      </tr>
-      <tr>
-          <td>Motive</td>
-          <td>97.8%</td>
-      </tr>
-      <tr>
-          <td>Event Subtype</td>
-          <td>99.8%</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Event Type</th>
+					<th>97.8%</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Actor Type</td>
+					<td>94.6%</td>
+			</tr>
+			<tr>
+					<td>Induestry</td>
+					<td>99.8%</td>
+			</tr>
+			<tr>
+					<td>Motive</td>
+					<td>97.8%</td>
+			</tr>
+			<tr>
+					<td>Event Subtype</td>
+					<td>99.8%</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="cross-validation-results">
   Cross-Validation Results

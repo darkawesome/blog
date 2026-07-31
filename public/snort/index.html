@@ -18,20 +18,20 @@
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Snort">
-  <meta name="twitter:description" content="This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Snort">
+	<meta name="twitter:description" content="This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)">
 
 <meta property="og:url" content="http://darkawesome.github.io/blog/snort/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="Snort">
-  <meta property="og:description" content="This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2021-09-07T23:06:47-04:00">
-    <meta property="article:modified_time" content="2021-09-07T23:06:47-04:00">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:site_name" content="DarkAwesome">
+	<meta property="og:title" content="Snort">
+	<meta property="og:description" content="This is a project I did for my computer security class where I made an intrusion detection system (IDS) and attempted to make an intrusion prevention system (IPS)">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="blog">
+		<meta property="article:published_time" content="2021-09-07T23:06:47-04:00">
+		<meta property="article:modified_time" content="2021-09-07T23:06:47-04:00">
+		<meta property="article:tag" content="Ubuntu">
 
 
 
@@ -56,7 +56,7 @@
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -183,12 +183,12 @@ networks. So I then reinstalled snort to make sure that I configured the right I
 right device name in the beginning. Then I kept getting the alert “ no preprocessors configured
 for policy 0 “and I knew from the reading I did before that I would need to run
 <a href="https://stackoverflow.com/questions/29503344/snort-message-warning-no-preprocessors-configured-for-policy-0"  class="external-link" target="_blank" rel="noopener">https://stackoverflow.com/questions/29503344/snort-message-warning-no-preprocessors-configured-for-policy-0</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  snort -v -c /etc/snort/snort.conf
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  snort -v -c /etc/snort/snort.conf
 </span></span></code></pre></div><p>to get rid of this error. However doing that doesn’t allow me to run through the hamachi interface. And after fumbling around I ran</p>
 <p><a href="https://www.linuxquestions.org/questions/linux-software-2/change-interface-listen-on-snort-877108/"  class="external-link" target="_blank" rel="noopener">https://www.linuxquestions.org/questions/linux-software-2/change-interface-listen-on-snort-877108/</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo snort -c /etc/snort/snort.conf -i ham0
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo snort -c /etc/snort/snort.conf -i ham0
 </span></span></code></pre></div><p>and it worked. At the end of it to get the whole thing working I ran:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo snort -d -l /var/log/snort/ -h 25.0.0.0/2620 -A console -c /etc/snort/snort.conf -i ham0
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo snort -d -l /var/log/snort/ -h 25.0.0.0/2620 -A console -c /etc/snort/snort.conf -i ham0
 </span></span></code></pre></div><p>Doing this shows me alerts in the console window, application packets are not included and the
 logging directory is set. The -h I included because I wasn’t sure if the home network from the
 snort.conf would actually work the way I wanted to. Thiscould probably be omitted from the long

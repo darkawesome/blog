@@ -18,19 +18,19 @@
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="GeologyAnalysis">
-  <meta name="twitter:description" content="A Focus on the Trails of Pennsylvania">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="GeologyAnalysis">
+	<meta name="twitter:description" content="A Focus on the Trails of Pennsylvania">
 
 <meta property="og:url" content="http://darkawesome.github.io/blog/GeologyAnalysis/">
-  <meta property="og:site_name" content="DarkAwesome">
-  <meta property="og:title" content="GeologyAnalysis">
-  <meta property="og:description" content="A Focus on the Trails of Pennsylvania">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2023-11-02T00:13:09-04:00">
-    <meta property="article:modified_time" content="2023-11-02T00:13:09-04:00">
+	<meta property="og:site_name" content="DarkAwesome">
+	<meta property="og:title" content="GeologyAnalysis">
+	<meta property="og:description" content="A Focus on the Trails of Pennsylvania">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="blog">
+		<meta property="article:published_time" content="2023-11-02T00:13:09-04:00">
+		<meta property="article:modified_time" content="2023-11-02T00:13:09-04:00">
 
 
 
@@ -55,7 +55,7 @@
   
     
     
-    <link rel="stylesheet" href="/blog/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
   
 
 
@@ -156,9 +156,9 @@
   </a>
 </h3>
 <p><em>This Report is an in-depth look at the trails within PA from a networking perspective considering how much of an effect the environment may have on the network. Additionally, this report examines the interactions between points and the network&rsquo;s centrality.</em></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Stop warnings printing</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Stop warnings printing</span>
 </span></span><span style="display:flex;"><span>knitr<span style="color:#ff7b72;font-weight:bold">::</span>opts_chunk<span style="color:#ff7b72;font-weight:bold">$</span><span style="color:#d2a8ff;font-weight:bold">set</span>(echo <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, warning<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">FALSE</span>, message <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
@@ -201,7 +201,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span><span style="color:#d2a8ff;font-weight:bold">read.csv</span>(<span style="color:#a5d6ff">&#34;ExplorePAtrails_WP201703.csv&#34;</span>)
 </span></span></code></pre></div><h2 id="data--spatial-wrangling">
   Data &amp; Spatial Wrangling
@@ -210,10 +210,10 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">subset</span>(data, select <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">c</span>(NAME02, NAME03,ADA_ACCESS,ACCT_ID,COMMENTS,SUBTYPE_CO,LAT,LNG))
 </span></span></code></pre></div><p>These columns were taken out of the final dataframe to remove redundancy, and because the columns that weren&rsquo;t adding to the analysis.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
 </span></span></code></pre></div><h2 id="data-structure">
   Data Structure
@@ -241,7 +241,7 @@
 </h2>
 <p>Looking at the map before analysis there is a pattern that follows the Appalachian trail through the state.</p>
 <p>Each point in the data sets a point-along-the-line feature for the trials in Pennsylvania. The data presented has been collected since November 2007 and has been updated since October 2009. There are 2466 data points in the data frame. With 15 columns in the original data frame and 7 in the data frame after data wrangling.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mapdata<span style="color:#ff7b72;font-weight:bold">&lt;-</span><span style="color:#d2a8ff;font-weight:bold">data.frame</span>(
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mapdata<span style="color:#ff7b72;font-weight:bold">&lt;-</span><span style="color:#d2a8ff;font-weight:bold">data.frame</span>(
 </span></span><span style="display:flex;"><span>  Longitude <span style="color:#ff7b72;font-weight:bold">=</span> df<span style="color:#ff7b72;font-weight:bold">$</span>LONGITUDE,
 </span></span><span style="display:flex;"><span>  Latitude <span style="color:#ff7b72;font-weight:bold">=</span> df<span style="color:#ff7b72;font-weight:bold">$</span>LATITUDE)
 </span></span><span style="display:flex;"><span>
@@ -252,10 +252,10 @@
 </span></span><span style="display:flex;"><span>    lat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">~</span>Latitude
 </span></span><span style="display:flex;"><span>  )
 </span></span></code></pre></div><p>This graph was done to get the points into a from that makes an interactive map.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>map
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/156ac917ed83657193690353a1c346f1f290dc4e/content/img/000018.png?raw=true" alt="PA Trails map "></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(mapdata)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(mapdata)
 </span></span></code></pre></div><h3 id="k-means-clustering">
   K-Means Clustering
   <a class="heading-link" href="#k-means-clustering">
@@ -263,7 +263,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">set.seed</span>(<span style="color:#a5d6ff">123</span>)
 </span></span><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> mapdata
 </span></span><span style="display:flex;"><span>
@@ -278,7 +278,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Cluster centroids</span>
 </span></span><span style="display:flex;"><span>centroids <span style="color:#ff7b72;font-weight:bold">&lt;-</span> kmeans_result<span style="color:#ff7b72;font-weight:bold">$</span>centers
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Create a scatter plot with points colored by cluster</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggplot2)
 </span></span><span style="display:flex;"><span>data_plot <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">data.frame</span>(data, Cluster <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(kmeans_result<span style="color:#ff7b72;font-weight:bold">$</span>cluster))
@@ -287,9 +287,9 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;K-Means Clustering&#34;</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/156ac917ed83657193690353a1c346f1f290dc4e/content/img/00001e.png?raw=true" alt="K-Means Clusteriing"></p>
 <p>The following K-means clustering has 10 clusters of sizes 41, 554, 235, 231, 90, 343, 327, 198, 217, 130.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">data.frame</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> mapdata)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">data.frame</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> mapdata)
 </span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">kmeans</span>(data, centers <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>wcss <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(kmeans_result<span style="color:#ff7b72;font-weight:bold">$</span>withinss)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>wcss <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(kmeans_result<span style="color:#ff7b72;font-weight:bold">$</span>withinss)
 </span></span><span style="display:flex;"><span>wcss
 </span></span></code></pre></div><p>A WCSS value of 473.5104 suggests that the data points are relatively close to the centroids within each cluster. With further analysis is needed to find an elbow point or point where the point the reduction in WCSS starts to level off. This tells us about the diminishing returns in terms of clustering quality as k increases.</p>
 <p>With this point found an optimal distribution of trails can be made to have more dispersion throughout the state. However, given that the points we are using are taken from line graphs further analysis into the cluster would not be needed as the correlation would be inherent. Moving forward I will look at other factors across the state as it relates to the trail points.</p>
@@ -308,7 +308,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>trails.sf  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_as_sf</span>(data,coords<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Longitude&#34;</span>,<span style="color:#a5d6ff">&#34;Latitude&#34;</span>),crs<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4269</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>trails.sf  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_as_sf</span>(data,coords<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Longitude&#34;</span>,<span style="color:#a5d6ff">&#34;Latitude&#34;</span>),crs<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4269</span>)
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># change the map projection </span>
 </span></span><span style="display:flex;"><span>trails.utm <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_transform</span>(trails.sf,crs<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">4269</span>)
 </span></span><span style="display:flex;"><span>
@@ -321,7 +321,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># reading in the libraries</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tmap)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(raster)
@@ -330,7 +330,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tigris)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(plotly)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## breaks the project into parts leaving less in the environment</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## breaks the project into parts leaving less in the environment</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## helps focus on the current dataframes </span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## rm(list=ls())</span>
 </span></span><span style="display:flex;"><span>
@@ -363,7 +363,7 @@
 </span></span><span style="display:flex;"><span>county.sovi <span style="color:#ff7b72;font-weight:bold">&lt;-</span> county.sovi[,<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">grep</span>(<span style="color:#a5d6ff">&#34;EPL_&#34;</span>,<span style="color:#d2a8ff;font-weight:bold">names</span>(county.sovi))]
 </span></span><span style="display:flex;"><span>county.sovi <span style="color:#ff7b72;font-weight:bold">&lt;-</span> county.sovi[,<span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">48</span>,<span style="color:#a5d6ff">69</span>)]
 </span></span><span style="display:flex;"><span>county.sovi <span style="color:#ff7b72;font-weight:bold">&lt;-</span> county.sovi <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#d2a8ff;font-weight:bold">mutate_all</span>(<span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#d2a8ff;font-weight:bold">ifelse</span>(. <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">-999</span>, <span style="color:#79c0ff">NA</span>, .))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Had to convert this to a charater as rather than a integer to avoid error</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Had to convert this to a charater as rather than a integer to avoid error</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Convert GEOID column in tract.sovi to character</span>
 </span></span><span style="display:flex;"><span>tract.sovi<span style="color:#ff7b72;font-weight:bold">$</span>GEOID <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">as.character</span>(tract.sovi<span style="color:#ff7b72;font-weight:bold">$</span>GEOID)
 </span></span><span style="display:flex;"><span>county.sovi<span style="color:#ff7b72;font-weight:bold">$</span>GEOID <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">as.character</span>(county.sovi<span style="color:#ff7b72;font-weight:bold">$</span>GEOID)
@@ -376,7 +376,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># the the North American Albers Equal Area Conic projection (AEA)</span>
 </span></span><span style="display:flex;"><span>tract.sovi.sf  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_transform</span>(tract.sovi.sf,<span style="color:#a5d6ff">3310</span>)
 </span></span><span style="display:flex;"><span>county.sovi.sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_transform</span>(county.sovi.sf,<span style="color:#a5d6ff">3310</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Making a map of Socioeconomic status with where the points for the trails are</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Making a map of Socioeconomic status with where the points for the trails are</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># on a map of the different censes tracts </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>map1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,dots.col<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;RPL_THEME1&#34;</span>,dots.size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.6</span>,dots.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Greens&#34;</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
@@ -394,7 +394,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_arrange</span>(map1,map2,map3,map4)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/RPLTHeme1.png?raw=true" alt="Maps looking at Socioeconomic Status (green),Racial and Ethnic Minority Status (blue) Persons with no HS Diploma (orange) Housing in buildings with 10 or more units (purple)"></p>
 <p>Looking at the socioeconomic status of the points across the census tracts as it relates to the trails we can not see any real disparities. Nor anything to suggest that areas with higher or lower socioeconomic status have a higher amount of trail near them. There may be other factors playing a role here like edge effects, ecological factors, or even just different clusters of where people live. And this holds true across all of the other predictive factors looked at like Racial and Ethnic Minority Status.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran&#39;s I AutoCorrelation</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## Moran&#39;s I AutoCorrelation</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spdep)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>nb <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">poly2nb</span>(tract.sovi.sf, queen<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>)
@@ -403,11 +403,11 @@
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get the average neighbor Housing in buildings with 10 or more units for each polygon</span>
 </span></span><span style="display:flex;"><span>inc.lag <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lag.listw</span>(lw, tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT)
 </span></span><span style="display:flex;"><span>inc.lag
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(inc.lag <span style="color:#ff7b72;font-weight:bold">~</span> tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT, pch<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">16</span>, asp<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(inc.lag <span style="color:#ff7b72;font-weight:bold">~</span> tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT, pch<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">16</span>, asp<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)
 </span></span><span style="display:flex;"><span>M1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(inc.lag <span style="color:#ff7b72;font-weight:bold">~</span> tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">abline</span>(M1, col<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;blue&#34;</span>)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/moransI.png?raw=true" alt="&lt;Moran&rsquo;s I plot&gt;"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Conduct the Moran&#39;s I hypothesis test</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Conduct the Moran&#39;s I hypothesis test</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">moran.test</span>(tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT, listw<span style="color:#ff7b72;font-weight:bold">=</span> lw)
 </span></span></code></pre></div><p>Moran&rsquo;s I test under randomization</p>
 <p>data: tract.sovi.sf$EP_MUNIT<br>
@@ -417,7 +417,7 @@ Moran I statistic standard deviate = 37.838, p-value &lt; 2.2e-16</p>
 <p>Moran I statistic 0.3863926463<br>
 Expectation -0.0002903600<br>
 Variance 0.0001044349</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(<span style="color:#d2a8ff;font-weight:bold">moran.mc</span>(tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT, lw, nsim<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">999</span>, alternative<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;greater&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(<span style="color:#d2a8ff;font-weight:bold">moran.mc</span>(tract.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_MUNIT, lw, nsim<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">999</span>, alternative<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;greater&#34;</span>))
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/moransIplot.png?raw=true" alt="Density of Permutation Outcomes"></p>
 <h3 id="interpretation">
   Interpretation:
@@ -439,7 +439,7 @@ Variance 0.0001044349</p>
 <p>The extremely low p-value (2.2e-16) indicates strong evidence against the null hypothesis of spatial randomness. In practical terms, it suggests that the spatial pattern observed is unlikely to be due to random chance. The alternative hypothesis is “greater” which indicates that the observed spatial autocorrelation is greater than what would be expected under the assumption of spatial randomness. Interpretation of a Moran’s I Plot:</p>
 <p>Clustering in the Bottom Left Corner: This suggests local clusters of similar values. Meaning that neighboring areas tend to have similar values, contributing to positive spatial autocorrelation.</p>
 <p>In summary, the results suggest a significant positive spatial autocorrelation, meaning that similar values are spatially clustered.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color</span>
 </span></span><span style="display:flex;"><span>map1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;RPL_THEME1&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Greens&#34;</span>) <span style="color:#8b949e;font-style:italic">#Socioeconomic Status theme summary</span>
 </span></span><span style="display:flex;"><span>map2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;RPL_THEME3&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Blues&#34;</span>) <span style="color:#8b949e;font-style:italic">#Racial and Ethnic Minority Status </span>
 </span></span><span style="display:flex;"><span>map3 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(county.sovi.sf,fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;EP_NOHSDP&#34;</span>,fill.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Reds&#34;</span>) <span style="color:#8b949e;font-style:italic">#Persons with no HS Diploma </span>
@@ -485,7 +485,7 @@ Variance 0.0001044349</p>
   </a>
 </h3>
 <p>Here though, our highest counties in this variable are in Centre County, around Philadelphia and Pittsburgh. Additionally, we do see a lot of clustering in some areas on the southeast and southwest edges of the state. Perhaps again attributed to edge effects from the surrounding states. With close proximity to New Jersey and Delaware, some residents may be choosing to live in Pennsylvania to reap its benefits and not have to pay those in other states.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Adding in the Age &amp; Sex data</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Adding in the Age &amp; Sex data</span>
 </span></span><span style="display:flex;"><span>Pa.AgeSex <span style="color:#ff7b72;font-weight:bold">&lt;-</span><span style="color:#d2a8ff;font-weight:bold">read.csv</span>(<span style="color:#a5d6ff">&#34;American Community Survey2020(Age&amp;SEX).csv&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## editing the GEOID column so it can merge in with the tract spatial data</span>
@@ -493,7 +493,7 @@ Variance 0.0001044349</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## merging the frames together</span>
 </span></span><span style="display:flex;"><span>tract.sovi.sf1  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">geo_join</span>(tract.border ,Pa.AgeSex ,by<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;GEOID&#34;</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">### Estimate of the total population that is 18 years and older </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">### Estimate of the total population that is 18 years and older </span>
 </span></span><span style="display:flex;"><span>map5 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">qtm</span>(tract.sovi.sf1,dots.col<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;S0101_C01_026E&#34;</span>,dots.size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.6</span>,dots.palette<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Greens&#34;</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(trails.sf)<span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">tm_dots</span>(size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">.05</span>,col<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;red&#34;</span>)<span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(tract.sovi.sf)<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#d2a8ff;font-weight:bold">tm_borders</span>()
@@ -505,7 +505,7 @@ Variance 0.0001044349</p>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tmap_arrange</span>(map5,map6)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/sovitrail.png?raw=true" alt="County level Sovi with trail points"></p>
 <p>When we map the trails across ages of 18 years and older and 60 and older there is not much difference in the spread compared to where we see the trails neither. There are some hot spots in the 18 and older estimate. Though that could be attributed to the fact that the range of ages is significantly higher than 60 and older. On its head, there are no real identifiable spots that stick out in any way in proximity to the trails. On the other hand, the clusters seen in the southeastern part of the state for those 18 years old and above does look to be quite darker than other regions. There is a seemingly interesting bend near the middle of the eastern section. Where we see some darker regions following the trails but again we should take scale into account.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##  Persons below 150% poverty (estimate 2016-2020),at the measuring sites</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">##  Persons below 150% poverty (estimate 2016-2020),at the measuring sites</span>
 </span></span><span style="display:flex;"><span>poverty_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ggplot</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_sf</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> tract.sovi.sf, <span style="color:#d2a8ff;font-weight:bold">aes</span>(color <span style="color:#ff7b72;font-weight:bold">=</span> E_POV150), size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_color_gradient</span>(low <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;blue&#34;</span>, high <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;red&#34;</span>, name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Poverty Below 150% poverty estimate&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
@@ -513,7 +513,7 @@ Variance 0.0001044349</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>()
 </span></span><span style="display:flex;"><span>poverty_map
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/povlevel.png?raw=true" alt="Poverty Map"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#map showing Households with no vehicle available (estimate 2016-2020),at the measuring sites</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#map showing Households with no vehicle available (estimate 2016-2020),at the measuring sites</span>
 </span></span><span style="display:flex;"><span>NoVehicle_map <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ggplot</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_sf</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> tract.sovi.sf, <span style="color:#d2a8ff;font-weight:bold">aes</span>(color <span style="color:#ff7b72;font-weight:bold">=</span> E_NOVEH), size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">3</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_color_gradient</span>(low <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightblue&#34;</span>, high <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;darkblue&#34;</span>, name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Household with no Vehicle&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
@@ -544,7 +544,7 @@ Variance 0.0001044349</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Fit OLS Regression model</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Fit OLS Regression model</span>
 </span></span><span style="display:flex;"><span>model12 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(RPL_THEME1 <span style="color:#ff7b72;font-weight:bold">~</span> EP_NOHSDP, data <span style="color:#ff7b72;font-weight:bold">=</span> county.sovi.sf)
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(model12)
 </span></span></code></pre></div><h4 id="call">
@@ -666,7 +666,7 @@ Variance 0.0001044349</p>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Visualize the regression line</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Visualize the regression line</span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(county.sovi.sf, <span style="color:#d2a8ff;font-weight:bold">aes</span>( EP_NOHSDP, RPL_THEME1)) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_point</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_smooth</span>(method <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lm&#34;</span>, se <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>, col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;blue&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
@@ -698,13 +698,13 @@ Variance 0.0001044349</p>
 </h3>
 <p>The F-statistic (34.69) tests the overall significance of the model. With a p-value of 1.495e-07, you can reject the null hypothesis that all coefficients are zero. This suggests that at least one predictor variable is related to the response variable.</p>
 <p>In summary, the model suggests that there is a statistically significant relationship between socioeconomic status and persons with no high school diploma. The model explains about 34.8% of the variability in socioeconomic status, and the relationship is significant based on the low p-value from the F-test.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Histogram of the Response and Predictor Variable</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Histogram of the Response and Predictor Variable</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">hist</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>county.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>RPL_THEME1)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/hist1.png?raw=true" alt="Histogram of county based on socieconomic status"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">hist</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>county.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_NOHSDP)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">hist</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>county.sovi.sf<span style="color:#ff7b72;font-weight:bold">$</span>EP_NOHSDP)
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/hist2.png?raw=true" alt="Histogram of countiess based on having no High School Diploma"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(hrbrthemes)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(hrbrthemes)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>LinearFit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(RPL_THEME1 <span style="color:#ff7b72;font-weight:bold">~</span> EP_NOHSDP, data <span style="color:#ff7b72;font-weight:bold">=</span> county.sovi.sf, na.action<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;na.exclude&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -718,7 +718,7 @@ Variance 0.0001044349</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_smooth</span>(method<span style="color:#ff7b72;font-weight:bold">=</span>lm , color<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;red&#34;</span>, se<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">FALSE</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_ipsum</span>()
 </span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/b3a9d9d135cefe0925d445748ac3e5b5fec1be93/content/img/lBF.png?raw=true" alt="Line of Best Fit"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(LinearFit)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(LinearFit)
 </span></span></code></pre></div><h4 id="">
   
   <a class="heading-link" href="#">
