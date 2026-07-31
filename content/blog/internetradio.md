@@ -5,13 +5,13 @@ date: 2026-07-30T21:42:08-04:00
 url: /internetradio/
 image: /images/2020-thumbs/internetradio.jpg
 
-draft: true
+draft: false
 ---
 
 The Wolfman from California that is featured in American Graffiti is my inspiration.
 <!--more-->
 
-My whole thought process for this idea comes from MansionNet radio. To be honest the website and the mansionet network seems cool. The idea of creating and IRC, serach, forum and git service would be cool if my users grew to a larger size. I am not sure how many individual people I have on the network but the number of devices I have connected grows. I want to build something here with the same type of allure that was displayed in the movie American Graffitti where people are hanging on to the words of Wolfman and creating lore around him. 
+My whole thought process for this idea comes from MansionNet radio. To be honest the website and the mansionet network seems cool. The idea of creating and IRC, serach, forum and git service would be cool if my users grew to a larger size. I am not sure how many individual people I have on the network but the number of devices I have connected grows. I want to build something here with the same type of allure that was displayed in the movie American Graffitti where people are hanging on to the words of Wolfman and creating lore around him.
 
 I think the best way for me to go about this is to mix in old Woldman clips with new music and then having some type of dj or something just constantly playing files and picking from a Wolfman one every now and then. I don't think this will be to terrible but I don't know what I need as far as hardware and everything. The main server stuff is getting prett crowded as storage is getting used up. Otherwise I am pretty good to be honest I think a quick container would be alright to run this. And to challenge myself I think making it into a docker package would be sick.
 
