@@ -7,9 +7,47 @@ draft: false
 
 **Personal Statement:**
 
-Master's student who brings a multi-disciplinary background across policy and technology domains. Leveraging skills as a data analyst and software engineer to transform complex challenges into innovative, data-driven solutions.
+Master's student who brings a multi-disciplinary background across policy and technology domains
 
 <!--more-->
+
+**Contractor**
+
+Remote
+
+June 2026 - Current
+
+- Created an import script to move Powerschool data to Synergy
+
+**Graduate Administrative Assistant**
+
+GoTECH, College Park, MD
+
+February 2026 - May 2026
+
+- Optimized data collection methods for the Cyber Events Database using python
+- Streamlined data entry using event predictions to reduce processing time
+
+**IT Contractor**
+
+Kwwz Inc, Pennsylvania
+
+December 2025 - Current
+
+- Designed and deployed complete security camera network infrastructure, and automated backups
+- Implemented inventory management system integrated with eBay marketplace and trained staff on operational workflow
+- Manage server infrastructure and triage all network and hardware issues through OSTicket system
+
+Retail Sales Associate
+
+AutoZone, PA
+
+April 2025 - August 2025
+
+- Delivered excellent customer service by assisting with product selection and providing automotive advice
+- Operated diagnostic tools to identify vehicle issues and suggest appropriate solutions
+- Stayed current on automotive parts, tools, and promotions to provide knowledgeable support
+
 
 **Teacher Assistant, Foundations of Public Policy PLCY 100**
 
@@ -64,14 +102,14 @@ Sep. 2019 - Apr. 2021
 - Engineered classroom lab environment from setup to deployment, including system imaging, critical updates, and installation of required educational software 
 - Utilized a Nagios server to monitor devices, improving reliability and reducing downtime
 
-***EDUCATION**
+**EDUCATION**
 
-**The University of Maryland**, Master of Public Policy , **Expected Graduation: May 2026**
+**The University of Maryland, College Park, MD**, Master of Public Policy,  Graduated: May 2026
 
 **The Pennsylvania State University, University Park, PA**, Bachelor of Science in Political Science, Graduated: December 2023
 
 **Technical Skills**
-Python (Pandas, NumPy, Scikit-learn),  R, Git, Predictive modeling(Lsogistic regression, Decision trees), Stata, ArcGIS, Aspire, TinkerCAD, SolidWorks, Various power tools and shop machines
+Python (Pandas, NumPy, Scikit-learn),  R, Git, Predictive modeling(Lsogistic regression, Decision trees), Stata, ArcGIS, Aspire, TinkerCAD, SolidWorks, Various power tools and shop machines. Tuning Megasquirt ECU's
 
 
 **References available upon request.**
