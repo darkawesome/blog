@@ -8,8 +8,11 @@ image: /images/2020-thumbs/HDD-Corruption.jpg
 draft: false
 ---
 
-A recent look at dmesg drove me to find a HDD corruption
+A recent look at dmesg drove me to find ext4/io errors
 <!--more-->
+
+I decided to give a write up of a problem here rather than update the ticketing system with what is going on and how I fixed it. I think this will serve as a good basis of how my brain works and somewhere to start from if you were to have similar problems.
+
 
 Went to bring up a compose stack today and got hit with the classic:
 
