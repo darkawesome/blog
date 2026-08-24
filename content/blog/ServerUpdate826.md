@@ -5,7 +5,7 @@ date: 2026-08-17T09:32:02-04:00
 url: /ServerUpdate826/
 image: /images/2020-thumbs/ServerUpdate826.jpg
 
-draft: true
+draft: false
 ---
 
 Almost fully rack mounted
