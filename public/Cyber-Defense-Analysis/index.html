@@ -1,316 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>
-  Cyber Defense Analysis · DarkAwesome
-</title>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-
-
-
-
-<meta name="author" content="DarkAwesome">
-<meta name="description" content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.">
-<meta name="keywords" content="">
-
-
-
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Cyber Defense Analysis">
-	<meta name="twitter:description" content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.">
-
-<meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Defense-Analysis/">
-	<meta property="og:site_name" content="DarkAwesome">
-	<meta property="og:title" content="Cyber Defense Analysis">
-	<meta property="og:description" content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.">
-	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="blog">
-		<meta property="article:published_time" content="2024-11-07T12:29:26-05:00">
-		<meta property="article:modified_time" content="2024-11-07T12:29:26-05:00">
-		<meta property="article:tag" content="Ubuntu">
-
-
-
-
-<link rel="canonical" href="http://darkawesome.github.io/blog/Cyber-Defense-Analysis/">
-
-
-<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-
-
-  
-  
-  <link rel="stylesheet" href="/blog/css/coder.min.f03d6359cf766772af14fbe07ce6aca734b321c2e15acba0bbf4e2254941c460.css" integrity="sha256-8D1jWc92Z3KvFPvgfOaspzSzIcLhWsugu/TiJUlBxGA=" crossorigin="anonymous" media="screen" />
-
-
-
-
-
-
-  
-    
-    
-    <link rel="stylesheet" href="/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css" integrity="sha256-rUj0didZdIhb3APVJR482&#43;FnjFSmP/dyN2sO0q3EaN0=" crossorigin="anonymous" media="screen" />
-  
-
-
-
- 
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
-
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-
-
-</head>
-
-
-
-
-
-
-<body class="preload-transitions colorscheme-auto">
-  
-<div class="float-container">
-    <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-    </a>
-</div>
-
-
-  <main class="wrapper">
-    <nav class="navigation">
-  <section class="container">
-    
-    <a class="navigation-title" href="http://darkawesome.github.io/blog/">
-      DarkAwesome
-    </a>
-    
-    
-      <input type="checkbox" id="menu-toggle" />
-      <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
-      </label>
-      <ul class="navigation-list">
-        
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/contact/">Contact</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/resume">Resume</a>
-            </li>
-          
-            <li class="navigation-item">
-              <a class="navigation-link " href="/blog/blog/">Posts</a>
-            </li>
-          
-        
-        
-      </ul>
-    
-  </section>
-</nav>
-
-
-    <div class="content">
-      
-  <section class="container page">
-  <article>
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="http://darkawesome.github.io/blog/Cyber-Defense-Analysis/">
-          Cyber Defense Analysis
-        </a>
-      </h1>
-    </header>
-
-    <p>Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.</p>
-<p>After placing out of the R class in my grad school I am now looking to do something to occupy my time and learn more. I decided to use this database as its actually something interesting that looks at country level events. More importantly its part of the reason as to why I wanted to come to this school.</p>
-<p>This analysis focuses specifically on the states that were attacked. Further analysis will look into countries that were attacking.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Data manipulation libraries</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sp)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spatstat)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Plotting</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(leaflet)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggplot2)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tmap)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sf)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(terra)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(dplyr)
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(spData)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(readxl)
-</span></span><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_excel</span>(<span style="color:#a5d6ff">&#34;E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>df <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">subset</span>(data, select<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#d2a8ff;font-weight:bold">c</span>(slug,description,source_url))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(df)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/image.png?raw=true" alt="Summary data"></p>
-<p>Simple plot looking at during what months these instances happen (need to confirm this with the codebook)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>month)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;seagreen&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Months&#39;</span>) 
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/cyberMonths.png?raw=true" alt="months events occur"></p>
-<p>Simple plot looking at during what typical actors are conducting this activity (need to confirm this with the codebook)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>actor_type)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;coral2&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Actor Types&#39;</span>) 
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=trueq" alt="Actor Types"></p>
-<p>Simple plot looking at what the typical event types are (need to confirm this with the codebook)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(df, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x<span style="color:#ff7b72;font-weight:bold">=</span>event_type)) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(fill<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;steelblue&#39;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;Event Types&#39;</span>) 
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true" alt="Event Types"></p>
-<p>Here I used the rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># install.packages(&#34;rnaturalearth&#34;)</span>
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(rnaturalearth)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># function to retrieve country geometries</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Get country geometries using rnaturalearth</span>
-</span></span><span style="display:flex;"><span>countries_geom <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ne_countries</span>(scale <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;small&#34;</span>, returnclass <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;sf&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Merge the geometries with the country names</span>
-</span></span><span style="display:flex;"><span>countries_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_geom <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(name <span style="color:#ff7b72;font-weight:bold">%in%</span> df<span style="color:#ff7b72;font-weight:bold">$</span>country) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>         <span style="color:#8b949e;font-style:italic"># Filter for countries in your dataframe</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">left_join</span>(df, by <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;name&#34;</span> <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;country&#34;</span>)) <span style="color:#8b949e;font-style:italic"># Join with your dataframe</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Set the CRS (WGS84 is EPSG:4326, which is common for world maps)</span>
-</span></span><span style="display:flex;"><span>countries_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">st_set_crs</span>(countries_sf, <span style="color:#a5d6ff">4326</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># getting rid of bloat in the sf dataframe</span>
-</span></span><span style="display:flex;"><span>world_sf <span style="color:#ff7b72;font-weight:bold">&lt;-</span> countries_sf <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
-</span></span><span style="display:flex;"><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
-</span></span></code></pre></div><p>Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later. I was hung up on this longer than 30mins and it was the only thing holding back a graph. I skipped this&hellip;.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>invalid_geometries <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf[<span style="color:#ff7b72;font-weight:bold">!</span><span style="color:#d2a8ff;font-weight:bold">st_is_valid</span>(world_sf), ]
-</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(invalid_geometries, n <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">Inf</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
-</span></span><span style="display:flex;"><span>world_sf_valid <span style="color:#ff7b72;font-weight:bold">&lt;-</span> world_sf<span style="color:#d2a8ff;font-weight:bold">[st_is_valid</span>(world_sf), ]
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;motive&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;motive&#39; variable</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Motive&#34;</span>,
-</span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/worldAttackedMotivemap.png?raw=true" alt="World Map by motive"></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tm_shape</span>(world_sf_valid) <span style="color:#ff7b72;font-weight:bold">+</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_borders</span>() <span style="color:#ff7b72;font-weight:bold">+</span>  <span style="color:#8b949e;font-style:italic"># Draw borders</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_fill</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;event_type&#34;</span>, palette <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Set3&#34;</span>, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Motive&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#8b949e;font-style:italic"># Color by &#39;Event Type&#39; variable</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">tm_layout</span>(main.title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;World Map by Event Type&#34;</span>,
-</span></span><span style="display:flex;"><span>            legend.outside <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
-</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/WorldEventMap.png?raw=true" alt="World Map by Event Type"></p>
-<h2 id="conclusion">
-  Conclusion
-  <a class="heading-link" href="#conclusion">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h2>
-<p>The types of actors and events seem intriguing and worth deeper exploration, particularly how attack locations and patterns may have shifted over time. For example, has the United States always been a primary target for financial attacks? The following are notes to guide my future analysis:</p>
-<ul>
-<li><strong>Two Geometry Data Frames</strong>: One for the attacker and one for the target.
-<ul>
-<li>The target data frame is complete for now.</li>
-</ul>
-</li>
-<li><strong>Spatial Clustering</strong>: This will help identify hotspots and determine if attacks are regionally concentrated, affecting either the attackers or those attacked.
-<ul>
-<li>Consider adding <strong>Moran&rsquo;s I</strong> to further analyze spatial autocorrelation.</li>
-</ul>
-</li>
-<li><strong>Machine Learning Models</strong>: Random forests and decision trees could provide insight into predictive trends. Or even can be used to predict future outcomes or changes in a variable.</li>
-</ul>
-<p>Another potential direction would be a stacked bar graph to visualize event types, with subtypes layered on top. This approach could facilitate cross-variable analysis, revealing interactions between factors like industry, motive, and actor type.</p>
-<p>To support more rigorous statistical analysis, I plan to investigate whether observed patterns are random or if they indicate a larger trend. Importantly, I&rsquo;ll explore predictive models (e.g., using <code>predict</code>) to see if it’s feasible to estimate the location or target of future attacks. While accuracy may be a challenge given the complex motivations behind cyber-attacks, this model could offer valuable insights into emerging risks.</p>
-<p>Citation
-Harry, C., &amp; Gallagher, N. (2018). Classifying Cyber Events. Journal of Information Warfare, 17(3), 17-31.</p>
-  </article>
-</section>
-
-  
-
-    </div>
-
-    <footer class="footer">
-  <section class="container">
-    ©
-    
-    2026
-     DarkAwesome 
-    ·
-    
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
-    
-  </section>
-</footer>
-
-  </main>
-
-  
-
-  
-  
-  <script src="/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</body>
-</html>
+<!doctype html><html lang=en><head><title>Cyber Defense Analysis · DarkAwesome</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="DarkAwesome"><meta name=description content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Cyber Defense Analysis"><meta name=twitter:description content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present."><meta property="og:url" content="http://darkawesome.github.io/blog/Cyber-Defense-Analysis/"><meta property="og:site_name" content="DarkAwesome"><meta property="og:title" content="Cyber Defense Analysis"><meta property="og:description" content="Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2024-11-07T12:29:26-05:00"><meta property="article:modified_time" content="2024-11-07T12:29:26-05:00"><meta property="article:tag" content="Ubuntu"><link rel=canonical href=http://darkawesome.github.io/blog/Cyber-Defense-Analysis/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/blog/css/coder.min.5e94c1acf7aa2066035cf2764ae3e4fe39db101d68b870f919966100d51fb861.css integrity="sha256-XpTBrPeqIGYDXPJ2SuPk/jnbEB1ouHD5GZZhANUfuGE=" crossorigin=anonymous media=screen><link rel=stylesheet href=/blog/css/coder-dark.min.ad48f476275974885bdc03d5251e3cdbe1678c54a63ff772376b0ed2adc468dd.css integrity="sha256-rUj0didZdIhb3APVJR482+FnjFSmP/dyN2sO0q3EaN0=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=http://darkawesome.github.io/blog/>DarkAwesome
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/blog/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/resume>Resume</a></li><li class=navigation-item><a class=navigation-link href=/blog/blog/>Posts</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=http://darkawesome.github.io/blog/Cyber-Defense-Analysis/>Cyber Defense Analysis</a></h1></header><p>Exploratory Analysis of the Cyber Events Database that collects publicy available information on cyber events, from 2014 to present.</p><p>After placing out of the R class in my grad school I am now looking to do something to occupy my time and learn more. I decided to use this database as its actually something interesting that looks at country level events. More importantly its part of the reason as to why I wanted to come to this school.</p><p>This analysis focuses specifically on the states that were attacked. Further analysis will look into countries that were attacking.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Data manipulation libraries</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sp)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(spatstat)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Plotting</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(leaflet)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(ggplot2)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(tmap)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(sf)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(terra)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(dplyr)
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(spData)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(readxl)
+</span></span><span style=display:flex><span>data <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>read_excel</span>(<span style=color:#a5d6ff>&#34;E:/RStudio/Rcode/umspp-export-2024-08-26(1).xlsx&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>subset</span>(data, select<span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#ff7b72;font-weight:700>-</span><span style=color:#d2a8ff;font-weight:700>c</span>(slug,description,source_url))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>summary</span>(df)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/image.png?raw=true" alt="Summary data"></p><p>Simple plot looking at during what months these instances happen (need to confirm this with the codebook)</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(df, <span style=color:#d2a8ff;font-weight:700>aes</span>(x<span style=color:#ff7b72;font-weight:700>=</span>month)) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;seagreen&#39;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(x<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;Months&#39;</span>) 
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/cyberMonths.png?raw=true" alt="months events occur"></p><p>Simple plot looking at during what typical actors are conducting this activity (need to confirm this with the codebook)</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(df, <span style=color:#d2a8ff;font-weight:700>aes</span>(x<span style=color:#ff7b72;font-weight:700>=</span>actor_type)) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;coral2&#39;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(x<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;Actor Types&#39;</span>) 
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/actorTypes.png?raw=trueq" alt="Actor Types"></p><p>Simple plot looking at what the typical event types are (need to confirm this with the codebook)</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>ggplot</span>(df, <span style=color:#d2a8ff;font-weight:700>aes</span>(x<span style=color:#ff7b72;font-weight:700>=</span>event_type)) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#d2a8ff;font-weight:700>geom_bar</span>(fill<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;steelblue&#39;</span>) <span style=color:#ff7b72;font-weight:700>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>labs</span>(x<span style=color:#ff7b72;font-weight:700>=</span><span style=color:#a5d6ff>&#39;Event Types&#39;</span>) 
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/Event-Types.png?raw=true" alt="Event Types"></p><p>Here I used the rnaturalearth package to get geometries (spatial data) for countries. This package provides access to Natural Earth datasets, which include country geometries (polygons).</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># install.packages(&#34;rnaturalearth&#34;)</span>
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>library</span>(rnaturalearth)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># function to retrieve country geometries</span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Get country geometries using rnaturalearth</span>
+</span></span><span style=display:flex><span>countries_geom <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>ne_countries</span>(scale <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;small&#34;</span>, returnclass <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;sf&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Merge the geometries with the country names</span>
+</span></span><span style=display:flex><span>countries_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> countries_geom <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>filter</span>(name <span style=color:#ff7b72;font-weight:700>%in%</span> df<span style=color:#ff7b72;font-weight:700>$</span>country) <span style=color:#ff7b72;font-weight:700>%&gt;%</span>         <span style=color:#8b949e;font-style:italic># Filter for countries in your dataframe</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>left_join</span>(df, by <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#d2a8ff;font-weight:700>c</span>(<span style=color:#a5d6ff>&#34;name&#34;</span> <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;country&#34;</span>)) <span style=color:#8b949e;font-style:italic># Join with your dataframe</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#8b949e;font-style:italic># Set the CRS (WGS84 is EPSG:4326, which is common for world maps)</span>
+</span></span><span style=display:flex><span>countries_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> <span style=color:#d2a8ff;font-weight:700>st_set_crs</span>(countries_sf, <span style=color:#a5d6ff>4326</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic># getting rid of bloat in the sf dataframe</span>
+</span></span><span style=display:flex><span>world_sf <span style=color:#ff7b72;font-weight:700>&lt;-</span> countries_sf <span style=color:#ff7b72;font-weight:700>%&gt;%</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>select</span>(event_date, year, month, actor, actor_type, organization, industry_code, 
+</span></span><span style=display:flex><span>         industry, motive, event_type, event_subtype, actor_country,geometry)
+</span></span></code></pre></div><p>Problem with an invalid point dealing with Telecommunications companies in Sudan. Will try to fix later. I was hung up on this longer than 30mins and it was the only thing holding back a graph. I skipped this&mldr;.</p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span>invalid_geometries <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf[<span style=color:#ff7b72;font-weight:700>!</span><span style=color:#d2a8ff;font-weight:700>st_is_valid</span>(world_sf), ]
+</span></span><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>print</span>(invalid_geometries, n <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>Inf</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#8b949e;font-style:italic>## getting rid of invalid polygon (might come back and figure out why this is wrong)</span>
+</span></span><span style=display:flex><span>world_sf_valid <span style=color:#ff7b72;font-weight:700>&lt;-</span> world_sf<span style=color:#d2a8ff;font-weight:700>[st_is_valid</span>(world_sf), ]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_valid) <span style=color:#ff7b72;font-weight:700>+</span> 
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>() <span style=color:#ff7b72;font-weight:700>+</span>  <span style=color:#8b949e;font-style:italic># Draw borders</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;motive&#34;</span>, palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>, title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Motive&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#8b949e;font-style:italic># Color by &#39;motive&#39; variable</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;World Map by Motive&#34;</span>,
+</span></span><span style=display:flex><span>            legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/worldAttackedMotivemap.png?raw=true" alt="World Map by motive"></p><div class=highlight><pre tabindex=0 style=color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#d2a8ff;font-weight:700>tm_shape</span>(world_sf_valid) <span style=color:#ff7b72;font-weight:700>+</span> 
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_borders</span>() <span style=color:#ff7b72;font-weight:700>+</span>  <span style=color:#8b949e;font-style:italic># Draw borders</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_fill</span>(col <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;event_type&#34;</span>, palette <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Set3&#34;</span>, title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;Motive&#34;</span>) <span style=color:#ff7b72;font-weight:700>+</span> <span style=color:#8b949e;font-style:italic># Color by &#39;Event Type&#39; variable</span>
+</span></span><span style=display:flex><span>  <span style=color:#d2a8ff;font-weight:700>tm_layout</span>(main.title <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#a5d6ff>&#34;World Map by Event Type&#34;</span>,
+</span></span><span style=display:flex><span>            legend.outside <span style=color:#ff7b72;font-weight:700>=</span> <span style=color:#79c0ff>TRUE</span>)
+</span></span></code></pre></div><p><img src="https://github.com/darkawesome/blog/blob/main/content/img/WorldEventMap.png?raw=true" alt="World Map by Event Type"></p><h2 id=conclusion>Conclusion
+<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The types of actors and events seem intriguing and worth deeper exploration, particularly how attack locations and patterns may have shifted over time. For example, has the United States always been a primary target for financial attacks? The following are notes to guide my future analysis:</p><ul><li><strong>Two Geometry Data Frames</strong>: One for the attacker and one for the target.<ul><li>The target data frame is complete for now.</li></ul></li><li><strong>Spatial Clustering</strong>: This will help identify hotspots and determine if attacks are regionally concentrated, affecting either the attackers or those attacked.<ul><li>Consider adding <strong>Moran&rsquo;s I</strong> to further analyze spatial autocorrelation.</li></ul></li><li><strong>Machine Learning Models</strong>: Random forests and decision trees could provide insight into predictive trends. Or even can be used to predict future outcomes or changes in a variable.</li></ul><p>Another potential direction would be a stacked bar graph to visualize event types, with subtypes layered on top. This approach could facilitate cross-variable analysis, revealing interactions between factors like industry, motive, and actor type.</p><p>To support more rigorous statistical analysis, I plan to investigate whether observed patterns are random or if they indicate a larger trend. Importantly, I&rsquo;ll explore predictive models (e.g., using <code>predict</code>) to see if it’s feasible to estimate the location or target of future attacks. While accuracy may be a challenge given the complex motivations behind cyber-attacks, this model could offer valuable insights into emerging risks.</p><p>Citation
+Harry, C., & Gallagher, N. (2018). Classifying Cyber Events. Journal of Information Warfare, 17(3), 17-31.</p></article></section></div><footer class=footer><section class=container>©
+2026
+DarkAwesome
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/blog/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
